@@ -1,0 +1,7906 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-07-09T03:24:58Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/28376237",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7093075,
+            -7.2491055
+          ],
+          [
+            112.7093296,
+            -7.2526768
+          ]
+        ]
+      },
+      "id": "way/28376237"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/35319456",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "80",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7032355,
+            -7.2872535
+          ],
+          [
+            112.7018148,
+            -7.2881857
+          ],
+          [
+            112.7008803,
+            -7.28884
+          ],
+          [
+            112.7002678,
+            -7.2893262
+          ],
+          [
+            112.6999167,
+            -7.2896288
+          ],
+          [
+            112.6995049,
+            -7.2900583
+          ],
+          [
+            112.6990737,
+            -7.2905765
+          ],
+          [
+            112.6989287,
+            -7.2907875
+          ],
+          [
+            112.6987867,
+            -7.2910058
+          ],
+          [
+            112.6986122,
+            -7.2913209
+          ],
+          [
+            112.6984557,
+            -7.2916571
+          ],
+          [
+            112.6983035,
+            -7.292154
+          ],
+          [
+            112.6981478,
+            -7.2927899
+          ],
+          [
+            112.6980524,
+            -7.2933272
+          ],
+          [
+            112.6980101,
+            -7.293734
+          ],
+          [
+            112.6979835,
+            -7.29415
+          ],
+          [
+            112.6980367,
+            -7.2954889
+          ],
+          [
+            112.6982547,
+            -7.2979591
+          ],
+          [
+            112.6986039,
+            -7.302087
+          ],
+          [
+            112.6987169,
+            -7.3028398
+          ],
+          [
+            112.6988212,
+            -7.3033141
+          ],
+          [
+            112.6989778,
+            -7.3038039
+          ],
+          [
+            112.6991816,
+            -7.3043442
+          ],
+          [
+            112.6994327,
+            -7.3048016
+          ],
+          [
+            112.6997525,
+            -7.3052546
+          ],
+          [
+            112.6998303,
+            -7.3053563
+          ],
+          [
+            112.6999154,
+            -7.305455
+          ],
+          [
+            112.7000923,
+            -7.305651
+          ],
+          [
+            112.7002839,
+            -7.3058381
+          ],
+          [
+            112.7004836,
+            -7.3060123
+          ],
+          [
+            112.7009087,
+            -7.3063233
+          ],
+          [
+            112.7014079,
+            -7.3066055
+          ],
+          [
+            112.701684,
+            -7.306748
+          ],
+          [
+            112.7019688,
+            -7.3068806
+          ]
+        ]
+      },
+      "id": "way/35319456"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/35319457",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7036792,
+            -7.2869685
+          ],
+          [
+            112.7032355,
+            -7.2872535
+          ]
+        ]
+      },
+      "id": "way/35319457"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/35343241",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7031009,
+            -7.2872157
+          ],
+          [
+            112.703573,
+            -7.2869297
+          ]
+        ]
+      },
+      "id": "way/35343241"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/35343242",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.703573,
+            -7.2869297
+          ],
+          [
+            112.7041309,
+            -7.2865719
+          ],
+          [
+            112.7045835,
+            -7.2862632
+          ],
+          [
+            112.7050381,
+            -7.2859254
+          ],
+          [
+            112.7050897,
+            -7.2858881
+          ],
+          [
+            112.7053352,
+            -7.2856912
+          ],
+          [
+            112.7056959,
+            -7.2853866
+          ],
+          [
+            112.7059306,
+            -7.2851618
+          ],
+          [
+            112.706176,
+            -7.2849077
+          ],
+          [
+            112.7065086,
+            -7.2844953
+          ],
+          [
+            112.7066548,
+            -7.2843157
+          ],
+          [
+            112.7068627,
+            -7.2839978
+          ],
+          [
+            112.7071068,
+            -7.2835934
+          ],
+          [
+            112.7072945,
+            -7.2832209
+          ],
+          [
+            112.7074313,
+            -7.2829296
+          ],
+          [
+            112.7076164,
+            -7.2824666
+          ],
+          [
+            112.7077465,
+            -7.2820622
+          ],
+          [
+            112.7079034,
+            -7.2815527
+          ],
+          [
+            112.7079215,
+            -7.2814815
+          ],
+          [
+            112.7080013,
+            -7.2810938
+          ],
+          [
+            112.7081381,
+            -7.2804073
+          ],
+          [
+            112.7082004,
+            -7.2799491
+          ],
+          [
+            112.7082668,
+            -7.2792932
+          ],
+          [
+            112.708358,
+            -7.278092
+          ],
+          [
+            112.7084109,
+            -7.2770907
+          ],
+          [
+            112.7085225,
+            -7.2754475
+          ],
+          [
+            112.7087934,
+            -7.271332
+          ],
+          [
+            112.7088996,
+            -7.2696276
+          ],
+          [
+            112.7089096,
+            -7.2695167
+          ]
+        ]
+      },
+      "id": "way/35343242"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/35601174",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7126189,
+            -7.2413653
+          ],
+          [
+            112.712135,
+            -7.2419175
+          ],
+          [
+            112.7118388,
+            -7.2423077
+          ],
+          [
+            112.7107447,
+            -7.2438403
+          ],
+          [
+            112.7107071,
+            -7.2438995
+          ],
+          [
+            112.7104099,
+            -7.2443682
+          ],
+          [
+            112.7101438,
+            -7.2448621
+          ],
+          [
+            112.709955,
+            -7.2452282
+          ],
+          [
+            112.7097748,
+            -7.2456369
+          ],
+          [
+            112.7096289,
+            -7.2461137
+          ],
+          [
+            112.7094744,
+            -7.2467353
+          ],
+          [
+            112.70938,
+            -7.2472376
+          ],
+          [
+            112.7093319,
+            -7.247774
+          ]
+        ]
+      },
+      "id": "way/35601174"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/35601179",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "source": "Bing",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7092389,
+            -7.2472393
+          ],
+          [
+            112.7093628,
+            -7.2466161
+          ],
+          [
+            112.7095173,
+            -7.2460456
+          ],
+          [
+            112.7096804,
+            -7.2455858
+          ],
+          [
+            112.7099035,
+            -7.2450494
+          ],
+          [
+            112.7101696,
+            -7.2445385
+          ],
+          [
+            112.7105043,
+            -7.2439766
+          ],
+          [
+            112.7122888,
+            -7.2415464
+          ],
+          [
+            112.7128432,
+            -7.2408304
+          ]
+        ]
+      },
+      "id": "way/35601179"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/35603358",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7100589,
+            -7.3495245
+          ],
+          [
+            112.7102449,
+            -7.3486983
+          ],
+          [
+            112.7103831,
+            -7.3481048
+          ]
+        ]
+      },
+      "id": "way/35603358"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/35603359",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "maxspeed": "100",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7097661,
+            -7.3511833
+          ],
+          [
+            112.7099993,
+            -7.3498208
+          ]
+        ]
+      },
+      "id": "way/35603359"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/35603360",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7066783,
+            -7.3611681
+          ],
+          [
+            112.7064946,
+            -7.3615305
+          ],
+          [
+            112.7061955,
+            -7.3621031
+          ],
+          [
+            112.7058676,
+            -7.362671
+          ],
+          [
+            112.7053861,
+            -7.363487
+          ],
+          [
+            112.7045345,
+            -7.3648051
+          ],
+          [
+            112.7027135,
+            -7.3672682
+          ],
+          [
+            112.7020526,
+            -7.368162
+          ],
+          [
+            112.7013917,
+            -7.3691665
+          ],
+          [
+            112.7006794,
+            -7.3703496
+          ],
+          [
+            112.7000356,
+            -7.3715669
+          ],
+          [
+            112.6994863,
+            -7.3727416
+          ],
+          [
+            112.6990572,
+            -7.3738141
+          ],
+          [
+            112.6986022,
+            -7.3750994
+          ],
+          [
+            112.6981903,
+            -7.3764954
+          ],
+          [
+            112.6979269,
+            -7.3776252
+          ],
+          [
+            112.6977378,
+            -7.3786426
+          ],
+          [
+            112.6975434,
+            -7.3798223
+          ],
+          [
+            112.697424,
+            -7.3805884
+          ]
+        ]
+      },
+      "id": "way/35603360"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/35603361",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7101216,
+            -7.3498711
+          ],
+          [
+            112.7098694,
+            -7.3512184
+          ]
+        ]
+      },
+      "id": "way/35603361"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/35967657",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7092286,
+            -7.2526791
+          ],
+          [
+            112.7092349,
+            -7.2506712
+          ],
+          [
+            112.7091829,
+            -7.2490945
+          ]
+        ]
+      },
+      "id": "way/35967657"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001135",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7223428,
+            -7.2244138
+          ],
+          [
+            112.7221256,
+            -7.2247053
+          ],
+          [
+            112.7220738,
+            -7.2248181
+          ],
+          [
+            112.7220346,
+            -7.2249321
+          ],
+          [
+            112.7220011,
+            -7.2250292
+          ],
+          [
+            112.721987,
+            -7.2250837
+          ],
+          [
+            112.7219753,
+            -7.2251544
+          ],
+          [
+            112.7216822,
+            -7.2266887
+          ],
+          [
+            112.7214161,
+            -7.2279404
+          ],
+          [
+            112.7212032,
+            -7.2287577
+          ]
+        ]
+      },
+      "id": "way/36001135"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001137",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "smoothness": "good",
+        "surface": "asphalt",
+        "toll": "yes",
+        "width": "10"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7193564,
+            -7.2323107
+          ],
+          [
+            112.7176586,
+            -7.2345884
+          ],
+          [
+            112.7172536,
+            -7.2351685
+          ],
+          [
+            112.7163574,
+            -7.2363657
+          ]
+        ]
+      },
+      "id": "way/36001137"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001500",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7081502,
+            -7.3085713
+          ],
+          [
+            112.7090562,
+            -7.3088182
+          ]
+        ]
+      },
+      "id": "way/36001500"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001501",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7090562,
+            -7.3088182
+          ],
+          [
+            112.7097702,
+            -7.3090596
+          ],
+          [
+            112.7103396,
+            -7.309282
+          ],
+          [
+            112.7108289,
+            -7.3094778
+          ]
+        ]
+      },
+      "id": "way/36001501"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001502",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "maxspeed": "100",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7108289,
+            -7.3094778
+          ],
+          [
+            112.7113095,
+            -7.3096991
+          ],
+          [
+            112.7118331,
+            -7.3100056
+          ],
+          [
+            112.7124253,
+            -7.3103972
+          ],
+          [
+            112.712956,
+            -7.3108175
+          ]
+        ]
+      },
+      "id": "way/36001502"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001528",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.712956,
+            -7.3108175
+          ],
+          [
+            112.7132772,
+            -7.3111068
+          ],
+          [
+            112.7137727,
+            -7.311573
+          ],
+          [
+            112.7144493,
+            -7.3123079
+          ],
+          [
+            112.7152513,
+            -7.313261
+          ],
+          [
+            112.716003,
+            -7.314266
+          ],
+          [
+            112.7161726,
+            -7.3144991
+          ],
+          [
+            112.716286,
+            -7.3146724
+          ],
+          [
+            112.7164697,
+            -7.314971
+          ],
+          [
+            112.7165998,
+            -7.3152031
+          ],
+          [
+            112.7167466,
+            -7.3154991
+          ],
+          [
+            112.7169485,
+            -7.3160019
+          ],
+          [
+            112.7170712,
+            -7.3163883
+          ],
+          [
+            112.7171181,
+            -7.3165865
+          ],
+          [
+            112.7171429,
+            -7.3167308
+          ],
+          [
+            112.7171892,
+            -7.31706
+          ],
+          [
+            112.717222,
+            -7.3176354
+          ],
+          [
+            112.717216,
+            -7.3182146
+          ],
+          [
+            112.7171899,
+            -7.3185339
+          ],
+          [
+            112.7171376,
+            -7.3189057
+          ],
+          [
+            112.7170792,
+            -7.3192701
+          ],
+          [
+            112.7169727,
+            -7.319782
+          ],
+          [
+            112.7160093,
+            -7.3238332
+          ]
+        ]
+      },
+      "id": "way/36001528"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001883",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7160093,
+            -7.3238332
+          ],
+          [
+            112.7159411,
+            -7.3241497
+          ]
+        ]
+      },
+      "id": "way/36001883"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001884",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "80",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7159411,
+            -7.3241497
+          ],
+          [
+            112.7151633,
+            -7.3281045
+          ],
+          [
+            112.7149831,
+            -7.3291101
+          ],
+          [
+            112.7144088,
+            -7.3327104
+          ]
+        ]
+      },
+      "id": "way/36001884"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001886",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7144088,
+            -7.3327104
+          ],
+          [
+            112.714228,
+            -7.3339472
+          ]
+        ]
+      },
+      "id": "way/36001886"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001917",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.697424,
+            -7.3805884
+          ],
+          [
+            112.6973927,
+            -7.3808128
+          ]
+        ]
+      },
+      "id": "way/36001917"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001920",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6973927,
+            -7.3808128
+          ],
+          [
+            112.6972934,
+            -7.3815287
+          ],
+          [
+            112.6971866,
+            -7.3823533
+          ],
+          [
+            112.6971389,
+            -7.3827033
+          ],
+          [
+            112.6966926,
+            -7.3858782
+          ],
+          [
+            112.6963492,
+            -7.3880658
+          ],
+          [
+            112.6959802,
+            -7.3900746
+          ],
+          [
+            112.6954652,
+            -7.39256
+          ],
+          [
+            112.6950527,
+            -7.3944847
+          ],
+          [
+            112.6948094,
+            -7.3957054
+          ],
+          [
+            112.6946474,
+            -7.3965508
+          ]
+        ]
+      },
+      "id": "way/36001920"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001923",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6946474,
+            -7.3965508
+          ],
+          [
+            112.6945717,
+            -7.3971065
+          ]
+        ]
+      },
+      "id": "way/36001923"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36001924",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6945717,
+            -7.3971065
+          ],
+          [
+            112.6944661,
+            -7.3979668
+          ],
+          [
+            112.6943928,
+            -7.3987834
+          ],
+          [
+            112.694336,
+            -7.3998806
+          ],
+          [
+            112.6943228,
+            -7.400875
+          ],
+          [
+            112.6943089,
+            -7.4023369
+          ],
+          [
+            112.6944577,
+            -7.4038009
+          ],
+          [
+            112.6948672,
+            -7.4066801
+          ],
+          [
+            112.6951091,
+            -7.4084662
+          ],
+          [
+            112.6952314,
+            -7.40973
+          ],
+          [
+            112.6952874,
+            -7.4114952
+          ],
+          [
+            112.6952976,
+            -7.4125739
+          ],
+          [
+            112.6952487,
+            -7.4134872
+          ],
+          [
+            112.6951758,
+            -7.4142364
+          ],
+          [
+            112.6951162,
+            -7.4147731
+          ],
+          [
+            112.695002,
+            -7.415619
+          ],
+          [
+            112.6949564,
+            -7.4159355
+          ],
+          [
+            112.6947954,
+            -7.4167242
+          ],
+          [
+            112.6945192,
+            -7.4180128
+          ],
+          [
+            112.6943931,
+            -7.4184956
+          ],
+          [
+            112.6942147,
+            -7.4191286
+          ],
+          [
+            112.6940605,
+            -7.419602
+          ],
+          [
+            112.6937158,
+            -7.4207896
+          ],
+          [
+            112.69352,
+            -7.4214851
+          ],
+          [
+            112.6934074,
+            -7.4218721
+          ],
+          [
+            112.6932096,
+            -7.4226297
+          ],
+          [
+            112.6931633,
+            -7.4228243
+          ],
+          [
+            112.6931167,
+            -7.4230192
+          ]
+        ]
+      },
+      "id": "way/36001924"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36004034",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6965852,
+            -7.4380348
+          ],
+          [
+            112.6966378,
+            -7.4382449
+          ]
+        ]
+      },
+      "id": "way/36004034"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36004039",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6966378,
+            -7.4382449
+          ],
+          [
+            112.6968849,
+            -7.4394619
+          ],
+          [
+            112.6970548,
+            -7.440446
+          ],
+          [
+            112.6971131,
+            -7.440798
+          ],
+          [
+            112.6972295,
+            -7.4417489
+          ],
+          [
+            112.6973137,
+            -7.4427469
+          ],
+          [
+            112.6973792,
+            -7.4436104
+          ],
+          [
+            112.6973838,
+            -7.4438689
+          ],
+          [
+            112.6973911,
+            -7.4442756
+          ],
+          [
+            112.69739,
+            -7.444473
+          ],
+          [
+            112.6973878,
+            -7.4454402
+          ],
+          [
+            112.6973799,
+            -7.4457857
+          ],
+          [
+            112.6973553,
+            -7.446555
+          ]
+        ]
+      },
+      "id": "way/36004039"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36004068",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6973553,
+            -7.446555
+          ],
+          [
+            112.6973216,
+            -7.4469822
+          ]
+        ]
+      },
+      "id": "way/36004068"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36004070",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6973216,
+            -7.4469822
+          ],
+          [
+            112.6972505,
+            -7.4476359
+          ],
+          [
+            112.6971732,
+            -7.4483423
+          ],
+          [
+            112.6970788,
+            -7.4490146
+          ],
+          [
+            112.6969284,
+            -7.4498124
+          ],
+          [
+            112.696712,
+            -7.45085
+          ],
+          [
+            112.6964262,
+            -7.4519404
+          ],
+          [
+            112.6961022,
+            -7.4530186
+          ],
+          [
+            112.6956116,
+            -7.454657
+          ],
+          [
+            112.6950776,
+            -7.4563845
+          ]
+        ]
+      },
+      "id": "way/36004070"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36005526",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6950776,
+            -7.4563845
+          ],
+          [
+            112.6949852,
+            -7.4566726
+          ]
+        ]
+      },
+      "id": "way/36005526"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36005527",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6949852,
+            -7.4566726
+          ],
+          [
+            112.6942871,
+            -7.4591215
+          ],
+          [
+            112.6941383,
+            -7.4596228
+          ],
+          [
+            112.6939975,
+            -7.4600762
+          ],
+          [
+            112.6938446,
+            -7.4605417
+          ],
+          [
+            112.6936649,
+            -7.4610855
+          ],
+          [
+            112.6935308,
+            -7.4615017
+          ],
+          [
+            112.6918879,
+            -7.4662662
+          ]
+        ]
+      },
+      "id": "way/36005527"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36005589",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6895933,
+            -7.4733616
+          ],
+          [
+            112.6894227,
+            -7.4739088
+          ]
+        ]
+      },
+      "id": "way/36005589"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36011773",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6985259,
+            -7.5041605
+          ],
+          [
+            112.6983976,
+            -7.5038987
+          ]
+        ]
+      },
+      "id": "way/36011773"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36011774",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6983976,
+            -7.5038987
+          ],
+          [
+            112.6982351,
+            -7.5036015
+          ],
+          [
+            112.6980362,
+            -7.5032552
+          ],
+          [
+            112.6977104,
+            -7.5026991
+          ],
+          [
+            112.6973321,
+            -7.5021077
+          ],
+          [
+            112.6968046,
+            -7.501286
+          ],
+          [
+            112.6960943,
+            -7.5002065
+          ],
+          [
+            112.69495,
+            -7.4984529
+          ]
+        ]
+      },
+      "id": "way/36011774"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36011776",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.69495,
+            -7.4984529
+          ],
+          [
+            112.6948108,
+            -7.4982389
+          ]
+        ]
+      },
+      "id": "way/36011776"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36011778",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6948108,
+            -7.4982389
+          ],
+          [
+            112.6918609,
+            -7.4937195
+          ],
+          [
+            112.6912777,
+            -7.4928268
+          ],
+          [
+            112.6905879,
+            -7.4917636
+          ]
+        ]
+      },
+      "id": "way/36011778"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36011780",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6905879,
+            -7.4917636
+          ],
+          [
+            112.6903958,
+            -7.4914575
+          ]
+        ]
+      },
+      "id": "way/36011780"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36013026",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6893332,
+            -7.4738897
+          ],
+          [
+            112.6895016,
+            -7.4733429
+          ]
+        ]
+      },
+      "id": "way/36013026"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36013027",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6895016,
+            -7.4733429
+          ],
+          [
+            112.6901954,
+            -7.4711689
+          ],
+          [
+            112.6906056,
+            -7.4698671
+          ],
+          [
+            112.6909943,
+            -7.4686119
+          ]
+        ]
+      },
+      "id": "way/36013027"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36013028",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6949061,
+            -7.4566433
+          ],
+          [
+            112.6949956,
+            -7.4563551
+          ]
+        ]
+      },
+      "id": "way/36013028"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36013029",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6949956,
+            -7.4563551
+          ],
+          [
+            112.6951482,
+            -7.4558052
+          ],
+          [
+            112.6953055,
+            -7.4552595
+          ],
+          [
+            112.6956281,
+            -7.4541652
+          ],
+          [
+            112.6960499,
+            -7.4527926
+          ],
+          [
+            112.6961017,
+            -7.452595
+          ],
+          [
+            112.6962908,
+            -7.4519008
+          ],
+          [
+            112.6965,
+            -7.4511654
+          ],
+          [
+            112.6966636,
+            -7.4504621
+          ],
+          [
+            112.6968191,
+            -7.4497492
+          ],
+          [
+            112.6968795,
+            -7.44922
+          ],
+          [
+            112.6969895,
+            -7.4485046
+          ],
+          [
+            112.6971221,
+            -7.4476742
+          ],
+          [
+            112.697193,
+            -7.4469605
+          ]
+        ]
+      },
+      "id": "way/36013029"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36013030",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.697193,
+            -7.4469605
+          ],
+          [
+            112.6972092,
+            -7.4465238
+          ]
+        ]
+      },
+      "id": "way/36013030"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36013031",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6972338,
+            -7.4432598
+          ],
+          [
+            112.6971867,
+            -7.4423755
+          ],
+          [
+            112.6971062,
+            -7.4416096
+          ],
+          [
+            112.697007,
+            -7.4407872
+          ],
+          [
+            112.6968133,
+            -7.4396313
+          ],
+          [
+            112.6965077,
+            -7.4382323
+          ]
+        ]
+      },
+      "id": "way/36013031"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015797",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6965077,
+            -7.4382323
+          ],
+          [
+            112.6964549,
+            -7.4380144
+          ]
+        ]
+      },
+      "id": "way/36015797"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015799",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6936059,
+            -7.4303659
+          ],
+          [
+            112.6934962,
+            -7.4300666
+          ],
+          [
+            112.6932814,
+            -7.4294304
+          ],
+          [
+            112.6932062,
+            -7.4291571
+          ],
+          [
+            112.6931441,
+            -7.4289027
+          ],
+          [
+            112.6930153,
+            -7.4283665
+          ],
+          [
+            112.6929123,
+            -7.4278048
+          ],
+          [
+            112.6928131,
+            -7.4270787
+          ],
+          [
+            112.6927648,
+            -7.4264394
+          ],
+          [
+            112.6927428,
+            -7.4258274
+          ],
+          [
+            112.6927508,
+            -7.4250869
+          ],
+          [
+            112.6928026,
+            -7.4242918
+          ],
+          [
+            112.6928428,
+            -7.4239414
+          ],
+          [
+            112.6928968,
+            -7.4236078
+          ],
+          [
+            112.6929586,
+            -7.4231929
+          ]
+        ]
+      },
+      "id": "way/36015799"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015803",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.694448,
+            -7.3970871
+          ],
+          [
+            112.6945335,
+            -7.396531
+          ]
+        ]
+      },
+      "id": "way/36015803"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015815",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6945335,
+            -7.396531
+          ],
+          [
+            112.6946571,
+            -7.3958827
+          ],
+          [
+            112.694895,
+            -7.394636
+          ],
+          [
+            112.6951525,
+            -7.3935295
+          ],
+          [
+            112.6955301,
+            -7.3917761
+          ],
+          [
+            112.6958477,
+            -7.3901418
+          ],
+          [
+            112.696088,
+            -7.3888821
+          ],
+          [
+            112.6963026,
+            -7.3876734
+          ],
+          [
+            112.6965172,
+            -7.3864307
+          ],
+          [
+            112.6966717,
+            -7.3854433
+          ],
+          [
+            112.6968949,
+            -7.3839622
+          ],
+          [
+            112.6970807,
+            -7.3825342
+          ],
+          [
+            112.6971504,
+            -7.3819955
+          ],
+          [
+            112.697318,
+            -7.3808078
+          ]
+        ]
+      },
+      "id": "way/36015815"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015818",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.697318,
+            -7.3808078
+          ],
+          [
+            112.6973538,
+            -7.3805808
+          ]
+        ]
+      },
+      "id": "way/36015818"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015835",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6973538,
+            -7.3805808
+          ],
+          [
+            112.6974508,
+            -7.3798729
+          ],
+          [
+            112.697648,
+            -7.3786373
+          ],
+          [
+            112.6977727,
+            -7.3780162
+          ],
+          [
+            112.6978384,
+            -7.3776837
+          ],
+          [
+            112.698001,
+            -7.3769015
+          ],
+          [
+            112.6982413,
+            -7.3760163
+          ],
+          [
+            112.6985503,
+            -7.3749693
+          ],
+          [
+            112.698825,
+            -7.3741692
+          ],
+          [
+            112.6993142,
+            -7.3729264
+          ],
+          [
+            112.6997262,
+            -7.3720071
+          ],
+          [
+            112.7002412,
+            -7.3709601
+          ],
+          [
+            112.7006446,
+            -7.3702195
+          ],
+          [
+            112.7011081,
+            -7.3694705
+          ],
+          [
+            112.7015287,
+            -7.368798
+          ],
+          [
+            112.7020179,
+            -7.368083
+          ],
+          [
+            112.7025844,
+            -7.3672658
+          ],
+          [
+            112.704218,
+            -7.3650751
+          ],
+          [
+            112.7049637,
+            -7.3639618
+          ],
+          [
+            112.7053546,
+            -7.363352
+          ],
+          [
+            112.7059206,
+            -7.3623724
+          ],
+          [
+            112.7061016,
+            -7.3620339
+          ],
+          [
+            112.7064349,
+            -7.3614128
+          ],
+          [
+            112.7065609,
+            -7.3611647
+          ]
+        ]
+      },
+      "id": "way/36015835"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015844",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7141072,
+            -7.3339413
+          ],
+          [
+            112.714282,
+            -7.3327113
+          ]
+        ]
+      },
+      "id": "way/36015844"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015848",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "80",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.714282,
+            -7.3327113
+          ],
+          [
+            112.7148558,
+            -7.328927
+          ],
+          [
+            112.7149777,
+            -7.328278
+          ],
+          [
+            112.7158243,
+            -7.3241329
+          ]
+        ]
+      },
+      "id": "way/36015848"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015850",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7158243,
+            -7.3241329
+          ],
+          [
+            112.7159004,
+            -7.3238147
+          ]
+        ]
+      },
+      "id": "way/36015850"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015857",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7159004,
+            -7.3238147
+          ],
+          [
+            112.716803,
+            -7.320039
+          ],
+          [
+            112.7168998,
+            -7.319615
+          ],
+          [
+            112.7170383,
+            -7.3188984
+          ],
+          [
+            112.7171114,
+            -7.3182492
+          ],
+          [
+            112.7171221,
+            -7.3177737
+          ],
+          [
+            112.7171154,
+            -7.3175589
+          ],
+          [
+            112.717094,
+            -7.3171146
+          ],
+          [
+            112.7170474,
+            -7.3167631
+          ],
+          [
+            112.7170007,
+            -7.3165307
+          ],
+          [
+            112.7168472,
+            -7.3160178
+          ],
+          [
+            112.7167097,
+            -7.315664
+          ],
+          [
+            112.716623,
+            -7.315458
+          ],
+          [
+            112.7162625,
+            -7.3148195
+          ],
+          [
+            112.7158669,
+            -7.3142341
+          ],
+          [
+            112.7145378,
+            -7.3125873
+          ],
+          [
+            112.7135588,
+            -7.3115131
+          ],
+          [
+            112.7129511,
+            -7.3109424
+          ]
+        ]
+      },
+      "id": "way/36015857"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015862",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7129511,
+            -7.3109424
+          ],
+          [
+            112.7123787,
+            -7.31049
+          ],
+          [
+            112.7117865,
+            -7.3100729
+          ],
+          [
+            112.7112629,
+            -7.3097749
+          ],
+          [
+            112.7107908,
+            -7.3095621
+          ]
+        ]
+      },
+      "id": "way/36015862"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015867",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7107908,
+            -7.3095621
+          ],
+          [
+            112.7103102,
+            -7.3093577
+          ],
+          [
+            112.7097008,
+            -7.3091449
+          ],
+          [
+            112.7090034,
+            -7.3089401
+          ]
+        ]
+      },
+      "id": "way/36015867"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015869",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7090034,
+            -7.3089401
+          ],
+          [
+            112.708113,
+            -7.3086921
+          ]
+        ]
+      },
+      "id": "way/36015869"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36015885",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "80",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.707985,
+            -7.3086564
+          ],
+          [
+            112.7053191,
+            -7.3079845
+          ],
+          [
+            112.7040598,
+            -7.3076416
+          ],
+          [
+            112.7034871,
+            -7.3074806
+          ],
+          [
+            112.7029053,
+            -7.3073157
+          ],
+          [
+            112.7024773,
+            -7.3071847
+          ],
+          [
+            112.7021463,
+            -7.3070687
+          ],
+          [
+            112.7019737,
+            -7.3069998
+          ],
+          [
+            112.7017967,
+            -7.3069206
+          ],
+          [
+            112.7014553,
+            -7.3067698
+          ],
+          [
+            112.7012944,
+            -7.3066898
+          ],
+          [
+            112.7011429,
+            -7.306604
+          ],
+          [
+            112.7008408,
+            -7.3064215
+          ],
+          [
+            112.7005394,
+            -7.3062076
+          ],
+          [
+            112.7002587,
+            -7.3059688
+          ],
+          [
+            112.7000462,
+            -7.3057773
+          ],
+          [
+            112.6998688,
+            -7.3055837
+          ],
+          [
+            112.6996992,
+            -7.3053942
+          ],
+          [
+            112.6995561,
+            -7.3051979
+          ],
+          [
+            112.6993158,
+            -7.3048305
+          ],
+          [
+            112.6990141,
+            -7.3042519
+          ],
+          [
+            112.6988091,
+            -7.3036669
+          ],
+          [
+            112.6986439,
+            -7.3030508
+          ],
+          [
+            112.6985173,
+            -7.3023888
+          ],
+          [
+            112.698462,
+            -7.3018804
+          ],
+          [
+            112.6983749,
+            -7.3008686
+          ],
+          [
+            112.6981499,
+            -7.2982411
+          ],
+          [
+            112.6980147,
+            -7.2965549
+          ],
+          [
+            112.6979071,
+            -7.2953627
+          ],
+          [
+            112.6978727,
+            -7.2942619
+          ],
+          [
+            112.6978999,
+            -7.2934802
+          ],
+          [
+            112.697939,
+            -7.2931154
+          ],
+          [
+            112.6980603,
+            -7.2924808
+          ],
+          [
+            112.6982436,
+            -7.2918863
+          ],
+          [
+            112.6984061,
+            -7.2915052
+          ],
+          [
+            112.6986404,
+            -7.2910381
+          ],
+          [
+            112.6988708,
+            -7.2906762
+          ],
+          [
+            112.6990236,
+            -7.290471
+          ],
+          [
+            112.6990638,
+            -7.2904075
+          ],
+          [
+            112.6993531,
+            -7.2900288
+          ],
+          [
+            112.6998136,
+            -7.2895809
+          ],
+          [
+            112.700257,
+            -7.2891794
+          ],
+          [
+            112.7010888,
+            -7.2885458
+          ],
+          [
+            112.7031009,
+            -7.2872157
+          ]
+        ]
+      },
+      "id": "way/36015885"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36038356",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6906742,
+            -7.4917113
+          ],
+          [
+            112.6915956,
+            -7.4931273
+          ],
+          [
+            112.6919067,
+            -7.4936087
+          ],
+          [
+            112.6941825,
+            -7.4971203
+          ],
+          [
+            112.6948967,
+            -7.4982059
+          ]
+        ]
+      },
+      "id": "way/36038356"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36038357",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6905066,
+            -7.491444
+          ],
+          [
+            112.6906742,
+            -7.4917113
+          ]
+        ]
+      },
+      "id": "way/36038357"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36038358",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6948967,
+            -7.4982059
+          ],
+          [
+            112.6950318,
+            -7.4984197
+          ]
+        ]
+      },
+      "id": "way/36038358"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36038359",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6950318,
+            -7.4984197
+          ],
+          [
+            112.6960651,
+            -7.499989
+          ],
+          [
+            112.697123,
+            -7.5016144
+          ],
+          [
+            112.6974217,
+            -7.5020742
+          ],
+          [
+            112.6976262,
+            -7.5023635
+          ],
+          [
+            112.6978592,
+            -7.5027319
+          ],
+          [
+            112.6980094,
+            -7.5029799
+          ],
+          [
+            112.6981408,
+            -7.503192
+          ],
+          [
+            112.6983165,
+            -7.5034959
+          ],
+          [
+            112.6985043,
+            -7.5038482
+          ]
+        ]
+      },
+      "id": "way/36038359"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36038360",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6985043,
+            -7.5038482
+          ],
+          [
+            112.6986414,
+            -7.5041034
+          ]
+        ]
+      },
+      "id": "way/36038360"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36038361",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6986414,
+            -7.5041034
+          ],
+          [
+            112.6988267,
+            -7.5044804
+          ],
+          [
+            112.6990071,
+            -7.5048726
+          ],
+          [
+            112.6991406,
+            -7.5052211
+          ],
+          [
+            112.6992385,
+            -7.5055035
+          ],
+          [
+            112.699323,
+            -7.5057682
+          ],
+          [
+            112.6994048,
+            -7.506058
+          ],
+          [
+            112.699492,
+            -7.5063998
+          ],
+          [
+            112.6995805,
+            -7.5067561
+          ],
+          [
+            112.6996435,
+            -7.5070844
+          ],
+          [
+            112.6997093,
+            -7.5074927
+          ],
+          [
+            112.6997695,
+            -7.5079899
+          ],
+          [
+            112.6998044,
+            -7.5083981
+          ],
+          [
+            112.6998272,
+            -7.5088688
+          ],
+          [
+            112.6998306,
+            -7.5093913
+          ],
+          [
+            112.6998152,
+            -7.5099218
+          ],
+          [
+            112.6997884,
+            -7.5102645
+          ],
+          [
+            112.6997421,
+            -7.5107109
+          ],
+          [
+            112.6996864,
+            -7.5111025
+          ],
+          [
+            112.6995783,
+            -7.5116007
+          ],
+          [
+            112.6994987,
+            -7.5119256
+          ],
+          [
+            112.6994356,
+            -7.5121622
+          ],
+          [
+            112.6993759,
+            -7.5123703
+          ],
+          [
+            112.6992613,
+            -7.5127219
+          ],
+          [
+            112.6990508,
+            -7.513303
+          ],
+          [
+            112.6989327,
+            -7.5135942
+          ],
+          [
+            112.698798,
+            -7.5138921
+          ],
+          [
+            112.6985908,
+            -7.5143002
+          ],
+          [
+            112.6983996,
+            -7.5146789
+          ],
+          [
+            112.6977353,
+            -7.5158375
+          ],
+          [
+            112.6968493,
+            -7.5173436
+          ],
+          [
+            112.6952743,
+            -7.5200334
+          ],
+          [
+            112.6940065,
+            -7.5221468
+          ],
+          [
+            112.692757,
+            -7.5242346
+          ]
+        ]
+      },
+      "id": "way/36038361"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36978200",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7092842,
+            -7.2566906
+          ],
+          [
+            112.7092659,
+            -7.2550473
+          ],
+          [
+            112.709237,
+            -7.2536357
+          ],
+          [
+            112.7092286,
+            -7.2526791
+          ]
+        ]
+      },
+      "id": "way/36978200"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/36978201",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7090206,
+            -7.2695288
+          ],
+          [
+            112.7085699,
+            -7.2768665
+          ],
+          [
+            112.7083508,
+            -7.27973
+          ],
+          [
+            112.708291,
+            -7.2801958
+          ],
+          [
+            112.7081971,
+            -7.2807106
+          ],
+          [
+            112.7080315,
+            -7.2815008
+          ],
+          [
+            112.708006,
+            -7.281592
+          ],
+          [
+            112.7078484,
+            -7.2821301
+          ],
+          [
+            112.7077545,
+            -7.2824307
+          ],
+          [
+            112.7076526,
+            -7.2827014
+          ],
+          [
+            112.7075654,
+            -7.2829163
+          ],
+          [
+            112.7074434,
+            -7.2831863
+          ],
+          [
+            112.7072449,
+            -7.2835774
+          ],
+          [
+            112.7070142,
+            -7.2839951
+          ],
+          [
+            112.7068332,
+            -7.2842745
+          ],
+          [
+            112.7066334,
+            -7.2845339
+          ],
+          [
+            112.7063759,
+            -7.2848611
+          ],
+          [
+            112.7060815,
+            -7.2851824
+          ],
+          [
+            112.7057871,
+            -7.2854651
+          ],
+          [
+            112.7055256,
+            -7.2856899
+          ],
+          [
+            112.7052802,
+            -7.2858894
+          ],
+          [
+            112.7051461,
+            -7.2859985
+          ],
+          [
+            112.7048886,
+            -7.2861888
+          ],
+          [
+            112.7036792,
+            -7.2869685
+          ]
+        ]
+      },
+      "id": "way/36978201"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/68187614",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7093296,
+            -7.2526768
+          ],
+          [
+            112.709333,
+            -7.2528881
+          ],
+          [
+            112.7094261,
+            -7.2562408
+          ],
+          [
+            112.7094521,
+            -7.2574578
+          ],
+          [
+            112.7094358,
+            -7.2578085
+          ],
+          [
+            112.7094363,
+            -7.2581753
+          ],
+          [
+            112.7094564,
+            -7.259049
+          ],
+          [
+            112.7094737,
+            -7.2597617
+          ]
+        ]
+      },
+      "id": "way/68187614"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/94251113",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "source": "Bing",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7211139,
+            -7.2287374
+          ],
+          [
+            112.7213366,
+            -7.2279004
+          ],
+          [
+            112.7216091,
+            -7.2266534
+          ],
+          [
+            112.7218867,
+            -7.225104
+          ],
+          [
+            112.7219335,
+            -7.2248329
+          ],
+          [
+            112.7219307,
+            -7.2247558
+          ],
+          [
+            112.7219219,
+            -7.2246899
+          ],
+          [
+            112.7219047,
+            -7.2245831
+          ],
+          [
+            112.7218082,
+            -7.2243021
+          ]
+        ]
+      },
+      "id": "way/94251113"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/94251125",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "smoothness": "good",
+        "source": "Bing",
+        "surface": "asphalt",
+        "toll": "yes",
+        "width": "10"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7162668,
+            -7.2362843
+          ],
+          [
+            112.7172428,
+            -7.2350102
+          ],
+          [
+            112.7175888,
+            -7.2345232
+          ],
+          [
+            112.7192652,
+            -7.2322681
+          ]
+        ]
+      },
+      "id": "way/94251125"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/121497996",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6910772,
+            -7.4686391
+          ],
+          [
+            112.6907936,
+            -7.4695693
+          ],
+          [
+            112.6899702,
+            -7.4721862
+          ],
+          [
+            112.6895933,
+            -7.4733616
+          ]
+        ]
+      },
+      "id": "way/121497996"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/121497997",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6918007,
+            -7.4662343
+          ],
+          [
+            112.6935442,
+            -7.4611693
+          ],
+          [
+            112.6937909,
+            -7.4604073
+          ],
+          [
+            112.6940294,
+            -7.4596459
+          ],
+          [
+            112.6949061,
+            -7.4566433
+          ]
+        ]
+      },
+      "id": "way/121497997"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/121497999",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6918879,
+            -7.4662662
+          ],
+          [
+            112.6910772,
+            -7.4686391
+          ]
+        ]
+      },
+      "id": "way/121497999"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/121498002",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6909943,
+            -7.4686119
+          ],
+          [
+            112.6918007,
+            -7.4662343
+          ]
+        ]
+      },
+      "id": "way/121498002"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/295444990",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7105988,
+            -7.3477473
+          ],
+          [
+            112.7103396,
+            -7.3488646
+          ],
+          [
+            112.7101216,
+            -7.3498711
+          ]
+        ]
+      },
+      "id": "way/295444990"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/299739666",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6930748,
+            -7.4232069
+          ],
+          [
+            112.6929981,
+            -7.4236168
+          ],
+          [
+            112.692938,
+            -7.4242526
+          ],
+          [
+            112.6928825,
+            -7.4245307
+          ],
+          [
+            112.6928522,
+            -7.4251105
+          ],
+          [
+            112.6928471,
+            -7.4258223
+          ],
+          [
+            112.692871,
+            -7.4265149
+          ],
+          [
+            112.6929297,
+            -7.4271274
+          ],
+          [
+            112.6930174,
+            -7.4278275
+          ],
+          [
+            112.6930547,
+            -7.42802
+          ],
+          [
+            112.6930828,
+            -7.4281291
+          ],
+          [
+            112.6931043,
+            -7.4282488
+          ],
+          [
+            112.6931992,
+            -7.4286823
+          ],
+          [
+            112.6933041,
+            -7.4290879
+          ],
+          [
+            112.6934117,
+            -7.4294632
+          ],
+          [
+            112.693575,
+            -7.4299776
+          ],
+          [
+            112.6937448,
+            -7.430422
+          ]
+        ]
+      },
+      "id": "way/299739666"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/299739667",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6931167,
+            -7.4230192
+          ],
+          [
+            112.6930748,
+            -7.4232069
+          ]
+        ]
+      },
+      "id": "way/299739667"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/299739668",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6929586,
+            -7.4231929
+          ],
+          [
+            112.6929932,
+            -7.4230102
+          ]
+        ]
+      },
+      "id": "way/299739668"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/299739669",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6929932,
+            -7.4230102
+          ],
+          [
+            112.6930989,
+            -7.4226008
+          ],
+          [
+            112.6932192,
+            -7.4221643
+          ],
+          [
+            112.6935225,
+            -7.4209904
+          ],
+          [
+            112.693689,
+            -7.4204904
+          ],
+          [
+            112.693921,
+            -7.4196897
+          ],
+          [
+            112.6940882,
+            -7.4191405
+          ],
+          [
+            112.6942856,
+            -7.4184085
+          ],
+          [
+            112.6944751,
+            -7.4176982
+          ],
+          [
+            112.6945031,
+            -7.4175666
+          ],
+          [
+            112.6945648,
+            -7.417312
+          ],
+          [
+            112.6946341,
+            -7.4169979
+          ],
+          [
+            112.6946808,
+            -7.4167002
+          ],
+          [
+            112.6947317,
+            -7.4163846
+          ],
+          [
+            112.6947847,
+            -7.4161457
+          ],
+          [
+            112.6948303,
+            -7.4158385
+          ],
+          [
+            112.6949155,
+            -7.4152992
+          ],
+          [
+            112.6949885,
+            -7.4147719
+          ],
+          [
+            112.6950495,
+            -7.414238
+          ],
+          [
+            112.6951299,
+            -7.413489
+          ],
+          [
+            112.6951793,
+            -7.4125746
+          ],
+          [
+            112.695204,
+            -7.4118123
+          ],
+          [
+            112.6951782,
+            -7.4109356
+          ],
+          [
+            112.6951401,
+            -7.4097295
+          ],
+          [
+            112.6950125,
+            -7.4084719
+          ],
+          [
+            112.6947559,
+            -7.4066776
+          ],
+          [
+            112.6943344,
+            -7.4038191
+          ],
+          [
+            112.6942341,
+            -7.4030285
+          ],
+          [
+            112.6941998,
+            -7.4022794
+          ],
+          [
+            112.6941654,
+            -7.4007218
+          ],
+          [
+            112.6942049,
+            -7.3993419
+          ],
+          [
+            112.6942544,
+            -7.3987427
+          ],
+          [
+            112.6943312,
+            -7.3979136
+          ],
+          [
+            112.694448,
+            -7.3970871
+          ]
+        ]
+      },
+      "id": "way/299739669"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/313033812",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6894068,
+            -7.5515124
+          ],
+          [
+            112.6887007,
+            -7.5512176
+          ],
+          [
+            112.6882165,
+            -7.5510022
+          ],
+          [
+            112.6877129,
+            -7.550739
+          ],
+          [
+            112.6870727,
+            -7.5503349
+          ],
+          [
+            112.6867461,
+            -7.5500965
+          ],
+          [
+            112.6864445,
+            -7.5498476
+          ],
+          [
+            112.686101,
+            -7.5495568
+          ],
+          [
+            112.6857766,
+            -7.5492531
+          ],
+          [
+            112.685367,
+            -7.5488109
+          ],
+          [
+            112.6850972,
+            -7.5484885
+          ],
+          [
+            112.684843,
+            -7.5481495
+          ],
+          [
+            112.6846272,
+            -7.5478338
+          ],
+          [
+            112.6844138,
+            -7.5474861
+          ],
+          [
+            112.6842463,
+            -7.5471943
+          ],
+          [
+            112.6840948,
+            -7.5468985
+          ],
+          [
+            112.6839425,
+            -7.5465628
+          ],
+          [
+            112.6838064,
+            -7.5462177
+          ],
+          [
+            112.6837367,
+            -7.5460469
+          ],
+          [
+            112.6836735,
+            -7.5458664
+          ],
+          [
+            112.6835154,
+            -7.5453662
+          ],
+          [
+            112.6834215,
+            -7.5450046
+          ],
+          [
+            112.6833451,
+            -7.5446775
+          ],
+          [
+            112.6832874,
+            -7.5443438
+          ],
+          [
+            112.6832267,
+            -7.5439394
+          ],
+          [
+            112.6831801,
+            -7.5434956
+          ],
+          [
+            112.6831645,
+            -7.5431313
+          ],
+          [
+            112.683169,
+            -7.5423374
+          ],
+          [
+            112.6831895,
+            -7.5420491
+          ],
+          [
+            112.6832211,
+            -7.5417751
+          ],
+          [
+            112.6832727,
+            -7.5413817
+          ],
+          [
+            112.6833353,
+            -7.541075
+          ],
+          [
+            112.6834001,
+            -7.5407715
+          ],
+          [
+            112.6834827,
+            -7.5404723
+          ],
+          [
+            112.6835657,
+            -7.5401845
+          ],
+          [
+            112.6836548,
+            -7.5399196
+          ],
+          [
+            112.683779,
+            -7.5395603
+          ],
+          [
+            112.6839245,
+            -7.5392272
+          ],
+          [
+            112.6840692,
+            -7.5389168
+          ]
+        ]
+      },
+      "id": "way/313033812"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/313033836",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6841631,
+            -7.5389717
+          ],
+          [
+            112.6840183,
+            -7.5392784
+          ],
+          [
+            112.6838803,
+            -7.5396115
+          ],
+          [
+            112.6837499,
+            -7.5399783
+          ],
+          [
+            112.6836549,
+            -7.540237
+          ],
+          [
+            112.6835771,
+            -7.5405136
+          ],
+          [
+            112.6835067,
+            -7.5407834
+          ],
+          [
+            112.6834349,
+            -7.5410833
+          ],
+          [
+            112.6833786,
+            -7.5413976
+          ],
+          [
+            112.6833263,
+            -7.5417779
+          ],
+          [
+            112.6832928,
+            -7.5420571
+          ],
+          [
+            112.6832754,
+            -7.542345
+          ],
+          [
+            112.6832713,
+            -7.5431483
+          ],
+          [
+            112.6832914,
+            -7.5434969
+          ],
+          [
+            112.683337,
+            -7.5439277
+          ],
+          [
+            112.6833893,
+            -7.5443345
+          ],
+          [
+            112.6834496,
+            -7.544639
+          ],
+          [
+            112.6835275,
+            -7.5449966
+          ],
+          [
+            112.6836187,
+            -7.5453463
+          ],
+          [
+            112.6837715,
+            -7.5458289
+          ],
+          [
+            112.6838386,
+            -7.546015
+          ],
+          [
+            112.6839124,
+            -7.5462091
+          ],
+          [
+            112.6840431,
+            -7.5465295
+          ],
+          [
+            112.6841945,
+            -7.5468605
+          ],
+          [
+            112.6843435,
+            -7.5471451
+          ],
+          [
+            112.6845209,
+            -7.5474521
+          ],
+          [
+            112.6847143,
+            -7.5477699
+          ],
+          [
+            112.6849233,
+            -7.5480812
+          ],
+          [
+            112.6851844,
+            -7.5484121
+          ],
+          [
+            112.6854449,
+            -7.5487435
+          ],
+          [
+            112.6858502,
+            -7.5491745
+          ],
+          [
+            112.6861755,
+            -7.5494737
+          ],
+          [
+            112.6865097,
+            -7.5497707
+          ],
+          [
+            112.6868185,
+            -7.5500181
+          ],
+          [
+            112.68715,
+            -7.5502567
+          ],
+          [
+            112.6877617,
+            -7.5506451
+          ],
+          [
+            112.688258,
+            -7.5509092
+          ],
+          [
+            112.6887307,
+            -7.5511274
+          ],
+          [
+            112.6894377,
+            -7.5514087
+          ]
+        ]
+      },
+      "id": "way/313033836"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/320329458",
+        "bridge": "viaduct",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6932215,
+            -7.5528897
+          ],
+          [
+            112.6969096,
+            -7.5543678
+          ]
+        ]
+      },
+      "id": "way/320329458"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/320329459",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "40",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.693247,
+            -7.5530861
+          ],
+          [
+            112.6929216,
+            -7.5529613
+          ]
+        ]
+      },
+      "id": "way/320329459"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/320329460",
+        "bridge": "viaduct",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6968726,
+            -7.5545252
+          ],
+          [
+            112.693247,
+            -7.5530861
+          ]
+        ]
+      },
+      "id": "way/320329460"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/320329461",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6969096,
+            -7.5543678
+          ],
+          [
+            112.701821,
+            -7.5563094
+          ],
+          [
+            112.702521,
+            -7.5565441
+          ],
+          [
+            112.7032214,
+            -7.5567274
+          ],
+          [
+            112.7039138,
+            -7.5568346
+          ],
+          [
+            112.7043883,
+            -7.5568808
+          ],
+          [
+            112.704881,
+            -7.5568989
+          ]
+        ]
+      },
+      "id": "way/320329461"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/365978894",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7048627,
+            -7.5570638
+          ],
+          [
+            112.704383,
+            -7.5570443
+          ],
+          [
+            112.7038975,
+            -7.5570028
+          ],
+          [
+            112.7031904,
+            -7.5568858
+          ],
+          [
+            112.7024682,
+            -7.5567054
+          ],
+          [
+            112.7017631,
+            -7.5564661
+          ],
+          [
+            112.6968726,
+            -7.5545252
+          ]
+        ]
+      },
+      "id": "way/365978894"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/365978897",
+        "bridge": "viaduct",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.704881,
+            -7.5568989
+          ],
+          [
+            112.7051377,
+            -7.5568993
+          ],
+          [
+            112.7054054,
+            -7.5568888
+          ],
+          [
+            112.7056432,
+            -7.5568743
+          ],
+          [
+            112.7059185,
+            -7.556851
+          ],
+          [
+            112.706475,
+            -7.5567938
+          ],
+          [
+            112.7070491,
+            -7.55673
+          ],
+          [
+            112.707578,
+            -7.5566678
+          ]
+        ]
+      },
+      "id": "way/365978897"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/369610241",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6928804,
+            -7.5527407
+          ],
+          [
+            112.6932215,
+            -7.5528897
+          ]
+        ]
+      },
+      "id": "way/369610241"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/369610242",
+        "covered": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.690592,
+            -7.552005
+          ],
+          [
+            112.6905263,
+            -7.5519785
+          ],
+          [
+            112.6904636,
+            -7.5519535
+          ]
+        ]
+      },
+      "id": "way/369610242"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/449222383",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "source": "Bing",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7139382,
+            -7.2393758
+          ],
+          [
+            112.7151105,
+            -7.2378533
+          ]
+        ]
+      },
+      "id": "way/449222383"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/449222384",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "smoothness": "good",
+        "surface": "asphalt",
+        "toll": "yes",
+        "width": "10"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7163574,
+            -7.2363657
+          ],
+          [
+            112.7161596,
+            -7.2366216
+          ],
+          [
+            112.7159113,
+            -7.2369584
+          ],
+          [
+            112.7157804,
+            -7.2371128
+          ],
+          [
+            112.7151751,
+            -7.2379458
+          ]
+        ]
+      },
+      "id": "way/449222384"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/455677753",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxheight": "4.2",
+        "maxspeed": "80",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.714228,
+            -7.3339472
+          ],
+          [
+            112.7141485,
+            -7.3344768
+          ],
+          [
+            112.7140466,
+            -7.3350591
+          ],
+          [
+            112.7139664,
+            -7.3355397
+          ],
+          [
+            112.7138919,
+            -7.3359378
+          ],
+          [
+            112.7138078,
+            -7.3363854
+          ],
+          [
+            112.7137173,
+            -7.3368267
+          ],
+          [
+            112.7135854,
+            -7.3373946
+          ],
+          [
+            112.7133746,
+            -7.3382529
+          ],
+          [
+            112.7132671,
+            -7.338689
+          ],
+          [
+            112.7131777,
+            -7.3390057
+          ],
+          [
+            112.7131415,
+            -7.3391324
+          ],
+          [
+            112.7131053,
+            -7.339258
+          ],
+          [
+            112.7129786,
+            -7.3397236
+          ],
+          [
+            112.7128869,
+            -7.3400424
+          ],
+          [
+            112.7126025,
+            -7.3409699
+          ],
+          [
+            112.7122022,
+            -7.3421166
+          ],
+          [
+            112.711953,
+            -7.3428613
+          ],
+          [
+            112.7116261,
+            -7.3438618
+          ]
+        ]
+      },
+      "id": "way/455677753"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/455677755",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxheight": "4.2",
+        "maxspeed": "80",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7112088,
+            -7.344829
+          ],
+          [
+            112.7112937,
+            -7.3445188
+          ],
+          [
+            112.7113592,
+            -7.3443067
+          ],
+          [
+            112.7118153,
+            -7.3429727
+          ],
+          [
+            112.7122578,
+            -7.3416352
+          ],
+          [
+            112.7125231,
+            -7.3408383
+          ],
+          [
+            112.7129023,
+            -7.339596
+          ],
+          [
+            112.7129903,
+            -7.3392728
+          ],
+          [
+            112.7130418,
+            -7.3390741
+          ],
+          [
+            112.7130672,
+            -7.3389844
+          ],
+          [
+            112.7131833,
+            -7.3385533
+          ],
+          [
+            112.7135254,
+            -7.3371805
+          ],
+          [
+            112.7137136,
+            -7.3362645
+          ],
+          [
+            112.7138547,
+            -7.3355229
+          ],
+          [
+            112.7140413,
+            -7.334429
+          ],
+          [
+            112.7141072,
+            -7.3339413
+          ]
+        ]
+      },
+      "id": "way/455677755"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/456295322",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes",
+        "tunnel": "building_passage"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7127864,
+            -7.2411576
+          ],
+          [
+            112.712757,
+            -7.2411899
+          ],
+          [
+            112.7127043,
+            -7.2412539
+          ]
+        ]
+      },
+      "id": "way/456295322"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/458258297",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7090251,
+            -7.2694485
+          ],
+          [
+            112.7090206,
+            -7.2695288
+          ]
+        ]
+      },
+      "id": "way/458258297"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/458258298",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7094737,
+            -7.2597617
+          ],
+          [
+            112.7094752,
+            -7.2598578
+          ],
+          [
+            112.7094698,
+            -7.2616405
+          ],
+          [
+            112.7094089,
+            -7.2636125
+          ],
+          [
+            112.709282,
+            -7.2654533
+          ],
+          [
+            112.7091496,
+            -7.2673108
+          ]
+        ]
+      },
+      "id": "way/458258298"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/458258299",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7090474,
+            -7.2672917
+          ],
+          [
+            112.7091104,
+            -7.266294
+          ],
+          [
+            112.7091711,
+            -7.265313
+          ],
+          [
+            112.7092933,
+            -7.263474
+          ],
+          [
+            112.709327,
+            -7.2622009
+          ],
+          [
+            112.7093276,
+            -7.2608135
+          ],
+          [
+            112.7093114,
+            -7.2585563
+          ]
+        ]
+      },
+      "id": "way/458258299"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/458258300",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7089096,
+            -7.2695167
+          ],
+          [
+            112.7089121,
+            -7.2694281
+          ]
+        ]
+      },
+      "id": "way/458258300"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/459966742",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7091259,
+            -7.2676424
+          ],
+          [
+            112.7090251,
+            -7.2694485
+          ]
+        ]
+      },
+      "id": "way/459966742"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/459966743",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7091496,
+            -7.2673108
+          ],
+          [
+            112.7091259,
+            -7.2676424
+          ]
+        ]
+      },
+      "id": "way/459966743"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/459966744",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7090209,
+            -7.2676355
+          ],
+          [
+            112.7090474,
+            -7.2672917
+          ]
+        ]
+      },
+      "id": "way/459966744"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/459966745",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7089121,
+            -7.2694281
+          ],
+          [
+            112.7090209,
+            -7.2676355
+          ]
+        ]
+      },
+      "id": "way/459966745"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/535520180",
+        "bridge": "viaduct",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7067778,
+            -7.5569276
+          ],
+          [
+            112.7061798,
+            -7.5569923
+          ],
+          [
+            112.70591,
+            -7.557018
+          ],
+          [
+            112.7056656,
+            -7.5570362
+          ],
+          [
+            112.7054201,
+            -7.5570522
+          ],
+          [
+            112.7051512,
+            -7.5570629
+          ],
+          [
+            112.7048627,
+            -7.5570638
+          ]
+        ]
+      },
+      "id": "way/535520180"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/551843545",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7067714,
+            -7.3609637
+          ],
+          [
+            112.7066783,
+            -7.3611681
+          ]
+        ]
+      },
+      "id": "way/551843545"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/551843549",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7098694,
+            -7.3512184
+          ],
+          [
+            112.7096642,
+            -7.3523137
+          ],
+          [
+            112.709436,
+            -7.3534339
+          ],
+          [
+            112.709169,
+            -7.3545455
+          ],
+          [
+            112.7088634,
+            -7.3556473
+          ],
+          [
+            112.7085196,
+            -7.356738
+          ],
+          [
+            112.708138,
+            -7.3578163
+          ],
+          [
+            112.7077191,
+            -7.3588808
+          ],
+          [
+            112.7072634,
+            -7.3599304
+          ],
+          [
+            112.7067714,
+            -7.3609637
+          ]
+        ]
+      },
+      "id": "way/551843549"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/551843552",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7065609,
+            -7.3611647
+          ],
+          [
+            112.7066838,
+            -7.3609178
+          ]
+        ]
+      },
+      "id": "way/551843552"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/551843554",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7066838,
+            -7.3609178
+          ],
+          [
+            112.7071068,
+            -7.3600068
+          ],
+          [
+            112.7075224,
+            -7.3590668
+          ],
+          [
+            112.7079087,
+            -7.3581145
+          ],
+          [
+            112.7082654,
+            -7.3571509
+          ],
+          [
+            112.7085921,
+            -7.3561769
+          ],
+          [
+            112.7088885,
+            -7.3551934
+          ],
+          [
+            112.7091544,
+            -7.3542014
+          ],
+          [
+            112.7093894,
+            -7.3532018
+          ],
+          [
+            112.7095934,
+            -7.3521954
+          ],
+          [
+            112.7097661,
+            -7.3511833
+          ]
+        ]
+      },
+      "id": "way/551843554"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/578270133",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "smoothness": "good",
+        "surface": "asphalt",
+        "toll": "yes",
+        "width": "10"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7151751,
+            -7.2379458
+          ],
+          [
+            112.7139905,
+            -7.2394344
+          ]
+        ]
+      },
+      "id": "way/578270133"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/578270134",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "source": "Bing",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7151105,
+            -7.2378533
+          ],
+          [
+            112.7157677,
+            -7.2369167
+          ],
+          [
+            112.7162668,
+            -7.2362843
+          ]
+        ]
+      },
+      "id": "way/578270134"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/578270135",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7212032,
+            -7.2287577
+          ],
+          [
+            112.7209437,
+            -7.2294649
+          ],
+          [
+            112.7208182,
+            -7.2297802
+          ],
+          [
+            112.7207471,
+            -7.2299558
+          ],
+          [
+            112.7206747,
+            -7.2301171
+          ],
+          [
+            112.7205111,
+            -7.2304441
+          ],
+          [
+            112.7203301,
+            -7.2307828
+          ],
+          [
+            112.7202523,
+            -7.2309217
+          ],
+          [
+            112.7201631,
+            -7.2310754
+          ],
+          [
+            112.7199843,
+            -7.2313703
+          ],
+          [
+            112.7197349,
+            -7.2317595
+          ]
+        ]
+      },
+      "id": "way/578270135"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/578270136",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "source": "Bing",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7196508,
+            -7.2317223
+          ],
+          [
+            112.7199492,
+            -7.231257
+          ],
+          [
+            112.7201249,
+            -7.2309544
+          ],
+          [
+            112.7203229,
+            -7.2306083
+          ],
+          [
+            112.7205944,
+            -7.230071
+          ],
+          [
+            112.720731,
+            -7.2297496
+          ],
+          [
+            112.7208561,
+            -7.2294475
+          ],
+          [
+            112.7211139,
+            -7.2287374
+          ]
+        ]
+      },
+      "id": "way/578270136"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/583140610",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7139905,
+            -7.2394344
+          ],
+          [
+            112.7133632,
+            -7.2403369
+          ],
+          [
+            112.7127864,
+            -7.2411576
+          ]
+        ]
+      },
+      "id": "way/583140610"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/584488960",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "80",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7019688,
+            -7.3068806
+          ],
+          [
+            112.7023153,
+            -7.3070164
+          ],
+          [
+            112.702658,
+            -7.3071297
+          ],
+          [
+            112.7055723,
+            -7.3078992
+          ],
+          [
+            112.7079387,
+            -7.3085096
+          ],
+          [
+            112.7081502,
+            -7.3085713
+          ]
+        ]
+      },
+      "id": "way/584488960"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/641102122",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6878958,
+            -7.4797091
+          ],
+          [
+            112.6878853,
+            -7.479814
+          ]
+        ]
+      },
+      "id": "way/641102122"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/641102123",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6894227,
+            -7.4739088
+          ],
+          [
+            112.6888677,
+            -7.4756846
+          ],
+          [
+            112.688448,
+            -7.4770023
+          ],
+          [
+            112.6883166,
+            -7.4775023
+          ],
+          [
+            112.6881938,
+            -7.4779971
+          ],
+          [
+            112.6880765,
+            -7.4785753
+          ],
+          [
+            112.6879612,
+            -7.4792588
+          ],
+          [
+            112.6878958,
+            -7.4797091
+          ]
+        ]
+      },
+      "id": "way/641102123"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/641102124",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6877922,
+            -7.4797914
+          ],
+          [
+            112.6878049,
+            -7.4796929
+          ]
+        ]
+      },
+      "id": "way/641102124"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/641102125",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6878049,
+            -7.4796929
+          ],
+          [
+            112.6878799,
+            -7.4791753
+          ],
+          [
+            112.6879671,
+            -7.4786558
+          ],
+          [
+            112.6880725,
+            -7.4781286
+          ],
+          [
+            112.6882005,
+            -7.477553
+          ],
+          [
+            112.6884123,
+            -7.4768012
+          ],
+          [
+            112.6887803,
+            -7.4756566
+          ],
+          [
+            112.6893332,
+            -7.4738897
+          ]
+        ]
+      },
+      "id": "way/641102125"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/691371071",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.692757,
+            -7.5242346
+          ],
+          [
+            112.6925062,
+            -7.5246682
+          ]
+        ]
+      },
+      "id": "way/691371071"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/691371072",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6923801,
+            -7.5246162
+          ],
+          [
+            112.6926322,
+            -7.5241882
+          ]
+        ]
+      },
+      "id": "way/691371072"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/691371073",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6897663,
+            -7.5293588
+          ],
+          [
+            112.6888,
+            -7.5310141
+          ],
+          [
+            112.6885794,
+            -7.5313917
+          ],
+          [
+            112.687524,
+            -7.5331733
+          ],
+          [
+            112.6857852,
+            -7.5361195
+          ],
+          [
+            112.684935,
+            -7.5375707
+          ]
+        ]
+      },
+      "id": "way/691371073"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/691371074",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6856867,
+            -7.5360676
+          ],
+          [
+            112.6884908,
+            -7.5313345
+          ],
+          [
+            112.6886035,
+            -7.5311438
+          ],
+          [
+            112.6887095,
+            -7.5309629
+          ],
+          [
+            112.6896828,
+            -7.529301
+          ]
+        ]
+      },
+      "id": "way/691371074"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695733972",
+        "covered": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "40",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6905179,
+            -7.55182
+          ],
+          [
+            112.6905819,
+            -7.5518457
+          ],
+          [
+            112.6906466,
+            -7.5518709
+          ]
+        ]
+      },
+      "id": "way/695733972"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695733973",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.684935,
+            -7.5375707
+          ],
+          [
+            112.6846415,
+            -7.5380646
+          ],
+          [
+            112.6844394,
+            -7.5384411
+          ],
+          [
+            112.684304,
+            -7.5386815
+          ],
+          [
+            112.6841631,
+            -7.5389717
+          ]
+        ]
+      },
+      "id": "way/695733973"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/695733974",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6840692,
+            -7.5389168
+          ],
+          [
+            112.6842101,
+            -7.5386323
+          ],
+          [
+            112.6843411,
+            -7.538391
+          ],
+          [
+            112.6845525,
+            -7.5380176
+          ],
+          [
+            112.6856867,
+            -7.5360676
+          ]
+        ]
+      },
+      "id": "way/695733974"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/701213462",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6899348,
+            -7.5290696
+          ],
+          [
+            112.6897663,
+            -7.5293588
+          ]
+        ]
+      },
+      "id": "way/701213462"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/701213463",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6925062,
+            -7.5246682
+          ],
+          [
+            112.6915526,
+            -7.5263288
+          ],
+          [
+            112.6910397,
+            -7.527205
+          ],
+          [
+            112.6899348,
+            -7.5290696
+          ]
+        ]
+      },
+      "id": "way/701213463"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/701213464",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6898394,
+            -7.5290388
+          ],
+          [
+            112.690919,
+            -7.5271518
+          ],
+          [
+            112.6913622,
+            -7.5263953
+          ],
+          [
+            112.6923801,
+            -7.5246162
+          ]
+        ]
+      },
+      "id": "way/701213464"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/701213465",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6896828,
+            -7.529301
+          ],
+          [
+            112.6898394,
+            -7.5290388
+          ]
+        ]
+      },
+      "id": "way/701213465"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/737663402",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "2",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "smoothness": "good",
+        "source": "Bing",
+        "surface": "asphalt",
+        "toll": "yes",
+        "width": "10"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7192652,
+            -7.2322681
+          ],
+          [
+            112.7196508,
+            -7.2317223
+          ]
+        ]
+      },
+      "id": "way/737663402"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/737663403",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "layer": "2",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "smoothness": "good",
+        "surface": "asphalt",
+        "toll": "yes",
+        "width": "10"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7197349,
+            -7.2317595
+          ],
+          [
+            112.7193564,
+            -7.2323107
+          ]
+        ]
+      },
+      "id": "way/737663403"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/747731179",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6903958,
+            -7.4914575
+          ],
+          [
+            112.689761,
+            -7.4903541
+          ],
+          [
+            112.6895397,
+            -7.4899223
+          ],
+          [
+            112.68919,
+            -7.4891811
+          ],
+          [
+            112.6889668,
+            -7.4886303
+          ],
+          [
+            112.6885519,
+            -7.4874876
+          ],
+          [
+            112.688448,
+            -7.4871321
+          ],
+          [
+            112.688279,
+            -7.4865521
+          ],
+          [
+            112.6881144,
+            -7.4858973
+          ],
+          [
+            112.6879489,
+            -7.4850418
+          ],
+          [
+            112.6878311,
+            -7.4843315
+          ],
+          [
+            112.6877453,
+            -7.4835231
+          ],
+          [
+            112.6876852,
+            -7.4825444
+          ],
+          [
+            112.6876812,
+            -7.4817084
+          ],
+          [
+            112.687711,
+            -7.4808169
+          ],
+          [
+            112.6877922,
+            -7.4797914
+          ]
+        ]
+      },
+      "id": "way/747731179"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/747731180",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6878853,
+            -7.479814
+          ],
+          [
+            112.6878002,
+            -7.480756
+          ],
+          [
+            112.6877761,
+            -7.4816137
+          ],
+          [
+            112.6877747,
+            -7.4822174
+          ],
+          [
+            112.6877939,
+            -7.4828728
+          ],
+          [
+            112.6878512,
+            -7.4835139
+          ],
+          [
+            112.6879504,
+            -7.4844033
+          ],
+          [
+            112.6880363,
+            -7.4849526
+          ],
+          [
+            112.6882114,
+            -7.4858819
+          ],
+          [
+            112.6884225,
+            -7.4867237
+          ],
+          [
+            112.6886787,
+            -7.487564
+          ],
+          [
+            112.6889238,
+            -7.4882509
+          ],
+          [
+            112.6891829,
+            -7.4889017
+          ],
+          [
+            112.6894525,
+            -7.4895159
+          ],
+          [
+            112.6896713,
+            -7.4899635
+          ],
+          [
+            112.6900841,
+            -7.4907286
+          ],
+          [
+            112.6905066,
+            -7.491444
+          ]
+        ]
+      },
+      "id": "way/747731180"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/760463530",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6936971,
+            -7.4306106
+          ],
+          [
+            112.6936059,
+            -7.4303659
+          ]
+        ]
+      },
+      "id": "way/760463530"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/760463531",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6964549,
+            -7.4380144
+          ],
+          [
+            112.6962155,
+            -7.4371354
+          ],
+          [
+            112.6956664,
+            -7.4354562
+          ],
+          [
+            112.6950943,
+            -7.4340146
+          ],
+          [
+            112.6945969,
+            -7.4328168
+          ],
+          [
+            112.694119,
+            -7.4316805
+          ],
+          [
+            112.6938028,
+            -7.4308964
+          ],
+          [
+            112.6936971,
+            -7.4306106
+          ]
+        ]
+      },
+      "id": "way/760463531"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/760463532",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6938231,
+            -7.4306132
+          ],
+          [
+            112.6941866,
+            -7.4315641
+          ],
+          [
+            112.6944253,
+            -7.4321466
+          ],
+          [
+            112.6946906,
+            -7.4327681
+          ],
+          [
+            112.6951683,
+            -7.4339152
+          ],
+          [
+            112.6956124,
+            -7.4349985
+          ],
+          [
+            112.6958214,
+            -7.4355908
+          ],
+          [
+            112.6960065,
+            -7.4361565
+          ],
+          [
+            112.6963133,
+            -7.4370988
+          ],
+          [
+            112.6965852,
+            -7.4380348
+          ]
+        ]
+      },
+      "id": "way/760463532"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/760463533",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6937448,
+            -7.430422
+          ],
+          [
+            112.6938231,
+            -7.4306132
+          ]
+        ]
+      },
+      "id": "way/760463533"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/773061140",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7093319,
+            -7.247774
+          ],
+          [
+            112.7093199,
+            -7.2484126
+          ],
+          [
+            112.7093075,
+            -7.2491055
+          ]
+        ]
+      },
+      "id": "way/773061140"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/773063288",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7103831,
+            -7.3481048
+          ],
+          [
+            112.7104664,
+            -7.3477178
+          ]
+        ]
+      },
+      "id": "way/773063288"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/773063289",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7099993,
+            -7.3498208
+          ],
+          [
+            112.7100589,
+            -7.3495245
+          ]
+        ]
+      },
+      "id": "way/773063289"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/773065842",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7093114,
+            -7.2585563
+          ],
+          [
+            112.709282,
+            -7.2574419
+          ],
+          [
+            112.7092842,
+            -7.2566906
+          ]
+        ]
+      },
+      "id": "way/773065842"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/778481321",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.708113,
+            -7.3086921
+          ],
+          [
+            112.707985,
+            -7.3086564
+          ]
+        ]
+      },
+      "id": "way/778481321"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/831507951",
+        "covered": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7106095,
+            -7.3476986
+          ],
+          [
+            112.7105988,
+            -7.3477473
+          ]
+        ]
+      },
+      "id": "way/831507951"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/831507952",
+        "covered": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxheight": "4.2",
+        "maxspeed": "80",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7106289,
+            -7.3476189
+          ],
+          [
+            112.7106095,
+            -7.3476986
+          ]
+        ]
+      },
+      "id": "way/831507952"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/831507953",
+        "covered": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxheight": "4.2",
+        "maxspeed": "80",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7104795,
+            -7.3476568
+          ],
+          [
+            112.7104955,
+            -7.3475892
+          ]
+        ]
+      },
+      "id": "way/831507953"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/831507954",
+        "covered": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7104664,
+            -7.3477178
+          ],
+          [
+            112.7104795,
+            -7.3476568
+          ]
+        ]
+      },
+      "id": "way/831507954"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/831544355",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6904636,
+            -7.5519535
+          ],
+          [
+            112.6894068,
+            -7.5515124
+          ]
+        ]
+      },
+      "id": "way/831544355"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/831544358",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "40",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6906466,
+            -7.5518709
+          ],
+          [
+            112.6928804,
+            -7.5527407
+          ]
+        ]
+      },
+      "id": "way/831544358"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/831544359",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "40",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6894377,
+            -7.5514087
+          ],
+          [
+            112.6905179,
+            -7.55182
+          ]
+        ]
+      },
+      "id": "way/831544359"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/831544360",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "40",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6929216,
+            -7.5529613
+          ],
+          [
+            112.690592,
+            -7.552005
+          ]
+        ]
+      },
+      "id": "way/831544360"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/847992261",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6926322,
+            -7.5241882
+          ],
+          [
+            112.6938613,
+            -7.5221154
+          ],
+          [
+            112.6967232,
+            -7.5172616
+          ],
+          [
+            112.6976057,
+            -7.5157589
+          ],
+          [
+            112.6982595,
+            -7.5146152
+          ],
+          [
+            112.698513,
+            -7.5141406
+          ],
+          [
+            112.6987376,
+            -7.5136833
+          ],
+          [
+            112.6989409,
+            -7.5131953
+          ],
+          [
+            112.6991433,
+            -7.5126422
+          ],
+          [
+            112.6992492,
+            -7.5122885
+          ],
+          [
+            112.6993096,
+            -7.5120904
+          ],
+          [
+            112.6993713,
+            -7.5118577
+          ],
+          [
+            112.6994608,
+            -7.5114575
+          ],
+          [
+            112.6995402,
+            -7.5111011
+          ],
+          [
+            112.6995926,
+            -7.5107502
+          ],
+          [
+            112.6996609,
+            -7.5101572
+          ],
+          [
+            112.6996764,
+            -7.509884
+          ],
+          [
+            112.6996918,
+            -7.5094564
+          ],
+          [
+            112.6996931,
+            -7.5090217
+          ],
+          [
+            112.6996824,
+            -7.5086122
+          ],
+          [
+            112.6996569,
+            -7.5082066
+          ],
+          [
+            112.6996201,
+            -7.5079075
+          ],
+          [
+            112.699563,
+            -7.5074222
+          ],
+          [
+            112.6995013,
+            -7.5070553
+          ],
+          [
+            112.699425,
+            -7.5067055
+          ],
+          [
+            112.6993512,
+            -7.5063845
+          ],
+          [
+            112.6992817,
+            -7.5060959
+          ],
+          [
+            112.6991929,
+            -7.5057921
+          ],
+          [
+            112.6990836,
+            -7.5054717
+          ],
+          [
+            112.6989676,
+            -7.5051638
+          ],
+          [
+            112.6988141,
+            -7.5047713
+          ],
+          [
+            112.6985478,
+            -7.5042084
+          ],
+          [
+            112.6985259,
+            -7.5041605
+          ]
+        ]
+      },
+      "id": "way/847992261"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/885384984",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7127043,
+            -7.2412539
+          ],
+          [
+            112.7126189,
+            -7.2413653
+          ]
+        ]
+      },
+      "id": "way/885384984"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/886093165",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "source": "Bing",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7128432,
+            -7.2408304
+          ],
+          [
+            112.7131391,
+            -7.240421
+          ],
+          [
+            112.7139382,
+            -7.2393758
+          ]
+        ]
+      },
+      "id": "way/886093165"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/886093166",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "source": "Bing",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7091829,
+            -7.2490945
+          ],
+          [
+            112.7092006,
+            -7.2479295
+          ],
+          [
+            112.7092389,
+            -7.2472393
+          ]
+        ]
+      },
+      "id": "way/886093166"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/915855426",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxheight": "4.2",
+        "maxspeed": "80",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7116261,
+            -7.3438618
+          ],
+          [
+            112.7115921,
+            -7.3439595
+          ],
+          [
+            112.7114608,
+            -7.3443377
+          ],
+          [
+            112.7112454,
+            -7.3451054
+          ],
+          [
+            112.7111196,
+            -7.3455556
+          ],
+          [
+            112.710962,
+            -7.3461553
+          ]
+        ]
+      },
+      "id": "way/915855426"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1253844028",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxheight": "4.2",
+        "maxspeed": "80",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.710962,
+            -7.3461553
+          ],
+          [
+            112.7109461,
+            -7.3462074
+          ]
+        ]
+      },
+      "id": "way/1253844028"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1253844029",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxheight": "4.2",
+        "maxspeed": "80",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7109461,
+            -7.3462074
+          ],
+          [
+            112.7107675,
+            -7.3469765
+          ],
+          [
+            112.7106289,
+            -7.3476189
+          ]
+        ]
+      },
+      "id": "way/1253844029"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1276540911",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6972092,
+            -7.4465238
+          ],
+          [
+            112.6972117,
+            -7.446449
+          ],
+          [
+            112.6972544,
+            -7.4450866
+          ],
+          [
+            112.697263,
+            -7.4442412
+          ],
+          [
+            112.6972338,
+            -7.4432598
+          ]
+        ]
+      },
+      "id": "way/1276540911"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1276540913",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "3",
+        "maxheight": "4.2",
+        "maxspeed": "80",
+        "motorcycle": "no",
+        "name": "Jalan Tol Surabaya–Gempol",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Surabaya-Gempol",
+        "ref": "8",
+        "short_name": "Jalan Tol Surgem",
+        "surface": "asphalt",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7104955,
+            -7.3475892
+          ],
+          [
+            112.7108077,
+            -7.3462781
+          ],
+          [
+            112.7110892,
+            -7.345261
+          ],
+          [
+            112.7112088,
+            -7.344829
+          ]
+        ]
+      },
+      "id": "way/1276540913"
+    }
+  ]
+}
