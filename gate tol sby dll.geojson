@@ -1,0 +1,1065 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-07-16T01:35:29Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/456498804",
+        "barrier": "toll_booth",
+        "name": "Tol Surabaya - Gresik",
+        "operator": "Goverment"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.6458067,
+            -7.2019252
+          ],
+          [
+            112.6461514,
+            -7.2019199
+          ],
+          [
+            112.6461534,
+            -7.2020503
+          ],
+          [
+            112.6458087,
+            -7.2020556
+          ],
+          [
+            112.6458067,
+            -7.2019252
+          ]
+        ]
+      },
+      "id": "way/456498804"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/260113849",
+        "barrier": "toll_booth",
+        "name": "Tandes Barat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6781915,
+          -7.2385426
+        ]
+      },
+      "id": "node/260113849"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/320086721",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "name": "Gerbang Tol Waru 1 dan Ramp",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.713037,
+          -7.3456095
+        ]
+      },
+      "id": "node/320086721"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/414269492",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Kota Satelit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7021747,
+          -7.2899912
+        ]
+      },
+      "id": "node/414269492"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/417252451",
+        "barrier": "toll_booth",
+        "name": "Dupak 3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7096805,
+          -7.2465916
+        ]
+      },
+      "id": "node/417252451"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/417252480",
+        "barrier": "toll_booth",
+        "name": "Gerbang tol Dupak 2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7120796,
+          -7.2416228
+        ]
+      },
+      "id": "node/417252480"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/417277418",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "name": "Gerbang Tol Waru Utama",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7106095,
+          -7.3476986
+        ]
+      },
+      "id": "node/417277418"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/417277424",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "name": "Gerbang Tol Waru Utama",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7104795,
+          -7.3476568
+        ]
+      },
+      "id": "node/417277424"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/417277459",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "name": "Gerbang Tol Waru 1 dan Ramp",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7130044,
+          -7.3457414
+        ]
+      },
+      "id": "node/417277459"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/420460802",
+        "barrier": "toll_booth",
+        "motorcycle": "no",
+        "name": "Gerbang tol Dupak 1",
+        "note": "PAY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.712757,
+          -7.2411899
+        ]
+      },
+      "id": "node/420460802"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/420812067",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Gunung Sari 1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7086144,
+          -7.3076985
+        ]
+      },
+      "id": "node/420812067"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/420841019",
+        "barrier": "toll_booth"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6993646,
+          -7.4458766
+        ]
+      },
+      "id": "node/420841019"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/420860125",
+        "barrier": "toll_booth"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6992687,
+          -7.4459411
+        ]
+      },
+      "id": "node/420860125"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/420927476",
+        "barrier": "toll_booth",
+        "name": "Porong"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6993326,
+          -7.5073894
+        ]
+      },
+      "id": "node/420927476"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/420957767",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Gunung Sari 2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7080013,
+          -7.3098515
+        ]
+      },
+      "id": "node/420957767"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/660562704",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Menanggal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7347047,
+          -7.3446841
+        ]
+      },
+      "id": "node/660562704"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1091080127",
+        "barrier": "toll_booth",
+        "name": "Romokalisari"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6460929,
+          -7.2019849
+        ]
+      },
+      "id": "node/1091080127"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1091080702",
+        "barrier": "toll_booth",
+        "name": "Tandes Timur 1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6844673,
+          -7.2410313
+        ]
+      },
+      "id": "node/1091080702"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1091081168",
+        "barrier": "toll_booth",
+        "name": "Tandes Timur 2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.68443,
+          -7.2404456
+        ]
+      },
+      "id": "node/1091081168"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1091081881",
+        "barrier": "toll_booth",
+        "name": "Tandes Barat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6781256,
+          -7.238719
+        ]
+      },
+      "id": "node/1091081881"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1091081913",
+        "barrier": "toll_booth",
+        "name": "Romokalisari"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6458897,
+          -7.201991
+        ]
+      },
+      "id": "node/1091081913"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1091384566",
+        "barrier": "toll_booth",
+        "name": "Toll Banyu Urip"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7074787,
+          -7.262903
+        ]
+      },
+      "id": "node/1091384566"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1780865796",
+        "barrier": "toll_booth",
+        "name": "Tandes Barat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6789176,
+          -7.2386238
+        ]
+      },
+      "id": "node/1780865796"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1780865842",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Dupak 5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7123931,
+          -7.2429109
+        ]
+      },
+      "id": "node/1780865842"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2320792128",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Berbek 1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7581048,
+          -7.3426805
+        ]
+      },
+      "id": "node/2320792128"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2320792169",
+        "barrier": "toll_booth",
+        "motorcycle": "no",
+        "name": "Gerbang Tol Berbek 2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7523729,
+          -7.3431529
+        ]
+      },
+      "id": "node/2320792169"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2623128024",
+        "barrier": "toll_booth",
+        "motorcycle": "no",
+        "name": "Gerbang Tol Tambak Sumur 1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7892575,
+          -7.3470283
+        ]
+      },
+      "id": "node/2623128024"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2623237896",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "name": "Gerbang Tol Waru 5",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7094854,
+          -7.3454466
+        ]
+      },
+      "id": "node/2623237896"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2623237955",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "name": "Gerbang Tol Waru 6",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7125767,
+          -7.3414702
+        ]
+      },
+      "id": "node/2623237955"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3027564712",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Kejapanan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6905819,
+          -7.5518457
+        ]
+      },
+      "id": "node/3027564712"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3027566913",
+        "barrier": "toll_booth"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6905263,
+          -7.5519785
+        ]
+      },
+      "id": "node/3027566913"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3166220589",
+        "barrier": "toll_booth",
+        "operator": "PT Jasa Marga (Persero)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6906315,
+          -7.5517255
+        ]
+      },
+      "id": "node/3166220589"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3283836675",
+        "barrier": "toll_booth",
+        "name": "Warugunung",
+        "operator": "PT Jasa Marga Surabaya-Mojokerto"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6794184,
+          -7.339777
+        ]
+      },
+      "id": "node/3283836675"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3283836678",
+        "barrier": "toll_booth",
+        "name": "Warugunung",
+        "operator": "PT Jasa Marga Surabaya-Mojokerto"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6793852,
+          -7.3396695
+        ]
+      },
+      "id": "node/3283836678"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4168511640",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Waru 3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7112123,
+          -7.3471116
+        ]
+      },
+      "id": "node/4168511640"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4170957891",
+        "barrier": "toll_booth",
+        "name": "GT Gempol 4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7143981,
+          -7.5573468
+        ]
+      },
+      "id": "node/4170957891"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4170957903",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Gempol 1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7141151,
+          -7.5577559
+        ]
+      },
+      "id": "node/4170957903"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4170957920",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Gempol 3",
+        "operator": "PT Jasa Marga (Persero)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7161746,
+          -7.5674074
+        ]
+      },
+      "id": "node/4170957920"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4170957923",
+        "barrier": "toll_booth",
+        "name": "GT Gempol 2",
+        "operator": "PT Jasa Marga (Persero)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7156792,
+          -7.56727
+        ]
+      },
+      "id": "node/4170957923"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4172542827",
+        "barrier": "toll_booth",
+        "operator": "PT Jasa Marga (Persero)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6904655,
+          -7.5521962
+        ]
+      },
+      "id": "node/4172542827"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4854573326",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Waru 4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7111237,
+          -7.3439498
+        ]
+      },
+      "id": "node/4854573326"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5009957604",
+        "barrier": "toll_booth",
+        "motorcycle": "no",
+        "name": "Tambak Sumur 2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7839111,
+          -7.3462332
+        ]
+      },
+      "id": "node/5009957604"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6642924221",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6343755,
+          -7.353359
+        ]
+      },
+      "id": "node/6642924221"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6642924222",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6346694,
+          -7.3538498
+        ]
+      },
+      "id": "node/6642924222"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6751676405",
+        "barrier": "toll_booth",
+        "name": "Toll Both Driyorejo 3",
+        "operator": "husni falah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6253606,
+          -7.354875
+        ]
+      },
+      "id": "node/6751676405"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6758461616",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Dupak 4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7117446,
+          -7.2426884
+        ]
+      },
+      "id": "node/6758461616"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6765399761",
+        "barrier": "toll_booth",
+        "name": "Driyorejo 4",
+        "operator": "husni falah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6252976,
+          -7.3554629
+        ]
+      },
+      "id": "node/6765399761"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6850537085",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "name": "Gerbang Tol Waru 4A",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7118543,
+          -7.3416938
+        ]
+      },
+      "id": "node/6850537085"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6904447128",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "name": "Gerbang Tol Waru 4B",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7117766,
+          -7.3416427
+        ]
+      },
+      "id": "node/6904447128"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6975923069",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "name": "Gerbang Tol Waru 5",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7094169,
+          -7.3454854
+        ]
+      },
+      "id": "node/6975923069"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6986209640",
+        "barrier": "toll_booth",
+        "name": "Sidoarjo Exit Gate"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6998567,
+          -7.4464282
+        ]
+      },
+      "id": "node/6986209640"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6986518612",
+        "barrier": "toll_booth",
+        "name": "Sidoarjo Entry Gate"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6991271,
+          -7.4460395
+        ]
+      },
+      "id": "node/6986518612"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7279169464",
+        "barrier": "toll_booth",
+        "name": "Warugunung",
+        "operator": "PT Jasa Marga Surabaya-Mojokerto"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6795149,
+          -7.3393926
+        ]
+      },
+      "id": "node/7279169464"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7745650814",
+        "barrier": "toll_booth",
+        "name": "Tandes Timur 1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6850429,
+          -7.2413097
+        ]
+      },
+      "id": "node/7745650814"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7745664972",
+        "barrier": "toll_booth",
+        "name": "Romokalisari"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6462864,
+          -7.2014618
+        ]
+      },
+      "id": "node/7745664972"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7763380384",
+        "barrier": "toll_booth"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6973167,
+          -7.4449115
+        ]
+      },
+      "id": "node/7763380384"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7763394496",
+        "barrier": "toll_booth",
+        "name": "Sidoarjo 2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6973911,
+          -7.4442756
+        ]
+      },
+      "id": "node/7763394496"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9042150204",
+        "barrier": "toll_booth"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6400235,
+          -7.2199127
+        ]
+      },
+      "id": "node/9042150204"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9042166959",
+        "barrier": "toll_booth"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6401099,
+          -7.2199163
+        ]
+      },
+      "id": "node/9042166959"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9580286353",
+        "barrier": "toll_booth",
+        "name": "Gerbang Tol Waru 6"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7125356,
+          -7.3414649
+        ]
+      },
+      "id": "node/9580286353"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11693463010",
+        "barrier": "toll_booth",
+        "name": "Tandes Barat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.6780353,
+          -7.2389492
+        ]
+      },
+      "id": "node/11693463010"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12816176569",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "name": "Gerbang Tol Waru 1 dan Ramp",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.7125381,
+          -7.3456957
+        ]
+      },
+      "id": "node/12816176569"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12816176587",
+        "barrier": "toll_booth",
+        "currency:IDR": "yes",
+        "name": "Gerbang Tol Waru 1 dan Ramp",
+        "payment:electronic_purses": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          112.713492,
+          -7.3456727
+        ]
+      },
+      "id": "node/12816176587"
+    }
+  ]
+}

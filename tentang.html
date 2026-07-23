@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>SurGem Maintain — Tentang</title>
+    <link rel="stylesheet" href="peta.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="tentang.css">
+
+    <style>
+        .dev-team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .dev-card {
+            flex: 1 1 240px;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #002d62;
+            border-radius: 8px;
+            background: #f8fafc;
+            padding: 16px 18px;
+        }
+
+        .dev-card .dev-name {
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 14.5px;
+            margin: 0 0 4px;
+        }
+
+        .dev-card .dev-nrp {
+            color: #64748b;
+            font-size: 12.5px;
+            font-family: monospace;
+        }
+
+        body.dark-mode .dev-card {
+            background: #0f172a;
+            border-color: #334155;
+            border-left-color: #f6c20e;
+        }
+
+        body.dark-mode .dev-card .dev-name { color: #f8fafc; }
+        body.dark-mode .dev-card .dev-nrp { color: #94a3b8; }
+    </style>
+</head>
+
+<script>
+const tahunFooter = document.getElementById("tahun-footer");
+
+if (tahunFooter) {
+    tahunFooter.innerText = new Date().getFullYear();
+}
+    
+
+    const tombolKembaliAtas =
+        document.getElementById("back-to-top");
+
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > 350) {
+            tombolKembaliAtas.classList.add("show");
+        } else {
+            tombolKembaliAtas.classList.remove("show");
+        }
+    });
+
+    tombolKembaliAtas.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+</script>
+<script>
+    (function () {
+        const THEME_KEY = "theme";
+
+        function terapkanTema(theme) {
+            const darkModeAktif = theme === "dark";
+            document.body.classList.toggle("dark-mode", darkModeAktif);
+
+            const tombol = document.querySelector(".darkmode-toggle");
+            if (tombol) {
+                tombol.innerText = darkModeAktif ? "☀︎" : "⏾";
+                tombol.setAttribute("aria-pressed", darkModeAktif ? "true" : "false");
+            }
+
+            if (typeof window.ubahTemaMiniMap === "function") {
+                window.ubahTemaMiniMap(darkModeAktif ? "dark" : "light");
+            }
+
+            if (typeof window.perbaruiTemaDiagramStatistik === "function") {
+                window.perbaruiTemaDiagramStatistik(darkModeAktif);
+            }
+        }
+
+        window.toggleDarkMode = function () {
+            const darkModeSedangAktif = document.body.classList.contains("dark-mode");
+            const temaBaru = darkModeSedangAktif ? "light" : "dark";
+            localStorage.setItem(THEME_KEY, temaBaru);
+            terapkanTema(temaBaru);
+        };
+
+        function muatTemaTersimpan() {
+            const temaTersimpan = localStorage.getItem(THEME_KEY);
+            const temaAwal = temaTersimpan === "dark" ? "dark" : "light";
+            terapkanTema(temaAwal);
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", muatTemaTersimpan, { once: true });
+        } else {
+            muatTemaTersimpan();
+        }
+
+        window.addEventListener("storage", function (event) {
+            if (event.key !== THEME_KEY) return;
+            terapkanTema(event.newValue === "dark" ? "dark" : "light");
+        });
+    })();
+</script>
+<body>
+    <div class="jm-utility-bar">
+        <div class="jm-page-width utility-inner">
+            <a href="mailto:ro3@jmtransjawatol.co.id">Hubungi Kami</a>
+            <span class="utility-divider" aria-hidden="true"></span>
+            <span class="utility-language">ID <span aria-hidden="true">⌄</span></span>
+        </div>
+    </div>
+    <header class="jm-header">
+        <div class="jm-page-width jm-header-inner">
+            <a class="jm-brand-box" href="home.html" aria-label="Beranda SFO Tol Dashboard">
+                <img src="logo_jasamarga.png" alt="Logo Jasa Marga" width="190">
+
+                <div class="jm-text-logo">
+                    <h1>SFO Tol Dashboard</h1>
+                    <p>Surabaya–Gempol Maintenance System</p>
+                </div>
+            </a>
+
+            <nav class="jm-nav-menu" aria-label="Navigasi utama">
+                <a href="index.html" class="nav-link" aria-current="page">Home</a>
+                <a href="peta.html" class="nav-link">Peta Interaktif</a>
+                <a href="stat.html" class="nav-link">Data Statistik</a>
+                <a href="tentang.html" class="nav-link active">Tentang</a>
+
+                <button
+                    class="darkmode-toggle"
+                    type="button"
+                    onclick="toggleDarkMode()"
+                    aria-pressed="false"
+                >
+                    🌙 Dark Mode
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="about-page">
+
+    <section class="about-title-section">
+        <span class="about-kicker">Tentang program</span>
+        <h1>Tentang SurGem Maintenance</h1>
+        <div class="title-line"></div>
+    </section>
+
+    <article class="about-content">
+
+        <section class="about-intro">
+            <p>
+                <strong>SurGem Maintenance</strong> adalah sistem informasi pemantauan (monitoring) 
+                kondisi pemeliharaan jalan tol berbasis peta digital (WebGIS) yang dirancang untuk 
+                memvisualisasikan progres pemeliharaan perkerasan jalan tol secara spasial dan temporal 
+                (berbasis waktu). Studi kasus platform ini difokuskan pada Ruas Jalan Tol Surabaya–Gempol 
+                (SurGem) sepanjang kurang lebih 43 kilometer, dengan cakupan pencatatan data pemeliharaan 
+                dari tahun <strong>2023 hingga 2026</strong>.
+            </p>
+
+            <p>
+                Setiap <strong>segmen jalan</strong> diidentifikasi dan dicatat secara komprehensif, mencakup parameter 
+                rentang kilometer (STA), panjang penanganan, jenis perbaikan, serta dimensi waktu berupa 
+                bulan dan tahun penyelesaian pekerjaan. Informasi tersebut kemudian ditransformasikan ke 
+                dalam <strong>peta interaktif</strong> guna menyajikan visualisasi yang adaptif, sehingga kondisi riil dan 
+                rekam jejak (historical data) perbaikan pada setiap ruas dapat dievaluasi secara cepat, 
+                tepat, dan efisien.
+            </p>
+        </section>
+
+        <section class="about-block">
+            <h2>Tujuan</h2>
+
+            <ul class="about-list">
+                <li>
+                    <strong>Visualisasi Spasial Komprehensif:</strong> Menyajikan gambaran spasial yang menyeluruh dan 
+                    interaktif terkait sebaran serta progres pemeliharaan jalan tol secara real-time.
+                </li>
+                <li>
+                    <strong>Penelusuran Data Temporal (Histori):</strong> Mempermudah pemangku kepentingan dalam 
+                    melakukan penelusuran riwayat perbaikan jalan tol berdasarkan periode waktu tertentu secara kronologis.
+                </li>
+                <li>
+                    <strong>Transparansi dan Aksesibilitas Data:</strong> Mendukung keterbukaan informasi dan kemudahan retribusi
+                     data melalui penyediaan fitur unduh tabel atribut bagi pengguna.
+                </li>
+            </ul>
+        </section>
+
+        <section class="about-block development-flow-section">
+            <h2>Alur Pengembangan Sistem</h2>
+
+            <p class="development-lead">
+                Sistem ini dikembangkan melalui integrasi data spasial dan
+                tabular dengan metodologi pengolahan sebagai berikut:
+            </p>
+
+            <ol class="development-steps">
+                <li>
+                    <p>
+                        <strong>Akuisisi Data:</strong>
+                        Mengumpulkan data spasial dalam format
+                        <em>GeoJSON</em> yang memuat lokasi gerbang dan jalur tol,
+                        beserta data atribut ringkasan pemeliharaan
+                        <em>Scrapping, Filling, dan Overlay</em> (SFO) resmi
+                        yang bersumber dari
+                        <strong>PT Jasa Marga (Persero) Tbk.</strong>
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        <strong>
+                            Pengolahan dan Integrasi Data
+                            (<em>GIS Processing</em>):
+                        </strong>
+                        Melakukan kompilasi, pemeriksaan, penyelarasan
+                        (<em>data cleaning</em>), dan penggabungan
+                        (<em>join/relate</em>) antara data spasial dan data
+                        atribut SFO menggunakan perangkat lunak
+                        <strong>ArcGIS Pro</strong>. Tahapan ini dilakukan untuk
+                        membentuk satu kesatuan basis data spasial yang valid
+                        dan siap digunakan dalam sistem.
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        <strong>Ekspor Data Spasial:</strong>
+                        Mengekspor hasil pemrosesan data dari
+                        <strong>ArcGIS Pro</strong> ke dalam format pertukaran
+                        data geografis terbuka, yaitu
+                        <strong>GeoJSON</strong>. Format tersebut digunakan agar
+                        geometry dan data atribut dapat dibaca melalui aplikasi
+                        berbasis web.
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        <strong>
+                            Implementasi Kode dan Visualisasi
+                            (<em>WebGIS Deployment</em>):
+                        </strong>
+                        Mengintegrasikan file GeoJSON hasil pengolahan ke dalam
+                        arsitektur program WebGIS. Aplikasi dikembangkan
+                        menggunakan pustaka peta interaktif
+                        <strong>Leaflet.js</strong>, dengan dukungan HTML, CSS,
+                        dan JavaScript melalui lingkungan pengembangan
+                        <strong>Visual Studio Code</strong> untuk menghasilkan
+                        antarmuka pemetaan yang interaktif dan responsif.
+                    </p>
+                </li>
+            </ol>
+        </section>
+
+        <section class="about-block">
+            <h2>Detail Proyek</h2>
+
+            <div class="project-details">
+                <div class="detail-row">
+                    <span>Ruas Studi Kasus</span>
+                    <strong>Tol Surabaya – Gempol (SurGem)</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Panjang Total</span>
+                    <strong>±43,0 km</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Jumlah Segmen</span>
+                    <strong>354 segmen<br>"</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Rentang Pencatatan Data</span>
+                    <strong>Periode Temporal: 2023 – 2026</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Data Spasial</span>
+                    <strong>GeoJSON (Digitasi Mandiri & Overpass Turbo / OSM)</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Data Atribut</span>
+                    <strong>SFO Ruas Surabaya–Gempol PT Jasa Marga</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Status Data</span>
+                    <strong>Terbaru (2026)</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Sistem Koordinat</span>
+                    <strong>WGS 1984</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-block">
+            <h2>Tim Pengembang</h2>
+
+            <div class="dev-team-grid">
+                <div class="dev-card">
+                    <p class="dev-name">Talita Adzra Junita Arief</p>
+                    <p class="dev-nrp">NRP 5016241044</p>
+                </div>
+
+                <div class="dev-card">
+                    <p class="dev-name">Baihakhi Rahadyan Choina</p>
+                    <p class="dev-nrp">NRP 5016241082</p>
+                </div>
+            </div>
+        </section>
+    </article>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="jm-footer compact-footer">
+    <div class="footer-main">
+
+        <div class="footer-company">
+            <h4>SurGem Maintenance</h4>
+            <p>
+                Sistem monitoring pemeliharaan Jalan Tol
+                Surabaya–Gempol berbasis WebGIS.
+            </p>
+            <p class="footer-address">
+                Plaza Tol Kota Satelit, Jl. Mayjen Sungkono,
+                Putat Gede, Sukomanunggal, Surabaya,
+                Jawa Timur 60189
+            </p>
+        </div>
+
+        <div class="footer-contact">
+            <h4>Kontak</h4>
+
+            <a href="mailto:ro3@jmtransjawatol.co.id">
+                ✉ ro3@jmtransjawatol.co.id
+            </a>
+
+            <a href="tel:133">
+                ☎ Call Center 133
+            </a>
+        </div>
+
+        <div class="footer-navigation">
+            <h4>Navigasi</h4>
+
+            <div class="footer-nav-links">
+                <a href="peta.html">Peta Persebaran</a>
+                <a href="stat.html">Data Statistik</a>
+                <a href="tentang.html">Tentang Sistem</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>
+            &copy; <span id="tahun-footer"></span>
+            JASA MARGA · Operating and Monitoring
+        </p>
+
+        <p>Surabaya–Gempol Maintenance System</p>
+    </div>
+</footer>
+
+<button
+    class="back-to-top"
+    id="back-to-top"
+    type="button"
+    aria-label="Kembali ke atas"
+>
+    ↑
+</button>
+
+</body>
+</html>
