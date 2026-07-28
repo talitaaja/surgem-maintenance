@@ -2,80 +2,259 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
     <title>SurGem Maintain — Statistik</title>
 
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="peta.css">
     <link rel="stylesheet" href="stat.css">
+    <link rel="stylesheet" href="login-button.css">
+    <link rel="stylesheet" href="responsive.css">
 
     <style>
-        .other-stat-cards {
-            margin-top: 18px;
-            display: grid;
-            grid-template-columns: repeat(5, minmax(0, 1fr));
-            gap: 12px;
-        }
-
-        .other-stat-card {
-            min-width: 0;
-            padding: 15px 14px;
-            background: #ffffff;
-            border: 1px solid #dfe5ec;
-            border-top: 4px solid #7c3aed;
-            border-radius: 11px;
-            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.07);
-        }
-
-        .other-stat-card strong {
-            display: block;
-            color: #162f61;
-            font-size: clamp(22px, 2.2vw, 31px);
-            line-height: 1;
-            font-weight: 850;
-        }
-
-        .other-stat-card span {
-            margin-top: 8px;
-            display: block;
-            color: #5f6c7e;
-            font-size: 11px;
-            line-height: 1.35;
-            font-weight: 750;
-        }
-
         .other-chart-wrapper {
             height: 430px;
         }
 
-        body.dark-mode .other-stat-card {
-            background: #111827;
-            border-color: #334155;
-        }
-
-        body.dark-mode .other-stat-card strong {
-            color: #f8fafc;
-        }
-
-        body.dark-mode .other-stat-card span {
-            color: #cbd5e1;
-        }
-
-        @media (max-width: 1050px) {
-            .other-stat-cards {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-
         @media (max-width: 680px) {
-            .other-stat-cards {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
             .other-chart-wrapper {
                 height: 470px;
             }
         }
+
+
+
+        /* Kartu status SFO: jumlah dan daftar disatukan dalam satu kartu. */
+        .stat-lists.stat-status-grid {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .stat-status-card {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .stat-status-card .stat-status-head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-bottom: 13px;
+            border-bottom: 2px solid #dbe3ee;
+        }
+
+        .stat-status-card .stat-status-count {
+            flex: 0 0 auto;
+            min-width: 54px;
+            font-size: clamp(31px, 3vw, 42px);
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
+
+        .stat-status-card .stat-list-title {
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            line-height: 1.25;
+        }
+
+        .stat-status-card .stat-list-scroll {
+            flex: 1 1 auto;
+            min-height: 220px;
+            max-height: 360px;
+            margin-top: 12px;
+            overflow-y: auto;
+        }
+
+        .stat-status-card.group-critical .stat-status-count { color: #ef4444; }
+        .stat-status-card.group-warning .stat-status-count { color: #eab308; }
+        .stat-status-card.group-safe .stat-status-count { color: #16a34a; }
+        .stat-status-card.group-unknown .stat-status-count { color: #64748b; }
+
+        /* Pekerjaan lainnya memakai susunan kartu yang sama dengan status SFO,
+           tetapi warna dan judul kartu mengikuti jenis pekerjaannya. */
+        .stat-lists.stat-status-grid.stat-work-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .stat-work-card .stat-status-count {
+            color: var(--work-color, #7c3aed);
+        }
+
+        .stat-work-card .stat-list-dot {
+            background: var(--work-color, #7c3aed);
+        }
+
+        body.dark-mode .stat-status-card .stat-status-head {
+            border-bottom-color: #334155;
+        }
+
+        body.dark-mode .stat-status-card.group-warning .stat-status-count {
+            color: #facc15;
+        }
+
+        @media (max-width: 1100px) {
+            .stat-lists.stat-status-grid,
+            .stat-lists.stat-status-grid.stat-work-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .stat-lists.stat-status-grid,
+            .stat-lists.stat-status-grid.stat-work-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 16px;
+            }
+
+            .stat-status-card .stat-status-head {
+                align-items: flex-start;
+                gap: 12px;
+                padding-bottom: 11px;
+            }
+
+            .stat-status-card .stat-status-count {
+                min-width: 48px;
+                font-size: 34px;
+            }
+
+            .stat-status-card .stat-list-scroll {
+                min-height: 0;
+                max-height: 310px;
+            }
+        }
+
+
+
+        /* Mode slide SFO / Pekerjaan Lainnya */
+        .stats-mode-shell {
+            padding: 22px 0 6px;
+        }
+
+        .stats-mode-switch {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            width: min(100%, 760px);
+            margin: 0 auto;
+            background: #eef2f6;
+            border: 1px solid #dbe3ee;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+        }
+
+        .stats-mode-btn {
+            appearance: none;
+            width: 100%;
+            min-width: 0;
+            border: 0;
+            border-bottom: 3px solid transparent;
+            background: transparent;
+            color: #64748b;
+            font: inherit;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+            text-align: center;
+            padding: 18px 16px;
+            cursor: pointer;
+            transition: background-color 0.28s ease, color 0.28s ease, border-color 0.28s ease;
+            white-space: nowrap;
+        }
+
+        .stats-mode-btn:hover {
+            color: #0f172a;
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        .stats-mode-btn.is-active {
+            background: #ffffff;
+            color: #0f2e60;
+            border-bottom-color: #f97316;
+            box-shadow: inset 0 -1px 0 rgba(249, 115, 22, 0.08);
+        }
+
+        .stats-mode-btn:focus-visible {
+            outline: 3px solid rgba(249, 115, 22, 0.22);
+            outline-offset: -3px;
+        }
+
+        .stats-mode-helper {
+            margin: 12px auto 0;
+            max-width: 760px;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .stat-slider-shell {
+            overflow: hidden;
+            transition: height 0.42s ease;
+        }
+
+        .stat-slider-track {
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
+        }
+
+        .stat-slide-panel {
+            min-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .stat-slide-panel[aria-hidden="true"] {
+            pointer-events: none;
+        }
+
+        .stat-slide-intro {
+            margin: 0 0 12px;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        body.dark-mode .stats-mode-switch {
+            background: #0f172a;
+            border-color: #334155;
+            box-shadow: 0 10px 28px rgba(2, 6, 23, 0.35);
+        }
+
+        body.dark-mode .stats-mode-btn {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .stats-mode-btn:hover {
+            color: #f8fafc;
+            background: rgba(148, 163, 184, 0.12);
+        }
+
+        body.dark-mode .stats-mode-btn.is-active {
+            color: #f8fafc;
+            background: #111827;
+            border-bottom-color: #f97316;
+            box-shadow: inset 0 -1px 0 rgba(249, 115, 22, 0.1);
+        }
+
+        body.dark-mode .stats-mode-helper,
+        body.dark-mode .stat-slide-intro {
+            color: #94a3b8;
+        }
+
     </style>
 </head>
 <script>
@@ -129,41 +308,90 @@
 <body>
     <div class="jm-utility-bar">
         <div class="jm-page-width utility-inner">
-            <a href="mailto:ro3@jmtransjawatol.co.id">Hubungi Kami</a>
-            <span class="utility-divider" aria-hidden="true"></span>
-            <span class="utility-language">ID <span aria-hidden="true">⌄</span></span>
-        </div>
-    </div>
-    <div class="main-wrapper">
-        <header class="jm-header">
-        <div class="jm-page-width jm-header-inner">
-            <a class="jm-brand-box" href="index.html" aria-label="Beranda SFO Tol Dashboard">
-                <img src="logo_jasamarga.png" alt="Logo Jasa Marga" width="190">
-
-                <div class="jm-text-logo">
-                    <h1>SFO Tol Dashboard</h1>
-                    <p>Surabaya–Gempol Maintenance System</p>
-                </div>
+            <a href="mailto:ro3@jmtransjawatol.co.id">
+                Hubungi Kami
             </a>
 
-            <nav class="jm-nav-menu" aria-label="Navigasi utama">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="peta.html" class="nav-link">Peta Interaktif</a>
-                <a href="stat.html" class="nav-link active">Data Statistik</a>
-                <a href="tentang.html" class="nav-link">Tentang</a>
-                <a href="admin.html" class="nav-link" aria-current="page">Admin Data</a>
+            <span
+                class="utility-divider"
+                aria-hidden="true"
+            ></span>
 
-                <button
-                    class="darkmode-toggle"
-                    type="button"
-                    onclick="toggleDarkMode()"
-                    aria-pressed="false"
-                >
-                    ⏾
-                </button>
-            </nav>
+            <a
+                class="utility-login-button"
+                href="admin.html"
+                aria-label="Masuk ke halaman admin"
+            >
+                Login
+            </a>
         </div>
-    </header>
+    </div>
+
+    <div class="main-wrapper">
+        <header class="jm-header">
+            <div class="jm-page-width jm-header-inner">
+                <a
+                    class="jm-brand-box"
+                    href="index.html"
+                    aria-label="Beranda SFO Tol Dashboard"
+                >
+                    <img
+                        src="logo_jasamarga.png"
+                        alt="Logo Jasa Marga"
+                        width="190"
+                    >
+
+                    <div class="jm-text-logo">
+                        <h1>SFO Tol Dashboard</h1>
+                        <p>Surabaya–Gempol Maintenance System</p>
+                    </div>
+                </a>
+
+                <nav
+                    class="jm-nav-menu"
+                    aria-label="Navigasi utama"
+                >
+                    <a
+                        href="index.html"
+                        class="nav-link"
+                    >
+                        Home
+                    </a>
+
+                    <a
+                        href="peta.html"
+                        class="nav-link"
+                    >
+                        Peta Interaktif
+                    </a>
+
+                    <a
+                        href="stat.html"
+                        class="nav-link active"
+                        aria-current="page"
+                    >
+                        Data Statistik
+                    </a>
+
+                    <a
+                        href="tentang.html"
+                        class="nav-link"
+                    >
+                        Tentang
+                    </a>
+
+                    <button
+                        class="darkmode-toggle"
+                        type="button"
+                        onclick="toggleDarkMode()"
+                        aria-pressed="false"
+                        aria-label="Ubah tema tampilan"
+                    >
+                        ⏾
+                    </button>
+                </nav>
+            </div>
+        </header>
 
         <div class="content-header">
             <div class="jm-page-width">
@@ -173,10 +401,42 @@
             </div>
         </div>
 
+        <div class="stats-mode-shell">
+            <div class="jm-page-width">
+                <div class="stats-mode-switch" role="tablist" aria-label="Pilih kategori statistik">
+                    <button
+                        class="stats-mode-btn is-active"
+                        id="stat-tab-sfo"
+                        type="button"
+                        role="tab"
+                        aria-selected="true"
+                        aria-controls="stat-panel-sfo"
+                        data-slide-target="sfo"
+                    >
+                        SFO
+                    </button>
+                    <button
+                        class="stats-mode-btn"
+                        id="stat-tab-other"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        aria-controls="stat-panel-other"
+                        data-slide-target="other"
+                    >
+                        Pekerjaan Lainnya
+                    </button>
+                </div>
+                <p class="stats-mode-helper">Pilih tombol di atas untuk membuka diagram dan rekap masing-masing bagian dengan transisi slide.</p>
+            </div>
+        </div>
+
         <div id="stat-message" class="map-message">Memuat data SFO, pekerjaan lainnya, gerbang tol, dan alignment Tol Surabaya–Gempol...</div>
 
-        <!-- ================= DIAGRAM KESELURUHAN ================= -->
-        <section class="stat-section" aria-labelledby="judul-diagram-keseluruhan">
+        <div class="stat-slider-shell" id="stat-slider-shell">
+            <div class="stat-slider-track" id="stat-slider-track">
+                <div class="stat-slide-panel" id="stat-panel-sfo" role="tabpanel" aria-labelledby="stat-tab-sfo" aria-hidden="false">
+                    <section class="stat-section" aria-labelledby="judul-diagram-keseluruhan">
             <div class="stat-section-head">
                 <div>
                     <div class="section-tag">Visualisasi</div>
@@ -203,8 +463,36 @@
             <p class="stat-note" id="note-diagram-keseluruhan"></p>
         </section>
 
-        <!-- ================= PEKERJAAN LAINNYA ================= -->
-        <section class="stat-section border-top" aria-labelledby="judul-diagram-pekerjaan-lainnya">
+        <!-- ================= SFO JALUR ================= -->
+        <div class="stat-section border-top">
+            <div class="stat-section-head">
+                <div>
+                    <div class="section-tag">Rekap Perbaikan SFO</div>
+                    <h3>Jalur A/B — Terbaru per Segmen</h3>
+                </div>
+                <button class="download-btn" id="download-jalur" type="button" disabled>⭳ Unduh Rekap Terbaru Jalur A/B (.xlsx)</button>
+            </div>
+            <div class="stat-lists stat-status-grid" id="lists-jalur"></div>
+            <p class="stat-note" id="note-jalur"></p>
+        </div>
+
+        <!-- ================= SFO GERBANG ================= -->
+        <div class="stat-section border-top">
+            <div class="stat-section-head">
+                <div>
+                    <div class="section-tag">Rekap Perbaikan SFO</div>
+                    <h3>Gerbang</h3>
+                </div>
+                <button class="download-btn" id="download-gerbang" type="button" disabled>⭳ Unduh Rekap Terbaru Gerbang (.xlsx)</button>
+            </div>
+            <div class="stat-lists stat-status-grid" id="lists-gerbang"></div>
+            <p class="stat-note" id="note-gerbang"></p>
+        </div>
+
+                </div>
+
+                <div class="stat-slide-panel" id="stat-panel-other" role="tabpanel" aria-labelledby="stat-tab-other" aria-hidden="true">
+                    <section class="stat-section" aria-labelledby="judul-diagram-pekerjaan-lainnya">
             <div class="stat-section-head">
                 <div>
                     <div class="section-tag">Pekerjaan Lainnya</div>
@@ -236,36 +524,11 @@
                 <p class="chart-error" id="chart-error-lainnya" hidden></p>
             </div>
 
-            <div class="other-stat-cards" id="cards-pekerjaan-lainnya"></div>
+            <div class="stat-lists stat-status-grid stat-work-grid" id="cards-pekerjaan-lainnya"></div>
             <p class="stat-note" id="note-pekerjaan-lainnya"></p>
         </section>
-
-        <!-- ================= SFO JALUR ================= -->
-        <div class="stat-section border-top">
-            <div class="stat-section-head">
-                <div>
-                    <div class="section-tag">Rekap Perbaikan SFO</div>
-                    <h3>Jalur A/B — Terbaru per Segmen</h3>
                 </div>
-                <button class="download-btn" id="download-jalur" type="button" disabled>⭳ Unduh Rekap Terbaru Jalur A/B (.xlsx)</button>
             </div>
-            <div class="stat-cards" id="cards-jalur"></div>
-            <div class="stat-lists" id="lists-jalur"></div>
-            <p class="stat-note" id="note-jalur"></p>
-        </div>
-
-        <!-- ================= SFO GERBANG ================= -->
-        <div class="stat-section border-top">
-            <div class="stat-section-head">
-                <div>
-                    <div class="section-tag">Rekap Perbaikan SFO</div>
-                    <h3>Gerbang</h3>
-                </div>
-                <button class="download-btn" id="download-gerbang" type="button" disabled>⭳ Unduh Rekap Terbaru Gerbang (.xlsx)</button>
-            </div>
-            <div class="stat-cards" id="cards-gerbang"></div>
-            <div class="stat-lists" id="lists-gerbang"></div>
-            <p class="stat-note" id="note-gerbang"></p>
         </div>
     </div>
 
@@ -744,12 +1007,12 @@
         }
 
         const OTHER_WORK_CONFIG = [
-            { key: "expansion-joint", label: "Expansion Joint" },
-            { key: "patching", label: "Patching" },
-            { key: "sealant", label: "Sealant" },
-            { key: "overlay", label: "Overlay" },
-            { key: "rekonstruksi-rigid", label: "Rekonstruksi Rigid Pavement" },
-            { key: "lainnya", label: "Lainnya" }
+            { key: "expansion-joint", label: "Expansion Joint", color: "#2563eb" },
+            { key: "patching", label: "Patching", color: "#f97316" },
+            { key: "sealant", label: "Sealant", color: "#8b5cf6" },
+            { key: "overlay", label: "Overlay", color: "#0891b2" },
+            { key: "rekonstruksi-rigid", label: "Rekonstruksi Rigid Pavement", color: "#dc2626" },
+            { key: "lainnya", label: "Lainnya", color: "#64748b" }
         ];
 
         function coordinateLooksGeographic(coordinate) {
@@ -1265,21 +1528,29 @@
             return groups;
         }
 
-        function renderCards(containerId, groups) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = STATUS_ORDER.map(function (key) {
-                return (
-                    '<div class="stat-card card-' + key + '">' +
-                    '<div class="stat-num">' + groups[key].length + "</div>" +
-                    "</div>"
-                );
-            }).join("");
+        function buatKartuStatus(key, jumlah, body) {
+            const cfg = STATUS_CONFIG[key];
+
+            return (
+                '<section class="stat-list-group stat-status-card group-' + key + '">' +
+                    '<div class="stat-status-head">' +
+                        '<div class="stat-status-count" aria-label="Jumlah ' +
+                            escapeHTML(cfg.label) + ': ' + jumlah + '">' +
+                            jumlah.toLocaleString("id-ID") +
+                        '</div>' +
+                        '<div class="stat-list-title">' +
+                            '<span class="stat-list-dot"></span>' +
+                            escapeHTML(cfg.label) +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="stat-list-scroll">' + body + '</div>' +
+                '</section>'
+            );
         }
 
         function renderListsJalur(groups) {
             const container = document.getElementById("lists-jalur");
             container.innerHTML = STATUS_ORDER.map(function (key) {
-                const cfg = STATUS_CONFIG[key];
                 const items = groups[key];
 
                 const body = items.length
@@ -1298,20 +1569,13 @@
                     }).join("")
                     : '<div class="stat-list-empty">Tidak ada segmen pada kategori ini.</div>';
 
-                return (
-                    '<div class="stat-list-group group-' + key + '">' +
-                    '<div class="stat-list-title"><span class="stat-list-dot"></span>' +
-                    cfg.label + "</div>" +
-                    '<div class="stat-list-scroll">' + body + "</div>" +
-                    "</div>"
-                );
+                return buatKartuStatus(key, items.length, body);
             }).join("");
         }
 
         function renderListsGerbang(groups) {
             const container = document.getElementById("lists-gerbang");
             container.innerHTML = STATUS_ORDER.map(function (key) {
-                const cfg = STATUS_CONFIG[key];
                 const items = groups[key];
 
                 const body = items.length
@@ -1329,13 +1593,7 @@
                     }).join("")
                     : '<div class="stat-list-empty">Tidak ada gerbang pada kategori ini.</div>';
 
-                return (
-                    '<div class="stat-list-group group-' + key + '">' +
-                    '<div class="stat-list-title"><span class="stat-list-dot"></span>' +
-                    cfg.label + "</div>" +
-                    '<div class="stat-list-scroll">' + body + "</div>" +
-                    "</div>"
-                );
+                return buatKartuStatus(key, items.length, body);
             }).join("");
         }
 
@@ -1632,17 +1890,128 @@
                 counts.set(key, (counts.get(key) || 0) + 1);
             });
 
-            return OTHER_WORK_CONFIG
-                .map(function (item) {
-                    return {
-                        key: item.key,
-                        label: item.label,
-                        count: counts.get(item.key) || 0
-                    };
+            return OTHER_WORK_CONFIG.map(function (item) {
+                return {
+                    key: item.key,
+                    label: item.label,
+                    color: item.color,
+                    count: counts.get(item.key) || 0
+                };
+            });
+        }
+
+        function kelompokkanPekerjaanLainnya(records) {
+            const groups = new Map(
+                OTHER_WORK_CONFIG.map(function (item) {
+                    return [item.key, []];
                 })
-                .filter(function (item) {
-                    return item.count > 0;
+            );
+
+            records.forEach(function (record) {
+                const key = kategoriDiagramPekerjaanLainnya(
+                    record.Keterangan
+                );
+                if (!groups.has(key)) groups.set(key, []);
+                groups.get(key).push(record);
+            });
+
+            groups.forEach(function (items) {
+                items.sort(function (a, b) {
+                    const dateA = parseTanggalPelaksanaan(
+                        a.Tanggal_Pelaksanaan
+                    );
+                    const dateB = parseTanggalPelaksanaan(
+                        b.Tanggal_Pelaksanaan
+                    );
+                    const timeA = dateA.valid
+                        ? dateA.date.getTime()
+                        : Number.NEGATIVE_INFINITY;
+                    const timeB = dateB.valid
+                        ? dateB.date.getTime()
+                        : Number.NEGATIVE_INFINITY;
+                    return timeB - timeA;
                 });
+            });
+
+            return groups;
+        }
+
+        function lokasiPekerjaanLainnya(record) {
+            const bagian = [];
+            const gerbang = String(record.Gerbang ?? "").trim();
+            const jalur = String(record.Jalur ?? "").trim();
+            const lajur = String(record.Lajur ?? "").trim();
+
+            if (gerbang) bagian.push(gerbang);
+            if (jalur) bagian.push("Jalur " + jalur);
+            if (lajur) bagian.push("Lajur " + lajur);
+
+            return bagian.join(" · ");
+        }
+
+        function rentangPekerjaanLainnya(record) {
+            const asliDari = parseSTAMeter(record.KM_Asli_Dari);
+            const asliSampai = parseSTAMeter(record.KM_Asli_Sampai);
+
+            if (asliDari !== null || asliSampai !== null) {
+                return formatRentangSTA(
+                    record.KM_Asli_Dari,
+                    record.KM_Asli_Sampai
+                );
+            }
+
+            return formatRentangSTA(record.Dari, record.Sampai);
+        }
+
+        function buatKartuPekerjaanLainnya(config, items) {
+            const body = items.length
+                ? items.map(function (record) {
+                    const parsedDate = parseTanggalPelaksanaan(
+                        record.Tanggal_Pelaksanaan
+                    );
+                    const rentang = rentangPekerjaanLainnya(record);
+                    const lokasi = lokasiPekerjaanLainnya(record);
+                    const infoLokasi = [
+                        rentang === "STA tidak tersedia" ? "" : rentang,
+                        lokasi
+                    ].filter(Boolean).join(" · ");
+
+                    return (
+                        '<div class="stat-list-item">' +
+                            '<b>' + escapeHTML(
+                                nilaiAtauFallback(
+                                    record.Keterangan,
+                                    config.label
+                                )
+                            ) + '</b><br>' +
+                            '<span class="item-meta">' +
+                                (infoLokasi
+                                    ? escapeHTML(infoLokasi) + '<br>'
+                                    : '') +
+                                'Pelaksanaan: ' +
+                                escapeHTML(parsedDate.display) +
+                            '</span>' +
+                        '</div>'
+                    );
+                }).join("")
+                : '<div class="stat-list-empty">Belum ada data untuk jenis pekerjaan ini.</div>';
+
+            return (
+                '<section class="stat-list-group stat-status-card stat-work-card" ' +
+                    'style="--work-color: ' + escapeHTML(config.color) + ';">' +
+                    '<div class="stat-status-head">' +
+                        '<div class="stat-status-count" aria-label="Jumlah ' +
+                            escapeHTML(config.label) + ': ' + items.length + '">' +
+                            items.length.toLocaleString("id-ID") +
+                        '</div>' +
+                        '<div class="stat-list-title">' +
+                            '<span class="stat-list-dot"></span>' +
+                            escapeHTML(config.label) +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="stat-list-scroll">' + body + '</div>' +
+                '</section>'
+            );
         }
 
         function renderDiagramPekerjaanLainnya(records) {
@@ -1685,8 +2054,12 @@
                             data: summary.map(function (item) {
                                 return item.count;
                             }),
-                            backgroundColor: "rgba(124, 58, 237, 0.84)",
-                            borderColor: "#6d28d9",
+                            backgroundColor: summary.map(function (item) {
+                                return item.color;
+                            }),
+                            borderColor: summary.map(function (item) {
+                                return item.color;
+                            }),
                             borderWidth: 1,
                             borderRadius: 6,
                             borderSkipped: false,
@@ -1753,21 +2126,6 @@
                 }
             });
 
-            if (cards) {
-                cards.innerHTML = summary.map(function (item) {
-                    return (
-                        '<div class="other-stat-card">' +
-                        "<strong>" +
-                        item.count.toLocaleString("id-ID") +
-                        "</strong>" +
-                        "<span>" +
-                        escapeHTML(item.label) +
-                        "</span>" +
-                        "</div>"
-                    );
-                }).join("");
-            }
-
             const sourceSheets = Array.from(
                 new Set(
                     records
@@ -1778,16 +2136,27 @@
                 )
             );
 
+            const groups = kelompokkanPekerjaanLainnya(records);
+
+            if (cards) {
+                cards.innerHTML = OTHER_WORK_CONFIG.map(function (config) {
+                    return buatKartuPekerjaanLainnya(
+                        config,
+                        groups.get(config.key) || []
+                    );
+                }).join("");
+            }
+
             if (note) {
                 note.textContent =
-                    OTHER_EXCEL_SOURCE_ROWS.toLocaleString("id-ID") +
-                    " baris dari seluruh sheet Excel diringkas menjadi " +
                     records.length.toLocaleString("id-ID") +
-                    " pekerjaan unik setelah duplikat persis antarsheet digabung. " +
-                    "Sheet terakses: " +
-                    sourceSheets.join(", ") +
-                    ". Seluruh variasi patching dihitung dalam satu kategori Patching.";
+                    " pekerjaan unik dikelompokkan berdasarkan jenis pekerjaan" +
+                    (sourceSheets.length
+                        ? " dari " + sourceSheets.length.toLocaleString("id-ID") +
+                            " sheet sumber."
+                        : ".");
             }
+
         }
 
         function perbaruiTemaSatuDiagram(chart) {
@@ -2142,11 +2511,9 @@
                     }
                 );
 
-                renderCards("cards-jalur", groupsJalur);
                 renderListsJalur(groupsJalur);
 
                 const groupsGerbang = kelompokkan(gerbangList, statusGerbang);
-                renderCards("cards-gerbang", groupsGerbang);
                 renderListsGerbang(groupsGerbang);
 
                 renderDiagramBatangKeseluruhan(groupsJalur, groupsGerbang);
@@ -2199,11 +2566,96 @@
             }
         }
 
+        let statSlideAktif = "sfo";
+
+        function sinkronkanTinggiStatSlider() {
+            const shell = document.getElementById("stat-slider-shell");
+            const activePanel = document.getElementById(
+                statSlideAktif === "other" ? "stat-panel-other" : "stat-panel-sfo"
+            );
+            if (!shell || !activePanel) return;
+            shell.style.height = activePanel.scrollHeight + "px";
+        }
+
+        function perbaruiDiagramSetelahSlide() {
+            [diagramBatangKeseluruhan, diagramPekerjaanLainnya].forEach(function (chart) {
+                if (!chart) return;
+                try {
+                    chart.resize();
+                    chart.update("none");
+                } catch (error) {
+                    console.warn("Diagram gagal diperbarui setelah perpindahan slide.", error);
+                }
+            });
+        }
+
+        window.toggleStatSlide = function (target) {
+            const nextTarget = target === "other" ? "other" : "sfo";
+            statSlideAktif = nextTarget;
+
+            const track = document.getElementById("stat-slider-track");
+            const panelSfo = document.getElementById("stat-panel-sfo");
+            const panelOther = document.getElementById("stat-panel-other");
+            const buttons = document.querySelectorAll(".stats-mode-btn");
+
+            if (track) {
+                track.style.transform = nextTarget === "other"
+                    ? "translateX(-100%)"
+                    : "translateX(0%)";
+            }
+
+            if (panelSfo) panelSfo.setAttribute("aria-hidden", nextTarget === "sfo" ? "false" : "true");
+            if (panelOther) panelOther.setAttribute("aria-hidden", nextTarget === "other" ? "false" : "true");
+
+            buttons.forEach(function (button) {
+                const aktif = button.dataset.slideTarget === nextTarget;
+                button.classList.toggle("is-active", aktif);
+                button.setAttribute("aria-selected", aktif ? "true" : "false");
+                button.tabIndex = aktif ? 0 : -1;
+            });
+
+            sinkronkanTinggiStatSlider();
+            window.requestAnimationFrame(function () {
+                window.setTimeout(function () {
+                    sinkronkanTinggiStatSlider();
+                    perbaruiDiagramSetelahSlide();
+                }, 260);
+            });
+        };
+
+        function pasangNavigasiStatSlide() {
+            const buttons = document.querySelectorAll(".stats-mode-btn");
+            buttons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    window.toggleStatSlide(button.dataset.slideTarget);
+                });
+
+                button.addEventListener("keydown", function (event) {
+                    if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+                    event.preventDefault();
+                    window.toggleStatSlide(event.key === "ArrowRight" ? "other" : "sfo");
+                    const tujuan = document.querySelector(
+                        '.stats-mode-btn[data-slide-target="' +
+                        (event.key === "ArrowRight" ? "other" : "sfo") +
+                        '"]'
+                    );
+                    if (tujuan) tujuan.focus();
+                });
+            });
+
+            window.addEventListener("resize", function () {
+                sinkronkanTinggiStatSlider();
+            });
+        }
+
         window.addEventListener("surgem:user-data-changed", function () {
             window.location.reload();
         });
 
-        init();
+        pasangNavigasiStatSlide();
+        init().finally(function () {
+            window.toggleStatSlide(statSlideAktif);
+        });
     </script>
 </body>
 </html>

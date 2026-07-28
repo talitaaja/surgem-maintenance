@@ -1,0 +1,58 @@
+.utility-login-button {
+    min-height: auto;
+    padding: 0;
+
+    display: inline;
+    align-items: initial;
+    justify-content: initial;
+
+    color: inherit;
+    background: transparent;
+
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    font: inherit;
+    line-height: inherit;
+    font-weight: 650;
+    letter-spacing: inherit;
+
+    text-decoration: none;
+    transform: none;
+
+    transition: color 160ms ease;
+}
+
+.utility-login-button:hover,
+.utility-login-button:focus-visible {
+    color: inherit;
+    background: transparent;
+
+    border: none;
+    box-shadow: none;
+
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    transform: none;
+    outline: none;
+}
+
+.utility-login-button:active {
+    transform: none;
+}
+
+/* Dark mode */
+
+body.dark-mode .utility-login-button,
+body.dark-mode .utility-login-button:hover,
+body.dark-mode .utility-login-button:focus-visible {
+    color: inherit;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+.jm-utility-bar .utility-inner > a {
+    font-size: calc(1em + 1px);
+}

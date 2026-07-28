@@ -2,42 +2,99 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
     <title>SurGem Maintain — Admin Data</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="peta.css">
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="login-button.css">
+    <link rel="stylesheet" href="responsive.css">  
+    
 </head>
+
 <body class="admin-page">
     <div class="jm-utility-bar">
         <div class="jm-page-width utility-inner">
-            <a href="mailto:ro3@jmtransjawatol.co.id">Hubungi Kami</a>
-            <span class="utility-divider" aria-hidden="true"></span>
-            <span class="utility-language">ID <span aria-hidden="true">⌄</span></span>
+            <a href="mailto:ro3@jmtransjawatol.co.id">
+                Hubungi Kami
+            </a>
+
+            <span
+                class="utility-divider"
+                aria-hidden="true"
+            ></span>
+
+            <a
+                class="utility-login-button"
+                href="admin.html"
+                aria-label="Masuk ke halaman admin"
+                aria-current="page"
+            >
+                Login
+            </a>
         </div>
     </div>
 
     <header class="jm-header">
         <div class="jm-page-width jm-header-inner">
-            <a class="jm-brand-box" href="index.html" aria-label="Beranda SFO Tol Dashboard">
-                <img src="logo_jasamarga.png" alt="Logo Jasa Marga" width="190">
+            <a
+                class="jm-brand-box"
+                href="index.html"
+                aria-label="Beranda SFO Tol Dashboard"
+            >
+                <img
+                    src="logo_jasamarga.png"
+                    alt="Logo Jasa Marga"
+                    width="190"
+                >
+
                 <div class="jm-text-logo">
                     <h1>SFO Tol Dashboard</h1>
                     <p>Surabaya–Gempol Maintenance System</p>
                 </div>
             </a>
 
-            <nav class="jm-nav-menu" aria-label="Navigasi utama">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="peta.html" class="nav-link">Peta Interaktif</a>
-                <a href="stat.html" class="nav-link">Data Statistik</a>
-                <a href="tentang.html" class="nav-link">Tentang</a>
-                <a href="admin.html" class="nav-link active" aria-current="page">Admin Data</a>
+            <nav
+                class="jm-nav-menu"
+                aria-label="Navigasi utama"
+            >
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="peta.html"
+                    class="nav-link"
+                >
+                    Peta Interaktif
+                </a>
+
+                <a
+                    href="stat.html"
+                    class="nav-link"
+                >
+                    Data Statistik
+                </a>
+
+                <a
+                    href="tentang.html"
+                    class="nav-link"
+                >
+                    Tentang
+                </a>
+
                 <button
                     class="darkmode-toggle"
                     type="button"
                     onclick="toggleDarkMode()"
                     aria-pressed="false"
+                    aria-label="Ubah tema tampilan"
                 >
                     ⏾
                 </button>
@@ -56,13 +113,7 @@
                     dengan logika histori peta dan statistik.
                 </p>
             </div>
-            <div id="admin-status" class="admin-status-pill">Mode baca</div>
-        </div>
-
-        <div class="admin-notice">
-            <strong>Admin online:</strong> cukup masukkan kata sandi umum. Tidak perlu email,
-            komputer utama, file .bat, atau jaringan yang sama. Data tersimpan di Supabase dan
-            langsung digunakan oleh peta, statistik, Home, serta Tentang.
+            <div id="admin-status" class="admin-status-pill">Guest Mode</div>
         </div>
 
         <section id="auth-card" class="admin-card admin-login-panel">
@@ -74,10 +125,36 @@
             </div>
             <div class="admin-card-body">
                 <form id="auth-form">
-                    <div class="admin-field">
-                        <label for="admin-password">Kata sandi admin <span>*</span></label>
-                        <input id="admin-password" type="password" minlength="6" autocomplete="current-password" required>
-                    </div>
+<div class="admin-field">
+    <label for="admin-password">
+        Kata sandi admin <span>*</span>
+    </label>
+
+    <div class="password-input-wrapper">
+        <input
+            id="admin-password"
+            type="password"
+            minlength="6"
+            autocomplete="current-password"
+            required
+        >
+
+        <button
+            id="toggle-admin-password"
+            class="password-toggle-button"
+            type="button"
+            aria-label="Tampilkan kata sandi"
+            aria-pressed="false"
+            onclick="toggleAdminPassword()"
+        >
+            <img
+                id="password-toggle-icon"
+                src="./show.png"
+                alt="Tampilkan kata sandi"
+            >
+        </button>
+    </div>
+</div>
                     <div class="admin-actions">
                         <button id="auth-submit" class="admin-btn primary" type="submit">Masuk</button>
                     </div>
@@ -93,7 +170,7 @@
                         <h3 id="form-title">Tambah histori perbaikan</h3>
                         <p>Kolom bertanda * wajib diisi.</p>
                     </div>
-                    <button id="logout-button" class="admin-btn secondary" type="button">Keluar Admin</button>
+                    <button id="logout-button" class="admin-btn secondary" type="button">Logout</button>
                 </div>
                 <div class="admin-card-body">
                     <form id="repair-form">
@@ -305,13 +382,13 @@
                 authCard.hidden = true;
                 managementGrid.hidden = false;
                 readonlyCard.hidden = true;
-                status.textContent = "Admin terhubung";
+                status.textContent = "Admin Mode";
                 status.classList.add("is-active");
             } else {
                 authCard.hidden = false;
                 managementGrid.hidden = true;
                 readonlyCard.hidden = false;
-                status.textContent = "Mode baca";
+                status.textContent = "Guest Mode";
                 status.classList.remove("is-active");
                 document.getElementById("auth-title").textContent = "Masuk sebagai Admin";
                 document.getElementById("auth-description").textContent =
@@ -595,5 +672,333 @@
 
         initializeAdmin();
     </script>
+    <script>
+        (function () {
+            "use strict";
+
+            const passwordInput =
+                document.getElementById("admin-password");
+
+            const togglePasswordButton =
+                document.getElementById("toggle-admin-password");
+
+            const togglePasswordIcon =
+                document.getElementById("password-toggle-icon");
+
+            if (
+                !passwordInput ||
+                !togglePasswordButton ||
+                !togglePasswordIcon
+            ) {
+                return;
+            }
+
+            togglePasswordButton.addEventListener("click", function () {
+                const passwordTersembunyi =
+                    passwordInput.type === "password";
+
+                if (passwordTersembunyi) {
+                    passwordInput.type = "text";
+                    togglePasswordIcon.src = "hide.png";
+
+                    togglePasswordButton.setAttribute(
+                        "aria-label",
+                        "Sembunyikan kata sandi"
+                    );
+
+                    togglePasswordButton.setAttribute(
+                        "aria-pressed",
+                        "true"
+                    );
+                } else {
+                    passwordInput.type = "password";
+                    togglePasswordIcon.src = "show.png";
+
+                    togglePasswordButton.setAttribute(
+                        "aria-label",
+                        "Tampilkan kata sandi"
+                    );
+
+                    togglePasswordButton.setAttribute(
+                        "aria-pressed",
+                        "false"
+                    );
+                }
+
+                passwordInput.focus();
+
+                const posisiKursor = passwordInput.value.length;
+
+                passwordInput.setSelectionRange(
+                    posisiKursor,
+                    posisiKursor
+                );
+            });
+        })();
+    </script>
+<script>
+(function () {
+    "use strict";
+
+    function aktifkanHeaderOtomatis() {
+        const header = document.querySelector(".jm-header");
+        const utilityBar = document.querySelector(".jm-utility-bar");
+
+        if (!header) {
+            console.error("Header .jm-header tidak ditemukan.");
+            return;
+        }
+
+        /* Mencegah script terpasang dua kali */
+        if (header.dataset.scrollHeaderAktif === "true") {
+            return;
+        }
+
+        header.dataset.scrollHeaderAktif = "true";
+
+        /*
+         * Spacer mempertahankan ruang asli header.
+         * Jadi isi halaman tidak meloncat ketika header dibuat fixed.
+         */
+        const spacer = document.createElement("div");
+        spacer.className = "jm-header-spacer";
+        spacer.setAttribute("aria-hidden", "true");
+
+        header.parentNode.insertBefore(spacer, header);
+
+        /* Atur langsung agar tidak dikalahkan CSS lain */
+        header.style.setProperty("position", "fixed", "important");
+        header.style.setProperty("left", "0", "important");
+        header.style.setProperty("right", "0", "important");
+        header.style.setProperty("width", "100%", "important");
+        header.style.setProperty("z-index", "99999", "important");
+
+        header.style.setProperty(
+            "transition",
+            "transform 260ms ease, box-shadow 220ms ease",
+            "important"
+        );
+
+        header.style.setProperty(
+            "will-change",
+            "transform",
+            "important"
+        );
+
+        let posisiSebelumnya = Math.max(
+            window.scrollY || 0,
+            0
+        );
+
+        let arahSekarang = 0;
+        let jarakTerkumpul = 0;
+        let sedangMenungguFrame = false;
+        let headerTersembunyi = false;
+
+        const BATAS_ATAS = 10;
+        const MULAI_SEMBUNYI = 100;
+        const JARAK_TURUN = 16;
+        const JARAK_NAIK = 7;
+
+        function perbaruiUkuranSpacer() {
+            const tinggiHeader = header.getBoundingClientRect().height;
+
+            spacer.style.height =
+                Math.ceil(tinggiHeader) + "px";
+        }
+
+        /*
+         * Saat masih dekat bagian paling atas, header berada di bawah
+         * utility bar. Setelah utility bar terlewati, header berada di top 0.
+         */
+        function perbaruiPosisiAtas() {
+            let posisiAtas = 0;
+
+            if (utilityBar) {
+                const batasBawahUtility =
+                    utilityBar.getBoundingClientRect().bottom;
+
+                posisiAtas = Math.max(
+                    0,
+                    Math.round(batasBawahUtility)
+                );
+            }
+
+            header.style.setProperty(
+                "top",
+                posisiAtas + "px",
+                "important"
+            );
+        }
+
+        function tampilkanHeader() {
+            headerTersembunyi = false;
+
+            header.style.setProperty(
+                "transform",
+                "translate3d(0, 0, 0)",
+                "important"
+            );
+
+            header.style.setProperty(
+                "pointer-events",
+                "auto",
+                "important"
+            );
+        }
+
+        function sembunyikanHeader() {
+            if (header.matches(":focus-within")) {
+                return;
+            }
+
+            headerTersembunyi = true;
+
+            header.style.setProperty(
+                "transform",
+                "translate3d(0, -120%, 0)",
+                "important"
+            );
+
+            header.style.setProperty(
+                "pointer-events",
+                "none",
+                "important"
+            );
+        }
+
+        function prosesScroll() {
+            const posisiSekarang = Math.max(
+                window.scrollY || 0,
+                0
+            );
+
+            const selisih =
+                posisiSekarang - posisiSebelumnya;
+
+            perbaruiPosisiAtas();
+
+            /*
+             * Selalu tampil ketika kembali ke bagian teratas.
+             */
+            if (posisiSekarang <= BATAS_ATAS) {
+                tampilkanHeader();
+
+                arahSekarang = 0;
+                jarakTerkumpul = 0;
+                posisiSebelumnya = posisiSekarang;
+                sedangMenungguFrame = false;
+                return;
+            }
+
+            /*
+             * Abaikan pergerakan sangat kecil akibat getaran layar sentuh.
+             */
+            if (Math.abs(selisih) >= 0.5) {
+                const arahBaru = selisih > 0 ? 1 : -1;
+
+                if (arahBaru !== arahSekarang) {
+                    arahSekarang = arahBaru;
+                    jarakTerkumpul = 0;
+                }
+
+                jarakTerkumpul += Math.abs(selisih);
+            }
+
+            /*
+             * Scroll ke bawah.
+             */
+            if (
+                arahSekarang === 1 &&
+                posisiSekarang > MULAI_SEMBUNYI &&
+                jarakTerkumpul >= JARAK_TURUN
+            ) {
+                sembunyikanHeader();
+                jarakTerkumpul = 0;
+            }
+
+            /*
+             * Scroll ke atas.
+             */
+            if (
+                arahSekarang === -1 &&
+                jarakTerkumpul >= JARAK_NAIK
+            ) {
+                tampilkanHeader();
+                jarakTerkumpul = 0;
+            }
+
+            posisiSebelumnya = posisiSekarang;
+            sedangMenungguFrame = false;
+        }
+
+        function saatScroll() {
+            if (sedangMenungguFrame) {
+                return;
+            }
+
+            sedangMenungguFrame = true;
+
+            window.requestAnimationFrame(
+                prosesScroll
+            );
+        }
+
+        window.addEventListener(
+            "scroll",
+            saatScroll,
+            { passive: true }
+        );
+
+        window.addEventListener(
+            "resize",
+            function () {
+                perbaruiUkuranSpacer();
+                perbaruiPosisiAtas();
+
+                posisiSebelumnya = Math.max(
+                    window.scrollY || 0,
+                    0
+                );
+
+                if (!headerTersembunyi) {
+                    tampilkanHeader();
+                }
+            },
+            { passive: true }
+        );
+
+        header.addEventListener("focusin", tampilkanHeader);
+
+        window.addEventListener("pageshow", function () {
+            posisiSebelumnya = Math.max(
+                window.scrollY || 0,
+                0
+            );
+
+            perbaruiUkuranSpacer();
+            perbaruiPosisiAtas();
+            tampilkanHeader();
+        });
+
+        perbaruiUkuranSpacer();
+        perbaruiPosisiAtas();
+        tampilkanHeader();
+
+        console.info("Header scroll SurGem aktif.");
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            aktifkanHeaderOtomatis,
+            { once: true }
+        );
+    } else {
+        aktifkanHeaderOtomatis();
+    }
+})();
+</script>
+
 </body>
 </html>

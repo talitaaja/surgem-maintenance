@@ -412,3 +412,159 @@ body.dark-mode .admin-message {
         grid-column: auto;
     }
 }
+#logout-button {
+    color: #ffffff;
+    background: #dc2626;
+    border-color: #dc2626;
+}
+
+#logout-button:hover,
+#logout-button:focus-visible {
+    color: #ffffff;
+    background: #b91c1c;
+    border-color: #b91c1c;
+}
+
+#logout-button:active {
+    background: #991b1b;
+    border-color: #991b1b;
+}
+
+/* Dark mode */
+body.dark-mode #logout-button {
+    color: #ffffff;
+    background: #dc2626;
+    border-color: #ef4444;
+}
+.password-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-wrapper #admin-password {
+    width: 100%;
+    padding-right: 112px;
+}
+
+.password-toggle-button {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+
+    min-height: 34px;
+    padding: 6px 11px;
+
+    color: #07356f;
+    background: #f8fafc;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background-color 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease;
+}
+
+.password-toggle-button:hover,
+.password-toggle-button:focus-visible {
+    color: #ffffff;
+    background: #07356f;
+    border-color: #07356f;
+    outline: none;
+}
+
+.password-toggle-button:active {
+    transform: translateY(-50%) scale(0.97);
+}
+
+/* Dark mode */
+
+body.dark-mode .password-toggle-button {
+    color: #e2e8f0;
+    background: #1e293b;
+    border-color: #475569;
+}
+
+body.dark-mode .password-toggle-button:hover,
+body.dark-mode .password-toggle-button:focus-visible {
+    color: #111827;
+    background: #f6c20e;
+    border-color: #f6c20e;
+}
+
+/* ==========================================================
+   TOMBOL SHOW / HIDE PASSWORD
+========================================================== */
+
+.password-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-input-wrapper #admin-password {
+    width: 100%;
+    padding-right: 55px;
+}
+
+.password-toggle-button {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+
+    width: 38px;
+    height: 38px;
+    padding: 7px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: inherit;
+    background: transparent;
+    border: none;
+    border-radius: 7px;
+
+    cursor: pointer;
+    transform: translateY(-50%);
+
+    transition:
+        background-color 160ms ease,
+        transform 160ms ease;
+}
+
+.password-toggle-button img {
+    width: 23px;
+    height: 23px;
+    display: block;
+    object-fit: contain;
+}
+
+.password-toggle-button:hover,
+.password-toggle-button:focus-visible {
+    background: #e8eef7;
+    outline: none;
+}
+
+.password-toggle-button:active {
+    transform: translateY(-50%) scale(0.92);
+}
+
+/* Dark mode */
+
+body.dark-mode .password-toggle-button:hover,
+body.dark-mode .password-toggle-button:focus-visible {
+    background: #334155;
+}
+
+/* Gunakan ini hanya jika ikon berwarna hitam */
+body.dark-mode .password-toggle-button img {
+    filter: invert(1);
+}

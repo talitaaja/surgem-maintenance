@@ -1420,3 +1420,596 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
     color: #002d62;
     background-color: #f6c20e;
 }
+
+/* ==========================================================
+   TENTANG — SWAP FINAL ISTILAH & ALUR PENGEMBANGAN
+   File ini wajib dimuat SETELAH tentang.css dan responsive.css.
+========================================================== */
+
+.maintenance-terms-section::before,
+.maintenance-terms-section::after,
+.maintenance-definition-grid::before,
+.maintenance-definition-grid::after,
+.development-flow-section::before,
+.development-flow-section::after,
+.development-card-grid::before,
+.development-card-grid::after {
+    content: none !important;
+    display: none !important;
+}
+
+.maintenance-terms-section,
+.development-flow-section {
+    overflow: hidden;
+}
+
+.maintenance-terms-section .section-kicker,
+.development-flow-section .section-kicker {
+    margin-bottom: 6px;
+}
+
+.maintenance-terms-section .section-lead,
+.development-flow-section .section-lead {
+    max-width: 940px;
+    margin: 0 0 20px !important;
+}
+
+/* ==========================================================
+   ISTILAH PEMELIHARAAN — DEFINISI RINGKAS, TANPA NOMOR ALUR
+========================================================== */
+.maintenance-terms-section .maintenance-definition-grid {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.maintenance-terms-section .maintenance-definition-card {
+    min-width: 0;
+    margin: 0 !important;
+    padding: 18px 19px !important;
+    border: 1px solid var(--border, #dfe5ec) !important;
+    border-left: 4px solid var(--jm-blue, #173f88) !important;
+    border-radius: 8px !important;
+    background: var(--surface, #ffffff) !important;
+    box-shadow: none !important;
+}
+
+.maintenance-terms-section .maintenance-definition-card h3 {
+    margin: 0 0 10px !important;
+    color: var(--jm-blue-dark, #0d2f6b);
+    font-size: 14px;
+    line-height: 1.35;
+}
+
+.maintenance-terms-section .maintenance-definition-card ul {
+    margin: 0 !important;
+    padding-left: 18px !important;
+    list-style: disc !important;
+}
+
+.maintenance-terms-section .maintenance-definition-card li {
+    margin: 0 0 8px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    font-size: 12px;
+    line-height: 1.62;
+}
+
+.maintenance-terms-section .maintenance-definition-card li::before,
+.maintenance-terms-section .maintenance-definition-card li::after {
+    content: none !important;
+    display: none !important;
+}
+
+.maintenance-terms-section .maintenance-definition-card li:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* ==========================================================
+   ALUR PENGEMBANGAN — MEMAKAI STYLE KARTU BERNOMOR
+   YANG SEBELUMNYA DIGUNAKAN OLEH ISTILAH PEMELIHARAAN
+========================================================== */
+.development-flow-section .development-card-grid {
+    counter-reset: development-step;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    list-style: none !important;
+}
+
+.development-flow-section .development-card-grid > li {
+    counter-increment: development-step;
+    position: relative;
+    min-width: 0;
+    min-height: 100%;
+    margin: 0 !important;
+    padding: 52px 19px 20px !important;
+    overflow: hidden;
+    border: 1px solid var(--border, #dfe5ec) !important;
+    border-top: 4px solid var(--jm-blue, #173f88) !important;
+    border-radius: 10px !important;
+    background: var(--surface, #ffffff) !important;
+    box-shadow: 0 5px 16px rgba(15, 23, 42, 0.06) !important;
+}
+
+.development-flow-section .development-card-grid > li::before {
+    content: counter(development-step, decimal-leading-zero) !important;
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    width: 29px;
+    height: 29px;
+    display: grid !important;
+    place-items: center;
+    border-radius: 50%;
+    color: #ffffff;
+    background: var(--jm-blue, #173f88);
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+}
+
+.development-flow-section .development-card-grid > li::after {
+    content: none !important;
+    display: none !important;
+}
+
+.development-flow-section .development-card-grid h3 {
+    margin: 0 0 10px !important;
+    color: var(--jm-blue-dark, #0d2f6b);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.development-flow-section .development-card-grid p {
+    margin: 0 !important;
+    font-size: 12px;
+    line-height: 1.68;
+    text-align: left;
+}
+
+/* Alur teknologi berada di dalam bagian Alur Pengembangan, bukan Istilah. */
+.development-flow-section .development-pipeline {
+    width: 100%;
+    margin: 22px 0 0 !important;
+    padding: 18px 0 0 !important;
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    border-top: 1px solid var(--border, #dfe5ec);
+    color: var(--jm-blue, #173f88);
+    font-size: clamp(16px, 2vw, 22px);
+    line-height: 1.4;
+    font-weight: 800;
+}
+
+.development-flow-section .development-pipeline span,
+.development-flow-section .development-pipeline b {
+    display: inline-block;
+}
+
+/* ==========================================================
+   DARK MODE
+========================================================== */
+body.dark-mode .maintenance-terms-section .maintenance-definition-card,
+body.dark-mode .development-flow-section .development-card-grid > li {
+    border-color: #334155 !important;
+    background: #0f172a !important;
+    box-shadow: none !important;
+}
+
+body.dark-mode .maintenance-terms-section .maintenance-definition-card {
+    border-left-color: var(--jm-yellow, #f6c20e) !important;
+}
+
+body.dark-mode .development-flow-section .development-card-grid > li {
+    border-top-color: var(--jm-yellow, #f6c20e) !important;
+}
+
+body.dark-mode .development-flow-section .development-card-grid > li::before {
+    color: #0f172a;
+    background: var(--jm-yellow, #f6c20e);
+}
+
+body.dark-mode .maintenance-terms-section .maintenance-definition-card h3,
+body.dark-mode .development-flow-section .development-card-grid h3 {
+    color: #f8fafc;
+}
+
+body.dark-mode .maintenance-terms-section .maintenance-definition-card,
+body.dark-mode .development-flow-section .development-card-grid p {
+    color: #e2e8f0;
+}
+
+body.dark-mode .development-flow-section .development-pipeline {
+    border-top-color: #334155;
+    color: var(--jm-yellow, #f6c20e);
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+@media (max-width: 1050px) {
+    .development-flow-section .development-card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .maintenance-terms-section .maintenance-definition-grid,
+    .development-flow-section .development-card-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .maintenance-terms-section .maintenance-definition-card {
+        padding: 16px !important;
+    }
+
+    .development-flow-section .development-card-grid > li {
+        padding: 50px 16px 17px !important;
+    }
+
+    .development-flow-section .development-pipeline {
+        gap: 6px;
+        font-size: 15px;
+    }
+}
+
+/* =========================================================
+   ISTILAH PEMELIHARAAN — ACCORDION
+   Perubahan ini hanya berlaku pada .maintenance-terms-section.
+========================================================= */
+.maintenance-terms-section {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding: 72px 0 !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border-left: 0 !important;
+    border-bottom: 1px solid var(--about-border) !important;
+}
+
+.maintenance-terms-section::before,
+.maintenance-terms-section::after {
+    content: none !important;
+    display: none !important;
+}
+
+.maintenance-terms-section .section-lead {
+    max-width: 940px;
+    margin: 0 0 24px !important;
+}
+
+.maintenance-terms-section .maintenance-accordion {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+}
+
+.maintenance-terms-section .maintenance-accordion-item {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    color: var(--about-text);
+    background: var(--about-surface);
+    border: 1px solid var(--about-border);
+    border-left: 5px solid var(--about-blue);
+    border-radius: 5px;
+    box-shadow: 0 4px 16px rgba(20, 43, 83, .04);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.maintenance-terms-section .maintenance-accordion-item:hover {
+    border-color: #cbd4df;
+    border-left-color: var(--about-blue);
+    box-shadow: var(--about-shadow);
+}
+
+.maintenance-terms-section .maintenance-accordion-item > summary {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 64px;
+    margin: 0;
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    color: var(--about-heading);
+    background: var(--about-surface);
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.maintenance-terms-section .maintenance-accordion-item > summary::-webkit-details-marker {
+    display: none;
+}
+
+.maintenance-terms-section .maintenance-accordion-item > summary::marker {
+    content: "";
+}
+
+.maintenance-terms-section .maintenance-accordion-title {
+    font-size: 15px;
+    font-weight: 780;
+    line-height: 1.4;
+}
+
+.maintenance-terms-section .maintenance-accordion-icon {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    border: 1px solid var(--about-border);
+    border-radius: 50%;
+    background: var(--about-soft);
+}
+
+.maintenance-terms-section .maintenance-accordion-icon::before,
+.maintenance-terms-section .maintenance-accordion-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 2px;
+    background: var(--about-blue);
+    border-radius: 2px;
+    transform: translate(-50%, -50%);
+    transition: transform .2s ease, opacity .2s ease;
+}
+
+.maintenance-terms-section .maintenance-accordion-icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.maintenance-terms-section .maintenance-accordion-item[open] {
+    border-left-color: var(--about-orange);
+    box-shadow: var(--about-shadow);
+}
+
+.maintenance-terms-section .maintenance-accordion-item[open] > summary {
+    background: var(--about-soft);
+    border-bottom: 1px solid var(--about-border);
+}
+
+.maintenance-terms-section .maintenance-accordion-item[open] .maintenance-accordion-icon::after {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.maintenance-terms-section .maintenance-accordion-content {
+    padding: 20px 24px 22px;
+    background: var(--about-surface);
+}
+
+.maintenance-terms-section .maintenance-accordion-content ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style: disc;
+}
+
+.maintenance-terms-section .maintenance-accordion-content li {
+    margin: 0 0 10px;
+    padding: 0;
+    color: var(--about-text);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    font-size: 13px;
+    line-height: 1.72;
+}
+
+.maintenance-terms-section .maintenance-accordion-content li:last-child {
+    margin-bottom: 0;
+}
+
+.maintenance-terms-section .maintenance-accordion-content li::before,
+.maintenance-terms-section .maintenance-accordion-content li::after {
+    content: none !important;
+    display: none !important;
+}
+
+.maintenance-terms-section .maintenance-accordion-content strong {
+    color: var(--about-heading);
+    font-weight: 780;
+}
+
+body.dark-mode .maintenance-terms-section {
+    background: transparent !important;
+    border-bottom-color: var(--about-border) !important;
+}
+
+body.dark-mode .maintenance-terms-section .maintenance-accordion-item,
+body.dark-mode .maintenance-terms-section .maintenance-accordion-item > summary,
+body.dark-mode .maintenance-terms-section .maintenance-accordion-content {
+    color: var(--about-text);
+    background: var(--about-surface);
+    border-color: var(--about-border);
+}
+
+body.dark-mode .maintenance-terms-section .maintenance-accordion-item {
+    border-left-color: #f6c20e;
+}
+
+body.dark-mode .maintenance-terms-section .maintenance-accordion-item[open] > summary {
+    background: var(--about-soft);
+}
+
+body.dark-mode .maintenance-terms-section .maintenance-accordion-title,
+body.dark-mode .maintenance-terms-section .maintenance-accordion-content strong {
+    color: var(--about-heading);
+}
+
+body.dark-mode .maintenance-terms-section .maintenance-accordion-icon {
+    background: #0b1220;
+    border-color: var(--about-border);
+}
+
+body.dark-mode .maintenance-terms-section .maintenance-accordion-icon::before,
+body.dark-mode .maintenance-terms-section .maintenance-accordion-icon::after {
+    background: #f6c20e;
+}
+
+@media (max-width: 760px) {
+    .maintenance-terms-section {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 54px 0 !important;
+    }
+
+    .maintenance-terms-section .maintenance-accordion-item > summary {
+        min-height: 58px;
+        padding: 16px 17px;
+    }
+
+    .maintenance-terms-section .maintenance-accordion-content {
+        padding: 17px 18px 19px;
+    }
+}
+
+
+/* =========================================================
+   PENYESUAIAN JARAK ANTARBAGIAN
+   Accordion tetap vertikal; hanya spasi vertikal yang dirapatkan.
+========================================================= */
+.about-intro {
+    padding-top: 54px !important;
+    padding-bottom: 46px !important;
+}
+
+.about-content > .about-block {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+}
+
+.maintenance-terms-section {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+}
+
+.development-flow-section {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+}
+
+.about-block h2 {
+    margin-bottom: 24px !important;
+}
+
+.maintenance-terms-section .section-lead,
+.development-flow-section .section-lead {
+    margin-bottom: 18px !important;
+}
+
+@media (max-width: 760px) {
+    .about-intro {
+        padding-top: 42px !important;
+        padding-bottom: 38px !important;
+    }
+
+    .about-content > .about-block,
+    .maintenance-terms-section,
+    .development-flow-section {
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+    }
+
+    .about-block h2 {
+        margin-bottom: 20px !important;
+    }
+}
+
+/* =========================================================
+   TIM PENGEMBANG — PENYESUAIAN KHUSUS SMARTPHONE
+   Diletakkan paling akhir agar mengalahkan responsive.css.
+========================================================= */
+@media (max-width: 760px) {
+    .about-page .dev-team-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    .about-page .dev-card {
+        box-sizing: border-box !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 118px !important;
+        margin: 0 !important;
+        padding: 20px 18px 20px 78px !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+        border-radius: 7px !important;
+    }
+
+    .about-page .dev-card::before {
+        width: 6px !important;
+    }
+
+    .about-page .dev-card::after {
+        left: 20px !important;
+        width: 42px !important;
+        height: 42px !important;
+        flex: 0 0 42px !important;
+        font-size: 11px !important;
+    }
+
+    .about-page .dev-card .dev-name {
+        width: 100% !important;
+        margin: 0 0 6px !important;
+        color: var(--about-heading) !important;
+        font-size: 15px !important;
+        font-weight: 780 !important;
+        line-height: 1.35 !important;
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+
+    .about-page .dev-card .dev-nrp {
+        width: 100% !important;
+        margin: 0 !important;
+        font-size: 11.5px !important;
+        line-height: 1.4 !important;
+        overflow-wrap: anywhere;
+    }
+}
+
+@media (max-width: 390px) {
+    .about-page .dev-card {
+        min-height: 108px !important;
+        padding: 18px 14px 18px 68px !important;
+    }
+
+    .about-page .dev-card::after {
+        left: 16px !important;
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 10px !important;
+    }
+
+    .about-page .dev-card .dev-name {
+        font-size: 14px !important;
+    }
+
+    .about-page .dev-card .dev-nrp {
+        font-size: 11px !important;
+    }
+}

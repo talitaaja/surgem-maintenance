@@ -1,0 +1,1034 @@
+html {
+    width: 100%;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    min-width: 0;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+    max-width: 100%;
+}
+
+p,
+li,
+a,
+span,
+strong,
+code,
+td,
+th {
+    overflow-wrap: anywhere;
+}
+
+/* ==========================================================
+   TABLET / LAYAR MENENGAH
+========================================================== */
+@media (max-width: 900px) {
+    /* ---------- Utility bar ---------- */
+    .jm-utility-bar .utility-inner {
+        width: 100%;
+        padding-inline: 16px;
+        justify-content: flex-end;
+        gap: 14px;
+    }
+
+    .jm-utility-bar a,
+    .utility-login-button {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    /* ---------- Header dan navigasi ---------- */
+    .jm-header {
+        position: sticky;
+        top: 0;
+        z-index: 3000;
+        width: 100%;
+        min-height: auto;
+        padding: 0;
+    }
+
+    .jm-header-inner {
+        width: 100%;
+        padding: 10px 16px 9px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 9px 12px;
+    }
+
+    .jm-brand-box {
+        width: fit-content;
+        max-width: 100%;
+        gap: 11px;
+    }
+
+    .jm-brand-box img {
+        width: 145px !important;
+        max-width: 42vw;
+        height: auto;
+    }
+
+    .jm-text-logo {
+        padding-left: 11px;
+    }
+
+    .jm-text-logo h1 {
+        font-size: 14px;
+    }
+
+    .jm-text-logo p {
+        font-size: 8px;
+    }
+
+    .jm-nav-menu {
+        grid-column: 1 / -1;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 5px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .jm-nav-menu::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-link {
+        flex: 0 0 auto;
+        min-height: 39px;
+        padding: 8px 11px;
+        font-size: 11.5px;
+        white-space: nowrap;
+    }
+
+    .darkmode-toggle {
+        flex: 0 0 40px;
+        min-width: 40px;
+        min-height: 39px;
+        padding: 7px 10px;
+        position: sticky;
+        right: 0;
+        z-index: 2;
+    }
+
+    /* ---------- Kontainer umum ---------- */
+    .jm-page-width,
+    .content-header .jm-page-width,
+    .section-container > .jm-page-width,
+    .about-page,
+    .admin-main,
+    .stat-section,
+    .analysis-container {
+        width: min(100% - 32px, 1380px) !important;
+        margin-inline: auto !important;
+    }
+
+    /* ---------- Home ---------- */
+    .hero-copy-grid,
+    .split-heading,
+    .process-layout,
+    .jm-profile-inner {
+        grid-template-columns: 1fr !important;
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .hero-preview {
+        min-height: 380px;
+    }
+
+    .jm-profile-logo {
+        max-width: 260px;
+    }
+
+    /* ---------- Statistik ---------- */
+    .stat-section-head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .download-btn {
+        max-width: 100%;
+    }
+
+    .other-stat-cards,
+    .stat-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .stat-lists {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ---------- Tentang ---------- */
+    .project-details,
+    .development-steps {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ---------- Admin ---------- */
+    .admin-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ==========================================================
+   SMARTPHONE
+========================================================== */
+@media (max-width: 640px) {
+    :root {
+        --mobile-side: 12px;
+    }
+
+    /* Mencegah iPhone melakukan zoom otomatis saat input dipilih */
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+
+    /* ---------- Utility bar ---------- */
+    .jm-utility-bar {
+        min-height: 34px;
+    }
+
+    .jm-utility-bar .utility-inner {
+        min-height: 34px;
+        padding-inline: var(--mobile-side);
+        gap: 11px;
+    }
+
+    .jm-utility-bar a,
+    .utility-login-button {
+        font-size: 11px;
+        line-height: 1;
+    }
+
+    .utility-divider {
+        height: 18px;
+    }
+
+    /* ---------- Header ---------- */
+    .jm-header-inner {
+        padding: 9px var(--mobile-side) 8px;
+        gap: 8px;
+    }
+
+    .jm-brand-box img {
+        width: 132px !important;
+        max-width: 56vw;
+    }
+
+    .jm-text-logo {
+        display: none !important;
+    }
+
+    .jm-nav-menu {
+        margin-inline: calc(var(--mobile-side) * -1);
+        width: calc(100% + (var(--mobile-side) * 2));
+        padding: 1px var(--mobile-side) 3px;
+        scroll-padding-inline: var(--mobile-side);
+    }
+
+    .nav-link {
+        min-height: 38px;
+        padding: 7px 10px;
+        font-size: 11px;
+        border-radius: 7px;
+    }
+
+    .darkmode-toggle {
+        min-width: 38px;
+        min-height: 38px;
+        padding: 6px 9px;
+        background: inherit;
+    }
+
+    /* ---------- Kontainer dan tipografi umum ---------- */
+    .jm-page-width,
+    .content-header .jm-page-width,
+    .section-container > .jm-page-width,
+    .about-page,
+    .admin-main,
+    .stat-section,
+    .analysis-container,
+    .map-message,
+    .map-container {
+        width: calc(100% - 24px) !important;
+        margin-inline: auto !important;
+    }
+
+    .content-header {
+        padding: 22px 0 18px !important;
+    }
+
+    .content-header h2,
+    .about-title-section h1,
+    .admin-heading h2 {
+        font-size: clamp(25px, 8vw, 34px) !important;
+        line-height: 1.12;
+    }
+
+    .content-header p,
+    .hero-text p,
+    .lead,
+    .about-intro p,
+    .about-block p,
+    .admin-heading p {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    /* ======================================================
+       HOME
+    ====================================================== */
+    .hero-section {
+        padding-top: 32px !important;
+        padding-bottom: 34px !important;
+    }
+
+    .hero-copy-grid {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        gap: 23px !important;
+    }
+
+    .hero-title-block h1 {
+        font-size: clamp(30px, 10vw, 43px) !important;
+        line-height: 1.05;
+    }
+
+    .hero-title-block h1 span {
+        display: block;
+    }
+
+    .eyebrow {
+        font-size: 9px;
+        line-height: 1.5;
+    }
+
+    .hero-actions {
+        width: 100%;
+        display: grid !important;
+        grid-template-columns: 1fr;
+        gap: 9px;
+    }
+
+    .hero-actions .btn-jm {
+        width: 100%;
+        min-height: 44px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-preview {
+        min-height: 300px !important;
+        border-radius: 12px;
+    }
+
+    #miniMap {
+        min-height: 300px;
+    }
+
+    .hero-preview-copy {
+        padding: 15px !important;
+        align-items: flex-end;
+        gap: 12px;
+    }
+
+    .hero-preview-copy strong {
+        font-size: 15px;
+    }
+
+    .hero-preview-tag {
+        padding: 6px 8px;
+        font-size: 10px;
+    }
+
+    .stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 0;
+    }
+
+    .stat-item {
+        min-height: 112px;
+        padding: 18px 10px !important;
+    }
+
+    .stat-item .num {
+        font-size: clamp(23px, 8vw, 34px) !important;
+    }
+
+    .stat-item .label {
+        font-size: 10px;
+        line-height: 1.45;
+    }
+
+    .section-container,
+    .jm-profile-section {
+        padding-block: 38px !important;
+    }
+
+    .section-head {
+        margin-bottom: 22px;
+    }
+
+    .section-head h2,
+    .jm-profile-content h2 {
+        font-size: clamp(23px, 7vw, 31px) !important;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    .feature-card {
+        min-height: auto !important;
+        padding: 18px !important;
+    }
+
+    .steps-container {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+
+    .step-card {
+        min-height: auto !important;
+        padding: 16px !important;
+    }
+
+    .jm-profile-inner {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        gap: 22px !important;
+    }
+
+    .jm-profile-logo {
+        width: min(210px, 64vw);
+        margin-inline: auto;
+    }
+
+    /* ======================================================
+       PETA INTERAKTIF
+    ====================================================== */
+    .map-message {
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+        font-size: 11px;
+        line-height: 1.55;
+    }
+
+    .map-container {
+        height: auto !important;
+        margin-bottom: 24px !important;
+        overflow: visible !important;
+    }
+
+    .map-stage {
+        width: 100%;
+        height: auto !important;
+        display: grid;
+        grid-template-rows: minmax(390px, 56vh) 510px;
+        gap: 12px;
+    }
+
+    #map {
+        width: 100%;
+        height: 100% !important;
+        min-height: 390px;
+        border-radius: 11px;
+    }
+
+    .map-side-panels {
+        position: relative !important;
+        inset: auto !important;
+        top: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        height: 510px !important;
+        max-height: none !important;
+        border-radius: 11px;
+    }
+
+    .map-panel-tab {
+        min-height: 46px;
+        padding: 9px 6px;
+        font-size: 11px;
+    }
+
+    .map-side-panels .jm-panel {
+        padding: 14px !important;
+    }
+
+    .panel-title {
+        margin-bottom: 12px;
+        font-size: 13px;
+    }
+
+    .data-select,
+    .basemap-item {
+        min-height: 44px;
+    }
+
+    .basemap-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .lane-offset-note {
+        font-size: 10.5px;
+    }
+
+    .segment-search-wrap input {
+        min-height: 42px;
+    }
+
+    .segment-table-head,
+    .segment-row {
+        grid-template-columns: minmax(0, 1fr) 84px 42px !important;
+        column-gap: 6px !important;
+    }
+
+    .segment-table-head {
+        padding-inline: 9px !important;
+        font-size: 8.5px !important;
+    }
+
+    .segment-row {
+        padding: 10px 9px !important;
+    }
+
+    .segment-panel-header {
+        padding: 13px 14px !important;
+    }
+
+    .segment-panel-header h3 {
+        font-size: 15px;
+    }
+
+    .analysis-container {
+        padding-bottom: 0 !important;
+    }
+
+    .analysis-card {
+        padding: 18px 14px !important;
+        border-radius: 11px;
+    }
+
+    .analysis-card h3 {
+        font-size: 18px;
+    }
+
+    .rank-item {
+        padding: 12px 10px !important;
+        align-items: flex-start !important;
+        gap: 9px !important;
+    }
+
+    .leaflet-control-zoom a {
+        width: 34px !important;
+        height: 34px !important;
+        line-height: 34px !important;
+    }
+
+    .leaflet-popup-content-wrapper {
+        max-width: calc(100vw - 34px);
+    }
+
+    .leaflet-popup-content {
+        width: auto !important;
+        max-width: calc(100vw - 70px);
+        margin: 12px !important;
+    }
+
+    .segment-popup {
+        width: min(100%, calc(100vw - 72px)) !important;
+    }
+
+    /* ======================================================
+       DATA STATISTIK
+    ====================================================== */
+    .stat-section {
+        padding-block: 26px !important;
+    }
+
+    .stat-section-head {
+        display: flex !important;
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 13px;
+    }
+
+    .stat-section-head h3 {
+        font-size: 20px !important;
+        line-height: 1.25;
+    }
+
+    .chart-subtitle,
+    .stat-note {
+        font-size: 11.5px;
+        line-height: 1.6;
+    }
+
+    .download-btn {
+        width: 100%;
+        min-height: 44px;
+        padding: 10px 12px;
+        justify-content: center;
+        white-space: normal;
+        text-align: center;
+    }
+
+    .stat-chart-card {
+        padding: 12px !important;
+        overflow: hidden;
+    }
+
+    .stat-chart-wrapper,
+    .other-chart-wrapper {
+        width: 100%;
+        height: 340px !important;
+        min-height: 340px;
+    }
+
+    .stat-chart-wrapper canvas,
+    .other-chart-wrapper canvas {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .other-stat-cards,
+    .stat-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 9px !important;
+    }
+
+    .other-stat-card,
+    .stat-card {
+        min-height: 105px;
+        padding: 13px 11px !important;
+    }
+
+    .other-stat-card strong,
+    .stat-card strong {
+        font-size: 24px !important;
+    }
+
+    .stat-lists {
+        grid-template-columns: 1fr !important;
+        gap: 11px !important;
+    }
+
+    /* ======================================================
+       TENTANG
+    ====================================================== */
+    .about-page {
+        padding-top: 27px !important;
+        padding-bottom: 46px !important;
+    }
+
+    .about-title-section {
+        margin-bottom: 19px !important;
+        padding-inline: 2px;
+    }
+
+    .about-kicker {
+        font-size: 10px;
+    }
+
+    .about-content {
+        width: 100%;
+    }
+
+    .about-intro,
+    .about-block {
+        padding: 18px 15px !important;
+        border-radius: 10px !important;
+    }
+
+    .about-block h2 {
+        font-size: 20px !important;
+    }
+
+    .about-list,
+    .development-steps {
+        padding-left: 20px !important;
+    }
+
+    .development-steps {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        gap: 10px;
+    }
+
+    .development-steps li {
+        padding: 14px !important;
+    }
+
+    .project-details {
+        display: grid;
+        grid-template-columns: 1fr !important;
+    }
+
+    .detail-row {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 4px;
+        padding: 12px 0 !important;
+    }
+
+    .detail-row span,
+    .detail-row strong {
+        width: 100%;
+        text-align: left !important;
+    }
+
+    .detail-row code {
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .dev-team-grid {
+        display: grid !important;
+        grid-template-columns: 1fr;
+        gap: 10px !important;
+    }
+
+    .dev-card {
+        flex-basis: auto !important;
+        padding: 14px !important;
+    }
+
+    .back-to-top {
+        right: 13px !important;
+        bottom: 13px !important;
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    /* ======================================================
+       LOGIN / ADMIN
+    ====================================================== */
+    .admin-main {
+        padding-top: 26px !important;
+        padding-bottom: 48px !important;
+    }
+
+    .admin-heading {
+        margin-bottom: 18px !important;
+        align-items: flex-start !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    .admin-status-pill {
+        align-self: flex-start;
+    }
+
+    .admin-notice {
+        padding: 13px 14px !important;
+        border-left-width: 4px;
+        font-size: 12px;
+    }
+
+    .admin-card {
+        border-radius: 11px !important;
+    }
+
+    .admin-card-head {
+        padding: 16px 15px !important;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 11px !important;
+    }
+
+    .admin-card-head h3 {
+        font-size: 17px !important;
+    }
+
+    .admin-card-body {
+        padding: 16px 15px !important;
+    }
+
+    .admin-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 13px !important;
+    }
+
+    .admin-field.full {
+        grid-column: auto !important;
+    }
+
+    .admin-field input,
+    .admin-field select,
+    .admin-field textarea {
+        min-height: 46px !important;
+        padding: 11px 12px !important;
+    }
+
+    .admin-field textarea {
+        min-height: 118px !important;
+    }
+
+    .admin-actions {
+        display: grid !important;
+        grid-template-columns: 1fr;
+        gap: 8px !important;
+    }
+
+    .admin-btn {
+        width: 100%;
+        min-height: 44px !important;
+        justify-content: center;
+    }
+
+    .admin-login-panel {
+        width: 100%;
+        max-width: none !important;
+    }
+
+    .admin-summary {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px !important;
+    }
+
+    .admin-summary span {
+        text-align: center;
+    }
+
+    .admin-table-wrap {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto !important;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid var(--admin-border);
+        border-radius: 8px;
+    }
+
+    .admin-table {
+        min-width: 760px !important;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 10px 9px !important;
+    }
+
+    .admin-row-actions {
+        flex-direction: column;
+    }
+
+    .admin-row-actions button {
+        min-height: 36px;
+    }
+
+    .admin-doc-preview {
+        width: 100%;
+        max-height: 230px !important;
+    }
+
+    /* ======================================================
+       FOOTER
+    ====================================================== */
+    .footer-main {
+        width: calc(100% - 28px) !important;
+        padding-block: 24px !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 21px !important;
+    }
+
+    .footer-company {
+        grid-column: auto !important;
+    }
+
+    .footer-main h4 {
+        font-size: 12px;
+    }
+
+    .footer-main p,
+    .footer-main a {
+        font-size: 11px;
+    }
+
+    .footer-nav-links {
+        display: grid !important;
+        grid-template-columns: 1fr;
+        gap: 7px !important;
+    }
+
+    .footer-bottom {
+        padding: 11px 14px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 4px !important;
+    }
+
+    .footer-bottom p {
+        font-size: 10px;
+    }
+}
+
+/* ==========================================================
+   SMARTPHONE SANGAT KECIL
+========================================================== */
+@media (max-width: 390px) {
+    .jm-brand-box img {
+        width: 122px !important;
+    }
+
+    .nav-link {
+        padding-inline: 8px;
+        font-size: 10.5px;
+    }
+
+    .hero-title-block h1 {
+        font-size: 29px !important;
+    }
+
+    .stat-grid,
+    .other-stat-cards,
+    .stat-cards,
+    .admin-summary {
+        grid-template-columns: 1fr !important;
+    }
+
+    .stat-item {
+        min-height: 92px;
+    }
+
+    .map-stage {
+        grid-template-rows: 365px 500px;
+    }
+
+    #map {
+        min-height: 365px;
+    }
+
+    .map-side-panels {
+        height: 500px !important;
+    }
+
+    .basemap-list {
+        grid-template-columns: 1fr !important;
+    }
+
+    .segment-table-head,
+    .segment-row {
+        grid-template-columns: minmax(0, 1fr) 73px 38px !important;
+    }
+
+    .stat-chart-wrapper,
+    .other-chart-wrapper {
+        height: 320px !important;
+        min-height: 320px;
+    }
+}
+
+/* ==========================================================
+   LANDSCAPE SMARTPHONE
+========================================================== */
+@media (max-width: 640px) and (orientation: landscape) and (max-height: 520px) {
+    .map-stage {
+        grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+        grid-template-rows: 430px;
+    }
+
+    #map,
+    .map-side-panels {
+        height: 430px !important;
+        min-height: 430px;
+    }
+}
+
+/* ==========================================================
+   AKSESIBILITAS GERAK
+========================================================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+.map-body #map .leaflet-overlay-pane canvas,
+.map-body #map canvas.leaflet-zoom-animated {
+    max-width: none !important;
+    max-height: none !important;
+}
+
+
+.jm-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+
+    transform: translateY(0);
+    opacity: 1;
+
+    transition:
+        transform 280ms ease,
+        opacity 220ms ease,
+        box-shadow 220ms ease !important;
+
+    will-change: transform;
+}
+
+.jm-header.header-auto-hidden {
+    transform: translateY(calc(-100% - 8px)) !important;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: none !important;
+}
+
+.jm-header:focus-within {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jm-header {
+        transition: none !important;
+    }
+}

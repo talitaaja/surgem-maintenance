@@ -2,13 +2,18 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
     <title>SurGem Maintain — Peta Interaktif</title>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="peta.css">
     <link rel="stylesheet" href="index.css">
-    <script src="theme.js" defer></script>
+    <link rel="stylesheet" href="login-button.css">
+    <link rel="stylesheet" href="responsive.css">
+    
 
     <style>
         .segment-history-tabs {
@@ -182,16 +187,37 @@
 <body class="map-body">
     <div class="jm-utility-bar">
         <div class="jm-page-width utility-inner">
-            <a href="mailto:ro3@jmtransjawatol.co.id">Hubungi Kami</a>
-            <span class="utility-divider" aria-hidden="true"></span>
-            <span class="utility-language">ID <span aria-hidden="true">⌄</span></span>
+            <a href="mailto:ro3@jmtransjawatol.co.id">
+                Hubungi Kami
+            </a>
+
+            <span
+                class="utility-divider"
+                aria-hidden="true"
+            ></span>
+
+            <a
+                class="utility-login-button"
+                href="admin.html"
+                aria-label="Masuk ke halaman admin"
+            >
+                Login
+            </a>
         </div>
     </div>
 
     <header class="jm-header">
         <div class="jm-page-width jm-header-inner">
-            <a class="jm-brand-box" href="index.html" aria-label="Beranda SFO Tol Dashboard">
-                <img src="logo_jasamarga.png" alt="Logo Jasa Marga" width="190">
+            <a
+                class="jm-brand-box"
+                href="index.html"
+                aria-label="Beranda SFO Tol Dashboard"
+            >
+                <img
+                    src="logo_jasamarga.png"
+                    alt="Logo Jasa Marga"
+                    width="190"
+                >
 
                 <div class="jm-text-logo">
                     <h1>SFO Tol Dashboard</h1>
@@ -199,18 +225,45 @@
                 </div>
             </a>
 
-            <nav class="jm-nav-menu" aria-label="Navigasi utama">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="peta.html" class="nav-link active" aria-current="page">Peta Interaktif</a>
-                <a href="stat.html" class="nav-link">Data Statistik</a>
-                <a href="tentang.html" class="nav-link">Tentang</a>
-                <a href="admin.html" class="nav-link" aria-current="page">Admin Data</a>
+            <nav
+                class="jm-nav-menu"
+                aria-label="Navigasi utama"
+            >
+                <a
+                    href="index.html"
+                    class="nav-link"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="peta.html"
+                    class="nav-link active"
+                    aria-current="page"
+                >
+                    Peta Interaktif
+                </a>
+
+                <a
+                    href="stat.html"
+                    class="nav-link"
+                >
+                    Data Statistik
+                </a>
+
+                <a
+                    href="tentang.html"
+                    class="nav-link"
+                >
+                    Tentang
+                </a>
 
                 <button
                     class="darkmode-toggle"
                     type="button"
                     onclick="toggleDarkMode()"
                     aria-pressed="false"
+                    aria-label="Ubah tema tampilan"
                 >
                     ⏾
                 </button>
@@ -306,11 +359,6 @@
                                 <option value="other">Lajur 0 / lainnya</option>
                             </select>
 
-                            <div class="lane-offset-note" role="note">
-                                <strong>Visualisasi 3 lajur</strong>
-                                <span>Urutan melintang: B-L3, B-L2, B-L1 | A-L1, A-L2, A-L3. Jarak antara Jalur B dan Jalur A ditambah 3,6 m.</span>
-                            </div>
-
                             <label class="gate-toggle">
                                 <input id="toggle-gate" type="checkbox" checked>
                                 Tampilkan gerbang tol
@@ -322,9 +370,7 @@
                             <div class="status-legend-item"><span class="status-swatch" style="background:#ef4444"></span> ≥ 28 bulan</div>
                             <div class="status-legend-item"><span class="status-swatch" style="background:#f1c40f"></span> 16–27 bulan</div>
                             <div class="status-legend-item"><span class="status-swatch" style="background:#2ecc71"></span> &lt; 16 bulan</div>
-                            <div class="status-legend-item"><span class="status-swatch status-swatch-no-history" style="background:#64748b"></span> Belum ada histori</div>
                             <div class="status-legend-item"><span class="status-swatch" style="background:#374151"></span> Tanggal tidak ditemukan</div>
-                            <div class="status-legend-item"><span class="status-swatch" style="background:#d1d5db"></span> Di luar status terpilih</div>
                             <div class="status-legend-item"><span class="status-swatch" style="background:#7c3aed"></span> Pekerjaan lainnya</div>
                         </div>
                     </div>
@@ -3671,5 +3717,269 @@
 
         loadData();
     </script>
+<script>
+(function () {
+    "use strict";
+
+    function aktifkanHeaderOtomatis() {
+        const header = document.querySelector(".jm-header");
+        const utilityBar = document.querySelector(".jm-utility-bar");
+
+        if (!header) {
+            console.error("Header .jm-header tidak ditemukan.");
+            return;
+        }
+
+        /* Mencegah script terpasang dua kali */
+        if (header.dataset.scrollHeaderAktif === "true") {
+            return;
+        }
+
+        header.dataset.scrollHeaderAktif = "true";
+
+        /*
+         * Spacer mempertahankan ruang asli header.
+         * Jadi isi halaman tidak meloncat ketika header dibuat fixed.
+         */
+        const spacer = document.createElement("div");
+        spacer.className = "jm-header-spacer";
+        spacer.setAttribute("aria-hidden", "true");
+
+        header.parentNode.insertBefore(spacer, header);
+
+        /* Atur langsung agar tidak dikalahkan CSS lain */
+        header.style.setProperty("position", "fixed", "important");
+        header.style.setProperty("left", "0", "important");
+        header.style.setProperty("right", "0", "important");
+        header.style.setProperty("width", "100%", "important");
+        header.style.setProperty("z-index", "99999", "important");
+
+        header.style.setProperty(
+            "transition",
+            "transform 260ms ease, box-shadow 220ms ease",
+            "important"
+        );
+
+        header.style.setProperty(
+            "will-change",
+            "transform",
+            "important"
+        );
+
+        let posisiSebelumnya = Math.max(
+            window.scrollY || 0,
+            0
+        );
+
+        let arahSekarang = 0;
+        let jarakTerkumpul = 0;
+        let sedangMenungguFrame = false;
+        let headerTersembunyi = false;
+
+        const BATAS_ATAS = 10;
+        const MULAI_SEMBUNYI = 100;
+        const JARAK_TURUN = 16;
+        const JARAK_NAIK = 7;
+
+        function perbaruiUkuranSpacer() {
+            const tinggiHeader = header.getBoundingClientRect().height;
+
+            spacer.style.height =
+                Math.ceil(tinggiHeader) + "px";
+        }
+
+        /*
+         * Saat masih dekat bagian paling atas, header berada di bawah
+         * utility bar. Setelah utility bar terlewati, header berada di top 0.
+         */
+        function perbaruiPosisiAtas() {
+            let posisiAtas = 0;
+
+            if (utilityBar) {
+                const batasBawahUtility =
+                    utilityBar.getBoundingClientRect().bottom;
+
+                posisiAtas = Math.max(
+                    0,
+                    Math.round(batasBawahUtility)
+                );
+            }
+
+            header.style.setProperty(
+                "top",
+                posisiAtas + "px",
+                "important"
+            );
+        }
+
+        function tampilkanHeader() {
+            headerTersembunyi = false;
+
+            header.style.setProperty(
+                "transform",
+                "translate3d(0, 0, 0)",
+                "important"
+            );
+
+            header.style.setProperty(
+                "pointer-events",
+                "auto",
+                "important"
+            );
+        }
+
+        function sembunyikanHeader() {
+            if (header.matches(":focus-within")) {
+                return;
+            }
+
+            headerTersembunyi = true;
+
+            header.style.setProperty(
+                "transform",
+                "translate3d(0, -120%, 0)",
+                "important"
+            );
+
+            header.style.setProperty(
+                "pointer-events",
+                "none",
+                "important"
+            );
+        }
+
+        function prosesScroll() {
+            const posisiSekarang = Math.max(
+                window.scrollY || 0,
+                0
+            );
+
+            const selisih =
+                posisiSekarang - posisiSebelumnya;
+
+            perbaruiPosisiAtas();
+
+            /*
+             * Selalu tampil ketika kembali ke bagian teratas.
+             */
+            if (posisiSekarang <= BATAS_ATAS) {
+                tampilkanHeader();
+
+                arahSekarang = 0;
+                jarakTerkumpul = 0;
+                posisiSebelumnya = posisiSekarang;
+                sedangMenungguFrame = false;
+                return;
+            }
+
+            /*
+             * Abaikan pergerakan sangat kecil akibat getaran layar sentuh.
+             */
+            if (Math.abs(selisih) >= 0.5) {
+                const arahBaru = selisih > 0 ? 1 : -1;
+
+                if (arahBaru !== arahSekarang) {
+                    arahSekarang = arahBaru;
+                    jarakTerkumpul = 0;
+                }
+
+                jarakTerkumpul += Math.abs(selisih);
+            }
+
+            /*
+             * Scroll ke bawah.
+             */
+            if (
+                arahSekarang === 1 &&
+                posisiSekarang > MULAI_SEMBUNYI &&
+                jarakTerkumpul >= JARAK_TURUN
+            ) {
+                sembunyikanHeader();
+                jarakTerkumpul = 0;
+            }
+
+            /*
+             * Scroll ke atas.
+             */
+            if (
+                arahSekarang === -1 &&
+                jarakTerkumpul >= JARAK_NAIK
+            ) {
+                tampilkanHeader();
+                jarakTerkumpul = 0;
+            }
+
+            posisiSebelumnya = posisiSekarang;
+            sedangMenungguFrame = false;
+        }
+
+        function saatScroll() {
+            if (sedangMenungguFrame) {
+                return;
+            }
+
+            sedangMenungguFrame = true;
+
+            window.requestAnimationFrame(
+                prosesScroll
+            );
+        }
+
+        window.addEventListener(
+            "scroll",
+            saatScroll,
+            { passive: true }
+        );
+
+        window.addEventListener(
+            "resize",
+            function () {
+                perbaruiUkuranSpacer();
+                perbaruiPosisiAtas();
+
+                posisiSebelumnya = Math.max(
+                    window.scrollY || 0,
+                    0
+                );
+
+                if (!headerTersembunyi) {
+                    tampilkanHeader();
+                }
+            },
+            { passive: true }
+        );
+
+        header.addEventListener("focusin", tampilkanHeader);
+
+        window.addEventListener("pageshow", function () {
+            posisiSebelumnya = Math.max(
+                window.scrollY || 0,
+                0
+            );
+
+            perbaruiUkuranSpacer();
+            perbaruiPosisiAtas();
+            tampilkanHeader();
+        });
+
+        perbaruiUkuranSpacer();
+        perbaruiPosisiAtas();
+        tampilkanHeader();
+
+        console.info("Header scroll SurGem aktif.");
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            aktifkanHeaderOtomatis,
+            { once: true }
+        );
+    } else {
+        aktifkanHeaderOtomatis();
+    }
+})();
+</script>
+
 </body>
-</html>     
+</html>
