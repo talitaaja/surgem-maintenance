@@ -1,0 +1,24 @@
+SURGEM MAINTENANCE — GITHUB PAGES + SUPABASE
+
+Login Admin hanya menampilkan SATU kolom kata sandi.
+Kata sandi umum: JTTforSFO26
+Email Supabase disembunyikan sebagai akun internal dan tidak perlu diketik admin.
+
+LANGKAH AWAL:
+1. Supabase > Authentication > Users > Add user.
+2. Buat SATU user:
+   Email    : talitaadzra0117@gmail.com
+   Password : JTTforSFO26
+   Aktifkan Auto Confirm User.
+3. Jangan perlu membuat akun kedua. Kedua admin memakai akun dan password yang sama.
+4. Supabase > Authentication > Providers > Email:
+   matikan Allow new users to sign up.
+5. Supabase > SQL Editor > New query.
+6. Tempel seluruh isi SQL_SETUP_SUPABASE.sql lalu klik Run.
+7. Salin semua file paket ini ke folder utama proyek dan unggah ke GitHub.
+8. Hapus/jangan unggah server.js, file .bat, package.json, dan data/user-repairs.json.
+
+PENTING:
+- Jangan memakai service_role key atau secret key di GitHub.
+- Project URL dan publishable key memang disimpan pada supabase-config.js.
+- Website memerlukan internet untuk membaca/menulis data Supabase.

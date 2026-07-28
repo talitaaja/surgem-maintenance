@@ -60,16 +60,16 @@
         </div>
 
         <div class="admin-notice">
-            <strong>Cara membuka:</strong> pada komputer utama, klik dua kali
-            <code>BUKA_SURGEM_WINDOWS.bat</code>. Halaman admin akan terbuka otomatis dan data yang dimasukkan
-            langsung tersinkron ke peta, statistik, Home, Tentang, serta perangkat lain.
+            <strong>Admin online:</strong> cukup masukkan kata sandi umum. Tidak perlu email,
+            komputer utama, file .bat, atau jaringan yang sama. Data tersimpan di Supabase dan
+            langsung digunakan oleh peta, statistik, Home, serta Tentang.
         </div>
 
         <section id="auth-card" class="admin-card admin-login-panel">
             <div class="admin-card-head">
                 <div>
                     <h3 id="auth-title">Masuk sebagai Admin</h3>
-                    <p id="auth-description">Hanya admin yang dapat menambah, mengubah, dan menghapus data.</p>
+                    <p id="auth-description">Semua admin masuk memakai satu kata sandi umum; email akun internal tidak perlu diketik.</p>
                 </div>
             </div>
             <div class="admin-card-body">
@@ -143,7 +143,7 @@
                             <div class="admin-field full">
                                 <label for="dokumentasi-file">Unggah foto dokumentasi</label>
                                 <input id="dokumentasi-file" type="file" accept="image/*">
-                                <div class="admin-help">Opsional, maksimum 1 MB. Foto disimpan bersama data pada server terpusat.</div>
+                                <div class="admin-help">Opsional, maksimum 1 MB. Foto disimpan pada Supabase Storage dan dapat dibuka dari perangkat lain.</div>
                                 <img id="doc-preview" class="admin-doc-preview" alt="Pratinjau dokumentasi">
                             </div>
                         </div>
@@ -212,7 +212,9 @@
         </div>
     </footer>
 
-    <script src="data-perbaikan.js?v=4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js?v=5"></script>
+    <script src="data-perbaikan.js?v=5"></script>
     <script>
         "use strict";
 
@@ -327,7 +329,7 @@
             return [
                 "<span>" + batches.length.toLocaleString("id-ID") + " input</span>",
                 "<span>" + segments.toLocaleString("id-ID") + " histori segmen</span>",
-                "<span>Data server terpusat</span>"
+                "<span>Data Supabase online</span>"
             ].join("");
         }
 

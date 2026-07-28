@@ -1,33 +1,66 @@
 (function (global) {
     "use strict";
 
-    const SURGEM_SERVER_PORT = "31726";
-
-    function resolveApiBase() {
-        if (global.SURGEM_API_BASE) {
-            return String(global.SURGEM_API_BASE).replace(/\/$/, "");
-        }
-
-        const location = global.location;
-        if (location && location.protocol !== "file:") {
-            if (location.port === SURGEM_SERVER_PORT) return "/api";
-            const hostname = location.hostname || "127.0.0.1";
-            return "http://" + hostname + ":" + SURGEM_SERVER_PORT + "/api";
-        }
-
-        return "http://127.0.0.1:" + SURGEM_SERVER_PORT + "/api";
-    }
-
-    const API_BASE = resolveApiBase();
-    const ADMIN_SESSION_KEY = "surgem_admin_server_session_v4";
+    const CONFIG = global.SURGEM_SUPABASE || {};
     const SEGMENT_SIZE_METERS = 200;
     const MAX_DOCUMENTATION_BYTES = 1024 * 1024;
-    const AUTO_SYNC_INTERVAL_MS = 30000;
+    const AUTO_SYNC_INTERVAL_MS = 60000;
 
+    let client = null;
     let recordsCache = [];
+    let batchRowsCache = new Map();
     let cacheVersion = "";
-    let eventSource = null;
+    let realtimeChannel = null;
     let pollingTimer = null;
+    let adminSessionActive = false;
+
+    function configurationError() {
+        if (!CONFIG.url || !CONFIG.publishableKey || !CONFIG.adminEmail) {
+            return "Konfigurasi Supabase belum lengkap. Pastikan file supabase-config.js ikut diunggah.";
+        }
+        if (!global.supabase || typeof global.supabase.createClient !== "function") {
+            return "Library Supabase gagal dimuat. Periksa koneksi internet lalu muat ulang halaman.";
+        }
+        return "";
+    }
+
+    function getClient() {
+        const configMessage = configurationError();
+        if (configMessage) throw new Error(configMessage);
+        if (!client) {
+            client = global.supabase.createClient(
+                CONFIG.url,
+                CONFIG.publishableKey,
+                {
+                    auth: {
+                        persistSession: true,
+                        autoRefreshToken: true,
+                        detectSessionInUrl: true
+                    }
+                }
+            );
+        }
+        return client;
+    }
+
+    const authReady = (async function () {
+        try {
+            const supabaseClient = getClient();
+            const result = await supabaseClient.auth.getSession();
+            adminSessionActive = Boolean(result.data && result.data.session);
+            supabaseClient.auth.onAuthStateChange(function (_event, session) {
+                const previous = adminSessionActive;
+                adminSessionActive = Boolean(session);
+                if (previous !== adminSessionActive) {
+                    global.dispatchEvent(new CustomEvent("surgem:admin-session-changed", {
+                        detail: { loggedIn: adminSessionActive }
+                    }));
+                }
+            });
+        } catch (error) {
+            adminSessionActive = false;
+        }
+    })();
 
     function parseSTA(value) {
         if (value === null || value === undefined) return null;
@@ -57,111 +90,158 @@
             String(rounded % 1000).padStart(3, "0");
     }
 
-    function tokenPayload(token) {
-        try {
-            const part = String(token || "").split(".")[0];
-            if (!part) return null;
-            const normalized = part.replace(/-/g, "+").replace(/_/g, "/");
-            const padded = normalized + "=".repeat((4 - normalized.length % 4) % 4);
-            return JSON.parse(decodeURIComponent(escape(atob(padded))));
-        } catch (error) {
-            return null;
-        }
+    function normalizeLane(value) {
+        const match = String(value || "").toUpperCase().match(/[123]/);
+        return match ? "L" + match[0] : null;
     }
 
-    function getAdminToken() {
-        const token = sessionStorage.getItem(ADMIN_SESSION_KEY) || "";
-        const payload = tokenPayload(token);
-        if (!payload || !payload.exp || payload.exp * 1000 <= Date.now()) {
-            sessionStorage.removeItem(ADMIN_SESSION_KEY);
-            return "";
+    function normalizePayload(payload) {
+        const startRaw = parseSTA(payload && payload.staDari);
+        const endRaw = parseSTA(payload && payload.staSampai);
+        const jalur = String(payload && payload.jalur || "").trim().toUpperCase();
+        const lajur = normalizeLane(payload && payload.lajur);
+        const tanggal = String(payload && payload.tanggal || "").trim();
+        const keterangan = String(payload && payload.keterangan || "").trim();
+        const documentationDataUrl = String(payload && payload.dokumentasiDataUrl || "").trim();
+
+        if (startRaw === null || endRaw === null) {
+            throw new Error("STA dari dan STA sampai wajib berformat seperti 15+200.");
         }
-        return token;
+        if (!/^[AB]$/.test(jalur)) {
+            throw new Error("Jalur wajib dipilih: A atau B.");
+        }
+        if (!lajur) {
+            throw new Error("Lajur wajib dipilih: L1, L2, atau L3.");
+        }
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(tanggal) ||
+                Number.isNaN(new Date(tanggal + "T00:00:00Z").getTime())) {
+            throw new Error("Tanggal pelaksanaan wajib diisi dengan benar.");
+        }
+        if (!keterangan) {
+            throw new Error("Keterangan perbaikan wajib diisi.");
+        }
+        if (documentationDataUrl && !/^data:image\//i.test(documentationDataUrl)) {
+            throw new Error("Dokumentasi unggahan harus berupa gambar.");
+        }
+        if (documentationDataUrl.length > MAX_DOCUMENTATION_BYTES * 1.5) {
+            throw new Error("Foto dokumentasi melebihi batas 1 MB.");
+        }
+
+        const start = Math.min(startRaw, endRaw);
+        const end = Math.max(startRaw, endRaw);
+        if (end <= start) {
+            throw new Error("STA sampai harus lebih besar daripada STA dari.");
+        }
+        if (end - start > 50000) {
+            throw new Error("Rentang pekerjaan maksimum 50 km per input.");
+        }
+
+        return {
+            start,
+            end,
+            jalur,
+            lajur,
+            tanggal,
+            keterangan,
+            petugas: String(payload && payload.petugas || "").trim().slice(0, 100),
+            dokumentasiUrl: String(payload && payload.dokumentasiUrl || "").trim(),
+            dokumentasiNama: String(payload && payload.dokumentasiNama || "").trim().slice(0, 255),
+            dokumentasiDataUrl: documentationDataUrl
+        };
     }
 
-    async function request(path, options) {
-        const settings = { ...(options || {}) };
-        settings.headers = { ...(settings.headers || {}) };
-
-        if (settings.body && typeof settings.body !== "string") {
-            settings.headers["Content-Type"] = "application/json";
-            settings.body = JSON.stringify(settings.body);
+    function friendlyError(error, fallback) {
+        const message = String(error && error.message || "").trim();
+        if (/failed to fetch|networkerror|load failed/i.test(message)) {
+            return new Error("Supabase tidak dapat dijangkau. Periksa koneksi internet lalu muat ulang halaman.");
         }
-
-        if (settings.auth) {
-            const token = getAdminToken();
-            if (!token) throw new Error("Sesi admin sudah berakhir. Silakan masuk kembali.");
-            settings.headers.Authorization = "Bearer " + token;
-            delete settings.auth;
+        if (/invalid login credentials/i.test(message)) {
+            return new Error("Kata sandi admin salah.");
         }
-
-        settings.mode = "cors";
-        settings.cache = settings.cache || "no-store";
-
-        let response;
-        try {
-            response = await fetch(API_BASE + path, settings);
-        } catch (error) {
-            throw new Error(
-                "Server SurGem belum menyala. Tutup halaman ini, klik dua kali BUKA_SURGEM_WINDOWS.bat, lalu coba masuk kembali."
-            );
+        if (/row-level security|permission denied|not allowed/i.test(message)) {
+            return new Error("Akses database ditolak. Pastikan SQL_SETUP_SUPABASE.sql sudah dijalankan dan sesi admin masih aktif.");
         }
-        let payload = null;
-        try {
-            payload = await response.json();
-        } catch (error) {
-            payload = null;
-        }
-
-        if (!response.ok) {
-            if (response.status === 401) sessionStorage.removeItem(ADMIN_SESSION_KEY);
-
-            const serverIdentity = response.headers.get("X-SurGem-Server") || "";
-            if (response.status === 405 && serverIdentity !== "SurGem-Admin-v4") {
-                throw new Error(
-                    "Halaman masih terhubung ke server lama. Tutup semua tab SurGem, klik BUKA_SURGEM_WINDOWS.bat, lalu buka kembali halaman Admin."
-                );
-            }
-
-            throw new Error(payload && payload.message
-                ? payload.message
-                : "Server SurGem menolak permintaan. Muat ulang halaman lalu coba kembali.");
-        }
-
-        return payload || {};
+        return new Error(message || fallback || "Operasi Supabase gagal.");
     }
 
-    function computeVersion(records) {
-        return JSON.stringify((records || []).map(function (record) {
-            return [record.id, record.updatedAt, record.Tanggal_Pelaksanaan];
+    function rowVersion(rows) {
+        return JSON.stringify((rows || []).map(function (row) {
+            return [row.id, row.diubah_pada, row.tanggal_pelaksanaan];
         }));
     }
 
-    function setCache(records, options) {
-        const normalized = Array.isArray(records) ? records : [];
-        const nextVersion = options && options.version
-            ? String(options.version)
-            : computeVersion(normalized);
+    function expandDatabaseRow(row) {
+        const start = Number(row.sta_dari_m);
+        const end = Number(row.sta_sampai_m);
+        const firstSegment = Math.floor(start / SEGMENT_SIZE_METERS) * SEGMENT_SIZE_METERS;
+        const records = [];
+        let cursor = firstSegment;
+        let index = 0;
+
+        while (cursor < end) {
+            records.push({
+                id: String(row.id) + ":" + cursor,
+                batchId: String(row.id),
+                createdAt: row.dibuat_pada || "",
+                updatedAt: row.diubah_pada || "",
+                sortId: new Date(row.diubah_pada || row.dibuat_pada || 0).getTime() + index,
+                rute: row.jalur === "B" ? "surgem_B" : "surgem_A",
+                Jalur: row.jalur,
+                Lajur: row.lajur,
+                Dari: cursor,
+                Sampai: cursor + SEGMENT_SIZE_METERS,
+                KM_Asli_Dari: start,
+                KM_Asli_Sampai: end,
+                Tanggal_Pelaksanaan: row.tanggal_pelaksanaan,
+                Tahun: Number(String(row.tanggal_pelaksanaan || "").slice(0, 4)) || null,
+                Keterangan: row.keterangan || "",
+                Petugas: row.petugas || "",
+                Kategori_Pekerjaan: "SFO",
+                Sumber_Data: "Input Admin Supabase",
+                Dokumentasi_URL: index === 0 ? (row.dokumentasi_url || "") : "",
+                Dokumentasi_Nama: index === 0 ? (row.dokumentasi_nama || "") : "",
+                Dokumentasi_DataURL: "",
+                Dokumentasi_Path: index === 0 ? (row.dokumentasi_path || "") : ""
+            });
+            cursor += SEGMENT_SIZE_METERS;
+            index += 1;
+        }
+
+        return records;
+    }
+
+    function setRows(rows, options) {
+        const normalizedRows = Array.isArray(rows) ? rows : [];
+        const nextVersion = rowVersion(normalizedRows);
         const changed = nextVersion !== cacheVersion;
 
-        recordsCache = normalized.map(function (record) { return { ...record }; });
+        batchRowsCache = new Map();
+        recordsCache = [];
+        normalizedRows.forEach(function (row) {
+            batchRowsCache.set(String(row.id), { ...row });
+            recordsCache.push.apply(recordsCache, expandDatabaseRow(row));
+        });
         cacheVersion = nextVersion;
 
         if (changed && (!options || options.notify !== false)) {
             global.dispatchEvent(new CustomEvent("surgem:user-data-changed", {
-                detail: { count: recordsCache.length, source: "server" }
+                detail: { count: recordsCache.length, source: "supabase" }
             }));
         }
-
         return getRecords();
     }
 
     async function loadRecords(options) {
-        const payload = await request("/perbaikan", { cache: "no-store" });
-        return setCache(payload.records, {
-            version: payload.version,
-            notify: !options || options.notify !== false
-        });
+        await authReady;
+        const supabaseClient = getClient();
+        const result = await supabaseClient
+            .from(CONFIG.tableName || "sfo_perbaikan")
+            .select("*")
+            .order("tanggal_pelaksanaan", { ascending: false })
+            .order("sta_dari_m", { ascending: true });
+
+        if (result.error) throw friendlyError(result.error, "Data perbaikan tidak dapat dimuat.");
+        return setRows(result.data, { notify: !options || options.notify !== false });
     }
 
     function getRecords() {
@@ -201,7 +281,7 @@
             batchDocumentation.set(record.batchId, {
                 Dokumentasi_URL: current.Dokumentasi_URL || record.Dokumentasi_URL || "",
                 Dokumentasi_Nama: current.Dokumentasi_Nama || record.Dokumentasi_Nama || "",
-                Dokumentasi_DataURL: current.Dokumentasi_DataURL || record.Dokumentasi_DataURL || ""
+                Dokumentasi_DataURL: ""
             });
         });
 
@@ -227,21 +307,29 @@
     }
 
     async function loginAdmin(password) {
-        const payload = await request("/login", {
-            method: "POST",
-            body: { password: String(password || "") }
+        await authReady;
+        const supabaseClient = getClient();
+        const result = await supabaseClient.auth.signInWithPassword({
+            email: CONFIG.adminEmail,
+            password: String(password || "")
         });
-        if (!payload.token) return false;
-        sessionStorage.setItem(ADMIN_SESSION_KEY, payload.token);
-        return true;
+        if (result.error) {
+            if (/invalid login credentials/i.test(String(result.error.message || ""))) return false;
+            throw friendlyError(result.error, "Login admin gagal.");
+        }
+        adminSessionActive = Boolean(result.data && result.data.session);
+        return adminSessionActive;
     }
 
     function logoutAdmin() {
-        sessionStorage.removeItem(ADMIN_SESSION_KEY);
+        adminSessionActive = false;
+        try {
+            getClient().auth.signOut({ scope: "local" }).catch(function () {});
+        } catch (error) {}
     }
 
     function isAdminLoggedIn() {
-        return Boolean(getAdminToken());
+        return adminSessionActive;
     }
 
     function hasAdminPassword() {
@@ -252,54 +340,205 @@
         return loginAdmin(password);
     }
 
-    async function addBatch(payload) {
-        const response = await request("/perbaikan", {
-            method: "POST",
-            auth: true,
-            body: payload
+    function makeUuid() {
+        if (global.crypto && typeof global.crypto.randomUUID === "function") {
+            return global.crypto.randomUUID();
+        }
+        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (character) {
+            const random = Math.random() * 16 | 0;
+            const value = character === "x" ? random : (random & 0x3 | 0x8);
+            return value.toString(16);
         });
-        setCache(response.records, { version: response.version, notify: true });
-        return Array.isArray(response.affectedRecords) ? response.affectedRecords : [];
+    }
+
+    function sanitizeFileName(value) {
+        const safe = String(value || "dokumentasi.jpg")
+            .normalize("NFKD")
+            .replace(/[^a-zA-Z0-9._-]+/g, "-")
+            .replace(/^-+|-+$/g, "")
+            .slice(0, 120);
+        return safe || "dokumentasi.jpg";
+    }
+
+    function dataUrlToBlob(dataUrl) {
+        const parts = String(dataUrl || "").split(",");
+        const header = parts[0] || "";
+        const encoded = parts[1] || "";
+        const mimeMatch = header.match(/^data:([^;]+);base64$/i);
+        if (!mimeMatch) throw new Error("Format foto dokumentasi tidak didukung.");
+        const binary = atob(encoded);
+        const bytes = new Uint8Array(binary.length);
+        for (let index = 0; index < binary.length; index += 1) {
+            bytes[index] = binary.charCodeAt(index);
+        }
+        if (bytes.byteLength > MAX_DOCUMENTATION_BYTES) {
+            throw new Error("Ukuran foto dokumentasi melebihi 1 MB.");
+        }
+        return new Blob([bytes], { type: mimeMatch[1] });
+    }
+
+    async function uploadDocumentation(batchId, normalized) {
+        if (!normalized.dokumentasiDataUrl) return null;
+        const supabaseClient = getClient();
+        const blob = dataUrlToBlob(normalized.dokumentasiDataUrl);
+        const filename = sanitizeFileName(normalized.dokumentasiNama || "dokumentasi.jpg");
+        const path = batchId + "/" + Date.now() + "-" + filename;
+        const bucket = CONFIG.storageBucket || "sfo-dokumentasi";
+        const result = await supabaseClient.storage.from(bucket).upload(path, blob, {
+            contentType: blob.type,
+            upsert: false
+        });
+        if (result.error) throw friendlyError(result.error, "Foto dokumentasi gagal diunggah.");
+        const publicResult = supabaseClient.storage.from(bucket).getPublicUrl(path);
+        return {
+            path,
+            name: normalized.dokumentasiNama || filename,
+            url: publicResult.data && publicResult.data.publicUrl || ""
+        };
+    }
+
+    async function removeDocumentation(path) {
+        if (!path) return;
+        try {
+            await getClient().storage
+                .from(CONFIG.storageBucket || "sfo-dokumentasi")
+                .remove([path]);
+        } catch (error) {}
+    }
+
+    async function requireAdminSession() {
+        await authReady;
+        if (!adminSessionActive) {
+            throw new Error("Sesi admin sudah berakhir. Silakan masuk kembali.");
+        }
+    }
+
+    async function addBatch(payload) {
+        await requireAdminSession();
+        const normalized = normalizePayload(payload);
+        const batchId = makeUuid();
+        let upload = null;
+
+        try {
+            upload = await uploadDocumentation(batchId, normalized);
+            const result = await getClient()
+                .from(CONFIG.tableName || "sfo_perbaikan")
+                .insert({
+                    id: batchId,
+                    tanggal_pelaksanaan: normalized.tanggal,
+                    sta_dari_m: normalized.start,
+                    sta_sampai_m: normalized.end,
+                    jalur: normalized.jalur,
+                    lajur: normalized.lajur,
+                    keterangan: normalized.keterangan,
+                    petugas: normalized.petugas || null,
+                    dokumentasi_url: upload ? upload.url : (normalized.dokumentasiUrl || null),
+                    dokumentasi_nama: upload ? upload.name : (normalized.dokumentasiNama || null),
+                    dokumentasi_path: upload ? upload.path : null
+                })
+                .select()
+                .single();
+
+            if (result.error) throw friendlyError(result.error, "Data perbaikan gagal disimpan.");
+            await loadRecords({ notify: true });
+            return expandDatabaseRow(result.data);
+        } catch (error) {
+            if (upload && upload.path) await removeDocumentation(upload.path);
+            throw error;
+        }
     }
 
     async function updateBatch(batchId, payload) {
+        await requireAdminSession();
         if (!batchId) throw new Error("ID input tidak ditemukan.");
-        const response = await request("/perbaikan/" + encodeURIComponent(batchId), {
-            method: "PUT",
-            auth: true,
-            body: payload
-        });
-        setCache(response.records, { version: response.version, notify: true });
-        return Array.isArray(response.affectedRecords) ? response.affectedRecords : [];
+        const normalized = normalizePayload(payload);
+        const existing = batchRowsCache.get(String(batchId));
+        if (!existing) throw new Error("Data yang akan diubah tidak ditemukan. Muat ulang halaman lalu coba kembali.");
+
+        let upload = null;
+        try {
+            upload = await uploadDocumentation(batchId, normalized);
+            const manualUrlChanged = normalized.dokumentasiUrl !== String(existing.dokumentasi_url || "");
+            const nextUrl = upload
+                ? upload.url
+                : (manualUrlChanged ? (normalized.dokumentasiUrl || null) : existing.dokumentasi_url);
+            const nextName = upload
+                ? upload.name
+                : (manualUrlChanged ? (normalized.dokumentasiNama || null) : existing.dokumentasi_nama);
+            const nextPath = upload
+                ? upload.path
+                : (manualUrlChanged ? null : existing.dokumentasi_path);
+
+            const result = await getClient()
+                .from(CONFIG.tableName || "sfo_perbaikan")
+                .update({
+                    tanggal_pelaksanaan: normalized.tanggal,
+                    sta_dari_m: normalized.start,
+                    sta_sampai_m: normalized.end,
+                    jalur: normalized.jalur,
+                    lajur: normalized.lajur,
+                    keterangan: normalized.keterangan,
+                    petugas: normalized.petugas || null,
+                    dokumentasi_url: nextUrl,
+                    dokumentasi_nama: nextName,
+                    dokumentasi_path: nextPath
+                })
+                .eq("id", batchId)
+                .select()
+                .single();
+
+            if (result.error) throw friendlyError(result.error, "Data perbaikan gagal diperbarui.");
+            if (existing.dokumentasi_path && existing.dokumentasi_path !== nextPath) {
+                await removeDocumentation(existing.dokumentasi_path);
+            }
+            await loadRecords({ notify: true });
+            return expandDatabaseRow(result.data);
+        } catch (error) {
+            if (upload && upload.path) await removeDocumentation(upload.path);
+            throw error;
+        }
     }
 
     async function deleteBatch(batchId) {
+        await requireAdminSession();
         if (!batchId) throw new Error("ID input tidak ditemukan.");
-        const response = await request("/perbaikan/" + encodeURIComponent(batchId), {
-            method: "DELETE",
-            auth: true
-        });
-        setCache(response.records, { version: response.version, notify: true });
-        return Number(response.deletedCount || 0);
+        const existing = batchRowsCache.get(String(batchId));
+        const segmentCount = existing ? expandDatabaseRow(existing).length : 0;
+        const result = await getClient()
+            .from(CONFIG.tableName || "sfo_perbaikan")
+            .delete()
+            .eq("id", batchId);
+
+        if (result.error) throw friendlyError(result.error, "Data perbaikan gagal dihapus.");
+        if (existing && existing.dokumentasi_path) {
+            await removeDocumentation(existing.dokumentasi_path);
+        }
+        await loadRecords({ notify: true });
+        return segmentCount;
     }
 
     function startAutoSync() {
-        if (eventSource || pollingTimer) return;
-
-        if ("EventSource" in global) {
-            eventSource = new EventSource(API_BASE + "/events");
-            eventSource.addEventListener("data-changed", function () {
-                loadRecords({ notify: true }).catch(function (error) {
-                    console.warn("Sinkronisasi data SurGem gagal.", error);
-                });
-            });
-            eventSource.onerror = function () {
-                if (pollingTimer) return;
-                pollingTimer = global.setInterval(function () {
-                    loadRecords({ notify: true }).catch(function () {});
-                }, AUTO_SYNC_INTERVAL_MS);
-            };
-            return;
+        if (realtimeChannel || pollingTimer) return;
+        try {
+            const supabaseClient = getClient();
+            realtimeChannel = supabaseClient
+                .channel("surgem-sfo-perbaikan")
+                .on(
+                    "postgres_changes",
+                    {
+                        event: "*",
+                        schema: "public",
+                        table: CONFIG.tableName || "sfo_perbaikan"
+                    },
+                    function () {
+                        loadRecords({ notify: true }).catch(function (error) {
+                            console.warn("Sinkronisasi Supabase gagal.", error);
+                        });
+                    }
+                )
+                .subscribe();
+        } catch (error) {
+            realtimeChannel = null;
         }
 
         pollingTimer = global.setInterval(function () {
@@ -308,9 +547,9 @@
     }
 
     function stopAutoSync() {
-        if (eventSource) {
-            eventSource.close();
-            eventSource = null;
+        if (realtimeChannel) {
+            try { getClient().removeChannel(realtimeChannel); } catch (error) {}
+            realtimeChannel = null;
         }
         if (pollingTimer) {
             global.clearInterval(pollingTimer);
@@ -319,8 +558,8 @@
     }
 
     global.SurGemData = Object.freeze({
-        API_BASE,
-        ADMIN_SESSION_KEY,
+        API_BASE: CONFIG.url || "",
+        ADMIN_SESSION_KEY: "supabase-auth-session",
         MAX_DOCUMENTATION_BYTES,
         SEGMENT_SIZE_METERS,
         loadRecords,
