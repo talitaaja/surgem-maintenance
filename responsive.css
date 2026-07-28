@@ -1,3 +1,9 @@
+/* ==========================================================
+   SURGEM MAINTENANCE — RESPONSIVE UI
+   Muat file ini PALING AKHIR setelah CSS halaman lainnya.
+========================================================== */
+
+/* ---------- Perlindungan dasar dari overflow ---------- */
 html {
     width: 100%;
     overflow-x: hidden;
@@ -19,6 +25,7 @@ body {
 
 img,
 svg,
+canvas,
 video {
     max-width: 100%;
 }
@@ -991,44 +998,201 @@ th {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* ==========================================================
+   PERBAIKAN POPUP PETA PADA SMARTPHONE
+   Diletakkan paling akhir agar mengalahkan aturan umum responsif.
+========================================================== */
+
+/* Canvas Leaflet tidak boleh mengikuti max-width global media. */
 .map-body #map .leaflet-overlay-pane canvas,
 .map-body #map canvas.leaflet-zoom-animated {
     max-width: none !important;
     max-height: none !important;
 }
 
+@media (max-width: 640px) {
+    .map-body .leaflet-popup.surgem-detail-popup {
+        width: calc(100vw - 28px) !important;
+        max-width: 380px !important;
+    }
 
-.jm-header {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 9999 !important;
+    .map-body .surgem-detail-popup .leaflet-popup-content-wrapper {
+        width: 100% !important;
+        max-width: none !important;
+        overflow: hidden;
+        border-radius: 12px;
+    }
 
-    transform: translateY(0);
-    opacity: 1;
+    .map-body .surgem-detail-popup .leaflet-popup-content {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+    }
 
-    transition:
-        transform 280ms ease,
-        opacity 220ms ease,
-        box-shadow 220ms ease !important;
+    .map-body .surgem-detail-popup .segment-popup,
+    .map-body .surgem-detail-popup .segment-popup[style] {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        padding: 16px 14px 14px;
+        box-sizing: border-box;
+        font-size: 13px !important;
+        line-height: 1.55 !important;
+    }
 
-    will-change: transform;
+    /* Mencegah aturan overflow-wrap:anywhere memecah teks per huruf. */
+    .map-body .surgem-detail-popup .segment-popup *,
+    .map-body .surgem-detail-popup .segment-popup dt,
+    .map-body .surgem-detail-popup .segment-popup dd,
+    .map-body .surgem-detail-popup .segment-popup span,
+    .map-body .surgem-detail-popup .segment-popup strong,
+    .map-body .surgem-detail-popup .segment-popup p {
+        min-width: 0;
+        word-break: normal !important;
+        overflow-wrap: break-word !important;
+    }
+
+    .map-body .surgem-detail-popup .segment-popup-title {
+        padding: 0 38px 11px 0 !important;
+        font-size: 18px !important;
+        line-height: 1.25 !important;
+    }
+
+    .map-body .surgem-detail-popup .segment-popup-scroll {
+        width: 100%;
+        max-height: min(58vh, 440px) !important;
+        padding: 11px 3px 3px 0 !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        scrollbar-gutter: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .map-body .surgem-detail-popup .segment-popup-summary {
+        gap: 8px;
+    }
+
+    .map-body .surgem-detail-popup .segment-popup-summary > div {
+        grid-template-columns: minmax(112px, 40%) minmax(0, 1fr) !important;
+        gap: 8px !important;
+    }
+
+    .map-body .surgem-detail-popup .segment-popup-summary dt {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .map-body .surgem-detail-popup .segment-popup-summary dd {
+        font-size: 12.5px;
+        line-height: 1.45;
+    }
+
+    .map-body .surgem-detail-popup .segment-popup-history {
+        margin-top: 14px;
+        padding-top: 12px;
+    }
+
+    .map-body .surgem-detail-popup .segment-popup-history-heading strong {
+        font-size: 14px;
+    }
+
+    .map-body .surgem-detail-popup .segment-popup-history-heading span {
+        font-size: 11px;
+        line-height: 1.45;
+    }
+
+    .map-body .surgem-detail-popup .segment-history-tabs {
+        width: 100%;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .map-body .surgem-detail-popup .segment-history-tab {
+        min-height: 42px;
+        padding: 8px 9px;
+        font-size: 12px;
+    }
+
+    .map-body .surgem-detail-popup .segment-history-item summary {
+        min-height: 44px;
+        padding: 10px !important;
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 5px !important;
+        align-items: start !important;
+    }
+
+    .map-body .surgem-detail-popup .segment-history-date {
+        width: 100%;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .map-body .surgem-detail-popup .segment-history-status,
+    .map-body .surgem-detail-popup .segment-history-worktype {
+        justify-self: start;
+        max-width: 100%;
+        white-space: normal !important;
+        font-size: 11px !important;
+        line-height: 1.35;
+    }
+
+    .map-body .surgem-detail-popup .segment-history-detail {
+        padding: 10px !important;
+    }
+
+    /* KM dari, KM sampai, dan panjang dibuat vertikal agar tidak gepeng. */
+    .map-body .surgem-detail-popup .segment-history-facts {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 7px !important;
+    }
+
+    .map-body .surgem-detail-popup .segment-history-facts > div {
+        padding: 9px 10px !important;
+        grid-template-columns: minmax(112px, 0.9fr) minmax(0, 1fr);
+        align-items: center;
+        gap: 10px;
+    }
+
+    .map-body .surgem-detail-popup .segment-history-facts span,
+    .map-body .surgem-detail-popup .segment-history-description > span {
+        font-size: 11px !important;
+        line-height: 1.35;
+    }
+
+    .map-body .surgem-detail-popup .segment-history-facts strong {
+        font-size: 12.5px !important;
+        line-height: 1.4;
+        text-align: right;
+    }
+
+    .map-body .surgem-detail-popup .segment-history-description p {
+        font-size: 12.5px;
+        line-height: 1.55;
+    }
+
+    .map-body .surgem-detail-popup .leaflet-popup-close-button {
+        top: 5px !important;
+        right: 5px !important;
+        width: 36px !important;
+        height: 36px !important;
+        padding: 0 !important;
+        font-size: 25px !important;
+        line-height: 32px !important;
+    }
 }
 
-.jm-header.header-auto-hidden {
-    transform: translateY(calc(-100% - 8px)) !important;
-    opacity: 0;
-    pointer-events: none;
-    box-shadow: none !important;
-}
+@media (max-width: 340px) {
+    .map-body .surgem-detail-popup .segment-popup {
+        padding: 14px 12px 12px !important;
+    }
 
-.jm-header:focus-within {
-    transform: translateY(0) !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-}
+    .map-body .surgem-detail-popup .segment-popup-summary > div,
+    .map-body .surgem-detail-popup .segment-history-facts > div {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 3px !important;
+    }
 
-@media (prefers-reduced-motion: reduce) {
-    .jm-header {
-        transition: none !important;
+    .map-body .surgem-detail-popup .segment-history-facts strong {
+        text-align: left;
     }
 }

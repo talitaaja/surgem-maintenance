@@ -192,23 +192,6 @@
     letter-spacing: .1em;
     text-transform: uppercase;
 }
-
-.about-content > .about-block:nth-of-type(2) h2::before {
-    content: "Tujuan platform";
-}
-
-.about-content > .about-block:nth-of-type(3) h2::before {
-    content: "Metodologi";
-}
-
-.about-content > .about-block:nth-of-type(4) h2::before {
-    content: "Informasi utama";
-}
-
-.about-content > .about-block:nth-of-type(5) h2::before {
-    content: "Kolaborasi";
-}
-
 /* ===== TUJUAN ===== */
 
 .about-list {
@@ -902,22 +885,6 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
     font-weight: 850;
     letter-spacing: .1em;
     text-transform: uppercase;
-}
-
-.about-content > .about-block:nth-of-type(2) h2::before {
-    content: "Tujuan platform";
-}
-
-.about-content > .about-block:nth-of-type(3) h2::before {
-    content: "Metodologi";
-}
-
-.about-content > .about-block:nth-of-type(4) h2::before {
-    content: "Informasi utama";
-}
-
-.about-content > .about-block:nth-of-type(5) h2::before {
-    content: "Kolaborasi";
 }
 
 /* ===== TUJUAN ===== */
