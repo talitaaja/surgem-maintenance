@@ -1196,3 +1196,83 @@ th {
         text-align: left;
     }
 }
+/* ==========================================================
+   LOGIN DI HEADER SMARTPHONE
+========================================================== */
+
+/* Tidak ditampilkan pada desktop */
+.mobile-header-login {
+    display: none;
+}
+
+/* Smartphone dan tablet */
+@media (max-width: 900px) {
+
+    /*
+     * Utility bar lama disembunyikan pada smartphone.
+     * Login dipindahkan ke dalam header agar selalu terlihat.
+     */
+    .jm-utility-bar {
+        display: none !important;
+    }
+
+    .jm-header-inner {
+        grid-template-columns: minmax(0, 1fr) auto !important;
+    }
+
+    .mobile-header-login {
+        min-width: auto;
+        min-height: 40px;
+        padding: 8px 4px;
+
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        justify-self: end;
+        align-self: center;
+
+        color: #173f88;
+        background: transparent;
+
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+
+        font-size: 13px;
+        line-height: 1;
+        font-weight: 800;
+        white-space: nowrap;
+
+        text-decoration: none;
+
+        transition:
+            color 160ms ease,
+            opacity 160ms ease;
+    }
+
+    .mobile-header-login:hover,
+    .mobile-header-login:focus-visible {
+        color: #e97816;
+        background: transparent;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        outline: none;
+    }
+
+    /*
+     * Navigasi tetap menggunakan satu baris penuh
+     * di bawah logo dan Login.
+     */
+    .jm-nav-menu {
+        grid-column: 1 / -1 !important;
+    }
+
+    body.dark-mode .mobile-header-login {
+        color: #f6c20e;
+    }
+
+    body.dark-mode .mobile-header-login:hover,
+    body.dark-mode .mobile-header-login:focus-visible {
+        color: #ffffff;
+    }
+}
