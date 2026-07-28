@@ -1113,3 +1113,1118 @@ function setActive(id){
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIPETOL — Sistem Informasi Pemeliharaan Jalan Tol Surabaya–Gempol</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root, [data-theme="dark"]{
+    --ink:#0A2036;
+    --ink-soft:#12314F;
+    --glass:rgba(10,32,54,0.90);
+    --glass-border:rgba(255,255,255,0.12);
+    --text-hi:#FFFFFF;
+    --text-mute:#9FB2C7;
+    --text-body:#D3DEEA;
+    --on-accent:#0A2036;
+    --on-brand:#FFFFFF;
+    --amber:#F5A623;
+    --brand-blue:#3E8FD0;
+    --blue:#4FA0D9;
+    --ok:#3CB371;
+    --danger:#E0523A;
+    --c1:#1F3A5F; --c2:#22527A; --c3:#1F6E82; --c4:#2C8C82; --c5:#4FA07C;
+    --c6:#8CAA5A; --c7:#C9A93E; --c8:#E39A34; --c9:#D9702F; --c10:#C94B30;
+    --brand-navy:#0B2A4A;
+    --brand-navy-soft:#123A61;
+  }
+  [data-theme="light"]{
+    --ink:#FFFFFF;
+    --ink-soft:#F3F5F8;
+    --glass:rgba(255,255,255,0.96);
+    --glass-border:rgba(11,42,74,0.10);
+    --text-hi:#16304D;
+    --text-mute:#697687;
+    --text-body:#4A5568;
+    --on-accent:#0A2036;
+    --on-brand:#FFFFFF;
+    --amber:#E0940F;
+    --brand-blue:#0F5FA6;
+    --blue:#0B5FA5;
+    --ok:#2E8F53;
+    --danger:#B23F22;
+    --c1:#1F3A5F; --c2:#22527A; --c3:#1F6E82; --c4:#2C8C82; --c5:#4FA07C;
+    --c6:#8CAA5A; --c7:#C9A93E; --c8:#E39A34; --c9:#D9702F; --c10:#C94B30;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;font-family:'Inter',sans-serif;color:var(--text-hi);background:var(--ink);transition:background .2s,color .2s;}
+  a{text-decoration:none;color:inherit;}
+  #appRoot{display:flex;flex-direction:column;height:100vh;}
+
+  /* ================= UTILITY TOP BAR ================= */
+  .util-bar{
+    flex:0 0 40px;background:var(--ink);color:var(--text-mute);
+    display:flex;align-items:center;justify-content:flex-end;gap:18px;
+    padding:0 22px;font-size:12px;border-bottom:1px solid var(--glass-border);
+  }
+  .util-bar .u-link{color:var(--text-mute);cursor:pointer;display:flex;align-items:center;gap:3px;}
+  .util-bar .u-link:hover{color:var(--brand-blue);}
+  .util-bar .u-link::after{content:'▾';font-size:8px;position:relative;top:-1px;}
+  .util-search{
+    display:flex;align-items:center;gap:6px;background:var(--ink-soft);
+    border:1px solid var(--glass-border);border-radius:16px;padding:4px 12px;
+    font-size:11.5px;color:var(--text-mute);width:150px;
+  }
+  .util-search svg{width:12px;height:12px;stroke:var(--text-mute);fill:none;stroke-width:2;flex:0 0 auto;}
+  .util-flag{width:14px;height:10px;background:#CE1126;border-radius:1px;display:inline-block;}
+
+  /* ================= NAVBAR ================= */
+  .navbar{
+    flex:0 0 66px;display:flex;align-items:center;gap:22px;
+    padding:0 22px;background:var(--ink);border-bottom:1px solid var(--glass-border);
+    z-index:1000;position:relative;
+  }
+  .nav-brand{display:flex;align-items:center;gap:10px;cursor:pointer;}
+  .nav-badge{
+    width:34px;height:34px;flex:0 0 auto;border-radius:50%;
+    background:conic-gradient(from -40deg, var(--brand-blue) 0deg 260deg, var(--amber) 260deg 360deg);
+    display:flex;align-items:center;justify-content:center;position:relative;
+  }
+  .nav-badge::after{content:'';width:14px;height:14px;background:var(--ink);border-radius:50%;}
+  .nav-brand .name{font-family:'Poppins',sans-serif;font-weight:700;font-size:18px;letter-spacing:0px;color:var(--text-hi);}
+  .nav-brand .name span{color:var(--brand-blue);}
+  .nav-links{display:flex;gap:2px;margin-left:14px;}
+  .nav-links button{
+    background:none;border:none;color:var(--text-hi);cursor:pointer;
+    font-family:'Inter',sans-serif;font-size:13.5px;font-weight:500;
+    padding:8px 13px;border-bottom:2px solid transparent;transition:.15s;
+    display:flex;align-items:center;gap:4px;
+  }
+  .nav-links button::after{content:'▾';font-size:8px;color:var(--text-mute);}
+  .nav-links button:hover{color:var(--brand-blue);}
+  .nav-links button.active{color:var(--brand-blue);border-bottom-color:var(--brand-blue);}
+  .nav-cta{
+    background:var(--brand-blue);color:var(--on-brand);border:none;
+    padding:10px 20px;font-family:'Inter',sans-serif;font-weight:600;font-size:12.5px;
+    cursor:pointer;letter-spacing:.2px;border-radius:3px;
+  }
+  .theme-toggle{
+    margin-left:auto;width:34px;height:34px;flex:0 0 auto;
+    border:1px solid var(--glass-border);background:transparent;color:var(--text-mute);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+    border-radius:2px;transition:.15s;
+  }
+  .theme-toggle:hover{color:var(--amber);border-color:var(--amber);}
+  .theme-toggle svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.6;}
+
+  #viewport{flex:1;position:relative;overflow:hidden;}
+  .view{position:absolute;inset:0;overflow-y:auto;display:none;}
+  .view.active{display:block;}
+  #view-peta{overflow:hidden;}
+
+  /* ================= HOME VIEW ================= */
+  #view-home{background:var(--ink);}
+  .hero{
+    position:relative;height:480px;overflow:hidden;
+  }
+  #miniMap{position:absolute;inset:0;}
+  .hero-scrim{
+    position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(180deg, rgba(8,20,34,.05) 0%, rgba(8,20,34,.85) 100%),
+      linear-gradient(90deg, rgba(8,20,34,.78) 0%, rgba(8,20,34,.15) 58%);
+  }
+  .hero-corner-badge{
+    position:absolute;top:18px;right:22px;z-index:5;color:#fff;
+    font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;letter-spacing:.6px;opacity:.92;
+  }
+  .hero-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+    width:38px;height:38px;border-radius:50%;cursor:pointer;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:19px;
+    display:flex;align-items:center;justify-content:center;line-height:0;
+  }
+  .hero-arrow:hover{background:rgba(255,255,255,.22);}
+  .hero-arrow.left{left:18px;} .hero-arrow.right{right:18px;}
+  .hero-content{
+    position:relative;z-index:3;height:100%;max-width:640px;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:36px 8vw 44px;
+  }
+  .eyebrow{
+    font-family:'Inter',sans-serif;font-size:11.5px;font-weight:600;color:var(--amber);
+    letter-spacing:1.3px;text-transform:uppercase;margin-bottom:14px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#5BD68A;box-shadow:0 0 6px #5BD68A;}
+  .hero h1{
+    font-family:'Poppins',sans-serif;font-weight:700;font-size:38px;line-height:1.18;
+    letter-spacing:.1px;margin:0 0 16px;color:#fff;
+  }
+  .hero h1 span{color:#9FCBEF;}
+  .hero p{font-size:14.5px;line-height:1.7;color:#DCE6F0;max-width:500px;margin:0 0 24px;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--brand-blue);color:var(--on-brand);border:none;padding:13px 24px;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;cursor:pointer;border-radius:3px;
+  }
+  .btn-ghost{
+    background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);
+    padding:13px 24px;font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;cursor:pointer;border-radius:3px;
+  }
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1);}
+
+  /* stat strip — plain row beneath hero */
+  .stat-strip{
+    display:flex;flex-wrap:wrap;
+    background:var(--ink);border-bottom:1px solid var(--glass-border);
+  }
+  .stat-strip .item{
+    flex:1;min-width:150px;padding:24px 8vw;text-align:left;
+    border-right:1px solid var(--glass-border);
+  }
+  .stat-strip .item:last-child{border-right:none;}
+  .stat-strip .num{font-family:'Poppins',sans-serif;font-size:26px;font-weight:700;color:var(--text-hi);}
+  .stat-strip .label{font-size:10.5px;color:var(--text-mute);text-transform:uppercase;letter-spacing:.5px;margin-top:4px;}
+
+  /* section generic */
+  .section{padding:56px 8vw;}
+  .section-head{max-width:640px;margin-bottom:34px;}
+  .section-tag{
+    font-family:'Inter',sans-serif;font-weight:700;font-size:11px;color:var(--brand-blue);
+    text-transform:uppercase;letter-spacing:1.3px;margin-bottom:8px;
+  }
+  .section h2{
+    font-family:'Poppins',sans-serif;font-size:26px;font-weight:700;
+    letter-spacing:.1px;margin:0 0 10px;color:var(--text-hi);
+  }
+  .section p.lead{color:var(--text-body);font-size:14px;line-height:1.75;margin:0;}
+
+  .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;}
+  .feature-card{background:var(--ink-soft);padding:26px 22px;border-radius:8px;}
+  .feature-card .ic{width:34px;height:34px;color:var(--brand-blue);margin-bottom:16px;}
+  .feature-card .ic svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.5;}
+  .feature-card h3{font-family:'Poppins',sans-serif;font-size:15.5px;font-weight:600;letter-spacing:.1px;margin:0 0 8px;color:var(--text-hi);}
+  .feature-card p{font-size:12.5px;color:var(--text-mute);line-height:1.6;margin:0;}
+
+  .steps{display:flex;gap:24px;flex-wrap:wrap;}
+  .step{flex:1;min-width:200px;position:relative;padding-top:12px;}
+  .step .n{font-family:'Poppins',sans-serif;font-size:34px;font-weight:700;color:var(--glass-border);line-height:1;}
+  .step h4{font-family:'Poppins',sans-serif;font-size:14.5px;font-weight:600;text-transform:uppercase;margin:8px 0 6px;letter-spacing:.3px;}
+  .step p{font-size:12px;color:var(--text-mute);line-height:1.6;margin:0;}
+
+  /* about row (Tentang SIPETOL — image+text pattern) */
+  .about-row{display:flex;gap:48px;align-items:center;flex-wrap:wrap;}
+  .about-visual{flex:1 1 340px;min-width:280px;background:var(--ink-soft);border-radius:8px;padding:28px;}
+  .about-visual svg{width:100%;height:auto;display:block;}
+  .about-text{flex:1 1 380px;min-width:280px;}
+  .about-text h2{font-family:'Poppins',sans-serif;font-size:24px;font-weight:700;color:var(--text-hi);margin:0 0 14px;}
+  .about-text p{color:var(--text-body);font-size:14px;line-height:1.75;margin:0 0 16px;max-width:480px;}
+  .link-arrow{color:var(--brand-blue);font-weight:600;font-size:13.5px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+  .link-arrow:hover{text-decoration:underline;}
+
+  /* quick menu cards (Menu SIPETOL — gradient card pattern) */
+  .quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+  .quick-card{
+    height:150px;border-radius:8px;padding:18px;cursor:pointer;position:relative;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    box-shadow:0 8px 20px rgba(11,42,74,.14);transition:transform .15s;
+  }
+  .quick-card:hover{transform:translateY(-3px);}
+  .qc-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:16px;color:#fff;margin-bottom:6px;}
+  .qc-link{font-family:'Inter',sans-serif;font-weight:600;font-size:12px;color:#fff;opacity:.9;}
+
+  /* ================= FOOTER ================= */
+  .footer{background:var(--ink);border-top:4px solid var(--amber);}
+  .footer-top{
+    padding:44px 8vw 30px;display:flex;gap:40px;flex-wrap:wrap;
+  }
+  .footer-col{flex:1 1 210px;min-width:190px;}
+  .footer-col h5{
+    font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:700;color:var(--text-hi);
+    text-transform:uppercase;letter-spacing:.6px;margin:0 0 16px;
+    padding-bottom:8px;border-bottom:2px solid var(--brand-blue);display:inline-block;
+  }
+  .footer-col a, .footer-col span{display:block;font-size:12.5px;color:var(--text-mute);margin-bottom:10px;cursor:pointer;line-height:1.6;}
+  .footer-col a:hover{color:var(--brand-blue);}
+  .footer-blurb{font-size:12.5px;color:var(--text-mute);line-height:1.7;max-width:230px;margin:0;}
+  .footer-contact-row{display:flex;gap:9px;align-items:flex-start;margin-bottom:12px;}
+  .footer-contact-row svg{width:15px;height:15px;flex:0 0 auto;margin-top:1px;stroke:var(--brand-blue);fill:none;stroke-width:1.8;}
+  .footer-contact-row span{margin:0;font-size:12px;color:var(--text-mute);line-height:1.55;}
+  .footer-bottom{
+    padding:16px 8vw;border-top:1px solid var(--glass-border);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+    font-size:11px;color:var(--text-mute);
+  }
+  .footer-bottom a{color:var(--text-mute);cursor:pointer;}
+  .footer-bottom a:hover{color:var(--brand-blue);}
+
+  /* ================= FLOATING WIDGETS (call / back-to-top) ================= */
+  .float-widgets{position:fixed;right:22px;bottom:26px;z-index:400;display:flex;flex-direction:column;gap:10px;}
+  .float-btn{
+    width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;box-shadow:0 6px 16px rgba(11,42,74,.22);border:none;
+  }
+  .float-btn.call{background:var(--brand-blue);color:#fff;}
+  .float-btn.top{background:var(--ink-soft);color:var(--text-hi);border:1px solid var(--glass-border);}
+  .float-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;}
+
+  /* ================= TENTANG VIEW ================= */
+  #view-tentang{background:var(--ink);}
+  .tentang-wrap{max-width:720px;margin:0 auto;padding:56px 6vw 60px;}
+  .tentang-wrap h1{font-family:'Poppins',sans-serif;font-size:30px;text-transform:uppercase;margin:0 0 20px;}
+  .tentang-wrap h3{font-family:'Poppins',sans-serif;font-size:16px;text-transform:uppercase;color:var(--amber);margin:28px 0 10px;letter-spacing:.4px;}
+  .tentang-wrap p{font-size:13.5px;line-height:1.8;color:var(--text-body);margin:0 0 12px;}
+  .tentang-wrap ul{margin:0;padding-left:18px;color:var(--text-body);font-size:13.5px;line-height:1.85;}
+  .info-row{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;padding:8px 0;border-bottom:1px solid var(--glass-border);color:var(--text-mute);}
+  .info-row b{color:var(--text-hi);font-weight:500;}
+
+  /* ================= PETA VIEW (dashboard) ================= */
+  #view-peta{padding:0;}
+  .app{position:relative;height:100%;}
+  #map{position:absolute;inset:0;background:var(--ink);}
+
+  .glass{
+    background:var(--glass);border:1px solid var(--glass-border);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    box-shadow:0 12px 28px rgba(0,0,0,.35);
+  }
+
+  .brand{position:absolute;top:28px;left:16px;z-index:900;width:320px;padding:14px 16px;}
+  .brand-top{display:flex;align-items:center;gap:10px;}
+  .brand-badge{
+    width:32px;height:32px;flex:0 0 auto;background:var(--amber);color:var(--on-accent);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;
+  }
+  .brand h2{font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;letter-spacing:.3px;margin:0;line-height:1.15;text-transform:uppercase;}
+  .brand .sub{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-mute);margin-top:2px;letter-spacing:.3px;}
+  .brand-stats{display:flex;align-items:center;gap:9px;margin-top:11px;padding-top:9px;border-top:1px solid var(--glass-border);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-mute);flex-wrap:wrap;}
+  .brand-stats b{color:var(--text-hi);font-weight:600;}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);display:inline-block;margin-right:5px;box-shadow:0 0 6px var(--ok);}
+  .brand-legend{margin-top:9px;}
+  .brand-legend .bar{height:8px;width:100%;border:1px solid var(--glass-border);background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c5),var(--c6),var(--c7),var(--c8),var(--c9),var(--c10));}
+  .brand-legend .ticks{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--text-mute);margin-top:3px;}
+
+  .dock{position:absolute;top:28px;right:16px;z-index:900;display:flex;flex-direction:column;gap:8px;padding:8px;}
+  .dock button{width:38px;height:38px;border:none;cursor:pointer;background:transparent;color:var(--text-mute);display:flex;align-items:center;justify-content:center;border-radius:2px;transition:.15s;}
+  .dock button svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.6;}
+  .dock button:hover{color:var(--text-hi);background:rgba(255,255,255,.06);}
+  .dock button.active{color:var(--on-brand);background:var(--brand-blue);}
+
+  .panel{position:absolute;top:28px;right:62px;z-index:850;width:290px;max-height:calc(100% - 44px);padding:16px;overflow-y:auto;display:none;}
+  .panel.open{display:block;}
+  .panel h3{font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;text-transform:uppercase;letter-spacing:1.1px;color:var(--amber);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--glass-border);}
+  .panel h3:not(:first-child){margin-top:18px;}
+
+  .month-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;}
+  .month-cell{aspect-ratio:1;border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-mute);background:rgba(255,255,255,.02);}
+  .month-cell.has-data{cursor:pointer;color:var(--on-accent);font-weight:600;}
+  .month-cell.selected{outline:2px solid var(--text-hi);outline-offset:1px;}
+  .month-year-label{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text-mute);margin:8px 0 3px;}
+  .clear-filter{margin-top:10px;width:100%;padding:7px;background:transparent;border:1px solid var(--glass-border);color:var(--text-mute);font-family:'Inter',sans-serif;font-size:11.5px;cursor:pointer;}
+  .clear-filter:hover{color:var(--text-hi);border-color:var(--text-hi);}
+
+  table.seg-table{width:100%;border-collapse:collapse;font-size:11px;}
+  table.seg-table th{text-align:left;font-family:'Poppins',sans-serif;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--text-mute);padding:4px;border-bottom:1px solid var(--glass-border);}
+  table.seg-table td{padding:6px 4px;border-bottom:1px solid rgba(255,255,255,.05);font-family:'JetBrains Mono',monospace;font-size:10.5px;}
+  table.seg-table tr{cursor:pointer;}
+  table.seg-table tr:hover td, table.seg-table tr.active td{background:rgba(255,255,255,.05);}
+  .sw{width:9px;height:9px;display:inline-block;margin-right:5px;}
+  .dl-btn{margin-top:10px;width:100%;padding:8px;background:var(--amber);border:none;color:var(--on-accent);font-family:'Inter',sans-serif;font-weight:600;font-size:11.5px;cursor:pointer;}
+
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px;}
+  .stat-card{background:rgba(255,255,255,.03);border:1px solid var(--glass-border);padding:10px;}
+  .stat-card .num{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:600;color:var(--amber);}
+  .stat-card .label{font-size:9.5px;color:var(--text-mute);text-transform:uppercase;letter-spacing:.4px;margin-top:2px;}
+  .mini-bars{display:flex;align-items:flex-end;gap:3px;height:70px;margin-top:16px;}
+  .mini-bar{flex:1;background:var(--blue);opacity:.85;position:relative;}
+  .mini-bar span{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-mute);white-space:nowrap;}
+
+  .radio-row, .toggle-row{display:flex;align-items:center;gap:8px;padding:7px 0;font-size:12px;cursor:pointer;}
+  .radio-row input, .toggle-row input{accent-color:var(--amber);}
+  .opacity-row{margin-top:6px;}
+  .opacity-row label{font-size:10.5px;color:var(--text-mute);display:block;margin-bottom:4px;}
+  input[type=range]{width:100%;accent-color:var(--amber);}
+
+  .info-text{font-size:12px;line-height:1.65;color:var(--text-body);}
+  .info-text b{color:var(--text-hi);}
+
+  /* status legend / filter / history (riwayat perbaikan) */
+  .status-legend{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px;}
+  .status-chip{display:flex;align-items:center;gap:4px;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--text-mute);}
+  .status-chip .sw2{width:9px;height:9px;flex:0 0 auto;border-radius:1px;}
+
+  .status-filter-row{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--glass-border);font-size:12px;cursor:pointer;}
+  .status-filter-row:last-of-type{border-bottom:none;}
+  .status-filter-row input{accent-color:var(--amber);}
+  .status-filter-row .swatch{width:12px;height:12px;flex:0 0 auto;border-radius:1px;}
+  .status-filter-row .cnt{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-mute);}
+
+  .status-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;}
+  .status-badge .d{width:10px;height:10px;border-radius:2px;flex:0 0 auto;}
+
+  .history-list, .popup-history{display:flex;flex-direction:column;gap:5px;max-height:160px;overflow-y:auto;margin-top:8px;}
+  .history-item, .popup-hist-item{border:1px solid var(--glass-border);padding:6px 8px;font-size:10.5px;}
+  .h-date{font-family:'JetBrains Mono',monospace;color:var(--amber);font-weight:600;}
+  .h-meta{color:var(--text-mute);font-size:9.5px;margin-top:2px;line-height:1.5;}
+  .history-empty{font-size:11px;color:var(--text-mute);font-style:italic;padding:8px 0;}
+
+  .bottom-bar{position:absolute;left:16px;right:16px;bottom:16px;z-index:900;padding:10px 14px 12px;}
+  .bottom-bar .strip-label{font-family:'Poppins',sans-serif;font-size:10.5px;letter-spacing:1.1px;text-transform:uppercase;color:var(--text-mute);margin-bottom:7px;display:flex;justify-content:space-between;}
+  .bottom-bar .coord{font-family:'JetBrains Mono',monospace;color:var(--blue);}
+  .strip-track{display:flex;height:24px;position:relative;}
+  .strip-seg{height:100%;position:relative;cursor:pointer;border-right:1px solid rgba(11,15,19,.5);transition:filter .15s, transform .15s;}
+  .strip-seg:hover, .strip-seg.active{filter:brightness(1.3);transform:scaleY(1.12);}
+  .strip-km-axis{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-mute);margin-top:5px;}
+
+  .leaflet-popup-content-wrapper{border-radius:0;font-family:'Inter',sans-serif;background:var(--glass);color:var(--text-hi);backdrop-filter:blur(10px);}
+  .leaflet-popup-tip{background:var(--glass);}
+  .popup-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:13.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--amber);margin-bottom:4px;}
+  .popup-row{font-size:11.5px;margin:2px 0;color:var(--text-body);}
+  .popup-row b{color:var(--text-mute);font-weight:500;}
+
+  ::-webkit-scrollbar{width:7px;}
+  ::-webkit-scrollbar-thumb{background:var(--glass-border);}
+
+  @media (max-width:760px){
+    .brand{width:76vw;}
+    .panel{width:76vw;right:56px;}
+    .hero{height:400px;}
+    .hero-content{padding:28px 6vw 34px;}
+    .hero h1{font-size:28px;}
+    .util-search{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div id="appRoot">
+
+  <!-- ===================== UTILITY BAR ===================== -->
+  <div class="util-bar">
+    <span class="u-link">Panduan</span>
+    <span class="u-link">Kontak</span>
+    <div class="util-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Cari...</div>
+    <span style="display:flex;align-items:center;gap:5px;"><span class="util-flag"></span>ID</span>
+  </div>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar">
+    <div class="nav-brand" onclick="showView('home')">
+      <div class="nav-badge"></div>
+      <div class="name">SIPE<span>TOL</span></div>
+    </div>
+    <div class="nav-links">
+      <button class="nav-btn active" data-view="home" onclick="showView('home')">Beranda</button>
+      <button class="nav-btn" data-view="peta" onclick="showView('peta')">Peta Interaktif</button>
+      <button class="nav-btn" data-view="peta" onclick="showView('peta','panel-data')">Data Segmen</button>
+      <button class="nav-btn" data-view="tentang" onclick="showView('tentang')">Tentang</button>
+    </div>
+    <button class="theme-toggle" id="themeToggle" title="Ganti Mode Terang/Gelap" onclick="toggleTheme()">
+      <svg id="iconSun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="2" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="2" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></svg>
+      <svg id="iconMoon" viewBox="0 0 24 24" style="display:none"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 6.8 6.8 0 0 0 20 14.5Z"/></svg>
+    </button>
+    <button class="nav-cta" onclick="showView('peta')">Buka Peta →</button>
+  </nav>
+
+  <div id="viewport">
+
+    <!-- ===================== VIEW: HOME ===================== -->
+    <div class="view active" id="view-home">
+      <div class="float-widgets">
+        <button class="float-btn call" title="Kontak" onclick="showView('tentang')"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></button>
+        <button class="float-btn top" title="Kembali ke Atas" onclick="document.getElementById('view-home').scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5,12 12,5 19,12"/></svg></button>
+      </div>
+
+      <div class="hero">
+        <div id="miniMap"></div>
+        <div class="hero-scrim"></div>
+        <div class="hero-corner-badge">SIPETOL</div>
+        <button class="hero-arrow left" aria-label="Sebelumnya">‹</button>
+        <button class="hero-arrow right" aria-label="Berikutnya">›</button>
+        <div class="hero-content">
+          <div class="eyebrow"><span class="dot"></span> DEPARTEMEN TEKNIK GEOMATIKA · ITS SURABAYA</div>
+          <h1>Memantau Pemeliharaan<br>Jalan Tol <span>Surabaya–Gempol</span></h1>
+          <p>SIPETOL adalah sistem informasi geografis berbasis web yang memvisualisasikan progres pemeliharaan perkerasan jalan tol per segmen kilometer, dikelompokkan berdasarkan status kondisi hasil histori perbaikan.</p>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="showView('peta')">Buka Peta Interaktif →</button>
+            <button class="btn-ghost" onclick="showView('tentang')">Selengkapnya</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="item"><div class="num">43.0</div><div class="label">Total Panjang (KM)</div></div>
+        <div class="item"><div class="num">10</div><div class="label">Segmen Terpetakan</div></div>
+        <div class="item"><div class="num">6</div><div class="label">Kategori Status</div></div>
+        <div class="item"><div class="num">1 Des '25</div><div class="label">Acuan Data</div></div>
+      </div>
+
+      <div class="section">
+        <div class="about-row">
+          <div class="about-visual">
+            <svg viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg">
+              <rect x="16" y="72" width="368" height="16" rx="8" fill="var(--glass-border)"/>
+              <rect x="16" y="72" width="55" height="16" fill="#1F7A4C"/>
+              <rect x="71" y="72" width="50" height="16" fill="#6FAE4A"/>
+              <rect x="121" y="72" width="48" height="16" fill="#B7B23A"/>
+              <rect x="169" y="72" width="60" height="16" fill="#E0A23B"/>
+              <rect x="229" y="72" width="55" height="16" fill="#C96A2E"/>
+              <rect x="284" y="72" width="100" height="16" fill="#9AA0A6"/>
+              <circle cx="16" cy="80" r="6" fill="var(--brand-blue)"/>
+              <circle cx="384" cy="80" r="6" fill="var(--brand-blue)"/>
+              <text x="16" y="112" font-size="11" fill="var(--text-mute)" font-family="'JetBrains Mono',monospace">KM 0+000</text>
+              <text x="322" y="112" font-size="11" fill="var(--text-mute)" font-family="'JetBrains Mono',monospace">KM 43+000</text>
+            </svg>
+          </div>
+          <div class="about-text">
+            <h2>Tentang SIPETOL</h2>
+            <p>SIPETOL memetakan histori perbaikan setiap segmen KM+M ruas Tol Surabaya–Gempol ke dalam satu peta interaktif, sehingga status kondisi tiap ruas — dari yang baru diperbaiki hingga yang belum tercatat sama sekali — bisa dibaca sekilas.</p>
+            <a class="link-arrow" onclick="showView('tentang')">Selengkapnya →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" style="border-top:1px solid var(--glass-border);">
+        <div class="section-head">
+          <div class="section-tag">Apa itu SIPETOL</div>
+          <h2>Satu Peta untuk Seluruh Riwayat Perbaikan</h2>
+          <p class="lead">Setiap segmen ruas tol dicatat lengkap dengan jenis perbaikan dan waktu penyelesaiannya, lalu divisualisasikan dalam peta interaktif agar kondisi jalan mudah dipantau dan dibandingkan antarwaktu.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="ic"><svg viewBox="0 0 24 24"><polygon points="12,3 21,8 12,13 3,8"/><polyline points="3,13 12,18 21,13"/><polyline points="3,18 12,23 21,18"/></svg></div>
+            <h3>Peta Interaktif</h3>
+            <p>Segmen jalan diwarnai berdasarkan bulan penyelesaian perbaikan, lengkap dengan basemap terang, gelap, dan satelit.</p>
+          </div>
+          <div class="feature-card">
+            <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg></div>
+            <h3>Filter Status Kondisi</h3>
+            <p>Telusuri segmen berdasarkan status kondisi — dari yang baru diperbaiki hingga yang belum tercatat sama sekali.</p>
+          </div>
+          <div class="feature-card">
+            <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="10" y1="4" x2="10" y2="20"/></svg></div>
+            <h3>Data Terbuka</h3>
+            <p>Tabel histori tiap segmen dapat dilihat dan diunduh langsung dalam format CSV.</p>
+          </div>
+          <div class="feature-card">
+            <div class="ic"><svg viewBox="0 0 24 24"><line x1="5" y1="20" x2="5" y2="11"/><line x1="12" y1="20" x2="12" y2="5"/><line x1="19" y1="20" x2="19" y2="14"/></svg></div>
+            <h3>Statistik Ringkas</h3>
+            <p>Ringkasan jumlah riwayat perbaikan per jenis SF-O ditampilkan secara instan.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" style="border-top:1px solid var(--glass-border);">
+        <div class="section-head">
+          <div class="section-tag">Navigasi Cepat</div>
+          <h2>Menu SIPETOL</h2>
+        </div>
+        <div class="quick-grid">
+          <div class="quick-card" style="background:linear-gradient(135deg,#0F5FA6,#123A61)" onclick="showView('peta')">
+            <div class="qc-title">Peta Interaktif</div>
+            <div class="qc-link">Akses Sekarang →</div>
+          </div>
+          <div class="quick-card" style="background:linear-gradient(135deg,#1F7A4C,#123A61)" onclick="showView('peta','panel-data')">
+            <div class="qc-title">Data Segmen (CSV)</div>
+            <div class="qc-link">Akses Sekarang →</div>
+          </div>
+          <div class="quick-card" style="background:linear-gradient(135deg,#C96A2E,#123A61)" onclick="showView('peta','panel-filter')">
+            <div class="qc-title">Filter Status Kondisi</div>
+            <div class="qc-link">Akses Sekarang →</div>
+          </div>
+          <div class="quick-card" style="background:linear-gradient(135deg,#4A5568,#16304D)" onclick="showView('tentang')">
+            <div class="qc-title">Tentang Proyek</div>
+            <div class="qc-link">Akses Sekarang →</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" style="border-top:1px solid var(--glass-border);">
+        <div class="section-head">
+          <div class="section-tag">Cara Kerja</div>
+          <h2>Dari Data Lapangan ke Peta Interaktif</h2>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="n">01</div><h4>Input Atribut</h4><p>Data panjang segmen, jenis perbaikan, dan waktu penyelesaian dimasukkan melalui ArcGIS Pro.</p></div>
+          <div class="step"><div class="n">02</div><h4>Ekspor GeoJSON</div><p>Layer garis jalan tol tersegmentasi diekspor ke format GeoJSON.</p></div>
+          <div class="step"><div class="n">03</div><h4>Visualisasi Web</h4><p>Data ditampilkan pada peta interaktif berbasis Leaflet dengan pewarnaan kronologis.</p></div>
+          <div class="step"><div class="n">04</div><h4>Pemantauan</h4><p>Pengguna dapat memfilter, membandingkan, dan mengunduh data progres perbaikan.</p></div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="footer-top">
+          <div class="footer-col">
+            <h5>Platform</h5>
+            <a onclick="showView('tentang')">Panduan Penggunaan</a>
+            <a onclick="showView('peta','panel-data')">Data &amp; Unduhan GIS</a>
+            <a onclick="showView('peta')">Galeri Kondisi Lapangan</a>
+          </div>
+          <div class="footer-col">
+            <h5>Tentang</h5>
+            <a onclick="showView('tentang')">Tentang SIPETOL</a>
+            <a onclick="showView('tentang')">Tim Pemeliharaan Jalan</a>
+            <a onclick="showView('tentang')">Visi &amp; Misi Divisi</a>
+            <a onclick="showView('peta','panel-info')">Metodologi Status Kondisi</a>
+          </div>
+          <div class="footer-col">
+            <h5>Kontak</h5>
+            <div class="footer-contact-row">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Departemen Teknik Geomatika, ITS<br>Sukolilo, Surabaya, Jawa Timur 60111</span>
+            </div>
+            <div class="footer-contact-row">
+              <svg viewBox="0 0 24 24"><path d="m22 6-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+              <span>admin@sipetol.its.ac.id</span>
+            </div>
+            <div class="footer-contact-row">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>(031) 5946-XXX</span>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h5>Media Informasi</h5>
+            <p class="footer-blurb">Ikuti perkembangan terbaru progres pemeliharaan dan status kondisi ruas tol secara berkala.</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 SIPETOL · Prototipe Ilustratif Teknik Geomatika ITS · All rights reserved</span>
+          <span><a onclick="showView('tentang')">Privacy Policy</a> &nbsp; <a onclick="showView('tentang')">Terms of Service</a></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===================== VIEW: TENTANG ===================== -->
+    <div class="view" id="view-tentang">
+      <div class="float-widgets">
+        <button class="float-btn top" title="Kembali ke Atas" onclick="document.getElementById('view-tentang').scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5,12 12,5 19,12"/></svg></button>
+      </div>
+      <div class="tentang-wrap">
+        <h1>Tentang SIPETOL</h1>
+        <p>SIPETOL (Sistem Informasi Pemeliharaan Jalan Tol) adalah prototipe WebGIS yang dirancang untuk memvisualisasikan progres pemeliharaan perkerasan jalan tol secara spasial dan berbasis waktu. Studi kasus pada versi ini adalah ruas Tol Surabaya–Gempol sepanjang kurang lebih 43 kilometer.</p>
+        <p>Setiap segmen jalan dicatat lengkap dengan rentang kilometer, panjang, jenis perbaikan, serta bulan dan tahun penyelesaian pekerjaan. Informasi ini kemudian divisualisasikan pada peta interaktif agar kondisi dan riwayat perbaikan tiap ruas dapat dipantau dengan cepat.</p>
+
+        <h3>Tujuan</h3>
+        <ul>
+          <li>Menyediakan gambaran spasial menyeluruh terhadap progres pemeliharaan jalan tol.</li>
+          <li>Memudahkan penelusuran riwayat perbaikan berdasarkan periode waktu tertentu.</li>
+          <li>Mendukung keterbukaan data melalui fitur unduh tabel atribut.</li>
+        </ul>
+
+        <h3>Alur Pengembangan</h3>
+        <p>Atribut pemeliharaan diinput melalui ArcGIS Pro, kemudian diekspor ke format GeoJSON dan divisualisasikan menggunakan Leaflet.js pada antarmuka web yang dikembangkan di Visual Studio Code.</p>
+
+        <h3>Detail Proyek</h3>
+        <div class="info-row"><span>Ruas Studi Kasus</span><b>Tol Surabaya – Gempol</b></div>
+        <div class="info-row"><span>Panjang Total</span><b>±43.0 km</b></div>
+        <div class="info-row"><span>Jumlah Segmen</span><b>10 segmen</b></div>
+        <div class="info-row"><span>Rentang Data</span><b>Januari 2024 – Oktober 2025</b></div>
+        <div class="info-row"><span>Sumber Atribut</span><b>ArcGIS Pro (data ilustratif)</b></div>
+        <div class="info-row"><span>Status Data</span><b>Dummy / Prototipe Desain</b></div>
+
+        <h3>Catatan</h3>
+        <p style="color:var(--text-mute);font-size:12.5px;">Seluruh data pada versi ini bersifat ilustratif dan dibuat untuk keperluan perancangan antarmuka. Data aktual dapat menggantikan struktur GeoJSON yang sama setelah diekspor dari ArcGIS Pro.</p>
+      </div>
+    </div>
+
+    <!-- ===================== VIEW: PETA ===================== -->
+    <div class="view" id="view-peta">
+      <div class="app">
+        <div id="map"></div>
+
+        <div class="brand glass">
+          <div class="brand-top">
+            <div class="brand-badge">ST</div>
+            <div>
+              <h2>Peta Pemeliharaan<br>Tol Surabaya–Gempol</h2>
+              <div class="sub">SIPETOL · DATA ILUSTRATIF</div>
+            </div>
+          </div>
+          <div class="brand-stats">
+            <span><span class="dot"></span><b>Data Tersambung</b></span>
+            <span>TOTAL <b>43.0 KM</b></span>
+            <span>SEGMEN <b>10</b></span>
+            <span>TERBARU <b>1 DES 2025</b></span>
+          </div>
+          <div class="brand-legend">
+            <div class="status-legend" id="brandLegend"></div>
+          </div>
+        </div>
+
+        <div class="dock glass">
+          <button id="btn-filter" title="Filter Waktu">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+          </button>
+          <button id="btn-data" title="Data Segmen">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="10" y1="4" x2="10" y2="20"/></svg>
+          </button>
+          <button id="btn-stat" title="Statistik">
+            <svg viewBox="0 0 24 24"><line x1="5" y1="20" x2="5" y2="11"/><line x1="12" y1="20" x2="12" y2="5"/><line x1="19" y1="20" x2="19" y2="14"/></svg>
+          </button>
+          <button id="btn-layer" title="Layer & Basemap">
+            <svg viewBox="0 0 24 24"><polygon points="12,3 21,8 12,13 3,8"/><polyline points="3,13 12,18 21,13"/><polyline points="3,18 12,23 21,18"/></svg>
+          </button>
+          <button id="btn-info" title="Info">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16.5"/><circle cx="12" cy="7.7" r="0.6" fill="currentColor"/></svg>
+          </button>
+        </div>
+
+        <div class="panel glass" id="panel-filter">
+          <h3>Filter Status Kondisi</h3>
+          <div id="statusFilterList"></div>
+          <button class="clear-filter" id="clearFilter">Tampilkan Semua Segmen</button>
+        </div>
+
+        <div class="panel glass" id="panel-data">
+          <h3>Database Segmen</h3>
+          <table class="seg-table">
+            <thead><tr><th>KM+M</th><th>Status</th><th>Riwayat</th></tr></thead>
+            <tbody id="tbody-seg"></tbody>
+          </table>
+          <button class="dl-btn" id="dlCsv">Unduh Tabel (.csv)</button>
+        </div>
+
+        <div class="panel glass" id="panel-stat">
+          <h3>Ringkasan Statistik</h3>
+          <div class="stat-grid" id="statGrid"></div>
+          <h3>Jumlah Riwayat per Jenis Perbaikan (SF-O)</h3>
+          <div class="mini-bars" id="miniBars"></div>
+        </div>
+
+        <div class="panel glass" id="panel-layer">
+          <h3>Basemap</h3>
+          <label class="radio-row"><input type="radio" name="basemap" value="light" checked> Terang (OpenStreetMap)</label>
+          <label class="radio-row"><input type="radio" name="basemap" value="dark"> Gelap</label>
+          <label class="radio-row"><input type="radio" name="basemap" value="sat"> Satelit</label>
+          <h3>Tampilan</h3>
+          <div class="opacity-row">
+            <label>Ketebalan Garis Segmen</label>
+            <input type="range" id="weightSlider" min="3" max="12" value="7">
+          </div>
+        </div>
+
+        <div class="panel glass" id="panel-info">
+          <h3>Tentang Peta Ini</h3>
+          <p class="info-text">Warna tiap segmen menunjukkan <b>seberapa baru perbaikan terakhir</b> dilakukan pada rentang KM+M tersebut, dihitung dari histori 3 tahun terakhir. Segmen abu-abu berarti tidak ada catatan perbaikan pada rentang waktu tersebut.</p>
+          <h3>Detail Ruas</h3>
+          <div class="info-row"><span>Ruas</span><b>Surabaya – Gempol</b></div>
+          <div class="info-row"><span>Panjang Total</span><b>±43.0 km</b></div>
+          <div class="info-row"><span>Jumlah Segmen</span><b>10</b></div>
+          <div class="info-row"><span>Acuan Data</span><b>per 1 Des 2025</b></div>
+          <div class="info-row"><span>Rentang Histori</span><b>3 tahun terakhir</b></div>
+        </div>
+
+        <div class="bottom-bar glass">
+          <div class="strip-label">
+            <span>Diagram Stationing · Progres per KM</span>
+            <span class="coord" id="coordReadout">— , —</span>
+          </div>
+          <div class="strip-track" id="stripTrack"></div>
+          <div class="strip-km-axis"><span>KM 0</span><span>KM 10</span><span>KM 20</span><span>KM 30</span><span>KM 40</span><span>KM 43</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+/* ================= THEME (LIGHT / DARK) ================= */
+let manualBasemap = false; // becomes true once user picks a basemap by hand
+
+function applyTheme(theme, opts){
+  opts = opts || {};
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('iconSun').style.display = theme==='light' ? 'block' : 'none';
+  document.getElementById('iconMoon').style.display = theme==='light' ? 'none' : 'block';
+  try{ localStorage.setItem('sipetol-theme', theme); }catch(e){}
+
+  // Sync default basemap to the UI theme, unless the user already picked one manually
+  if(!manualBasemap && !opts.skipBasemapSync && typeof basemaps !== 'undefined'){
+    const target = theme==='light' ? 'light' : 'dark';
+    Object.values(basemaps).forEach(l=>map.removeLayer(l));
+    basemaps[target].addTo(map);
+    const radio = document.querySelector(`input[name=basemap][value="${target}"]`);
+    if(radio) radio.checked = true;
+    if(typeof miniMap !== 'undefined' && miniMapTiles){
+      miniMap.removeLayer(miniMapTiles);
+      miniMapTiles = L.tileLayer(theme==='light'
+        ? 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+        : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {maxZoom:19}).addTo(miniMap);
+    }
+  }
+}
+
+function toggleTheme(){
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  applyTheme(current==='dark' ? 'light' : 'dark');
+}
+
+(function initTheme(){
+  let saved = null;
+  try{ saved = localStorage.getItem('sipetol-theme'); }catch(e){}
+  const preferred = saved || 'light';
+  document.documentElement.setAttribute('data-theme', preferred);
+  document.getElementById('iconSun').style.display = preferred==='light' ? 'block' : 'none';
+  document.getElementById('iconMoon').style.display = preferred==='light' ? 'none' : 'block';
+})();
+
+/* ================= DUMMY DATA ================= */
+const routePoints = [
+  [-7.3305,112.7418],[-7.3564,112.7375],[-7.3823,112.7310],[-7.4050,112.7250],
+  [-7.4300,112.7180],[-7.4550,112.7100],[-7.4800,112.7020],[-7.5050,112.6980],
+  [-7.5300,112.6940],[-7.5500,112.6900],[-7.5719,112.6866]
+];
+
+// Tanggal acuan analisis kondisi ("hari ini" untuk perhitungan rekency).
+// Pada implementasi nyata, ganti dengan new Date() (tanggal berjalan).
+const REF_DATE = new Date('2025-12-01');
+
+// Format desimal KM -> notasi stationing "KM+M", contoh 12.6 -> "12+600"
+function kmFormat(km){
+  const kmInt = Math.floor(km + 1e-9);
+  const meter = Math.round((km - kmInt) * 1000);
+  return kmInt + '+' + String(meter).padStart(3,'0');
+}
+
+// 6 tingkat status kondisi berdasarkan seberapa lama sejak perbaikan terakhir
+// (dihitung dari histori 3 tahun terakhir). Abu-abu = tidak ada data histori.
+const STATUS_LEVELS = [
+  {key:'m0_3',  label:'0–3 bulan',   color:'#1F7A4C', maxMonths:3},
+  {key:'m3_6',  label:'3–6 bulan',   color:'#6FAE4A', maxMonths:6},
+  {key:'m6_12', label:'6–12 bulan',  color:'#B7B23A', maxMonths:12},
+  {key:'m12_24',label:'1–2 tahun',   color:'#E0A23B', maxMonths:24},
+  {key:'m24_36',label:'2–3 tahun',   color:'#C96A2E', maxMonths:36},
+  {key:'null',  label:'Tidak ada data', color:'#9AA0A6', maxMonths:Infinity}
+];
+function statusOf(key){ return STATUS_LEVELS.find(s=>s.key===key); }
+
+// Hitung status kondisi sebuah segmen dari array histori perbaikannya
+function computeStatus(history){
+  if(!history || history.length===0) return 'null';
+  const latest = history.reduce((a,b)=> new Date(a.tanggal) > new Date(b.tanggal) ? a : b);
+  const months = (REF_DATE - new Date(latest.tanggal)) / (1000*60*60*24*30.44);
+  for(const lvl of STATUS_LEVELS){
+    if(lvl.key!=='null' && months <= lvl.maxMonths) return lvl.key;
+  }
+  return 'null';
+}
+
+// 10 segmen ruas (tiap ~4.3 km). Tiap segmen berisi histori perbaikan (bisa lebih
+// dari satu kejadian dalam 3 tahun terakhir, per KM+M / jalur / lajur / keterangan SF-O).
+// Segmen 6 sengaja dikosongkan historinya untuk mencontohkan kasus "tidak ada data" (null/abu-abu).
+const rawSegments = [
+  { history:[
+      {tanggal:'2023-03-12', jalur:'A (Arah Gempol)',    lajur:'Lajur 1',   keterangan:'SF-O — Penambalan retak'},
+      {tanggal:'2024-09-05', jalur:'B (Arah Surabaya)',  lajur:'Bahu Luar', keterangan:'SF-O — Overlay AC-WC'},
+      {tanggal:'2025-10-20', jalur:'A (Arah Gempol)',    lajur:'Lajur 2',   keterangan:'SF-O — Overlay AC-WC'}
+  ]},
+  { history:[
+      {tanggal:'2023-01-18', jalur:'B (Arah Surabaya)',  lajur:'Lajur 1',   keterangan:'SF-O — Perbaikan beton'},
+      {tanggal:'2025-08-05', jalur:'A (Arah Gempol)',    lajur:'Lajur 2',   keterangan:'SF-O — Penambalan retak'}
+  ]},
+  { history:[
+      {tanggal:'2024-02-22', jalur:'A (Arah Gempol)',    lajur:'Bahu Luar', keterangan:'SF-O — Rekonstruksi perkerasan'},
+      {tanggal:'2025-04-12', jalur:'B (Arah Surabaya)',  lajur:'Lajur 1',   keterangan:'SF-O — Overlay AC-WC'}
+  ]},
+  { history:[
+      {tanggal:'2023-07-09', jalur:'A (Arah Gempol)',    lajur:'Lajur 2',   keterangan:'SF-O — Penambalan retak'},
+      {tanggal:'2024-09-01', jalur:'B (Arah Surabaya)',  lajur:'Lajur 1',   keterangan:'SF-O — Perbaikan beton'}
+  ]},
+  { history:[
+      {tanggal:'2022-12-20', jalur:'B (Arah Surabaya)',  lajur:'Bahu Luar', keterangan:'SF-O — Overlay AC-WC'},
+      {tanggal:'2023-11-15', jalur:'A (Arah Gempol)',    lajur:'Lajur 1',   keterangan:'SF-O — Penambalan retak'}
+  ]},
+  { history:[] },
+  { history:[
+      {tanggal:'2024-05-02', jalur:'A (Arah Gempol)',    lajur:'Lajur 1',   keterangan:'SF-O — Perbaikan beton'},
+      {tanggal:'2025-11-25', jalur:'B (Arah Surabaya)',  lajur:'Lajur 2',   keterangan:'SF-O — Overlay AC-WC'}
+  ]},
+  { history:[
+      {tanggal:'2023-04-14', jalur:'B (Arah Surabaya)',  lajur:'Lajur 2',   keterangan:'SF-O — Penambalan retak'},
+      {tanggal:'2024-03-10', jalur:'A (Arah Gempol)',    lajur:'Bahu Luar', keterangan:'SF-O — Rekonstruksi perkerasan'}
+  ]},
+  { history:[
+      {tanggal:'2023-06-01', jalur:'A (Arah Gempol)',    lajur:'Lajur 1',   keterangan:'SF-O — Overlay AC-WC'}
+  ]},
+  { history:[
+      {tanggal:'2023-09-28', jalur:'B (Arah Surabaya)',  lajur:'Lajur 1',   keterangan:'SF-O — Penambalan retak'},
+      {tanggal:'2025-01-15', jalur:'A (Arah Gempol)',    lajur:'Lajur 2',   keterangan:'SF-O — Overlay AC-WC'}
+  ]}
+];
+
+const segments = rawSegments.map((s,i)=>{
+  const statusKey = computeStatus(s.history);
+  return {
+    id:i+1,
+    km_awal: +(i*4.3).toFixed(1),
+    km_akhir: +((i+1)*4.3).toFixed(1),
+    panjang: 4.3,
+    history: s.history.slice().sort((a,b)=> new Date(b.tanggal) - new Date(a.tanggal)),
+    statusKey,
+    color: statusOf(statusKey).color,
+    coords:[routePoints[i], routePoints[i+1]]
+  };
+});
+
+/* ================= NAV / VIEW SWITCH ================= */
+function showView(name, openPanelId){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active', b.dataset.view===name));
+  if(name==='peta'){ setTimeout(()=> map.invalidateSize(), 50); }
+  if(openPanelId){
+    const dockBtnMap = {'panel-filter':'btn-filter','panel-data':'btn-data','panel-stat':'btn-stat','panel-layer':'btn-layer','panel-info':'btn-info'};
+    setTimeout(()=>{
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('open'));
+      document.querySelectorAll('.dock button').forEach(b=>b.classList.remove('active'));
+      document.getElementById(openPanelId).classList.add('open');
+      const btnId = dockBtnMap[openPanelId];
+      if(btnId) document.getElementById(btnId).classList.add('active');
+    }, 60);
+  }
+}
+
+/* ================= MAIN MAP (Peta view) ================= */
+const map = L.map('map', {zoomControl:false}).setView([-7.45,112.71], 11.3);
+L.control.zoom({position:'bottomleft'}).addTo(map);
+
+const basemaps = {
+  light: L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {attribution:'&copy; OSM &copy; CARTO', maxZoom:19}),
+  dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {attribution:'&copy; OSM &copy; CARTO', maxZoom:19}),
+  sat: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution:'Tiles &copy; Esri', maxZoom:19})
+};
+const initialTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+const initialBasemap = initialTheme==='light' ? 'light' : 'dark';
+basemaps[initialBasemap].addTo(map);
+document.querySelector(`input[name=basemap][value="${initialBasemap}"]`).checked = true;
+
+const polylines = {};
+let currentWeight = 7;
+
+function popupHtml(seg){
+  const st = statusOf(seg.statusKey);
+  const historyHtml = seg.history.length
+    ? seg.history.map(h => `
+        <div class="popup-hist-item">
+          <div class="h-date">${h.tanggal}</div>
+          <div class="h-meta">${h.jalur} · ${h.lajur}<br>${h.keterangan}</div>
+        </div>`).join('')
+    : `<div class="history-empty">Tidak ada data histori perbaikan pada 3 tahun terakhir.</div>`;
+  return `
+    <div class="popup-title">Segmen KM ${kmFormat(seg.km_awal)} – ${kmFormat(seg.km_akhir)}</div>
+    <div class="popup-row"><b>Panjang:</b> ${seg.panjang} km</div>
+    <div class="popup-row status-badge" style="margin:4px 0;"><span class="d" style="background:${st.color}"></span>${st.label}</div>
+    <div class="popup-row"><b>Histori Perbaikan (3 th terakhir):</b></div>
+    <div class="popup-history">${historyHtml}</div>
+  `;
+}
+
+segments.forEach(seg=>{
+  const line = L.polyline(seg.coords, {color: seg.color, weight: currentWeight, opacity:.92}).addTo(map);
+  line.bindPopup(popupHtml(seg), {maxWidth:260});
+  line.on('mouseover', ()=> setActive(seg.id));
+  line.on('mouseout', ()=> setActive(null));
+  polylines[seg.id] = line;
+});
+
+map.on('mousemove', e=>{
+  document.getElementById('coordReadout').textContent = e.latlng.lat.toFixed(4)+'°S, '+e.latlng.lng.toFixed(4)+'°E';
+});
+
+/* ================= MINI PREVIEW MAP (Home hero) ================= */
+const miniMap = L.map('miniMap', {zoomControl:false, dragging:false, scrollWheelZoom:false, doubleClickZoom:false, attributionControl:false}).setView([-7.45,112.71], 11);
+let miniMapTiles = L.tileLayer(initialTheme==='light'
+  ? 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+  : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {maxZoom:19}).addTo(miniMap);
+segments.forEach(seg=>{
+  L.polyline(seg.coords, {color: seg.color, weight:6, opacity:.95}).addTo(miniMap);
+});
+
+/* ================= DOCK / PANEL TOGGLE ================= */
+const dockMap = {'btn-filter':'panel-filter','btn-data':'panel-data','btn-stat':'panel-stat','btn-layer':'panel-layer','btn-info':'panel-info'};
+Object.keys(dockMap).forEach(btnId=>{
+  document.getElementById(btnId).addEventListener('click', ()=>{
+    const panelId = dockMap[btnId];
+    const isOpen = document.getElementById(panelId).classList.contains('open');
+    Object.values(dockMap).forEach(pid=>document.getElementById(pid).classList.remove('open'));
+    document.querySelectorAll('.dock button').forEach(b=>b.classList.remove('active'));
+    if(!isOpen){
+      document.getElementById(panelId).classList.add('open');
+      document.getElementById(btnId).classList.add('active');
+    }
+  });
+});
+
+/* ================= FILTER STATUS KONDISI ================= */
+const activeStatusFilter = new Set(STATUS_LEVELS.map(s=>s.key)); // default: semua aktif
+
+function renderStatusFilterList(){
+  const wrap = document.getElementById('statusFilterList');
+  wrap.innerHTML = '';
+  STATUS_LEVELS.forEach(lvl=>{
+    const count = segments.filter(s=>s.statusKey===lvl.key).length;
+    const row = document.createElement('label');
+    row.className = 'status-filter-row';
+    row.innerHTML = `
+      <input type="checkbox" checked data-key="${lvl.key}">
+      <span class="swatch" style="background:${lvl.color}"></span>
+      <span>${lvl.label}</span>
+      <span class="cnt">${count}</span>
+    `;
+    row.querySelector('input').addEventListener('change', e=>{
+      if(e.target.checked) activeStatusFilter.add(lvl.key); else activeStatusFilter.delete(lvl.key);
+      applyFilter();
+    });
+    wrap.appendChild(row);
+  });
+}
+renderStatusFilterList();
+
+document.getElementById('clearFilter').addEventListener('click', ()=>{
+  document.querySelectorAll('#statusFilterList input').forEach(cb=>{ cb.checked = true; activeStatusFilter.add(cb.dataset.key); });
+  applyFilter();
+});
+
+function applyFilter(){
+  segments.forEach(seg=>{
+    const match = activeStatusFilter.has(seg.statusKey);
+    polylines[seg.id].setStyle({opacity: match?0.95:0.1});
+    const stripEl = document.querySelector(`.strip-seg[data-id="${seg.id}"]`);
+    const rowEl = document.querySelector(`tr[data-id="${seg.id}"]`);
+    if(stripEl) stripEl.style.opacity = match?1:0.15;
+    if(rowEl) rowEl.style.opacity = match?1:0.3;
+  });
+}
+
+/* ================= DATA TABLE ================= */
+const tbody = document.getElementById('tbody-seg');
+segments.forEach(seg=>{
+  const st = statusOf(seg.statusKey);
+  const tr = document.createElement('tr');
+  tr.dataset.id = seg.id;
+  tr.innerHTML = `<td><span class="sw" style="background:${seg.color}"></span>${kmFormat(seg.km_awal)}–${kmFormat(seg.km_akhir)}</td><td>${st.label}</td><td>${seg.history.length} catatan</td>`;
+  tr.addEventListener('mouseenter', ()=>setActive(seg.id));
+  tr.addEventListener('mouseleave', ()=>setActive(null));
+  tr.addEventListener('click', ()=>{
+    map.fitBounds(polylines[seg.id].getBounds(), {maxZoom:13.5});
+    polylines[seg.id].openPopup(polylines[seg.id].getBounds().getCenter());
+  });
+  tbody.appendChild(tr);
+});
+document.querySelector('#panel-data h3').textContent = `Database Segmen (${segments.length} segmen · ${segments.reduce((n,s)=>n+s.history.length,0)} riwayat)`;
+
+document.getElementById('dlCsv').addEventListener('click', ()=>{
+  let csv = "segmen_id,km_awal,km_akhir,status_kondisi,tanggal_perbaikan,jalur,lajur,keterangan_sfo\n";
+  segments.forEach(s=>{
+    const st = statusOf(s.statusKey);
+    if(s.history.length===0){
+      csv += `${s.id},${kmFormat(s.km_awal)},${kmFormat(s.km_akhir)},${st.label},,,,\n`;
+    } else {
+      s.history.forEach(h=>{
+        csv += `${s.id},${kmFormat(s.km_awal)},${kmFormat(s.km_akhir)},${st.label},${h.tanggal},${h.jalur},${h.lajur},"${h.keterangan}"\n`;
+      });
+    }
+  });
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'histori_perbaikan_tol.csv';
+  a.click();
+});
+
+/* ================= STATISTIK: RINGKASAN + MINI BAR CHART ================= */
+const statGrid = document.getElementById('statGrid');
+const totalRiwayat = segments.reduce((n,s)=>n+s.history.length,0);
+const segNull = segments.filter(s=>s.statusKey==='null').length;
+[
+  {num:'43.0', label:'Total KM'},
+  {num:totalRiwayat, label:'Total Riwayat'},
+  {num:segNull, label:'Segmen Tanpa Data'},
+  {num:(10-segNull), label:'Segmen Tercatat'}
+].forEach(s=>{
+  const card = document.createElement('div');
+  card.className = 'stat-card';
+  card.innerHTML = `<div class="num">${s.num}</div><div class="label">${s.label}</div>`;
+  statGrid.appendChild(card);
+});
+
+const jenisColors = {"Overlay AC-WC":"#4FA0D9","Penambalan retak":"#8CAA5A","Perbaikan beton":"#C9A93E","Rekonstruksi perkerasan":"#D9502F"};
+const jenisCounts = {};
+segments.forEach(s=> s.history.forEach(h=>{
+  const jenis = h.keterangan.replace('SF-O — ','');
+  jenisCounts[jenis] = (jenisCounts[jenis]||0)+1;
+}));
+const maxCount = Math.max(...Object.values(jenisCounts));
+const miniBars = document.getElementById('miniBars');
+Object.entries(jenisCounts).forEach(([jenis,count])=>{
+  const bar = document.createElement('div');
+  bar.className = 'mini-bar';
+  bar.style.height = (count/maxCount*100)+'%';
+  bar.style.background = jenisColors[jenis] || 'var(--blue)';
+  bar.innerHTML = `<span>${jenis.split(' ')[0]}</span>`;
+  miniBars.appendChild(bar);
+});
+
+/* ================= BRAND LEGEND (6 status) ================= */
+const brandLegend = document.getElementById('brandLegend');
+STATUS_LEVELS.forEach(lvl=>{
+  const chip = document.createElement('span');
+  chip.className = 'status-chip';
+  chip.title = lvl.label;
+  chip.innerHTML = `<span class="sw2" style="background:${lvl.color}"></span>${lvl.label}`;
+  brandLegend.appendChild(chip);
+});
+
+/* ================= LAYER PANEL ================= */
+document.querySelectorAll('input[name=basemap]').forEach(r=>{
+  r.addEventListener('change', e=>{
+    manualBasemap = true;
+    Object.values(basemaps).forEach(l=>map.removeLayer(l));
+    basemaps[e.target.value].addTo(map);
+  });
+});
+document.getElementById('weightSlider').addEventListener('input', e=>{
+  currentWeight = +e.target.value;
+  segments.forEach(seg=> polylines[seg.id].setStyle({weight: currentWeight}) );
+});
+
+/* ================= STATIONING STRIP ================= */
+const stripTrack = document.getElementById('stripTrack');
+const totalKm = 43.0;
+segments.forEach(seg=>{
+  const bar = document.createElement('div');
+  bar.className = 'strip-seg';
+  bar.style.width = (seg.panjang/totalKm*100)+'%';
+  bar.style.background = seg.color;
+  bar.dataset.id = seg.id;
+  bar.addEventListener('mouseenter', ()=> setActive(seg.id));
+  bar.addEventListener('mouseleave', ()=> setActive(null));
+  bar.addEventListener('click', ()=>{
+    map.fitBounds(polylines[seg.id].getBounds(), {maxZoom:13.5});
+    polylines[seg.id].openPopup(polylines[seg.id].getBounds().getCenter());
+  });
+  stripTrack.appendChild(bar);
+});
+
+/* ================= CROSS-HIGHLIGHT ================= */
+function setActive(id){
+  document.querySelectorAll('tr[data-id]').forEach(el=>el.classList.toggle('active', el.dataset.id==id));
+  document.querySelectorAll('.strip-seg').forEach(el=>el.classList.toggle('active', el.dataset.id==id));
+  Object.entries(polylines).forEach(([sid,line])=>{
+    line.setStyle({weight:(sid==id)?currentWeight+3:currentWeight, opacity:(sid==id)?1:.85});
+  });
+}
+</script>
+
+</body>
+</html>
