@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>SurGem Maintain — Tentang</title>
+    <link rel="stylesheet" href="peta.css">
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="tentang.css">
 
     <style>
@@ -46,81 +46,6 @@
         body.dark-mode .dev-card .dev-nrp { color: #94a3b8; }
     </style>
 </head>
-
-<script>
-const tahunFooter = document.getElementById("tahun-footer");
-
-if (tahunFooter) {
-    tahunFooter.innerText = new Date().getFullYear();
-}
-    
-
-    const tombolKembaliAtas =
-        document.getElementById("back-to-top");
-
-    window.addEventListener("scroll", function () {
-        if (window.scrollY > 350) {
-            tombolKembaliAtas.classList.add("show");
-        } else {
-            tombolKembaliAtas.classList.remove("show");
-        }
-    });
-
-    tombolKembaliAtas.addEventListener("click", function () {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    });
-</script>
-<script>
-    (function () {
-        const THEME_KEY = "theme";
-
-        function terapkanTema(theme) {
-            const darkModeAktif = theme === "dark";
-            document.body.classList.toggle("dark-mode", darkModeAktif);
-
-            const tombol = document.querySelector(".darkmode-toggle");
-            if (tombol) {
-                tombol.innerText = darkModeAktif ? "☀︎" : "⏾";
-                tombol.setAttribute("aria-pressed", darkModeAktif ? "true" : "false");
-            }
-
-            if (typeof window.ubahTemaMiniMap === "function") {
-                window.ubahTemaMiniMap(darkModeAktif ? "dark" : "light");
-            }
-
-            if (typeof window.perbaruiTemaDiagramStatistik === "function") {
-                window.perbaruiTemaDiagramStatistik(darkModeAktif);
-            }
-        }
-
-        window.toggleDarkMode = function () {
-            const darkModeSedangAktif = document.body.classList.contains("dark-mode");
-            const temaBaru = darkModeSedangAktif ? "light" : "dark";
-            localStorage.setItem(THEME_KEY, temaBaru);
-            terapkanTema(temaBaru);
-        };
-
-        function muatTemaTersimpan() {
-            const temaTersimpan = localStorage.getItem(THEME_KEY);
-            const temaAwal = temaTersimpan === "dark" ? "dark" : "light";
-            terapkanTema(temaAwal);
-        }
-
-        if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", muatTemaTersimpan, { once: true });
-        } else {
-            muatTemaTersimpan();
-        }
-
-        window.addEventListener("storage", function (event) {
-            if (event.key !== THEME_KEY) return;
-            terapkanTema(event.newValue === "dark" ? "dark" : "light");
-        });
-    })();
-</script>
 <body>
     <div class="jm-utility-bar">
         <div class="jm-page-width utility-inner">
@@ -131,7 +56,7 @@ if (tahunFooter) {
     </div>
     <header class="jm-header">
         <div class="jm-page-width jm-header-inner">
-            <a class="jm-brand-box" href="home.html" aria-label="Beranda SFO Tol Dashboard">
+            <a class="jm-brand-box" href="index.html" aria-label="Beranda SFO Tol Dashboard">
                 <img src="logo_jasamarga.png" alt="Logo Jasa Marga" width="190">
 
                 <div class="jm-text-logo">
@@ -141,10 +66,11 @@ if (tahunFooter) {
             </a>
 
             <nav class="jm-nav-menu" aria-label="Navigasi utama">
-                <a href="home.html" class="nav-link" aria-current="page">Home</a>
-                <a href="index.html" class="nav-link">Peta Interaktif</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="peta.html" class="nav-link">Peta Interaktif</a>
                 <a href="stat.html" class="nav-link">Data Statistik</a>
                 <a href="tentang.html" class="nav-link active">Tentang</a>
+                <a href="admin.html" class="nav-link" aria-current="page">Admin Data</a>
 
                 <button
                     class="darkmode-toggle"
@@ -152,7 +78,7 @@ if (tahunFooter) {
                     onclick="toggleDarkMode()"
                     aria-pressed="false"
                 >
-                    🌙 Dark Mode
+                    ⏾
                 </button>
             </nav>
         </div>
@@ -173,9 +99,9 @@ if (tahunFooter) {
                 <strong>SurGem Maintenance</strong> adalah sistem informasi pemantauan (monitoring) 
                 kondisi pemeliharaan jalan tol berbasis peta digital (WebGIS) yang dirancang untuk 
                 memvisualisasikan progres pemeliharaan perkerasan jalan tol secara spasial dan temporal 
-                (berbasis waktu). Studi kasus platform ini difokuskan pada Ruas Jalan Tol Surabaya–Gempol 
+                (berbasis waktu), termasuk pemisahan L1, L2, dan L3 pada Jalur A dan Jalur B. Studi kasus platform ini difokuskan pada Ruas Jalan Tol Surabaya–Gempol 
                 (SurGem) sepanjang kurang lebih 43 kilometer, dengan cakupan pencatatan data pemeliharaan 
-                dari tahun <strong>2023 hingga 2026</strong>.
+                dari tahun <strong id="about-intro-period">2023 hingga 2026</strong>.
             </p>
 
             <p>
@@ -194,14 +120,14 @@ if (tahunFooter) {
             <ul class="about-list">
                 <li>
                     <strong>Visualisasi Spasial Komprehensif:</strong> Menyajikan gambaran spasial yang menyeluruh dan 
-                    interaktif terkait sebaran serta progres pemeliharaan jalan tol secara real-time.
+                    interaktif terkait sebaran serta progres pemeliharaan jalan tol berdasarkan pembaruan data GeoJSON terbaru yang tersedia.
                 </li>
                 <li>
                     <strong>Penelusuran Data Temporal (Histori):</strong> Mempermudah pemangku kepentingan dalam 
                     melakukan penelusuran riwayat perbaikan jalan tol berdasarkan periode waktu tertentu secara kronologis.
                 </li>
                 <li>
-                    <strong>Transparansi dan Aksesibilitas Data:</strong> Mendukung keterbukaan informasi dan kemudahan retribusi
+                    <strong>Transparansi dan Aksesibilitas Data:</strong> Mendukung keterbukaan informasi dan kemudahan distribusi
                      data melalui penyediaan fitur unduh tabel atribut bagi pengguna.
                 </li>
             </ul>
@@ -237,10 +163,10 @@ if (tahunFooter) {
                         Melakukan kompilasi, pemeriksaan, penyelarasan
                         (<em>data cleaning</em>), dan penggabungan
                         (<em>join/relate</em>) antara data spasial dan data
-                        atribut SFO menggunakan perangkat lunak
-                        <strong>ArcGIS Pro</strong>. Tahapan ini dilakukan untuk
-                        membentuk satu kesatuan basis data spasial yang valid
-                        dan siap digunakan dalam sistem.
+                        atribut SFO. Alignment Jalur A dan Jalur B disiapkan
+                        sebagai garis referensi, sedangkan visualisasi L1, L2,
+                        dan L3 dibentuk langsung pada aplikasi dengan offset
+                        antarlajur sebesar <strong>3,6 meter</strong>.
                     </p>
                 </li>
 
@@ -262,13 +188,12 @@ if (tahunFooter) {
                             Implementasi Kode dan Visualisasi
                             (<em>WebGIS Deployment</em>):
                         </strong>
-                        Mengintegrasikan file GeoJSON hasil pengolahan ke dalam
-                        arsitektur program WebGIS. Aplikasi dikembangkan
-                        menggunakan pustaka peta interaktif
-                        <strong>Leaflet.js</strong>, dengan dukungan HTML, CSS,
-                        dan JavaScript melalui lingkungan pengembangan
-                        <strong>Visual Studio Code</strong> untuk menghasilkan
-                        antarmuka pemetaan yang interaktif dan responsif.
+                        Mengintegrasikan file GeoJSON terbaru ke dalam
+                        arsitektur program WebGIS. Aplikasi menggunakan
+                        <strong>Leaflet.js</strong> untuk pemetaan,
+                        <strong>Turf.js</strong> untuk membentuk offset L1–L3,
+                        serta HTML, CSS, dan JavaScript untuk menghasilkan
+                        antarmuka yang interaktif dan responsif.
                     </p>
                 </li>
             </ol>
@@ -290,12 +215,22 @@ if (tahunFooter) {
 
                 <div class="detail-row">
                     <span>Jumlah Segmen</span>
-                    <strong>354 segmen<br>"</strong>
+                    <strong id="about-segment-count">Memuat data…</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Total Catatan SFO Jalur</span>
+                    <strong id="about-record-count">Memuat data…</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Input Admin Terpusat</span>
+                    <strong id="about-admin-count">Memuat data…</strong>
                 </div>
 
                 <div class="detail-row">
                     <span>Rentang Pencatatan Data</span>
-                    <strong>Periode Temporal: 2023 – 2026</strong>
+                    <strong id="about-data-period">Memuat data…</strong>
                 </div>
 
                 <div class="detail-row">
@@ -309,13 +244,18 @@ if (tahunFooter) {
                 </div>
 
                 <div class="detail-row">
+                    <span>File Data Aktif</span>
+                    <strong><code>Rekap_SFO_deng_FeaturesToJSO_updated.geojson</code><br><code>gatetol_history_updated.geojson</code></strong>
+                </div>
+
+                <div class="detail-row">
                     <span>Status Data</span>
-                    <strong>Terbaru (2026)</strong>
+                    <strong id="about-data-status">Memuat data…</strong>
                 </div>
 
                 <div class="detail-row">
                     <span>Sistem Koordinat</span>
-                    <strong>WGS 1984</strong>
+                    <strong>EPSG:23836 → WGS 1984 pada aplikasi</strong>
                 </div>
             </div>
         </section>
@@ -372,7 +312,7 @@ if (tahunFooter) {
             <h4>Navigasi</h4>
 
             <div class="footer-nav-links">
-                <a href="index.html">Peta Persebaran</a>
+                <a href="peta.html">Peta Persebaran</a>
                 <a href="stat.html">Data Statistik</a>
                 <a href="tentang.html">Tentang Sistem</a>
             </div>
@@ -398,6 +338,229 @@ if (tahunFooter) {
 >
     ↑
 </button>
+
+<script src="data-perbaikan.js?v=4"></script>
+<script>
+    (function () {
+        "use strict";
+
+        const THEME_KEY = "theme";
+        const DATA_URL = "Rekap_SFO_deng_FeaturesToJSO_updated.geojson";
+        const GATE_DATA_URL = "gatetol_history_updated.geojson";
+
+        function terapkanTema(theme) {
+            const darkModeAktif = theme === "dark";
+            document.body.classList.toggle("dark-mode", darkModeAktif);
+
+            const tombol = document.querySelector(".darkmode-toggle");
+            if (tombol) {
+                tombol.innerText = darkModeAktif ? "☀︎" : "⏾";
+                tombol.setAttribute("aria-pressed", darkModeAktif ? "true" : "false");
+            }
+        }
+
+        window.toggleDarkMode = function () {
+            const darkModeSedangAktif = document.body.classList.contains("dark-mode");
+            const temaBaru = darkModeSedangAktif ? "light" : "dark";
+            localStorage.setItem(THEME_KEY, temaBaru);
+            terapkanTema(temaBaru);
+        };
+
+        function ambilFeatures(data) {
+            if (data && data.type === "FeatureCollection" && Array.isArray(data.features)) {
+                return data.features;
+            }
+            if (data && data.type === "Feature") return [data];
+            return [];
+        }
+
+        async function muatJSON(url) {
+            const response = await fetch(encodeURI(url));
+            if (!response.ok) {
+                throw new Error("HTTP " + response.status + " saat membaca " + url);
+            }
+            return response.json();
+        }
+
+        function normalisasiNamaKolom(value) {
+            return String(value || "")
+                .trim()
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "_")
+                .replace(/^_+|_+$/g, "");
+        }
+
+        function tahunDariNilai(value) {
+            if (value === null || value === undefined || value === "") return null;
+            if (typeof value === "number" && Number.isFinite(value)) {
+                if (value >= 1900 && value <= 2100) return Math.trunc(value);
+                if (value > 20000 && value < 80000) {
+                    const date = new Date(Date.UTC(1899, 11, 30) + value * 86400000);
+                    const year = date.getUTCFullYear();
+                    return year >= 1900 && year <= 2100 ? year : null;
+                }
+            }
+            const match = String(value).match(/(?:^|\D)((?:19|20)\d{2})(?:\D|$)/);
+            return match ? Number(match[1]) : null;
+        }
+
+        function kumpulkanTahun(value, hasil, namaKolom) {
+            if (Array.isArray(value)) {
+                value.forEach(function (item) { kumpulkanTahun(item, hasil, namaKolom); });
+                return;
+            }
+            if (value && typeof value === "object") {
+                Object.entries(value).forEach(function (entry) {
+                    kumpulkanTahun(entry[1], hasil, entry[0]);
+                });
+                return;
+            }
+            const kolom = normalisasiNamaKolom(namaKolom);
+            if (!["tanggal", "tanggal_pelaksanaan", "tgl", "tgl_pelaksanaan", "date", "work_date"].includes(kolom)) return;
+            const year = tahunDariNilai(value);
+            if (year !== null) hasil.add(year);
+        }
+
+        function nilaiProperti(props, aliases) {
+            const entries = Object.entries(props || {});
+            for (const alias of aliases) {
+                const normalizedAlias = normalisasiNamaKolom(alias);
+                const match = entries.find(function (entry) {
+                    return normalisasiNamaKolom(entry[0]) === normalizedAlias;
+                });
+                if (match) return match[1];
+            }
+            return "";
+        }
+
+        function hitungSegmenUnik(features) {
+            const keys = new Set();
+            features.forEach(function (feature, index) {
+                const props = feature && feature.properties ? feature.properties : {};
+                const route = nilaiProperti(props, ["rute", "route"]);
+                const jalur = nilaiProperti(props, ["Jalur"]);
+                const lajur = nilaiProperti(props, ["Lajur", "lane"]);
+                const dari = nilaiProperti(props, ["Dari", "KM Dari", "KM_Dari"]);
+                const sampai = nilaiProperti(props, ["Sampai", "KM Sampai", "KM_Sampai"]);
+                const gerbang = nilaiProperti(props, ["Gerbang", "Nama Gerbang", "name"]);
+                const key = [route, jalur, lajur, dari, sampai, gerbang]
+                    .map(function (value) { return String(value ?? "").trim().toUpperCase(); })
+                    .join("|");
+                keys.add(key === "|||||" ? "FEATURE-" + index : key);
+            });
+            return keys.size;
+        }
+
+        function setText(id, value) {
+            const element = document.getElementById(id);
+            if (element) element.textContent = value;
+        }
+
+        async function muatDetailData() {
+            const hasil = await Promise.allSettled([
+                muatJSON(DATA_URL),
+                muatJSON(GATE_DATA_URL)
+            ]);
+            const dataJalur = hasil[0].status === "fulfilled" ? hasil[0].value : null;
+            const dataGerbang = hasil[1].status === "fulfilled" ? hasil[1].value : null;
+            const featuresJalur = ambilFeatures(dataJalur);
+            const tahun = new Set();
+            let userRecords = [];
+            let userBatches = [];
+
+            if (window.SurGemData) {
+                try {
+                    userRecords = await SurGemData.loadRecords({ notify: false });
+                    userBatches = SurGemData.getBatches();
+                    SurGemData.startAutoSync();
+                } catch (error) {
+                    console.warn("Data input admin belum dapat dibaca pada halaman Tentang.", error);
+                }
+            }
+
+            if (dataJalur) kumpulkanTahun(dataJalur, tahun, "");
+            if (dataGerbang) kumpulkanTahun(dataGerbang, tahun, "");
+            userRecords.forEach(function (record) {
+                kumpulkanTahun(record.Tanggal_Pelaksanaan, tahun, "Tanggal_Pelaksanaan");
+            });
+
+            const combinedFeatures = featuresJalur.concat(userRecords.map(function (record) {
+                return { type: "Feature", properties: record, geometry: null };
+            }));
+
+            setText(
+                "about-segment-count",
+                combinedFeatures.length
+                    ? hitungSegmenUnik(combinedFeatures).toLocaleString("id-ID") + " segmen unik per lajur"
+                    : "Data belum tersedia"
+            );
+            setText(
+                "about-record-count",
+                (featuresJalur.length + userRecords.length).toLocaleString("id-ID") + " catatan"
+            );
+            setText(
+                "about-admin-count",
+                userBatches.length.toLocaleString("id-ID") + " input / " +
+                userRecords.length.toLocaleString("id-ID") + " histori segmen"
+            );
+
+            const years = Array.from(tahun).sort(function (a, b) { return a - b; });
+            if (years.length) {
+                const awal = years[0];
+                const akhir = years[years.length - 1];
+                setText("about-data-period", "Periode temporal: " + (awal === akhir ? awal : awal + " – " + akhir));
+                setText("about-data-status", "Terbaru (" + akhir + ")");
+                setText("about-intro-period", awal === akhir ? String(awal) : awal + " hingga " + akhir);
+            } else {
+                setText("about-data-period", "Periode temporal belum tersedia");
+                setText("about-data-status", "Status data belum tersedia");
+            }
+
+            hasil.forEach(function (item) {
+                if (item.status === "rejected") console.warn("Detail Tentang tidak lengkap:", item.reason);
+            });
+        }
+
+        function initializePage() {
+            const footer = document.getElementById("tahun-footer");
+            if (footer) footer.textContent = new Date().getFullYear();
+
+            const tombolKembaliAtas = document.getElementById("back-to-top");
+            if (tombolKembaliAtas) {
+                window.addEventListener("scroll", function () {
+                    tombolKembaliAtas.classList.toggle("show", window.scrollY > 350);
+                });
+                tombolKembaliAtas.addEventListener("click", function () {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+            }
+
+            terapkanTema(localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light");
+            window.addEventListener("surgem:user-data-changed", function () {
+                window.location.reload();
+            });
+            muatDetailData().catch(function (error) {
+                console.warn("Gagal memuat detail data:", error);
+                setText("about-segment-count", "Data belum tersedia");
+                setText("about-record-count", "Data belum tersedia");
+                setText("about-admin-count", "Data belum tersedia");
+                setText("about-data-period", "Periode temporal belum tersedia");
+                setText("about-data-status", "Status data belum tersedia");
+            });
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initializePage, { once: true });
+        } else {
+            initializePage();
+        }
+
+        window.addEventListener("storage", function (event) {
+            if (event.key !== THEME_KEY) return;
+            terapkanTema(event.newValue === "dark" ? "dark" : "light");
+        });
+    })();
+</script>
 
 </body>
 </html>

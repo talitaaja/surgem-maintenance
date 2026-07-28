@@ -1,0 +1,3673 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SurGem Maintain — Peta Interaktif</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="peta.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="theme.js" defer></script>
+
+    <style>
+        .segment-history-tabs {
+            margin: 8px 0 9px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+        }
+
+        .segment-history-tab {
+            min-height: 34px;
+            padding: 7px 9px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: #526074;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 10.5px;
+            font-weight: 850;
+            cursor: pointer;
+        }
+
+        .segment-history-tab:hover {
+            color: #0d2f6b;
+            background: #edf3fb;
+        }
+
+        .segment-history-tab.is-active {
+            color: #ffffff;
+            background: #173f88;
+            border-color: #173f88;
+        }
+
+        .segment-history-tab-count {
+            min-width: 21px;
+            padding: 1px 5px;
+            border-radius: 999px;
+            color: inherit;
+            background: rgba(255, 255, 255, 0.18);
+            font-size: 9px;
+            line-height: 1.4;
+        }
+
+        .segment-history-tab:not(.is-active) .segment-history-tab-count {
+            background: #e2e8f0;
+        }
+
+        .segment-history-panel[hidden] {
+            display: none !important;
+        }
+
+        .segment-history-empty {
+            padding: 13px 10px;
+            color: #64748b;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 10.5px;
+            line-height: 1.5;
+        }
+
+        .segment-history-worktype {
+            max-width: 126px;
+            overflow: hidden;
+            color: #173f88;
+            font-size: 9.5px;
+            font-weight: 850;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        body.dark-mode .segment-history-tab {
+            color: #cbd5e1;
+            background: #0f172a;
+            border-color: #475569;
+        }
+
+        body.dark-mode .segment-history-tab.is-active {
+            color: #ffffff;
+            background: #173f88;
+            border-color: #f6c20e;
+        }
+
+        body.dark-mode .segment-history-tab:not(.is-active) .segment-history-tab-count,
+        body.dark-mode .segment-history-empty {
+            background: #1e293b;
+        }
+
+        body.dark-mode .segment-history-empty {
+            color: #94a3b8;
+            border-color: #475569;
+        }
+
+        body.dark-mode .segment-history-worktype {
+            color: #f6c20e;
+        }
+
+        .data-select:disabled {
+            color: #94a3b8;
+            background: #f1f5f9;
+            cursor: not-allowed;
+        }
+
+        .gate-marker-shell.other-only .gate-marker-dot {
+            background: #7c3aed !important;
+            border-color: #ede9fe !important;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
+        }
+
+        body.dark-mode .data-select:disabled {
+            color: #64748b;
+            background: #0f172a;
+        }
+    </style>
+
+</head>
+
+<script>
+    (function () {
+        const THEME_KEY = "theme";
+
+        function terapkanTema(theme) {
+            const darkModeAktif = theme === "dark";
+            document.body.classList.toggle("dark-mode", darkModeAktif);
+
+            const tombol = document.querySelector(".darkmode-toggle");
+            if (tombol) {
+                tombol.innerText = darkModeAktif ? "☀︎" : "⏾";
+                tombol.setAttribute("aria-pressed", darkModeAktif ? "true" : "false");
+            }
+
+            if (typeof window.ubahTemaMiniMap === "function") {
+                window.ubahTemaMiniMap(darkModeAktif ? "dark" : "light");
+            }
+
+            if (typeof window.perbaruiTemaDiagramStatistik === "function") {
+                window.perbaruiTemaDiagramStatistik(darkModeAktif);
+            }
+        }
+
+        window.toggleDarkMode = function () {
+            const darkModeSedangAktif = document.body.classList.contains("dark-mode");
+            const temaBaru = darkModeSedangAktif ? "light" : "dark";
+            localStorage.setItem(THEME_KEY, temaBaru);
+            terapkanTema(temaBaru);
+        };
+
+        function muatTemaTersimpan() {
+            const temaTersimpan = localStorage.getItem(THEME_KEY);
+            const temaAwal = temaTersimpan === "dark" ? "dark" : "light";
+            terapkanTema(temaAwal);
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", muatTemaTersimpan, { once: true });
+        } else {
+            muatTemaTersimpan();
+        }
+
+        window.addEventListener("storage", function (event) {
+            if (event.key !== THEME_KEY) return;
+            terapkanTema(event.newValue === "dark" ? "dark" : "light");
+        });
+    })();
+</script>
+
+<body class="map-body">
+    <div class="jm-utility-bar">
+        <div class="jm-page-width utility-inner">
+            <a href="mailto:ro3@jmtransjawatol.co.id">Hubungi Kami</a>
+            <span class="utility-divider" aria-hidden="true"></span>
+            <span class="utility-language">ID <span aria-hidden="true">⌄</span></span>
+        </div>
+    </div>
+
+    <header class="jm-header">
+        <div class="jm-page-width jm-header-inner">
+            <a class="jm-brand-box" href="index.html" aria-label="Beranda SFO Tol Dashboard">
+                <img src="logo_jasamarga.png" alt="Logo Jasa Marga" width="190">
+
+                <div class="jm-text-logo">
+                    <h1>SFO Tol Dashboard</h1>
+                    <p>Surabaya–Gempol Maintenance System</p>
+                </div>
+            </a>
+
+            <nav class="jm-nav-menu" aria-label="Navigasi utama">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="peta.html" class="nav-link active" aria-current="page">Peta Interaktif</a>
+                <a href="stat.html" class="nav-link">Data Statistik</a>
+                <a href="tentang.html" class="nav-link">Tentang</a>
+                <a href="admin.html" class="nav-link" aria-current="page">Admin Data</a>
+
+                <button
+                    class="darkmode-toggle"
+                    type="button"
+                    onclick="toggleDarkMode()"
+                    aria-pressed="false"
+                >
+                    ⏾
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-wrapper">
+        <div class="content-header">
+            <div class="jm-page-width">
+                <h2>Monitoring Progres Scrapping, Filling, &amp; Overlay (SFO)</h2>
+            </div>
+        </div>
+
+        <div id="map-message" class="map-message">Memuat...</div>
+
+        <div class="map-container">
+            <div class="map-stage">
+                <div id="map"></div>
+
+                <div class="map-side-panels">
+
+                    <div class="map-panel-tabs" role="tablist" aria-label="Panel peta">
+                        <button
+                            id="map-tab-control"
+                            class="map-panel-tab is-active"
+                            type="button"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="map-panel-control"
+                            data-map-panel="control"
+                        >
+                            Kontrol Peta
+                        </button>
+                        <button
+                            id="map-tab-segments"
+                            class="map-panel-tab"
+                            type="button"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="map-panel-segments"
+                            data-map-panel="segments"
+                        >
+                            Daftar Segmen
+                        </button>
+                    </div>
+
+                    <div class="map-panel-content">
+                    <div
+                        id="map-panel-control"
+                        class="jm-panel map-panel-view is-active"
+                        role="tabpanel"
+                        aria-labelledby="map-tab-control"
+                    >
+                        <div class="panel-title">Panel Kontrol Peta</div>
+
+                        <div class="section-label">Pilih Peta Dasar</div>
+                        <div class="basemap-list">
+                            <button class="basemap-item active" type="button" onclick="gantiBasemap('osm', this)">OpenStreetMap</button>
+                            <button class="basemap-item" type="button" onclick="gantiBasemap('satelit', this)">Satelit Citra</button>
+                            <button class="basemap-item" type="button" onclick="gantiBasemap('dark', this)">Basemap Gelap</button>
+                            <button class="basemap-item" type="button" onclick="gantiBasemap('topo', this)">Topografi</button>
+                        </div>
+
+                        <div class="data-control-group">
+                            <div id="data-filter-label" class="section-label">Filter Data Pekerjaan</div>
+
+                            <select id="filter-rute" class="data-select" aria-label="Filter rute">
+                                <option value="all">Semua rute</option>
+                                <option value="surgem_A">Jalur A</option>
+                                <option value="surgem_B">Jalur B</option>
+                            </select>
+
+                            <select id="filter-pekerjaan" class="data-select" aria-label="Filter jenis pekerjaan">
+                                <option value="all">Semua pekerjaan</option>
+                                <option value="sfo">SFO saja</option>
+                                <option value="other">Pekerjaan lainnya saja</option>
+                            </select>
+
+                            <select id="filter-status" class="data-select" aria-label="Filter status SFO">
+                                <option value="all">Semua status</option>
+                                <option value="critical">Perlu perbaikan</option>
+                                <option value="warning">Perlu perhatian</option>
+                                <option value="safe">Aman</option>
+                                <option value="unknown">Tanggal Tidak Ditemukan</option>
+                            </select>
+
+                            <select id="filter-lajur" class="data-select" aria-label="Filter lajur">
+                                <option value="all">Semua lajur</option>
+                                <option value="1">Lajur 1</option>
+                                <option value="2">Lajur 2</option>
+                                <option value="3">Lajur 3</option>
+                                <option value="other">Lajur 0 / lainnya</option>
+                            </select>
+
+                            <div class="lane-offset-note" role="note">
+                                <strong>Visualisasi 3 lajur</strong>
+                                <span>Urutan melintang: B-L3, B-L2, B-L1 | A-L1, A-L2, A-L3. Jarak antara Jalur B dan Jalur A ditambah 3,6 m.</span>
+                            </div>
+
+                            <label class="gate-toggle">
+                                <input id="toggle-gate" type="checkbox" checked>
+                                Tampilkan gerbang tol
+                            </label>
+                        </div>
+
+                        <div class="status-legend">
+                            <div class="section-label">Legenda Status</div>
+                            <div class="status-legend-item"><span class="status-swatch" style="background:#ef4444"></span> ≥ 28 bulan</div>
+                            <div class="status-legend-item"><span class="status-swatch" style="background:#f1c40f"></span> 16–27 bulan</div>
+                            <div class="status-legend-item"><span class="status-swatch" style="background:#2ecc71"></span> &lt; 16 bulan</div>
+                            <div class="status-legend-item"><span class="status-swatch status-swatch-no-history" style="background:#64748b"></span> Belum ada histori</div>
+                            <div class="status-legend-item"><span class="status-swatch" style="background:#374151"></span> Tanggal tidak ditemukan</div>
+                            <div class="status-legend-item"><span class="status-swatch" style="background:#d1d5db"></span> Di luar status terpilih</div>
+                            <div class="status-legend-item"><span class="status-swatch" style="background:#7c3aed"></span> Pekerjaan lainnya</div>
+                        </div>
+                    </div>
+
+                    <aside
+                        id="map-panel-segments"
+                        class="segment-panel map-panel-view"
+                        role="tabpanel"
+                        aria-labelledby="map-tab-segments segment-panel-title"
+                        hidden
+                    >
+                    <div class="segment-panel-header">
+                        <div>
+                            <div id="segment-panel-kicker" class="segment-panel-kicker">Riwayat SFO</div>
+                            <h3 id="segment-panel-title">Daftar Segmen</h3>
+                        </div>
+                        <span id="segment-panel-count" class="segment-panel-count">0</span>
+                    </div>
+
+                    <div class="segment-search-wrap">
+                        <span aria-hidden="true">⌕</span>
+                        <input
+                            id="segment-search"
+                            type="search"
+                            placeholder="Cari STA, contoh 00+200"
+                            autocomplete="off"
+                            aria-label="Cari segmen berdasarkan STA"
+                        >
+                    </div>
+
+                    <div class="segment-table-head" aria-hidden="true">
+                        <span>STA / Jalur</span>
+                        <span>Status</span>
+                        <span>Riwayat</span>
+                    </div>
+
+                    <div id="segment-list" class="segment-list" aria-live="polite">
+                        <div class="segment-list-empty">Menyiapkan daftar segmen...</div>
+                    </div>
+                    </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-container">
+            <div class="analysis-card">
+                <h3 id="analysis-title">Analisis Segmen Paling Memerlukan Perbaikan</h3>
+                <p id="analysis-description">Hanya memakai pekerjaan paling terbaru dari setiap segmen unik.</p>
+                <div class="rank-list" id="lokasi-kritis-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="jm-footer compact-footer">
+    <div class="footer-main">
+
+        <div class="footer-company">
+            <h4>SurGem Maintenance</h4>
+            <p>
+                Sistem monitoring pemeliharaan Jalan Tol
+                Surabaya–Gempol berbasis WebGIS.
+            </p>
+            <p class="footer-address">
+                Plaza Tol Kota Satelit, Jl. Mayjen Sungkono,
+                    Putat Gede, Sukomanunggal, Surabaya,
+                    Jawa Timur 60189
+            </p>
+        </div>
+
+        <div class="footer-contact">
+            <h4>Kontak</h4>
+
+            <a href="mailto:ro3@jmtransjawatol.co.id">
+                ✉ ro3@jmtransjawatol.co.id
+            </a>
+
+            <a href="tel:133">
+                ☎ Call Center 133
+            </a>
+        </div>
+
+        <div class="footer-navigation">
+            <h4>Navigasi</h4>
+
+            <div class="footer-nav-links">
+                <a href="peta.html">Peta Persebaran</a>
+                <a href="stat.html">Data Statistik</a>
+                <a href="tentang.html">Tentang Sistem</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>
+            &copy; <span id="tahun-footer"></span>
+            JASA MARGA · Operating and Monitoring
+        </p>
+
+        <p>Surabaya–Gempol Maintenance System</p>
+    </div>
+</footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/proj4@2.12.1/dist/proj4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7.2.0/turf.min.js"></script>
+    <script src="data-perbaikan.js?v=4"></script>
+
+    <script>
+        "use strict";
+
+        const DATA_URL = "Rekap_SFO_deng_FeaturesToJSO_updated.geojson";
+        const OTHER_HISTORY_URL = "Rekap_Pekerjaan_Lainnya_2023_2026.geojson";
+        
+        const GATE_DATA_URL = "gatetol_history_updated.geojson";
+        const GATE_MAX_DISTANCE_KM = 0.8;
+        const GATE_DEDUP_DISTANCE_KM = 0.35;
+        
+        const TRY_EXTERNAL_ALIGNMENTS = true;
+
+        const ALIGNMENT_FILES = {
+            surgem_A: "tol_surgem_A.geojson",
+            surgem_B: "tol_surgem_B.geojson"
+        };
+
+        /*
+         * Urutan visual lajur harus tetap:
+         * kiri -> kanan = B-L3, B-L2, B-L1, A-L1, A-L2, A-L3.
+         *
+         * Agar tidak bergantung pada kombinasi mirror + shift yang mudah terbalik,
+         * setiap rute/lajur diberi posisi lateral eksplisit dalam kelipatan 3,6 m.
+         * Nilai positif/negatif di bawah sengaja dibalik dari konfigurasi lama
+         * supaya Jalur B tampil di sisi kiri dan Jalur A di sisi kanan.
+         */
+        const LANE_WIDTH_METERS = 3.6;
+        const ROUTE_LANE_VISUAL_OFFSET = {
+            surgem_B: {
+                3: 2.5,
+                2: 1.5,
+                1: 0.5
+            },
+            surgem_A: {
+                1: -0.5,
+                2: -1.5,
+                3: -2.5
+            }
+        };
+
+        const WORK_CATEGORY_LABELS = {
+            sfo: "SFO",
+            other: "Lainnya"
+        };
+
+        /*
+         * Warna abu-abu dibedakan agar maknanya tidak tertukar:
+         * - tanpa histori: abu-abu sedang
+         * - tanggal tidak ditemukan: abu-abu tua (STATUS_CONFIG.unknown)
+         * - di luar status terpilih: abu-abu muda
+         */
+        const NO_HISTORY_COLOR = "#64748b";
+        const INACTIVE_STATUS_COLOR = "#d1d5db";
+        const OTHER_WORK_COLOR = "#7c3aed";
+
+        /*KALIBRASI SEMENTARA jika alignment eksternal dipakai.
+         * Semua nilai Dari/Sampai tetap dibaca sebagai chainage meter biasa:
+         * 15200 = 15+200 dan 745200 = 745+200.*/
+        const ALIGNMENT_CHAINAGE = {
+            surgem_A: {
+                localMin: 0,
+                localMax: 16600,
+                highMin: 744400,
+                highMax: 771200,
+                highOffset: 16600
+            },
+            surgem_B: {
+                localMin: 0,
+                localMax: 16600,
+                highMin: 744200,
+                highMax: 771600,
+                highOffset: 16600
+            }
+        };
+
+        const STATUS_CONFIG = {
+            critical: {
+                label: "🔴 PERLU PERBAIKAN",
+                color: "#ef4444",
+                style: { color: "#ef4444", weight: 6, opacity: 0.82 }
+            },
+            warning: {
+                label: "🟡 PERLU PERHATIAN",
+                color: "#d6a900",
+                style: { color: "#f1c40f", weight: 6, opacity: 0.82 }
+            },
+            safe: {
+                label: "🟢 AMAN",
+                color: "#198754",
+                style: { color: "#2ecc71", weight: 6, opacity: 0.82 }
+            },
+            unknown: {
+                label: "⚫ TANGGAL TIDAK DITEMUKAN",
+                color: "#374151",
+                style: {
+                    color: "#374151",
+                    weight: 6,
+                    opacity: 0.9,
+                    dashArray: "8 6"
+                }
+            },
+            "no-history": {
+                label: "BELUM ADA HISTORI SFO",
+                color: NO_HISTORY_COLOR,
+                style: {
+                    color: NO_HISTORY_COLOR,
+                    weight: 6,
+                    opacity: 0.9,
+                    dashArray: null
+                }
+            }
+        };
+
+        function normalizeHeaderText(text) {
+            return String(text ?? "")
+                .trim()
+                .toLowerCase()
+                .replace(/[\s_]+/g, "_");
+        }
+
+        const GATE_HISTORY_FIELD_ALIASES = {
+            Tanggal_Pelaksanaan: [
+                "Tanggal_Pelaksanaan",
+                "Tanggal",
+                "Tanggal Pelaksanaan"
+            ],
+            Tanggal_Label: ["Tanggal_Label", "Tanggal Label"],
+            Dari: ["Dari", "KM Dari", "KM_Dari", "KM Dari 200m"],
+            Sampai: ["Sampai", "KM Sampai", "KM_Sampai", "KM Sampai 200m"],
+            KM_Asli_Dari: [
+                "KM_Asli_Dari",
+                "KM Asli Dari",
+                "KM_Dari_Asli",
+                "KM Dari Asli"
+            ],
+            KM_Asli_Sampai: [
+                "KM_Asli_Sampai",
+                "KM Asli Sampai",
+                "KM_Sampai_Asli",
+                "KM Sampai Asli"
+            ],
+            Jalur: ["Jalur"],
+            Lajur: ["Lajur"],
+            Gerbang: ["Gerbang"],
+            Keterangan: ["Keterangan", "Pekerjaan"],
+            Kategori_Pekerjaan: [
+                "Kategori_Pekerjaan",
+                "Kategori Pekerjaan",
+                "Jenis_Pekerjaan",
+                "Jenis Pekerjaan"
+            ],
+            Sumber_Sheet: ["Sumber_Sheet", "Sumber Sheet"],
+            Sumber_Baris: ["Sumber_Baris", "Sumber Baris"],
+            Lokasi_Asli: ["Lokasi_Asli", "Lokasi Asli", "Lokasi_Titik"]
+        };
+
+        const WORK_CATEGORY_FIELD_ALIASES = [
+            "Kategori_Pekerjaan",
+            "Kategori Pekerjaan",
+            "Jenis_Pekerjaan",
+            "Jenis Pekerjaan",
+            "Tipe_Pekerjaan",
+            "Tipe Pekerjaan",
+            "Kelompok_Pekerjaan",
+            "Kelompok Pekerjaan"
+        ];
+
+        function findPropertyByAliases(properties, aliases) {
+            const rawKeys = Object.keys(properties || {});
+            const normalizedAliases = aliases.map(normalizeHeaderText);
+
+            const matchedKey = rawKeys.find(function(key) {
+                return normalizedAliases.includes(normalizeHeaderText(key));
+            });
+
+            return matchedKey ? properties[matchedKey] : null;
+        }
+
+        function workCategoryFromProperties(properties) {
+            const props = properties || {};
+            const explicitCategory = findPropertyByAliases(
+                props,
+                WORK_CATEGORY_FIELD_ALIASES
+            );
+            const explicitText = String(explicitCategory ?? "")
+                .trim()
+                .toLowerCase();
+
+            if (explicitText) {
+                if (/lain|other|non[\s_-]*sfo/.test(explicitText)) {
+                    return "other";
+                }
+
+                if (/sfo|scrap|filling|overlay/.test(explicitText)) {
+                    return "sfo";
+                }
+            }
+
+            const description = String(
+                findPropertyByAliases(props, ["Keterangan", "Pekerjaan"]) ?? ""
+            ).toLowerCase();
+
+            return /sfo|scrap|filling|overlay/.test(description)
+                ? "sfo"
+                : "other";
+        }
+
+        function workCategoryFeature(feature) {
+            return workCategoryFromProperties(feature?.properties || {});
+        }
+
+        function extractHistoryRecord(properties) {
+            const record = {};
+
+            Object.keys(GATE_HISTORY_FIELD_ALIASES).forEach(function(field) {
+                record[field] = findPropertyByAliases(
+                    properties,
+                    GATE_HISTORY_FIELD_ALIASES[field]
+                );
+            });
+
+            const punyaTanggal =
+                record.Tanggal_Pelaksanaan !== null &&
+                record.Tanggal_Pelaksanaan !== undefined &&
+                String(record.Tanggal_Pelaksanaan).trim() !== "";
+
+            return punyaTanggal ? record : null;
+        }
+
+        proj4.defs(
+            "EPSG:23836",
+            "+proj=tmerc +lat_0=0 +lon_0=112.5 +k=0.9999 " +
+            "+x_0=200000 +y_0=1500000 +ellps=WGS84 " +
+            "+towgs84=0,0,0,0,0,0,0 +units=m +no_defs +type=crs"
+        );
+
+        const basemapOSM = L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            { attribution: "© OpenStreetMap contributors" }
+        );
+
+        const basemapDark = L.tileLayer(
+            "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png",
+            { attribution: "© CARTO" }
+        );
+
+        const basemapSatelit = L.tileLayer(
+            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+            { attribution: "Tiles © Esri" }
+        );
+
+        const basemapTopo = L.tileLayer(
+            "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+            { attribution: "© OpenTopoMap" }
+        );
+
+        const map = L.map("map", {
+            center: [-7.34, 112.72],
+            zoom: 11,
+            layers: [basemapOSM],
+            preferCanvas: true
+        });
+
+        let allFeatures = [];
+        let displayedLayer = null;
+        let baseAlignmentLayer = null;
+        let gateLayer = null;
+        let gateMarkers = [];
+        let gateReferences = [];
+        let externalAlignments = {};
+
+        // Indeks interaksi antara daftar STA dan layer Leaflet.
+        let segmentLayerIndex = new Map();
+        let currentSegmentGroups = [];
+        let currentSegmentGroupMap = new Map();
+        let activeSegmentKey = null;
+        let activeSegmentTimer = null;
+
+        let datasetStats = {
+            total: 0,
+            originalGeometry: 0,
+            generatedGeometry: 0,
+            missingGeometry: 0
+        };
+
+        function aktifkanTabPanelPeta(panelName) {
+            const targetName = panelName === "segments"
+                ? "segments"
+                : "control";
+
+            document
+                .querySelectorAll(".map-panel-tab")
+                .forEach(function(button) {
+                    const aktif =
+                        button.dataset.mapPanel === targetName;
+
+                    button.classList.toggle("is-active", aktif);
+                    button.setAttribute(
+                        "aria-selected",
+                        aktif ? "true" : "false"
+                    );
+                });
+
+            document
+                .querySelectorAll(".map-panel-view")
+                .forEach(function(panel) {
+                    const aktif =
+                        panel.id === "map-panel-" + targetName;
+
+                    panel.classList.toggle("is-active", aktif);
+                    panel.hidden = !aktif;
+                });
+        }
+
+        function opsiFitPeta(maxZoom) {
+            const panel = document.querySelector(".map-side-panels");
+            const panelLebar =
+                panel && window.innerWidth > 760
+                    ? panel.offsetWidth + 45
+                    : 35;
+
+            return {
+                paddingTopLeft: [35, 35],
+                paddingBottomRight: [panelLebar, 35],
+                maxZoom: maxZoom
+            };
+        }
+
+        function gantiBasemap(jenis, tombolElemen) {
+            [basemapOSM, basemapDark, basemapSatelit, basemapTopo]
+                .forEach(function(layer) {
+                    if (map.hasLayer(layer)) {
+                        map.removeLayer(layer);
+                    }
+                });
+
+            const basemap = {
+                osm: basemapOSM,
+                dark: basemapDark,
+                satelit: basemapSatelit,
+                topo: basemapTopo
+            }[jenis];
+
+            if (basemap) {
+                map.addLayer(basemap);
+            }
+
+            document
+                .querySelectorAll(".basemap-item")
+                .forEach(function(button) {
+                    button.classList.remove("active");
+                });
+
+            if (tombolElemen) {
+                tombolElemen.classList.add("active");
+            }
+        }
+
+        /*Nilai Dari/Sampai adalah chainage dalam meter.
+         * 15200  -> 15+200
+         * 745200 -> 745+200*/
+        function parseSTAMeter(value) {
+            if (value === null || value === undefined) return null;
+
+            if (typeof value === "number") {
+                return Number.isFinite(value) && value >= 0 ? value : null;
+            }
+
+            const text = String(value).trim().replace(/\s+/g, "");
+            if (!text) return null;
+
+            const staMatch = text.match(/^(\d+)\+(\d{1,3})$/);
+            if (staMatch) {
+                const km = Number(staMatch[1]);
+                const meter = Number(staMatch[2]);
+
+                if (meter >= 1000) return null;
+                return km * 1000 + meter;
+            }
+
+            const numeric = Number(text);
+            return Number.isFinite(numeric) && numeric >= 0
+                ? numeric
+                : null;
+        }
+
+        function formatSTA(value) {
+            const nilai = parseSTAMeter(value);
+
+            if (nilai === null) {
+                return "Tanggal Tidak Ditemukan";
+            }
+
+            const meterBulat = Math.round(nilai);
+            const km = Math.floor(meterBulat / 1000);
+            const sisaMeter = meterBulat % 1000;
+
+            return (
+                String(km).padStart(2, "0") +
+                "+" +
+                String(sisaMeter).padStart(3, "0")
+            );
+        }
+
+        function formatRentangSTA(dari, sampai) {
+            return formatSTA(dari) + " - " + formatSTA(sampai);
+        }
+
+        function escapeHTML(value) {
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+        function nilaiAtauFallback(value, fallback) {
+            if (value === null || value === undefined) {
+                return fallback;
+            }
+
+            const teks = String(value).trim();
+            return teks ? teks : fallback;
+        }
+
+        function normalizeLaneNumber(value) {
+            if (value === null || value === undefined) return null;
+
+            if (typeof value === "number") {
+                return [1, 2, 3].includes(value) ? value : null;
+            }
+
+            const text = String(value)
+                .trim()
+                .toUpperCase()
+                .replace(/\s+/g, " ");
+
+            if (!text) return null;
+
+            const compact = text.replace(/[\s_-]+/g, "");
+            const match = compact.match(/^(?:L|LAJUR|LANE)?([123])$/);
+
+            return match ? Number(match[1]) : null;
+        }
+
+        function laneLabel(value) {
+            const laneNumber = normalizeLaneNumber(value);
+            return laneNumber ? "L" + laneNumber : nilaiAtauFallback(value, "-");
+        }
+
+        function laneKey(value) {
+            const laneNumber = normalizeLaneNumber(value);
+
+            if (laneNumber) return "L" + laneNumber;
+
+            return String(value ?? "-")
+                .trim()
+                .toUpperCase() || "-";
+        }
+
+        function laneOffsetMeters(properties) {
+            const props = properties || {};
+            const direction = infoArahJalur(props);
+            const laneNumber = normalizeLaneNumber(props.Lajur);
+
+            if (!direction.route || !laneNumber) return 0;
+
+            const routeOffsets =
+                ROUTE_LANE_VISUAL_OFFSET[direction.route] || null;
+            const visualFactor = routeOffsets
+                ? routeOffsets[laneNumber]
+                : null;
+
+            if (visualFactor === null || visualFactor === undefined) {
+                return 0;
+            }
+
+            return visualFactor * LANE_WIDTH_METERS;
+        }
+
+        function kategoriJalur(value) {
+            const jalur = String(value ?? "").trim().toUpperCase();
+
+            if (jalur === "A") return "A";
+            if (jalur === "B") return "B";
+            if (jalur === "KIRI") return "KIRI";
+            if (jalur === "KANAN") return "KANAN";
+
+            return jalur ? "Ramp / Interchange" : "Tidak diketahui";
+        }
+
+
+        function infoArahJalur(properties) {
+            const props = properties || {};
+            const route = String(props.rute ?? "").trim();
+            const jalur = String(props.Jalur ?? "").trim().toUpperCase();
+
+            if (route === "surgem_A" || jalur === "A") {
+                return {
+                    route: "surgem_A",
+                    jalur: "A",
+                    label: "Jalur A · Perak → Gempol"
+                };
+            }
+
+            if (route === "surgem_B" || jalur === "B") {
+                return {
+                    route: "surgem_B",
+                    jalur: "B",
+                    label: "Jalur B · Gempol → Perak"
+                };
+            }
+
+            return {
+                route: null,
+                jalur: jalur || "-",
+                label: kategoriJalur(props.Jalur)
+            };
+        }
+
+        function parseTanggalPelaksanaan(value) {
+            if (value === null || value === undefined) {
+                return {
+                    valid: false,
+                    kind: "missing",
+                    date: null,
+                    raw: null,
+                    display: "Tanggal Tidak Ditemukan"
+                };
+            }
+
+            const raw = String(value).trim();
+
+            if (!raw) {
+                return {
+                    valid: false,
+                    kind: "missing",
+                    date: null,
+                    raw: raw,
+                    display: "Tanggal Tidak Dittemukan"
+                };
+            }
+
+            /*
+             * Karena kurangnya informasi, maka pada tahun:
+             * - 2023 dianggap 2023-06-30
+             * - 2025 dianggap 2025-06-30
+             * - 2026 dianggap 2026-01-01*/
+            const asumsiTanggalPerTahun = {
+                "2023": { year: 2023, month: 6, day: 30 },
+                "2025": { year: 2025, month: 6, day: 30 },
+                "2026": { year: 2026, month: 1, day: 1 }
+            };
+
+            if (/^\d{4}$/.test(raw)) {
+                const asumsi = asumsiTanggalPerTahun[raw];
+
+                if (!asumsi) {
+                    return {
+                        valid: false,
+                        kind: "year-only-unsupported",
+                        date: null,
+                        raw: raw,
+                        display: raw + " (tanggal belum ditentukan)"
+                    };
+                }
+
+                const assumedDate = new Date(
+                    asumsi.year,
+                    asumsi.month - 1,
+                    asumsi.day
+                );
+
+                return {
+                    valid: true,
+                    kind: "year-assumption",
+                    assumed: true,
+                    date: assumedDate,
+                    raw: raw,
+                    display: assumedDate.toLocaleDateString("id-ID", {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric"
+                    }) + " (asumsi dari data tahun " + raw + ")"
+                };
+            }
+
+            const match = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+
+            if (!match) {
+                return {
+                    valid: false,
+                    kind: "invalid",
+                    date: null,
+                    raw: raw,
+                    display: raw + " (format tidak valid)"
+                };
+            }
+
+            const year = Number(match[1]);
+            const month = Number(match[2]);
+            const day = Number(match[3]);
+            const date = new Date(year, month - 1, day);
+
+            const valid =
+                date.getFullYear() === year &&
+                date.getMonth() === month - 1 &&
+                date.getDate() === day;
+
+            if (!valid) {
+                return {
+                    valid: false,
+                    kind: "invalid",
+                    date: null,
+                    raw: raw,
+                    display: raw + " (tanggal tidak valid)"
+                };
+            }
+
+            return {
+                valid: true,
+                kind: "full-date",
+                assumed: false,
+                date: date,
+                raw: raw,
+                display: date.toLocaleDateString("id-ID", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                })
+            };
+        }
+
+        function hitungSelisihBulan(value) {
+            const parsed = parseTanggalPelaksanaan(value);
+
+            if (!parsed.valid) {
+                return {
+                    valid: false,
+                    months: null,
+                    parsed: parsed
+                };
+            }
+
+            const sekarang = new Date();
+            let bulan =
+                (sekarang.getFullYear() - parsed.date.getFullYear()) * 12 +
+                (sekarang.getMonth() - parsed.date.getMonth());
+
+            if (sekarang.getDate() < parsed.date.getDate()) {
+                bulan -= 1;
+            }
+
+            return {
+                valid: true,
+                months: Math.max(0, bulan),
+                parsed: parsed
+            };
+        }
+
+        function statusFeature(feature) {
+            const hasilTanggal = hitungSelisihBulan(
+                feature.properties?.Tanggal_Pelaksanaan
+            );
+
+            if (!hasilTanggal.valid) {
+                return {
+                    key: "unknown",
+                    months: null,
+                    parsed: hasilTanggal.parsed
+                };
+            }
+
+            if (hasilTanggal.months >= 28) {
+                return {
+                    key: "critical",
+                    months: hasilTanggal.months,
+                    parsed: hasilTanggal.parsed
+                };
+            }
+
+            if (hasilTanggal.months >= 16) {
+                return {
+                    key: "warning",
+                    months: hasilTanggal.months,
+                    parsed: hasilTanggal.parsed
+                };
+            }
+
+            return {
+                key: "safe",
+                months: hasilTanggal.months,
+                parsed: hasilTanggal.parsed
+            };
+        }
+
+        function getSelectedWorkFilter() {
+            return document.getElementById("filter-pekerjaan")?.value || "all";
+        }
+
+        function getSelectedStatusFilter() {
+            return document.getElementById("filter-status")?.value || "all";
+        }
+
+        function statusUntukFeaturePeta(feature) {
+            const props = feature?.properties || {};
+            const key = props.__segment_status_key;
+
+            if (key && STATUS_CONFIG[key]) {
+                return {
+                    key: key,
+                    months: Number.isFinite(Number(props.__segment_status_months))
+                        ? Number(props.__segment_status_months)
+                        : null,
+                    parsed: {
+                        valid: key !== "no-history" && key !== "unknown",
+                        date: null,
+                        display: props.__segment_status_display ||
+                            STATUS_PANEL_LABELS[key]
+                    }
+                };
+            }
+
+            return statusFeature(feature);
+        }
+
+        function gayaJalanTol(feature) {
+            const status = statusUntukFeaturePeta(feature);
+            const selectedWork = getSelectedWorkFilter();
+            const selectedStatus = getSelectedStatusFilter();
+            const zoom = typeof map !== "undefined" ? map.getZoom() : 11;
+            const laneWeight = zoom >= 18
+                ? 5
+                : zoom >= 16
+                    ? 4
+                    : 3;
+
+            if (selectedWork === "other") {
+                return {
+                    color: OTHER_WORK_COLOR,
+                    weight: laneWeight,
+                    opacity: 0.9,
+                    dashArray: null,
+                    lineCap: "round",
+                    lineJoin: "round"
+                };
+            }
+
+            /*
+             * Saat satu status dipilih, segmen lain tetap ditampilkan sebagai
+             * konteks, tetapi dibuat abu-abu muda. Rute/lajur yang tidak dipilih
+             * tetap tidak ikut dimasukkan ke layer sama sekali.
+             */
+            if (selectedStatus !== "all" && status.key !== selectedStatus) {
+                return {
+                    color: INACTIVE_STATUS_COLOR,
+                    weight: laneWeight,
+                    opacity: 0.78,
+                    dashArray: null,
+                    lineCap: "round",
+                    lineJoin: "round"
+                };
+            }
+
+            return {
+                ...STATUS_CONFIG[status.key].style,
+                weight: laneWeight,
+                lineCap: "round",
+                lineJoin: "round"
+            };
+        }
+
+        function gayaLajurTanpaHistori() {
+            const zoom = typeof map !== "undefined" ? map.getZoom() : 11;
+            const laneWeight = zoom >= 18
+                ? 4
+                : zoom >= 16
+                    ? 3
+                    : 2;
+            const statusFilter = getSelectedStatusFilter();
+            const workFilter = getSelectedWorkFilter();
+            const useContextColor =
+                workFilter !== "all" || statusFilter !== "all";
+
+            return {
+                color: useContextColor
+                    ? INACTIVE_STATUS_COLOR
+                    : NO_HISTORY_COLOR,
+                weight: laneWeight,
+                opacity: useContextColor ? 0.58 : 0.9,
+                lineCap: "round",
+                lineJoin: "round"
+            };
+        }
+
+        function coordinateLooksGeographic(coordinate) {
+            return (
+                Array.isArray(coordinate) &&
+                Number.isFinite(Number(coordinate[0])) &&
+                Number.isFinite(Number(coordinate[1])) &&
+                Math.abs(Number(coordinate[0])) <= 180 &&
+                Math.abs(Number(coordinate[1])) <= 90
+            );
+        }
+
+        function transformCoordinate(coordinate) {
+            if (coordinateLooksGeographic(coordinate)) {
+                return [Number(coordinate[0]), Number(coordinate[1])];
+            }
+
+            return proj4(
+                "EPSG:23836",
+                "EPSG:4326",
+                [Number(coordinate[0]), Number(coordinate[1])]
+            );
+        }
+
+        function transformGeometryToWGS84(geometry) {
+            if (!geometry || !Array.isArray(geometry.coordinates)) {
+                return null;
+            }
+
+            if (geometry.type === "LineString") {
+                if (geometry.coordinates.length < 2) return null;
+
+                return {
+                    type: "LineString",
+                    coordinates: geometry.coordinates.map(transformCoordinate)
+                };
+            }
+
+            if (geometry.type === "MultiLineString") {
+                const lines = geometry.coordinates
+                    .filter(function(line) {
+                        return Array.isArray(line) && line.length >= 2;
+                    })
+                    .map(function(line) {
+                        return line.map(transformCoordinate);
+                    });
+
+                if (!lines.length) return null;
+
+                return {
+                    type: "MultiLineString",
+                    coordinates: lines
+                };
+            }
+
+            return null;
+        }
+
+        function extractFirstLineFeature(geojson) {
+            if (!geojson) return null;
+
+            if (geojson.type === "Feature" &&
+                geojson.geometry &&
+                ["LineString", "MultiLineString"].includes(
+                    geojson.geometry.type
+                )) {
+                const geometry = transformGeometryToWGS84(geojson.geometry);
+
+                if (!geometry) return null;
+
+                if (geometry.type === "MultiLineString") {
+                    const longest = geometry.coordinates
+                        .map(function(coords) {
+                            return turf.lineString(coords);
+                        })
+                        .sort(function(a, b) {
+                            return turf.length(b) - turf.length(a);
+                        })[0];
+
+                    return longest || null;
+                }
+
+                return turf.feature(geometry);
+            }
+
+            if (geojson.type === "FeatureCollection") {
+                const candidates = geojson.features
+                    .map(extractFirstLineFeature)
+                    .filter(Boolean);
+
+                candidates.sort(function(a, b) {
+                    return turf.length(b) - turf.length(a);
+                });
+
+                return candidates[0] || null;
+            }
+
+            return null;
+        }
+
+        async function loadOptionalAlignment(route) {
+            if (!TRY_EXTERNAL_ALIGNMENTS) return null;
+
+            const url = ALIGNMENT_FILES[route];
+
+            try {
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    return null;
+                }
+
+                return extractFirstLineFeature(await response.json());
+            } catch (error) {
+                return null;
+            }
+        }
+
+        async function loadExternalAlignments() {
+            const results = await Promise.all([
+                loadOptionalAlignment("surgem_A"),
+                loadOptionalAlignment("surgem_B")
+            ]);
+
+            externalAlignments = {
+                surgem_A: results[0],
+                surgem_B: results[1]
+            };
+        }
+
+        function staToLogicalDistance(sta, route) {
+            const nilai = parseSTAMeter(sta);
+            const config = ALIGNMENT_CHAINAGE[route];
+
+            if (nilai === null || !config) return null;
+
+            if (nilai >= config.localMin && nilai <= config.localMax) {
+                return nilai - config.localMin;
+            }
+
+            if (nilai >= config.highMin && nilai <= config.highMax) {
+                return config.highOffset + (nilai - config.highMin);
+            }
+
+            return null;
+        }
+
+        function getLogicalRouteLength(route) {
+            const config = ALIGNMENT_CHAINAGE[route];
+
+            if (!config) return null;
+
+            return (
+                config.highOffset +
+                (config.highMax - config.highMin)
+            );
+        }
+
+        function generateGeometryFromAlignment(feature) {
+            const props = feature.properties || {};
+            const route = props.rute;
+            const alignment = externalAlignments[route];
+
+            if (!alignment) return null;
+
+            const startLogicalMeters =
+                staToLogicalDistance(props.Dari, route);
+            const endLogicalMeters =
+                staToLogicalDistance(props.Sampai, route);
+            const logicalRouteLengthMeters =
+                getLogicalRouteLength(route);
+
+            if (
+                !Number.isFinite(startLogicalMeters) ||
+                !Number.isFinite(endLogicalMeters) ||
+                !Number.isFinite(logicalRouteLengthMeters) ||
+                logicalRouteLengthMeters <= 0 ||
+                startLogicalMeters === endLogicalMeters
+            ) {
+                return null;
+            }
+
+            const alignmentLengthKm = turf.length(alignment, {
+                units: "kilometers"
+            });
+
+            const scale =
+                (alignmentLengthKm * 1000) /
+                logicalRouteLengthMeters;
+
+            const fromKm =
+                Math.min(startLogicalMeters, endLogicalMeters) *
+                scale / 1000;
+            const toKm =
+                Math.max(startLogicalMeters, endLogicalMeters) *
+                scale / 1000;
+
+            if (
+                fromKm < 0 ||
+                toKm > alignmentLengthKm + 0.000001 ||
+                fromKm >= toKm
+            ) {
+                return null;
+            }
+
+            try {
+                return turf.lineSliceAlong(
+                    alignment,
+                    fromKm,
+                    Math.min(toKm, alignmentLengthKm),
+                    { units: "kilometers" }
+                ).geometry;
+            } catch (error) {
+                console.warn(
+                    "Gagal membentuk geometry",
+                    props.OBJECTID,
+                    error
+                );
+                return null;
+            }
+        }
+
+        function orientLineCoordinatesLikeAlignment(coordinates, route) {
+            if (!Array.isArray(coordinates) || coordinates.length < 2) {
+                return coordinates;
+            }
+
+            const alignment = externalAlignments[route];
+
+            if (!alignment) return coordinates;
+
+            try {
+                const first = turf.nearestPointOnLine(
+                    alignment,
+                    turf.point(coordinates[0]),
+                    { units: "kilometers" }
+                );
+                const last = turf.nearestPointOnLine(
+                    alignment,
+                    turf.point(coordinates[coordinates.length - 1]),
+                    { units: "kilometers" }
+                );
+                const firstLocation = Number(first.properties?.location);
+                const lastLocation = Number(last.properties?.location);
+
+                if (
+                    Number.isFinite(firstLocation) &&
+                    Number.isFinite(lastLocation) &&
+                    firstLocation > lastLocation
+                ) {
+                    return coordinates.slice().reverse();
+                }
+            } catch (error) {
+                console.warn("Gagal menyamakan arah geometry lajur", error);
+            }
+
+            return coordinates;
+        }
+
+        function orientGeometryLikeAlignment(geometry, route) {
+            if (!geometry || !route) return geometry;
+
+            if (geometry.type === "LineString") {
+                return {
+                    type: "LineString",
+                    coordinates: orientLineCoordinatesLikeAlignment(
+                        geometry.coordinates,
+                        route
+                    )
+                };
+            }
+
+            if (geometry.type === "MultiLineString") {
+                return {
+                    type: "MultiLineString",
+                    coordinates: geometry.coordinates.map(function(line) {
+                        return orientLineCoordinatesLikeAlignment(line, route);
+                    })
+                };
+            }
+
+            return geometry;
+        }
+
+        function applyLaneOffsetToGeometry(geometry, properties) {
+            if (!geometry) return geometry;
+
+            const props = properties || {};
+            const direction = infoArahJalur(props);
+            const laneNumber = normalizeLaneNumber(props.Lajur);
+            const offsetMeters = laneOffsetMeters(props);
+
+            props.__lane_number = laneNumber;
+            props.__lane_offset_m = offsetMeters;
+
+            if (!direction.route || !laneNumber) {
+                props.__lane_geometry = "Geometry asli (bukan L1-L3 ruas utama)";
+                return geometry;
+            }
+
+            const orientedGeometry = orientGeometryLikeAlignment(
+                geometry,
+                direction.route
+            );
+
+            if (offsetMeters === 0) {
+                props.__lane_geometry = "L2 · garis tengah";
+                return orientedGeometry;
+            }
+
+            try {
+                const offsetFeature = turf.lineOffset(
+                    turf.feature(orientedGeometry),
+                    offsetMeters,
+                    { units: "meters" }
+                );
+
+                props.__lane_geometry =
+                    "L" + laneNumber + " · offset total " +
+                    Math.abs(offsetMeters).toFixed(1).replace(".", ",") +
+                    " m";
+
+                return offsetFeature.geometry;
+            } catch (error) {
+                console.warn(
+                    "Gagal membuat offset lajur",
+                    props.OBJECTID,
+                    error
+                );
+                props.__lane_geometry = "Offset gagal · geometry asli";
+                return orientedGeometry;
+            }
+        }
+
+        function prepareFeatures(sourceGeoJSON) {
+            datasetStats = {
+                total: sourceGeoJSON.features.length,
+                originalGeometry: 0,
+                generatedGeometry: 0,
+                missingGeometry: 0
+            };
+
+            return sourceGeoJSON.features.map(function(sourceFeature) {
+                const props = {
+                    ...(sourceFeature.properties || {})
+                };
+
+                const feature = {
+                    type: "Feature",
+                    id: sourceFeature.id,
+                    properties: props,
+                    geometry: null
+                };
+
+                /* PRIORITAS 1: geometry asli dari GeoJSON rekap.
+                 * Alignment hanya dipakai jika geometry rekap kosong.*/
+                const originalGeometry =
+                    transformGeometryToWGS84(sourceFeature.geometry);
+
+                if (originalGeometry) {
+                    feature.geometry = applyLaneOffsetToGeometry(
+                        originalGeometry,
+                        feature.properties
+                    );
+                    feature.properties.__geometry_source =
+                        "GeoJSON rekap · " +
+                        feature.properties.__lane_geometry;
+                    datasetStats.originalGeometry += 1;
+                    return feature;
+                }
+
+                /* PRIORITAS 2: fallback ke alignment untuk rute utama A/B. */
+                const route = props.rute;
+                const mainlineRoute =
+                    route === "surgem_A" || route === "surgem_B";
+
+                if (mainlineRoute && externalAlignments[route]) {
+                    const generatedGeometry =
+                        generateGeometryFromAlignment(sourceFeature);
+
+                    if (generatedGeometry) {
+                        feature.geometry = applyLaneOffsetToGeometry(
+                            generatedGeometry,
+                            feature.properties
+                        );
+                        feature.properties.__geometry_source =
+                            "Alignment fallback · " +
+                            feature.properties.__lane_geometry;
+                        datasetStats.generatedGeometry += 1;
+                        return feature;
+                    }
+                }
+
+                /* PRIORITAS 3: geometry tidak tersedia. */
+                feature.properties.__lane_number =
+                    normalizeLaneNumber(feature.properties.Lajur);
+                feature.properties.__lane_offset_m =
+                    laneOffsetMeters(feature.properties);
+                feature.properties.__lane_geometry =
+                    "Geometry tidak tersedia";
+                feature.properties.__geometry_source =
+                    "Tidak tersedia";
+                datasetStats.missingGeometry += 1;
+
+                return feature;
+            });
+        }
+
+        function matchesRouteFilter(feature, filterValue) {
+            const route = feature.properties?.rute;
+            const jalur = String(feature.properties?.Jalur ?? "")
+                .trim()
+                .toUpperCase();
+
+            if (filterValue === "all") return true;
+
+            if (filterValue === "other") {
+                return (
+                    route !== "surgem_A" &&
+                    route !== "surgem_B" &&
+                    jalur !== "A" &&
+                    jalur !== "B"
+                );
+            }
+
+            if (filterValue === "surgem_A") {
+                return route === "surgem_A" || (!route && jalur === "A");
+            }
+
+            if (filterValue === "surgem_B") {
+                return route === "surgem_B" || (!route && jalur === "B");
+            }
+
+            return route === filterValue;
+        }
+
+        function matchesLaneFilter(feature, filterValue) {
+            if (filterValue === "all") return true;
+
+            const laneNumber = normalizeLaneNumber(
+                feature.properties?.Lajur
+            );
+
+            if (filterValue === "other") {
+                return laneNumber === null;
+            }
+
+            return laneNumber === Number(filterValue);
+        }
+
+        /*
+         * Kompatibilitas untuk pemanggil lama: hasil filter selalu berupa
+         * satu feature terbaru per segmen, bukan seluruh baris histori.
+         */
+        function getFilteredFeatures() {
+            return getFilteredSegmentGroups().map(function(group) {
+                return group.representativeFeature;
+            });
+        }
+
+        const STATUS_PANEL_LABELS = {
+            critical: "Perlu perbaikan",
+            warning: "Perlu perhatian",
+            safe: "Aman",
+            unknown: "Tanggal Tidak Ditemukan",
+            "no-history": "Belum ada histori SFO"
+        };
+
+        function getSegmentKey(feature) {
+            const props = feature.properties || {};
+            const direction = infoArahJalur(props);
+            const route = direction.route ||
+                String(props.rute || kategoriJalur(props.Jalur));
+            const dari = parseSTAMeter(props.Dari);
+            const sampai = parseSTAMeter(props.Sampai);
+
+            if (dari === null || sampai === null) {
+                const fallbackId =
+                    feature.id ??
+                    props.OBJECTID ??
+                    [
+                        route,
+                        props.Jalur,
+                        props.Lajur,
+                        props.Tanggal_Pelaksanaan,
+                        props.Keterangan
+                    ].join("|");
+                return "record|" + String(fallbackId);
+            }
+
+            return [
+                route,
+                laneKey(props.Lajur),
+                Math.min(dari, sampai),
+                Math.max(dari, sampai)
+            ].join("|");
+        }
+
+        function featureDateTimestamp(feature) {
+            const parsed = parseTanggalPelaksanaan(
+                feature.properties?.Tanggal_Pelaksanaan
+            );
+
+            return parsed.valid
+                ? parsed.date.getTime()
+                : Number.NEGATIVE_INFINITY;
+        }
+
+        function compareFeatureRecency(a, b) {
+            const dateDifference =
+                featureDateTimestamp(b) - featureDateTimestamp(a);
+
+            if (dateDifference !== 0) {
+                return dateDifference;
+            }
+
+            const objectA = Number(a.properties?.OBJECTID ?? 0);
+            const objectB = Number(b.properties?.OBJECTID ?? 0);
+            return objectB - objectA;
+        }
+
+        function statusTanpaHistoriSFO() {
+            return {
+                key: "no-history",
+                months: null,
+                parsed: {
+                    valid: false,
+                    kind: "no-history",
+                    date: null,
+                    raw: null,
+                    display: "Belum ada histori SFO"
+                }
+            };
+        }
+
+        function buildSegmentGroups(features) {
+            const grouped = new Map();
+
+            features.forEach(function(feature) {
+                const key = getSegmentKey(feature);
+
+                if (!grouped.has(key)) {
+                    grouped.set(key, {
+                        key: key,
+                        features: []
+                    });
+                }
+
+                grouped.get(key).features.push(feature);
+            });
+
+            return Array.from(grouped.values())
+                .map(function(group) {
+                    const allHistories = group.features
+                        .slice()
+                        .sort(compareFeatureRecency);
+                    const sfoHistories = allHistories
+                        .filter(function(feature) {
+                            return workCategoryFeature(feature) === "sfo";
+                        });
+                    const otherHistories = allHistories
+                        .filter(function(feature) {
+                            return workCategoryFeature(feature) === "other";
+                        });
+                    const latestSfoFeature = sfoHistories[0] || null;
+                    const latestFeature =
+                        latestSfoFeature || otherHistories[0] || allHistories[0];
+                    const geometryCarrier =
+                        allHistories.find(function(feature) {
+                            return Boolean(feature.geometry);
+                        }) || latestFeature;
+                    const latestProps = {
+                        ...(latestFeature?.properties || {})
+                    };
+                    const status = latestSfoFeature
+                        ? statusFeature(latestSfoFeature)
+                        : statusTanpaHistoriSFO();
+
+                    latestProps.__segment_key = group.key;
+                    latestProps.__history_count = allHistories.length;
+                    latestProps.__sfo_history_count = sfoHistories.length;
+                    latestProps.__other_history_count = otherHistories.length;
+                    latestProps.__segment_status_key = status.key;
+                    latestProps.__segment_status_months = status.months;
+                    latestProps.__segment_status_display =
+                        status.parsed.display;
+
+                    if (geometryCarrier && geometryCarrier.properties) {
+                        latestProps.__geometry_source =
+                            geometryCarrier.properties.__geometry_source;
+                        latestProps.__lane_geometry =
+                            geometryCarrier.properties.__lane_geometry;
+                        latestProps.__lane_offset_m =
+                            geometryCarrier.properties.__lane_offset_m;
+                        latestProps.__lane_number =
+                            geometryCarrier.properties.__lane_number;
+                    }
+
+                    const representativeFeature = {
+                        type: "Feature",
+                        id: latestFeature?.id,
+                        properties: latestProps,
+                        geometry: geometryCarrier?.geometry || null
+                    };
+
+                    const direction = infoArahJalur(latestProps);
+                    const start = parseSTAMeter(latestProps.Dari);
+                    const end = parseSTAMeter(latestProps.Sampai);
+                    const logicalStart = direction.route
+                        ? staToLogicalDistance(start, direction.route)
+                        : start;
+                    const workDescriptions = allHistories.map(function(item) {
+                        return item.properties?.Keterangan || "";
+                    });
+
+                    return {
+                        key: group.key,
+                        route: direction.route,
+                        routeLabel: direction.label,
+                        start: start,
+                        end: end,
+                        logicalStart: Number.isFinite(logicalStart)
+                            ? logicalStart
+                            : Number.POSITIVE_INFINITY,
+                        histories: sfoHistories,
+                        sfoHistories: sfoHistories,
+                        otherHistories: otherHistories,
+                        allHistories: allHistories,
+                        totalHistoryCount: allHistories.length,
+                        latestFeature: latestFeature,
+                        latestSfoFeature: latestSfoFeature,
+                        representativeFeature: representativeFeature,
+                        status: status,
+                        laneNumber: normalizeLaneNumber(latestProps.Lajur),
+                        laneLabel: laneLabel(latestProps.Lajur),
+                        hasGeometry: Boolean(representativeFeature.geometry),
+                        searchText: [
+                            formatSTA(start),
+                            formatSTA(end),
+                            formatRentangSTA(start, end),
+                            direction.label,
+                            laneLabel(latestProps.Lajur),
+                            "lajur " + laneLabel(latestProps.Lajur),
+                            STATUS_PANEL_LABELS[status.key],
+                            workDescriptions.join(" ")
+                        ].join(" ").toLowerCase()
+                    };
+                })
+                .sort(function(a, b) {
+                    const routeOrder = {
+                        surgem_A: 0,
+                        surgem_B: 1
+                    };
+                    const routeA = routeOrder[a.route] ?? 2;
+                    const routeB = routeOrder[b.route] ?? 2;
+
+                    if (routeA !== routeB) {
+                        return routeA - routeB;
+                    }
+
+                    if (a.logicalStart !== b.logicalStart) {
+                        return a.logicalStart - b.logicalStart;
+                    }
+
+                    const laneA = a.laneNumber ?? 99;
+                    const laneB = b.laneNumber ?? 99;
+
+                    if (laneA !== laneB) {
+                        return laneA - laneB;
+                    }
+
+                    return (a.end ?? 0) - (b.end ?? 0);
+                });
+        }
+
+        function filterGroupsBySelectedWork(groups) {
+            const workFilter = getSelectedWorkFilter();
+
+            if (workFilter === "all") {
+                return groups;
+            }
+
+            return groups.filter(function(group) {
+                if (workFilter === "sfo") {
+                    return group.sfoHistories.length > 0;
+                }
+
+                if (workFilter === "other") {
+                    return group.otherHistories.length > 0;
+                }
+
+                return true;
+            });
+        }
+
+        function getRouteLaneSegmentGroups() {
+            const routeFilter =
+                document.getElementById("filter-rute").value;
+            const laneFilter =
+                document.getElementById("filter-lajur").value;
+
+            const routeLaneFiltered = allFeatures.filter(function(feature) {
+                return (
+                    matchesRouteFilter(feature, routeFilter) &&
+                    matchesLaneFilter(feature, laneFilter)
+                );
+            });
+
+            return filterGroupsBySelectedWork(
+                buildSegmentGroups(routeLaneFiltered)
+            );
+        }
+
+        function filterGroupsBySelectedStatus(groups) {
+            const statusFilter = getSelectedStatusFilter();
+            const workFilter = getSelectedWorkFilter();
+
+            if (workFilter === "other" || statusFilter === "all") {
+                return groups;
+            }
+
+            return groups.filter(function(group) {
+                return group.status.key === statusFilter;
+            });
+        }
+
+        function getFilteredSegmentGroups() {
+            return filterGroupsBySelectedStatus(
+                getRouteLaneSegmentGroups()
+            );
+        }
+
+        function renderSegmentPanel(groups) {
+            currentSegmentGroups = groups;
+
+            const list = document.getElementById("segment-list");
+            const count = document.getElementById("segment-panel-count");
+            const searchInput = document.getElementById("segment-search");
+            const query = String(searchInput?.value || "")
+                .trim()
+                .toLowerCase();
+            const visibleGroups = query
+                ? groups.filter(function(group) {
+                    return group.searchText.includes(query);
+                })
+                : groups;
+
+            count.textContent = query
+                ? visibleGroups.length + "/" + groups.length
+                : String(groups.length);
+
+            if (!visibleGroups.length) {
+                list.innerHTML =
+                    '<div class="segment-list-empty">' +
+                    "Tidak ada segmen yang cocok dengan filter atau pencarian." +
+                    "</div>";
+                return;
+            }
+
+            list.innerHTML = visibleGroups
+                .map(function(group) {
+                    const props =
+                        group.representativeFeature.properties || {};
+                    const routeBadge = group.route === "surgem_A"
+                        ? "A"
+                        : group.route === "surgem_B"
+                            ? "B"
+                            : "R";
+                    const workFilter = getSelectedWorkFilter();
+                    const showingOther = workFilter === "other";
+                    const statusColor = showingOther
+                        ? OTHER_WORK_COLOR
+                        : STATUS_CONFIG[group.status.key].color;
+                    const statusLabel = showingOther
+                        ? "Pekerjaan lainnya"
+                        : STATUS_PANEL_LABELS[group.status.key];
+                    const historyCount = showingOther
+                        ? group.otherHistories.length
+                        : workFilter === "sfo"
+                            ? group.sfoHistories.length
+                            : group.totalHistoryCount;
+                    const disabled = group.hasGeometry ? "" : " disabled";
+                    const disabledClass = group.hasGeometry
+                        ? ""
+                        : " no-geometry";
+                    const activeClass = group.key === activeSegmentKey
+                        ? " active"
+                        : "";
+                    const title = group.hasGeometry
+                        ? "Klik untuk menuju segmen dan membuka popup"
+                        : "Geometry segmen belum tersedia";
+
+                    return `
+                        <button
+                            type="button"
+                            class="segment-row${disabledClass}${activeClass}"
+                            data-segment-key="${escapeHTML(group.key)}"
+                            title="${escapeHTML(title)}"
+                            ${disabled}
+                        >
+                            <span class="segment-sta-cell">
+                                <span
+                                    class="segment-status-dot"
+                                    style="--segment-color:${statusColor}"
+                                    aria-hidden="true"
+                                ></span>
+                                <span class="segment-sta-copy">
+                                    <strong>${escapeHTML(
+                                        formatRentangSTA(
+                                            props.Dari,
+                                            props.Sampai
+                                        )
+                                    )}</strong>
+                                    <small>
+                                        Jalur ${routeBadge}
+                                        <span class="segment-lane-badge">${escapeHTML(
+                                            laneLabel(props.Lajur)
+                                        )}</span>
+                                    </small>
+                                </span>
+                            </span>
+                            <span class="segment-status-text">
+                                ${escapeHTML(statusLabel)}
+                            </span>
+                            <span class="segment-history-count">
+                                ${historyCount}
+                            </span>
+                        </button>
+                    `;
+                })
+                .join("");
+        }
+
+        function focusSegment(segmentKey) {
+            const group = currentSegmentGroupMap.get(segmentKey);
+            const layer = segmentLayerIndex.get(segmentKey);
+
+            if (!group || !layer || !group.hasGeometry) {
+                return;
+            }
+
+            activeSegmentKey = segmentKey;
+
+            document
+                .querySelectorAll(".segment-row")
+                .forEach(function(row) {
+                    row.classList.toggle(
+                        "active",
+                        row.dataset.segmentKey === segmentKey
+                    );
+                });
+
+            if (typeof layer.getBounds === "function") {
+                const bounds = layer.getBounds();
+
+                if (bounds && bounds.isValid()) {
+                    map.fitBounds(
+                        bounds,
+                        opsiFitPeta(17)
+                    );
+                }
+            } else if (typeof layer.getLatLng === "function") {
+                map.setView(layer.getLatLng(), 17);
+            }
+
+            if (typeof layer.bringToFront === "function") {
+                layer.bringToFront();
+            }
+
+            if (typeof layer.setStyle === "function") {
+                layer.setStyle({
+                    weight: 11,
+                    opacity: 1
+                });
+            }
+
+            layer.openPopup();
+
+            if (activeSegmentTimer) {
+                clearTimeout(activeSegmentTimer);
+            }
+
+            activeSegmentTimer = setTimeout(function() {
+                if (
+                    displayedLayer &&
+                    typeof displayedLayer.resetStyle === "function"
+                ) {
+                    displayedLayer.resetStyle(layer);
+                }
+            }, 1800);
+        }
+
+        function nilaiKMAsli(properties, sisi) {
+            const aliases = sisi === "dari"
+                ? [
+                    "KM_Asli_Dari",
+                    "KM Asli Dari",
+                    "KM_Dari_Asli",
+                    "KM Dari Asli"
+                ]
+                : [
+                    "KM_Asli_Sampai",
+                    "KM Asli Sampai",
+                    "KM_Sampai_Asli",
+                    "KM Sampai Asli"
+                ];
+
+            return parseSTAMeter(
+                findPropertyByAliases(properties || {}, aliases)
+            );
+        }
+
+        function formatKMAsli(properties, sisi) {
+            const value = nilaiKMAsli(properties, sisi);
+            return value === null ? "-" : formatSTA(value);
+        }
+
+        function formatPanjangPekerjaan(feature) {
+            const props = feature?.properties || {};
+            const originalFrom = nilaiKMAsli(props, "dari");
+            const originalTo = nilaiKMAsli(props, "sampai");
+            const segmentFrom = parseSTAMeter(props.Dari);
+            const segmentTo = parseSTAMeter(props.Sampai);
+            const dari = originalFrom !== null ? originalFrom : segmentFrom;
+            const sampai = originalTo !== null ? originalTo : segmentTo;
+
+            if (dari === null || sampai === null) {
+                return "Tidak dapat dihitung";
+            }
+
+            const panjangMeter = Math.abs(sampai - dari);
+
+            if (panjangMeter === 0) {
+                return "0 m (titik)";
+            }
+
+            if (panjangMeter >= 1000) {
+                return (panjangMeter / 1000).toLocaleString("id-ID", {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                }) + " km";
+            }
+
+            return Math.round(panjangMeter).toLocaleString("id-ID") + " m";
+        }
+
+        function labelTanggalRiwayat(feature, category) {
+            const props = feature?.properties || {};
+            const explicitLabel = String(
+                props.Tanggal_Label ?? ""
+            ).trim();
+
+            if (category === "other" && explicitLabel) {
+                return explicitLabel;
+            }
+
+            return parseTanggalPelaksanaan(
+                props.Tanggal_Pelaksanaan
+            ).display;
+        }
+
+        function renderBarisRiwayat(
+            histories,
+            category,
+            locationLabel = "segmen ini"
+        ) {
+            if (!histories.length) {
+                const label = category === "sfo" ? "SFO" : "lainnya";
+                return (
+                    '<div class="segment-history-empty">' +
+                    "Belum ada riwayat pekerjaan " + label +
+                    " pada " + locationLabel + "." +
+                    "</div>"
+                );
+            }
+
+            return histories
+                .map(function(historyFeature, index) {
+                    const historyProps = historyFeature.properties || {};
+                    const isSfo = category === "sfo";
+                    const historyStatus = isSfo
+                        ? statusFeature(historyFeature)
+                        : null;
+                    const historyConfig = isSfo
+                        ? STATUS_CONFIG[historyStatus.key]
+                        : null;
+                    const badge = isSfo
+                        ? `
+                            <span
+                                class="segment-history-status"
+                                style="--history-status-color:${historyConfig.color}"
+                            >
+                                ${escapeHTML(STATUS_PANEL_LABELS[historyStatus.key])}
+                            </span>
+                        `
+                        : `
+                            <span class="segment-history-worktype">
+                                ${escapeHTML(
+                                    nilaiAtauFallback(
+                                        historyProps.Keterangan,
+                                        "Pekerjaan lainnya"
+                                    )
+                                )}
+                            </span>
+                        `;
+                    const openAttribute = index === 0 ? " open" : "";
+
+                    return `
+                        <details class="segment-history-item"${openAttribute}>
+                            <summary>
+                                <span class="segment-history-date">
+                                    ${escapeHTML(
+                                        labelTanggalRiwayat(
+                                            historyFeature,
+                                            category
+                                        )
+                                    )}
+                                </span>
+                                ${badge}
+                            </summary>
+                            <div class="segment-history-detail">
+                                <div class="segment-history-facts">
+                                    <div>
+                                        <span>KM dari asli</span>
+                                        <strong>${escapeHTML(
+                                            formatKMAsli(
+                                                historyProps,
+                                                "dari"
+                                            )
+                                        )}</strong>
+                                    </div>
+                                    <div>
+                                        <span>KM sampai asli</span>
+                                        <strong>${escapeHTML(
+                                            formatKMAsli(
+                                                historyProps,
+                                                "sampai"
+                                            )
+                                        )}</strong>
+                                    </div>
+                                    <div>
+                                        <span>Panjang perbaikan</span>
+                                        <strong>${escapeHTML(
+                                            formatPanjangPekerjaan(historyFeature)
+                                        )}</strong>
+                                    </div>
+                                </div>
+                                <div class="segment-history-description">
+                                    <span>Keterangan pekerjaan</span>
+                                    <p>${escapeHTML(
+                                        nilaiAtauFallback(
+                                            historyProps.Keterangan,
+                                            "Keterangan tidak tersedia"
+                                        )
+                                    )}</p>
+                                </div>
+                            </div>
+                        </details>
+                    `;
+                })
+                .join("");
+        }
+
+        window.switchSegmentHistoryTab = function(button, category) {
+            const historySection =
+                button.closest(".segment-popup-history");
+
+            if (!historySection) return;
+
+            historySection
+                .querySelectorAll(".segment-history-tab")
+                .forEach(function(tab) {
+                    const active =
+                        tab.dataset.historyCategory === category;
+                    tab.classList.toggle("is-active", active);
+                    tab.setAttribute(
+                        "aria-selected",
+                        active ? "true" : "false"
+                    );
+                });
+
+            historySection
+                .querySelectorAll(".segment-history-panel")
+                .forEach(function(panel) {
+                    panel.hidden =
+                        panel.dataset.historyPanel !== category;
+                });
+        };
+
+        function popupHTML(feature) {
+            const props = feature.properties || {};
+            const direction = infoArahJalur(props);
+            const segmentKey = props.__segment_key || getSegmentKey(feature);
+            const group = currentSegmentGroupMap.get(segmentKey);
+            const status = group?.status || statusUntukFeaturePeta(feature);
+            const statusConfig = STATUS_CONFIG[status.key];
+            const sfoHistories = group?.sfoHistories || [];
+            const otherHistories = group?.otherHistories || [];
+            const selectedWork = getSelectedWorkFilter();
+            const defaultCategory =
+                selectedWork === "other" && otherHistories.length
+                    ? "other"
+                    : selectedWork === "sfo" && sfoHistories.length
+                        ? "sfo"
+                        : sfoHistories.length
+                            ? "sfo"
+                            : "other";
+            const latestSfoDisplay = group?.latestSfoFeature
+                ? status.parsed.display
+                : "Belum ada histori SFO";
+
+            return `
+                <div class="segment-popup">
+                    <h4 class="segment-popup-title">Detail Segmen</h4>
+                    <div class="segment-popup-scroll">
+                        <dl class="segment-popup-summary">
+                            <div>
+                                <dt>Rentang STA</dt>
+                                <dd>${escapeHTML(
+                                    formatRentangSTA(props.Dari, props.Sampai)
+                                )}</dd>
+                            </div>
+                            <div>
+                                <dt>Jalur dan arah</dt>
+                                <dd>${escapeHTML(direction.label)}</dd>
+                            </div>
+                            <div>
+                                <dt>Lajur</dt>
+                                <dd>${escapeHTML(laneLabel(props.Lajur))}</dd>
+                            </div>
+                            <div>
+                                <dt>Pekerjaan SFO terbaru</dt>
+                                <dd>${escapeHTML(latestSfoDisplay)}</dd>
+                            </div>
+                            <div>
+                                <dt>Status SFO</dt>
+                                <dd>
+                                    <span
+                                        class="segment-popup-status"
+                                        style="--popup-status-color:${statusConfig.color}"
+                                    >
+                                        ${escapeHTML(
+                                            STATUS_PANEL_LABELS[status.key]
+                                        )}
+                                    </span>
+                                </dd>
+                            </div>
+                        </dl>
+
+                        <section class="segment-popup-history">
+                            <div class="segment-popup-history-heading">
+                                <strong>Riwayat Pekerjaan</strong>
+                                <span>
+                                    Pilih kategori riwayat pada segmen ini
+                                </span>
+                            </div>
+
+                            <div
+                                class="segment-history-tabs"
+                                role="tablist"
+                                aria-label="Kategori riwayat pekerjaan"
+                            >
+                                <button
+                                    class="segment-history-tab${defaultCategory === "sfo" ? " is-active" : ""}"
+                                    type="button"
+                                    role="tab"
+                                    data-history-category="sfo"
+                                    aria-selected="${defaultCategory === "sfo" ? "true" : "false"}"
+                                    onclick="switchSegmentHistoryTab(this, 'sfo')"
+                                >
+                                    SFO
+                                    <span class="segment-history-tab-count">
+                                        ${sfoHistories.length}
+                                    </span>
+                                </button>
+                                <button
+                                    class="segment-history-tab${defaultCategory === "other" ? " is-active" : ""}"
+                                    type="button"
+                                    role="tab"
+                                    data-history-category="other"
+                                    aria-selected="${defaultCategory === "other" ? "true" : "false"}"
+                                    onclick="switchSegmentHistoryTab(this, 'other')"
+                                >
+                                    Lainnya
+                                    <span class="segment-history-tab-count">
+                                        ${otherHistories.length}
+                                    </span>
+                                </button>
+                            </div>
+
+                            <div
+                                class="segment-history-panel"
+                                data-history-panel="sfo"
+                                ${defaultCategory === "sfo" ? "" : "hidden"}
+                            >
+                                <div class="segment-history-list">
+                                    ${renderBarisRiwayat(
+                                        sfoHistories,
+                                        "sfo"
+                                    )}
+                                </div>
+                            </div>
+
+                            <div
+                                class="segment-history-panel"
+                                data-history-panel="other"
+                                ${defaultCategory === "other" ? "" : "hidden"}
+                            >
+                                <div class="segment-history-list">
+                                    ${renderBarisRiwayat(
+                                        otherHistories,
+                                        "other"
+                                    )}
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            `;
+        }
+
+
+        function gateGeometryToPoint(feature) {
+            if (!feature || !feature.geometry) return null;
+
+            const geometry = feature.geometry;
+
+            if (
+                geometry.type === "Point" &&
+                Array.isArray(geometry.coordinates)
+            ) {
+                return turf.point(
+                    transformCoordinate(geometry.coordinates),
+                    feature.properties || {}
+                );
+            }
+
+            if (
+                geometry.type === "LineString" &&
+                Array.isArray(geometry.coordinates) &&
+                geometry.coordinates.length >= 2
+            ) {
+                const line = turf.lineString(
+                    geometry.coordinates.map(transformCoordinate)
+                );
+
+                return turf.pointOnFeature(line);
+            }
+
+            if (
+                geometry.type === "Polygon" &&
+                Array.isArray(geometry.coordinates)
+            ) {
+                const polygon = turf.polygon(
+                    geometry.coordinates.map(function(ring) {
+                        return ring.map(transformCoordinate);
+                    })
+                );
+
+                return turf.pointOnFeature(polygon);
+            }
+
+            return null;
+        }
+
+        function normalizedGateName(feature, point) {
+            const rawName = String(
+                feature.properties?.name ?? ""
+            ).trim();
+
+            if (rawName) {
+                return rawName;
+            }
+
+            /* Feature tanpa nama pada kelompok koordinat Sidoarjo
+             * ditetapkan sebagai Gerbang Tol Sidoarjo. */
+            const coordinate = point.geometry.coordinates;
+            const lon = Number(coordinate[0]);
+            const lat = Number(coordinate[1]);
+
+            const isSidoarjoCluster =
+                lat >= -7.4485 &&
+                lat <= -7.4430 &&
+                lon >= 112.6950 &&
+                lon <= 112.7015;
+
+            if (isSidoarjoCluster) {
+                return "Gerbang Tol Sidoarjo";
+            }
+
+            return null;
+        }
+
+        function gateDistanceToRoute(point, route) {
+            const alignment = externalAlignments[route];
+
+            if (!alignment) return Infinity;
+
+            return turf.pointToLineDistance(
+                point,
+                alignment,
+                { units: "kilometers" }
+            );
+        }
+
+        function gateLocationOnRoute(point, route) {
+            const alignment = externalAlignments[route];
+
+            if (!alignment) return null;
+
+            const snapped = turf.nearestPointOnLine(
+                alignment,
+                point,
+                { units: "kilometers" }
+            );
+
+            const location = Number(snapped.properties?.location);
+
+            return Number.isFinite(location)
+                ? location
+                : null;
+        }
+
+        function gateRouteInfo(point) {
+            const distanceA =
+                gateDistanceToRoute(point, "surgem_A");
+            const distanceB =
+                gateDistanceToRoute(point, "surgem_B");
+
+            const route =
+                distanceA <= distanceB
+                    ? "surgem_A"
+                    : "surgem_B";
+
+            return {
+                route: route,
+                distanceKm: Math.min(distanceA, distanceB),
+                label: route === "surgem_A"
+                    ? "Terdekat Jalur A · Utara → Selatan"
+                    : "Terdekat Jalur B · Selatan → Utara"
+            };
+        }
+
+        function mergeGateCandidates(candidates) {
+            const merged = [];
+
+            candidates.forEach(function(candidate) {
+                const existing = merged.find(function(item) {
+                    if (
+                        item.name.toLowerCase() !==
+                        candidate.name.toLowerCase()
+                    ) {
+                        return false;
+                    }
+
+                    return turf.distance(
+                        item.point,
+                        candidate.point,
+                        { units: "kilometers" }
+                    ) <= GATE_DEDUP_DISTANCE_KM;
+                });
+
+                if (existing) {
+                    if (candidate.historyRecord) {
+                        existing.history.push(candidate.historyRecord);
+                    }
+                    return;
+                }
+
+                merged.push({
+                    name: candidate.name,
+                    point: candidate.point,
+                    properties: candidate.properties,
+                    history: candidate.historyRecord
+                        ? [candidate.historyRecord]
+                        : []
+                });
+            });
+
+            return merged;
+        }
+
+        async function loadGateData() {
+            const response = await fetch(encodeURI(GATE_DATA_URL));
+
+            if (!response.ok) {
+                throw new Error(
+                    "HTTP " + response.status +
+                    " saat membaca " + GATE_DATA_URL
+                );
+            }
+
+            const gateGeoJSON = await response.json();
+
+            if (
+                gateGeoJSON.type !== "FeatureCollection" ||
+                !Array.isArray(gateGeoJSON.features)
+            ) {
+                throw new Error(
+                    "File gerbang tol bukan FeatureCollection."
+                );
+            }
+
+            const dilewati = [];
+
+            const candidates = gateGeoJSON.features
+                .map(function(feature) {
+                    const point = gateGeometryToPoint(feature);
+
+                    if (!point) {
+                        dilewati.push({
+                            OBJECTID: feature.properties?.OBJECTID,
+                            alasan: "geometry tidak dapat dibaca"
+                        });
+                        return null;
+                    }
+
+                    const name = normalizedGateName(feature, point);
+
+                    if (!name) {
+                        dilewati.push({
+                            OBJECTID: feature.properties?.OBJECTID,
+                            alasan:
+                                "tidak ada \"name\" dan di luar klaster " +
+                                "Sidoarjo",
+                            coordinate: point.geometry.coordinates
+                        });
+                        return null;
+                    }
+
+                    return {
+                        name: name,
+                        point: point,
+                        properties: feature.properties || {},
+                        historyRecord: extractHistoryRecord(
+                            feature.properties || {}
+                        )
+                    };
+                })
+                .filter(Boolean)
+                .sort(function(a, b) {
+                    return (
+                        b.point.geometry.coordinates[1] -
+                        a.point.geometry.coordinates[1]
+                    );
+                });
+
+            const mergedGates = mergeGateCandidates(candidates);
+
+            gateReferences = mergedGates
+                .map(function(gate) {
+                    return {
+                        gate: gate,
+                        routeInfo: gateRouteInfo(gate.point)
+                    };
+                })
+                .filter(function(entry) {
+                    return (
+                        Number.isFinite(entry.routeInfo.distanceKm) &&
+                        entry.routeInfo.distanceKm <= GATE_MAX_DISTANCE_KM
+                    );
+                })
+                .map(function(entry) {
+                    const gate = entry.gate;
+                    const routeInfo = entry.routeInfo;
+
+                    return {
+                        name: gate.name,
+                        point: gate.point,
+                        properties: gate.properties,
+                        history: gate.history,
+                        nearestRoute: routeInfo.route,
+                        routeLabel: routeInfo.label,
+                        distanceA:
+                            gateDistanceToRoute(gate.point, "surgem_A"),
+                        distanceB:
+                            gateDistanceToRoute(gate.point, "surgem_B"),
+                        locationA:
+                            gateLocationOnRoute(gate.point, "surgem_A"),
+                        locationB:
+                            gateLocationOnRoute(gate.point, "surgem_B")
+                    };
+                })
+                .sort(function(a, b) {
+                    return (
+                        b.point.geometry.coordinates[1] -
+                        a.point.geometry.coordinates[1]
+                    );
+                });
+
+            const totalHistori = gateReferences.reduce(
+                function(total, gate) {
+                    return total + gate.history.length;
+                },
+                0
+            );
+
+            console.info(
+                "[Gerbang] " + gateGeoJSON.features.length +
+                " baris dibaca dari " + GATE_DATA_URL + " -> " +
+                mergedGates.length + " marker gerbang unik -> " +
+                gateReferences.length + " marker relevan (dalam " +
+                GATE_MAX_DISTANCE_KM + " km dari alignment). Total " +
+                totalHistori + " baris histori SFO ter-attach ke marker."
+            );
+
+            if (dilewati.length) {
+                console.warn(
+                    "[Gerbang] " + dilewati.length + " baris di " +
+                    GATE_DATA_URL + " dilewati (geometry tidak terbaca " +
+                    "atau tidak ada \"name\"):",
+                    dilewati
+                );
+            }
+        }
+
+        function getRouteGateSequence(route) {
+            const locationKey =
+                route === "surgem_A"
+                    ? "locationA"
+                    : "locationB";
+
+            return gateReferences
+                .filter(function(gate) {
+                    return Number.isFinite(
+                        gate[locationKey]
+                    );
+                })
+                .slice()
+                .sort(function(a, b) {
+                    return (
+                        a[locationKey] -
+                        b[locationKey]
+                    );
+                });
+        }
+
+        function getFeatureLocationOnRoute(feature, route) {
+            const alignment = externalAlignments[route];
+
+            if (!alignment || !feature.geometry) {
+                return null;
+            }
+
+            let point;
+
+            try {
+                point = turf.pointOnFeature(feature);
+            } catch (error) {
+                return null;
+            }
+
+            return gateLocationOnRoute(point, route);
+        }
+
+        function getGateCorridor(feature) {
+            const direction =
+                infoArahJalur(feature.properties);
+
+            if (!direction.route) {
+                return "Tidak dapat ditentukan";
+            }
+
+            const route = direction.route;
+            const sequence =
+                getRouteGateSequence(route);
+            const featureLocation =
+                getFeatureLocationOnRoute(
+                    feature,
+                    route
+                );
+
+            if (
+                !Number.isFinite(featureLocation) ||
+                !sequence.length
+            ) {
+                return "Tidak dapat ditentukan";
+            }
+
+            const locationKey =
+                route === "surgem_A"
+                    ? "locationA"
+                    : "locationB";
+
+            let northGate = null;
+            let southGate = null;
+
+            sequence.forEach(function(gate) {
+                const location = gate[locationKey];
+
+                if (location <= featureLocation) {
+                    northGate = gate;
+                }
+
+                if (
+                    southGate === null &&
+                    location >= featureLocation
+                ) {
+                    southGate = gate;
+                }
+            });
+
+            if (!northGate) {
+                northGate = sequence[0];
+            }
+
+            if (!southGate) {
+                southGate =
+                    sequence[sequence.length - 1];
+            }
+
+            if (northGate.name === southGate.name) {
+                return northGate.name;
+            }
+
+            if (route === "surgem_A") {
+                return (
+                    northGate.name +
+                    " → " +
+                    southGate.name
+                );
+            }
+
+            return (
+                southGate.name +
+                " → " +
+                northGate.name
+            );
+        }
+
+        function assignGateInformation(features) {
+            features.forEach(function(feature) {
+                feature.properties =
+                    feature.properties || {};
+
+                feature.properties.__gate_corridor =
+                    getGateCorridor(feature);
+            });
+        }
+
+        function formatGerbangHistoryHTML(gate) {
+            const records = gate.history || [];
+            const sfoFeatures = records
+                .filter(function(record) {
+                    return workCategoryFromProperties(record) === "sfo";
+                })
+                .map(function(record) {
+                    return { type: "Feature", properties: record };
+                })
+                .sort(compareFeatureRecency);
+            const otherFeatures = records
+                .filter(function(record) {
+                    return workCategoryFromProperties(record) === "other";
+                })
+                .map(function(record) {
+                    return { type: "Feature", properties: record };
+                })
+                .sort(compareFeatureRecency);
+            const selectedWork = getSelectedWorkFilter();
+            const defaultCategory =
+                selectedWork === "other" && otherFeatures.length
+                    ? "other"
+                    : selectedWork === "sfo" && sfoFeatures.length
+                        ? "sfo"
+                        : sfoFeatures.length
+                            ? "sfo"
+                            : "other";
+
+            return `
+                <section class="segment-popup-history">
+                    <div class="segment-popup-history-heading">
+                        <strong>Riwayat Pekerjaan</strong>
+                        <span>Pilih kategori riwayat pada gerbang ini</span>
+                    </div>
+
+                    <div
+                        class="segment-history-tabs"
+                        role="tablist"
+                        aria-label="Kategori riwayat pekerjaan gerbang"
+                    >
+                        <button
+                            class="segment-history-tab${defaultCategory === "sfo" ? " is-active" : ""}"
+                            type="button"
+                            role="tab"
+                            data-history-category="sfo"
+                            aria-selected="${defaultCategory === "sfo" ? "true" : "false"}"
+                            onclick="switchSegmentHistoryTab(this, 'sfo')"
+                        >
+                            SFO
+                            <span class="segment-history-tab-count">
+                                ${sfoFeatures.length}
+                            </span>
+                        </button>
+                        <button
+                            class="segment-history-tab${defaultCategory === "other" ? " is-active" : ""}"
+                            type="button"
+                            role="tab"
+                            data-history-category="other"
+                            aria-selected="${defaultCategory === "other" ? "true" : "false"}"
+                            onclick="switchSegmentHistoryTab(this, 'other')"
+                        >
+                            Lainnya
+                            <span class="segment-history-tab-count">
+                                ${otherFeatures.length}
+                            </span>
+                        </button>
+                    </div>
+
+                    <div
+                        class="segment-history-panel"
+                        data-history-panel="sfo"
+                        ${defaultCategory === "sfo" ? "" : "hidden"}
+                    >
+                        <div class="segment-history-list">
+                            ${renderBarisRiwayat(
+                                sfoFeatures,
+                                "sfo",
+                                "gerbang ini"
+                            )}
+                        </div>
+                    </div>
+
+                    <div
+                        class="segment-history-panel"
+                        data-history-panel="other"
+                        ${defaultCategory === "other" ? "" : "hidden"}
+                    >
+                        <div class="segment-history-list">
+                            ${renderBarisRiwayat(
+                                otherFeatures,
+                                "other",
+                                "gerbang ini"
+                            )}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        function gatePopupHTML(gate) {
+            const direction =
+                gate.nearestRoute === "surgem_A"
+                    ? "Jalur A · Utara → Selatan"
+                    : "Jalur B · Selatan → Utara";
+
+            return `
+                <div class="segment-popup" style="font-family:Arial,sans-serif;font-size:13px;line-height:1.6;min-width:300px">
+                    <div class="segment-popup-scroll">
+                    <h4 style="margin:0 0 7px;color:#002d62;font-size:15px">
+                        ${escapeHTML(gate.name)}
+                    </h4>
+                    <b>Jenis:</b> Gerbang tol<br>
+                    <b>Jalur terdekat:</b>
+                    ${escapeHTML(direction)}
+                    ${formatGerbangHistoryHTML(gate)}
+                    </div>
+                </div>
+            `;
+        }
+
+        function gateHasWorkCategory(gate, workFilter) {
+            if (workFilter === "all") return true;
+
+            return (gate.history || []).some(function(record) {
+                return workCategoryFromProperties(record) === workFilter;
+            });
+        }
+
+        function gateMatchesRouteFilter(gate, routeFilter) {
+            if (routeFilter === "all") return true;
+            if (gate.nearestRoute === routeFilter) return true;
+
+            return (gate.history || []).some(function(record) {
+                return infoArahJalur(record).route === routeFilter;
+            });
+        }
+
+        function renderGateLayer() {
+            if (gateLayer) {
+                map.removeLayer(gateLayer);
+                gateLayer = null;
+            }
+
+            gateMarkers = [];
+
+            const toggle =
+                document.getElementById("toggle-gate");
+
+            if (!toggle || !toggle.checked) {
+                return;
+            }
+
+            const workFilter = getSelectedWorkFilter();
+            const routeFilter =
+                document.getElementById("filter-rute")?.value || "all";
+            gateLayer = L.layerGroup();
+
+            gateReferences
+                .filter(function(gate) {
+                    return (
+                        gateMatchesRouteFilter(gate, routeFilter) &&
+                        gateHasWorkCategory(gate, workFilter)
+                    );
+                })
+                .forEach(function(gate) {
+                    const coordinate =
+                        gate.point.geometry.coordinates;
+                    const markerClass = workFilter === "other"
+                        ? "gate-marker-shell other-only"
+                        : "gate-marker-shell";
+
+                    const marker = L.marker(
+                        [coordinate[1], coordinate[0]],
+                        {
+                            zIndexOffset: 3000,
+                            icon: L.divIcon({
+                                className: markerClass,
+                                html:
+                                    '<span class="gate-marker-dot"></span>',
+                                iconSize: [15, 15],
+                                iconAnchor: [7.5, 7.5]
+                            })
+                        }
+                    );
+
+                    marker.bindPopup(
+                        gatePopupHTML(gate),
+                        {
+                            maxHeight: 420,
+                            maxWidth: 390
+                        }
+                    );
+
+                    marker.addTo(gateLayer);
+                    gateMarkers.push(marker);
+                });
+
+            gateLayer.addTo(map);
+        }
+
+        function renderBaseAlignments() {
+            if (baseAlignmentLayer) {
+                map.removeLayer(baseAlignmentLayer);
+                baseAlignmentLayer = null;
+            }
+
+            const routeFilter =
+                document.getElementById("filter-rute").value;
+            const laneFilter =
+                document.getElementById("filter-lajur").value;
+            const baseFeatures = [];
+
+            ["surgem_A", "surgem_B"].forEach(function(route) {
+                const alignment = externalAlignments[route];
+
+                if (!alignment || !alignment.geometry) return;
+
+                [1, 2, 3].forEach(function(laneNumber) {
+                    const properties = {
+                        rute: route,
+                        Jalur: route === "surgem_A" ? "A" : "B",
+                        Lajur: laneNumber,
+                        layer_type: "lane-without-history",
+                        __has_history: false
+                    };
+                    const baseFeature = {
+                        type: "Feature",
+                        properties: properties,
+                        geometry: alignment.geometry
+                    };
+
+                    /*
+                     * Alignment dasar wajib mengikuti filter rute dan lajur.
+                     * Inilah yang membuat Jalur B benar-benar hilang ketika
+                     * pengguna memilih Jalur A, dan sebaliknya.
+                     */
+                    if (
+                        !matchesRouteFilter(baseFeature, routeFilter) ||
+                        !matchesLaneFilter(baseFeature, laneFilter)
+                    ) {
+                        return;
+                    }
+
+                    const laneGeometry = applyLaneOffsetToGeometry(
+                        alignment.geometry,
+                        properties
+                    );
+
+                    if (!laneGeometry) return;
+
+                    baseFeatures.push({
+                        type: "Feature",
+                        properties: properties,
+                        geometry: laneGeometry
+                    });
+                });
+            });
+
+            if (!baseFeatures.length) return;
+
+            baseAlignmentLayer = L.geoJSON(
+                {
+                    type: "FeatureCollection",
+                    features: baseFeatures
+                },
+                {
+                    interactive: false,
+                    style: gayaLajurTanpaHistori
+                }
+            ).addTo(map);
+
+            if (baseAlignmentLayer.bringToBack) {
+                baseAlignmentLayer.bringToBack();
+            }
+        }
+
+        function renderMap() {
+            if (displayedLayer) {
+                map.removeLayer(displayedLayer);
+            }
+
+            segmentLayerIndex = new Map();
+            
+            /*
+             * Peta mempertahankan seluruh segmen pada rute/lajur terpilih.
+             * Filter status hanya menentukan warna sorotan dan isi sidebar.
+             */
+            const mapSegmentGroups = getRouteLaneSegmentGroups();
+            const filteredSegmentGroups =
+                filterGroupsBySelectedStatus(mapSegmentGroups);
+            const representativeFeatures = mapSegmentGroups.map(
+                function(group) {
+                    return group.representativeFeature;
+                }
+            );
+            const mapped = representativeFeatures.filter(function(feature) {
+                return Boolean(feature.geometry);
+            });
+
+            currentSegmentGroups = filteredSegmentGroups;
+            currentSegmentGroupMap = new Map(
+                mapSegmentGroups.map(function(group) {
+                    return [group.key, group];
+                })
+            );
+
+            displayedLayer = L.geoJSON(
+                {
+                    type: "FeatureCollection",
+                    features: mapped
+                },
+                {
+                    style: gayaJalanTol,
+                    pointToLayer: function(feature, latlng) {
+                        const gaya = gayaJalanTol(feature);
+
+                        return L.circleMarker(latlng, {
+                            radius: 8,
+                            color: gaya.color,
+                            weight: 2,
+                            fillColor: gaya.color,
+                            fillOpacity: 0.85,
+                            opacity: gaya.opacity
+                        });
+                    },
+                    onEachFeature: function(feature, layer) {
+                        const segmentKey =
+                            feature.properties?.__segment_key ||
+                            getSegmentKey(feature);
+
+                        segmentLayerIndex.set(segmentKey, layer);
+
+                        layer.bindPopup(
+                            popupHTML(feature),
+                            {
+                                maxHeight: 350,
+                                maxWidth: 360,
+                                autoPanPadding: [28, 28]
+                            }
+                        );
+
+                        layer.on({
+                            click: function() {
+                                aktifkanTabPanelPeta("segments");
+                                activeSegmentKey = segmentKey;
+                                let activeRow = null;
+
+                                document
+                                    .querySelectorAll(".segment-row")
+                                    .forEach(function(row) {
+                                        const isActive =
+                                            row.dataset.segmentKey === segmentKey;
+                                        row.classList.toggle("active", isActive);
+
+                                        if (isActive) {
+                                            activeRow = row;
+                                        }
+                                    });
+
+                                if (activeRow) {
+                                    activeRow.scrollIntoView({
+                                        block: "nearest",
+                                        behavior: "smooth"
+                                    });
+                                }
+                            },
+                            mouseover: function(event) {
+                                event.target.setStyle({
+                                    weight: 9,
+                                    opacity: 0.9
+                                });
+                            },
+                            mouseout: function(event) {
+                                displayedLayer.resetStyle(event.target);
+                            }
+                        });
+                    }
+                }
+            ).addTo(map);
+
+            if (displayedLayer.bringToFront) {
+                displayedLayer.bringToFront();
+            }
+
+            if (mapped.length && displayedLayer.getBounds().isValid()) {
+                map.fitBounds(
+                    displayedLayer.getBounds(),
+                    opsiFitPeta(14)
+                );
+            }
+
+            renderSegmentPanel(filteredSegmentGroups);
+            renderRanking(filteredSegmentGroups);
+        }
+
+        function renderRanking(segmentGroups) {
+            const container =
+                document.getElementById("lokasi-kritis-list");
+            const title =
+                document.getElementById("analysis-title");
+            const description =
+                document.getElementById("analysis-description");
+            const workFilter = getSelectedWorkFilter();
+
+            if (workFilter === "other") {
+                if (title) {
+                    title.textContent =
+                        "Segmen dengan Pekerjaan Lainnya Terbaru";
+                }
+
+                if (description) {
+                    description.textContent =
+                        "Menampilkan pekerjaan non-SFO dari seluruh sheet Excel.";
+                }
+
+                const otherRanking = segmentGroups
+                    .filter(function(group) {
+                        return group.otherHistories.length > 0;
+                    })
+                    .sort(function(a, b) {
+                        return (
+                            featureDateTimestamp(b.otherHistories[0]) -
+                            featureDateTimestamp(a.otherHistories[0])
+                        );
+                    })
+                    .slice(0, 5);
+
+                if (!otherRanking.length) {
+                    container.innerHTML =
+                        '<div class="empty-ranking">' +
+                        "Tidak ada pekerjaan lainnya pada filter ini." +
+                        "</div>";
+                    return;
+                }
+
+                container.innerHTML = otherRanking
+                    .map(function(group, index) {
+                        const props =
+                            group.representativeFeature.properties || {};
+                        const latestOther = group.otherHistories[0];
+                        const latestProps =
+                            latestOther.properties || {};
+                        const nomor = index + 1;
+
+                        return `
+                            <div class="rank-item">
+                                <div class="rank-left">
+                                    <div class="rank-number rank-${nomor}">
+                                        ${nomor}
+                                    </div>
+                                    <div>
+                                        <div class="rank-name">
+                                            ${escapeHTML(
+                                                formatRentangSTA(
+                                                    props.Dari,
+                                                    props.Sampai
+                                                )
+                                            )}
+                                        </div>
+                                        <div class="rank-meta">
+                                            ${escapeHTML(group.routeLabel)}
+                                            · ${escapeHTML(group.laneLabel)}
+                                            <br>${escapeHTML(
+                                                nilaiAtauFallback(
+                                                    latestProps.Keterangan,
+                                                    "Pekerjaan lainnya"
+                                                )
+                                            )}
+                                            · ${escapeHTML(
+                                                labelTanggalRiwayat(
+                                                    latestOther,
+                                                    "other"
+                                                )
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rank-badge">
+                                    ${group.otherHistories.length} data
+                                </div>
+                            </div>
+                        `;
+                    })
+                    .join("");
+                return;
+            }
+
+            if (title) {
+                title.textContent =
+                    "Analisis Segmen Paling Memerlukan Perbaikan";
+            }
+
+            if (description) {
+                description.textContent =
+                    "Hanya memakai pekerjaan SFO paling terbaru dari setiap segmen unik.";
+            }
+
+            /*
+             * Ranking tidak membaca semua baris histori. buildSegmentGroups()
+             * sudah memilih satu latestFeature untuk setiap kombinasi
+             * rute + lajur + rentang STA. Hanya status latest tersebut yang
+             * boleh masuk analisis segmen perlu perbaikan.
+             */
+            const ranking = segmentGroups
+                .filter(function(group) {
+                    return (
+                        group.status.key === "critical" &&
+                        group.status.months !== null
+                    );
+                })
+                .sort(function(a, b) {
+                    return b.status.months - a.status.months;
+                })
+                .slice(0, 5);
+
+            if (!ranking.length) {
+                container.innerHTML =
+                    '<div class="empty-ranking">' +
+                    "Tidak ada segmen terbaru berstatus perlu perbaikan " +
+                    "pada filter ini." +
+                    "</div>";
+                return;
+            }
+
+            container.innerHTML = ranking
+                .map(function(group, index) {
+                    const props =
+                        group.representativeFeature.properties || {};
+                    const nomor = index + 1;
+                    const direction = infoArahJalur(props);
+                    const route = direction.label;
+
+                    return `
+                        <div class="rank-item">
+                            <div class="rank-left">
+                                <div class="rank-number rank-${nomor}">
+                                    ${nomor}
+                                </div>
+                                <div>
+                                    <div class="rank-name">
+                                        ${escapeHTML(
+                                            formatRentangSTA(
+                                                props.Dari,
+                                                props.Sampai
+                                            )
+                                        )}
+                                    </div>
+                                    <div class="rank-meta">
+                                        ${escapeHTML(route)}
+                                        · Jalur ${escapeHTML(
+                                            nilaiAtauFallback(
+                                                props.Jalur,
+                                                "-"
+                                            )
+                                        )}
+                                        · Lajur ${escapeHTML(
+                                            nilaiAtauFallback(
+                                                props.Lajur,
+                                                "-"
+                                            )
+                                        )}
+                                        <br>Terbaru: ${escapeHTML(
+                                            group.status.parsed.display
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rank-badge">
+                                ${group.status.months} bulan
+                            </div>
+                        </div>
+                    `;
+                })
+                .join("");
+        }
+
+        map.on("zoomend", function() {
+            if (
+                baseAlignmentLayer &&
+                typeof baseAlignmentLayer.setStyle === "function"
+            ) {
+                baseAlignmentLayer.setStyle(gayaLajurTanpaHistori);
+            }
+
+            if (
+                displayedLayer &&
+                typeof displayedLayer.setStyle === "function"
+            ) {
+                displayedLayer.setStyle(gayaJalanTol);
+            }
+        });
+
+        async function loadData() {
+            const message = document.getElementById("map-message");
+
+            try {
+                /*
+                 * GeoJSON rekap dimuat lebih dulu sebagai sumber utama.
+                 * Alignment hanya disiapkan sesudahnya sebagai fallback.
+                 */
+                const response = await fetch(DATA_URL);
+
+                if (!response.ok) {
+                    throw new Error(
+                        "HTTP " + response.status + " saat membaca " +
+                        DATA_URL
+                    );
+                }
+
+                const sourceGeoJSON = await response.json();
+
+                if (
+                    sourceGeoJSON.type !== "FeatureCollection" ||
+                    !Array.isArray(sourceGeoJSON.features)
+                ) {
+                    throw new Error(
+                        "Struktur file bukan GeoJSON FeatureCollection."
+                    );
+                }
+
+                let otherSourceGeoJSON = {
+                    type: "FeatureCollection",
+                    features: []
+                };
+
+                try {
+                    const otherResponse =
+                        await fetch(encodeURI(OTHER_HISTORY_URL));
+
+                    if (!otherResponse.ok) {
+                        throw new Error(
+                            "HTTP " + otherResponse.status +
+                            " saat membaca " + OTHER_HISTORY_URL
+                        );
+                    }
+
+                    const parsedOther = await otherResponse.json();
+
+                    if (
+                        parsedOther.type !== "FeatureCollection" ||
+                        !Array.isArray(parsedOther.features)
+                    ) {
+                        throw new Error(
+                            "Struktur " + OTHER_HISTORY_URL +
+                            " bukan GeoJSON FeatureCollection."
+                        );
+                    }
+
+                    otherSourceGeoJSON = parsedOther;
+                } catch (otherError) {
+                    console.warn(
+                        "Riwayat pekerjaan lainnya tidak dapat dimuat.",
+                        otherError
+                    );
+                }
+
+                await loadExternalAlignments();
+
+                let userSourceGeoJSON = {
+                    type: "FeatureCollection",
+                    features: []
+                };
+
+                if (window.SurGemData) {
+                    try {
+                        await SurGemData.loadRecords({ notify: false });
+                        userSourceGeoJSON = SurGemData.toGeoJSON();
+                        SurGemData.startAutoSync();
+                    } catch (userError) {
+                        console.warn("Data input admin belum dapat dimuat ke peta.", userError);
+                    }
+                }
+
+                allFeatures = prepareFeatures({
+                    type: "FeatureCollection",
+                    features: [
+                        ...sourceGeoJSON.features,
+                        ...userSourceGeoJSON.features,
+                        ...otherSourceGeoJSON.features
+                    ]
+                });
+
+                // loadGateData() memuat geometry gerbang beserta histori
+                // SFO dan pekerjaan lainnya. Data ramp/interchange/nonlajur
+                // utama dari seluruh sheet Excel ditempelkan ke marker gerbang
+                // yang sesuai dan ditampilkan melalui tab popup SFO/Lainnya.
+                await loadGateData();
+
+                assignGateInformation(allFeatures);
+
+                const externalCount =
+                    Number(Boolean(externalAlignments.surgem_A)) +
+                    Number(Boolean(externalAlignments.surgem_B));
+
+                message.textContent = "";
+                message.classList.remove("error");
+                message.hidden = true;
+
+                renderBaseAlignments();
+                renderMap();
+                renderGateLayer();
+            } catch (error) {
+                console.error(error);
+                message.hidden = false;
+                message.classList.add("error");
+                document.getElementById("lokasi-kritis-list").innerHTML =
+                    '<div class="empty-ranking">Data belum tersedia.</div>';
+            }
+        }
+
+        function refreshFilteredMap(options = {}) {
+            activeSegmentKey = null;
+            renderBaseAlignments();
+            renderMap();
+
+            if (options.refreshGates) {
+                renderGateLayer();
+            }
+        }
+
+        function perbaruiFilterJenisPekerjaan() {
+            const workFilter = getSelectedWorkFilter();
+            const statusSelect =
+                document.getElementById("filter-status");
+
+            if (statusSelect) {
+                const otherOnly = workFilter === "other";
+
+                if (otherOnly) {
+                    statusSelect.value = "all";
+                }
+
+                statusSelect.disabled = otherOnly;
+                statusSelect.title = otherOnly
+                    ? "Filter status hanya berlaku untuk pekerjaan SFO."
+                    : "";
+            }
+
+            refreshFilteredMap({ refreshGates: true });
+        }
+
+        document
+            .querySelectorAll(".map-panel-tab")
+            .forEach(function(button) {
+                button.addEventListener("click", function() {
+                    aktifkanTabPanelPeta(
+                        button.dataset.mapPanel
+                    );
+                });
+            });
+
+        document
+            .getElementById("filter-rute")
+            .addEventListener("change", function() {
+                refreshFilteredMap({ refreshGates: true });
+            });
+
+        document
+            .getElementById("filter-pekerjaan")
+            .addEventListener(
+                "change",
+                perbaruiFilterJenisPekerjaan
+            );
+
+        document
+            .getElementById("filter-status")
+            .addEventListener("change", function() {
+                refreshFilteredMap();
+            });
+
+        document
+            .getElementById("filter-lajur")
+            .addEventListener("change", function() {
+                refreshFilteredMap();
+            });
+
+        document
+            .getElementById("toggle-gate")
+            .addEventListener("change", renderGateLayer);
+
+        document
+            .getElementById("segment-search")
+            .addEventListener("input", function() {
+                renderSegmentPanel(currentSegmentGroups);
+            });
+
+        document
+            .getElementById("segment-list")
+            .addEventListener("click", function(event) {
+                const row = event.target.closest(".segment-row");
+
+                if (!row || row.disabled) return;
+                focusSegment(row.dataset.segmentKey);
+            });
+
+        window.addEventListener("surgem:user-data-changed", function () {
+            window.location.reload();
+        });
+
+        loadData();
+    </script>
+</body>
+</html>     

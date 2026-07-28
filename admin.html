@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SurGem Maintain — Admin Data</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="peta.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-page">
+    <div class="jm-utility-bar">
+        <div class="jm-page-width utility-inner">
+            <a href="mailto:ro3@jmtransjawatol.co.id">Hubungi Kami</a>
+            <span class="utility-divider" aria-hidden="true"></span>
+            <span class="utility-language">ID <span aria-hidden="true">⌄</span></span>
+        </div>
+    </div>
+
+    <header class="jm-header">
+        <div class="jm-page-width jm-header-inner">
+            <a class="jm-brand-box" href="index.html" aria-label="Beranda SFO Tol Dashboard">
+                <img src="logo_jasamarga.png" alt="Logo Jasa Marga" width="190">
+                <div class="jm-text-logo">
+                    <h1>SFO Tol Dashboard</h1>
+                    <p>Surabaya–Gempol Maintenance System</p>
+                </div>
+            </a>
+
+            <nav class="jm-nav-menu" aria-label="Navigasi utama">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="peta.html" class="nav-link">Peta Interaktif</a>
+                <a href="stat.html" class="nav-link">Data Statistik</a>
+                <a href="tentang.html" class="nav-link">Tentang</a>
+                <a href="admin.html" class="nav-link active" aria-current="page">Admin Data</a>
+                <button
+                    class="darkmode-toggle"
+                    type="button"
+                    onclick="toggleDarkMode()"
+                    aria-pressed="false"
+                >
+                    ⏾
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <div class="admin-heading">
+            <div>
+                <span class="admin-kicker">Manajemen histori perbaikan</span>
+                <h2>Input Data Perbaikan Segmen</h2>
+                <p>
+                    Masukkan rentang STA, jalur, lajur, tanggal, dan keterangan pekerjaan.
+                    Sistem otomatis membagi rentang tersebut ke segmen 200 meter agar menyatu
+                    dengan logika histori peta dan statistik.
+                </p>
+            </div>
+            <div id="admin-status" class="admin-status-pill">Mode baca</div>
+        </div>
+
+        <div class="admin-notice">
+            <strong>Cara membuka:</strong> pada komputer utama, klik dua kali
+            <code>BUKA_SURGEM_WINDOWS.bat</code>. Halaman admin akan terbuka otomatis dan data yang dimasukkan
+            langsung tersinkron ke peta, statistik, Home, Tentang, serta perangkat lain.
+        </div>
+
+        <section id="auth-card" class="admin-card admin-login-panel">
+            <div class="admin-card-head">
+                <div>
+                    <h3 id="auth-title">Masuk sebagai Admin</h3>
+                    <p id="auth-description">Hanya admin yang dapat menambah, mengubah, dan menghapus data.</p>
+                </div>
+            </div>
+            <div class="admin-card-body">
+                <form id="auth-form">
+                    <div class="admin-field">
+                        <label for="admin-password">Kata sandi admin <span>*</span></label>
+                        <input id="admin-password" type="password" minlength="6" autocomplete="current-password" required>
+                    </div>
+                    <div class="admin-actions">
+                        <button id="auth-submit" class="admin-btn primary" type="submit">Masuk</button>
+                    </div>
+                    <div id="auth-message" class="admin-message" hidden></div>
+                </form>
+            </div>
+        </section>
+
+        <section id="management-grid" class="admin-grid" hidden>
+            <article class="admin-card">
+                <div class="admin-card-head">
+                    <div>
+                        <h3 id="form-title">Tambah histori perbaikan</h3>
+                        <p>Kolom bertanda * wajib diisi.</p>
+                    </div>
+                    <button id="logout-button" class="admin-btn secondary" type="button">Keluar Admin</button>
+                </div>
+                <div class="admin-card-body">
+                    <form id="repair-form">
+                        <div class="admin-form-grid">
+                            <div class="admin-field">
+                                <label for="tanggal">Tanggal pelaksanaan <span>*</span></label>
+                                <input id="tanggal" name="tanggal" type="date" required>
+                            </div>
+                            <div class="admin-field">
+                                <label for="petugas">Petugas/pencatat</label>
+                                <input id="petugas" name="petugas" type="text" maxlength="100" placeholder="Opsional">
+                            </div>
+                            <div class="admin-field">
+                                <label for="sta-dari">STA/KM dari <span>*</span></label>
+                                <input id="sta-dari" name="staDari" type="text" inputmode="decimal" placeholder="Contoh: 15+200" required>
+                            </div>
+                            <div class="admin-field">
+                                <label for="sta-sampai">STA/KM sampai <span>*</span></label>
+                                <input id="sta-sampai" name="staSampai" type="text" inputmode="decimal" placeholder="Contoh: 15+480" required>
+                            </div>
+                            <div class="admin-field">
+                                <label for="jalur">Jalur <span>*</span></label>
+                                <select id="jalur" name="jalur" required>
+                                    <option value="">Pilih jalur</option>
+                                    <option value="A">Jalur A</option>
+                                    <option value="B">Jalur B</option>
+                                </select>
+                            </div>
+                            <div class="admin-field">
+                                <label for="lajur">Lajur <span>*</span></label>
+                                <select id="lajur" name="lajur" required>
+                                    <option value="">Pilih lajur</option>
+                                    <option value="L1">L1</option>
+                                    <option value="L2">L2</option>
+                                    <option value="L3">L3</option>
+                                </select>
+                            </div>
+                            <div class="admin-field full">
+                                <label for="keterangan">Keterangan perbaikan <span>*</span></label>
+                                <textarea id="keterangan" name="keterangan" maxlength="1000" placeholder="Jelaskan jenis dan detail pekerjaan perbaikan" required></textarea>
+                            </div>
+                            <div class="admin-field full">
+                                <label for="dokumentasi-url">Tautan dokumentasi</label>
+                                <input id="dokumentasi-url" name="dokumentasiUrl" type="url" placeholder="https://...">
+                                <div class="admin-help">Dapat berupa tautan Google Drive, server internal, atau lokasi dokumentasi lain.</div>
+                            </div>
+                            <div class="admin-field full">
+                                <label for="dokumentasi-file">Unggah foto dokumentasi</label>
+                                <input id="dokumentasi-file" type="file" accept="image/*">
+                                <div class="admin-help">Opsional, maksimum 1 MB. Foto disimpan bersama data pada server terpusat.</div>
+                                <img id="doc-preview" class="admin-doc-preview" alt="Pratinjau dokumentasi">
+                            </div>
+                        </div>
+
+                        <div class="admin-actions">
+                            <button id="save-button" class="admin-btn primary" type="submit">Simpan Data</button>
+                            <button id="cancel-edit" class="admin-btn secondary" type="button" hidden>Batal Edit</button>
+                            <button id="reset-button" class="admin-btn secondary" type="reset">Kosongkan Form</button>
+                        </div>
+                        <div id="form-message" class="admin-message" hidden></div>
+                    </form>
+                </div>
+            </article>
+
+            <article class="admin-card">
+                <div class="admin-card-head">
+                    <div>
+                        <h3>Data yang dimasukkan pengguna</h3>
+                        <p>Satu input rentang dapat menghasilkan beberapa histori segmen 200 meter.</p>
+                    </div>
+                </div>
+                <div class="admin-card-body">
+                    <div id="admin-summary" class="admin-summary"></div>
+                    <div id="records-container"></div>
+                </div>
+            </article>
+        </section>
+
+        <section id="readonly-card" class="admin-card" style="margin-top:22px">
+            <div class="admin-card-head">
+                <div>
+                    <h3>Daftar input pengguna</h3>
+                    <p>Daftar tetap dapat dilihat tanpa login, tetapi tindakan pengelolaan hanya muncul setelah admin masuk.</p>
+                </div>
+            </div>
+            <div class="admin-card-body">
+                <div id="readonly-summary" class="admin-summary"></div>
+                <div id="readonly-records"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="jm-footer compact-footer">
+        <div class="footer-main">
+            <div class="footer-company">
+                <h4>SurGem Maintenance</h4>
+                <p>Sistem monitoring pemeliharaan Jalan Tol Surabaya–Gempol berbasis WebGIS.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Kontak</h4>
+                <a href="mailto:ro3@jmtransjawatol.co.id">✉ ro3@jmtransjawatol.co.id</a>
+                <a href="tel:133">☎ Call Center 133</a>
+            </div>
+            <div class="footer-navigation">
+                <h4>Navigasi</h4>
+                <div class="footer-nav-links">
+                    <a href="peta.html">Peta Persebaran</a>
+                    <a href="stat.html">Data Statistik</a>
+                    <a href="tentang.html">Tentang Sistem</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="tahun-footer"></span> JASA MARGA · Operating and Monitoring</p>
+            <p>Surabaya–Gempol Maintenance System</p>
+        </div>
+    </footer>
+
+    <script src="data-perbaikan.js?v=4"></script>
+    <script>
+        "use strict";
+
+        const THEME_KEY = "theme";
+        const authCard = document.getElementById("auth-card");
+        const managementGrid = document.getElementById("management-grid");
+        const readonlyCard = document.getElementById("readonly-card");
+        const repairForm = document.getElementById("repair-form");
+        const authForm = document.getElementById("auth-form");
+        const documentationInput = document.getElementById("dokumentasi-file");
+        const documentationPreview = document.getElementById("doc-preview");
+        let editingBatchId = null;
+        let editingDocumentation = { name: "", dataUrl: "" };
+        let pendingDocumentation = { name: "", dataUrl: "" };
+
+        function applyTheme(theme) {
+            const dark = theme === "dark";
+            document.body.classList.toggle("dark-mode", dark);
+            const button = document.querySelector(".darkmode-toggle");
+            if (button) {
+                button.textContent = dark ? "☀︎" : "⏾";
+                button.setAttribute("aria-pressed", dark ? "true" : "false");
+            }
+        }
+
+        window.toggleDarkMode = function () {
+            const next = document.body.classList.contains("dark-mode") ? "light" : "dark";
+            localStorage.setItem(THEME_KEY, next);
+            applyTheme(next);
+        };
+
+        function escapeHTML(value) {
+            return String(value ?? "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+        }
+
+        function showMessage(element, text, type) {
+            element.hidden = false;
+            element.className = "admin-message" + (type ? " " + type : "");
+            element.textContent = text;
+        }
+
+        function clearMessage(element) {
+            element.hidden = true;
+            element.textContent = "";
+            element.className = "admin-message";
+        }
+
+        function setButtonBusy(button, busy, busyText) {
+            if (!button) return;
+            if (busy) {
+                button.dataset.originalText = button.textContent;
+                button.textContent = busyText || "Memproses…";
+                button.disabled = true;
+            } else {
+                button.textContent = button.dataset.originalText || button.textContent;
+                button.disabled = false;
+                delete button.dataset.originalText;
+            }
+        }
+
+        function safeDocumentationHref(value) {
+            const raw = String(value || "").trim();
+            if (/^https?:\/\//i.test(raw)) return raw;
+            if (/^data:image\//i.test(raw)) return raw;
+            return "";
+        }
+
+        function formatDate(value) {
+            if (!value) return "-";
+            const date = new Date(value + "T00:00:00");
+            return Number.isNaN(date.getTime())
+                ? value
+                : new Intl.DateTimeFormat("id-ID", {
+                    day: "2-digit", month: "long", year: "numeric"
+                }).format(date);
+        }
+
+        function updateAuthUI() {
+            const loggedIn = SurGemData.isAdminLoggedIn();
+            const status = document.getElementById("admin-status");
+
+            if (loggedIn) {
+                authCard.hidden = true;
+                managementGrid.hidden = false;
+                readonlyCard.hidden = true;
+                status.textContent = "Admin terhubung";
+                status.classList.add("is-active");
+            } else {
+                authCard.hidden = false;
+                managementGrid.hidden = true;
+                readonlyCard.hidden = false;
+                status.textContent = "Mode baca";
+                status.classList.remove("is-active");
+                document.getElementById("auth-title").textContent = "Masuk sebagai Admin";
+                document.getElementById("auth-description").textContent =
+                    "Gunakan kata sandi umum admin untuk mengelola data terpusat.";
+                document.getElementById("auth-submit").textContent = "Masuk";
+            }
+
+            renderAllRecords();
+        }
+
+        function summaryHTML(batches) {
+            const segments = batches.reduce(function (total, batch) {
+                return total + batch.segmentCount;
+            }, 0);
+            return [
+                "<span>" + batches.length.toLocaleString("id-ID") + " input</span>",
+                "<span>" + segments.toLocaleString("id-ID") + " histori segmen</span>",
+                "<span>Data server terpusat</span>"
+            ].join("");
+        }
+
+        function tableHTML(batches, editable) {
+            if (!batches.length) {
+                return '<div class="admin-empty">Belum ada data yang dimasukkan admin.</div>';
+            }
+
+            const rows = batches.map(function (batch) {
+                const docLink = safeDocumentationHref(
+                    batch.Dokumentasi_URL || batch.Dokumentasi_DataURL
+                );
+                const doc = docLink
+                    ? '<a href="' + escapeHTML(docLink) + '" target="_blank" rel="noopener">Lihat</a>'
+                    : "-";
+                const actions = editable
+                    ? '<div class="admin-row-actions">' +
+                        '<button type="button" data-action="edit" data-batch-id="' + escapeHTML(batch.batchId) + '">Edit</button>' +
+                        '<button type="button" class="delete" data-action="delete" data-batch-id="' + escapeHTML(batch.batchId) + '">Hapus</button>' +
+                      '</div>'
+                    : "-";
+
+                return "<tr>" +
+                    "<td><strong>" + escapeHTML(formatDate(batch.Tanggal_Pelaksanaan)) + "</strong><small>" + escapeHTML(batch.Petugas || "Tanpa nama petugas") + "</small></td>" +
+                    "<td><strong>" + escapeHTML(SurGemData.formatSTA(batch.Dari)) + " – " + escapeHTML(SurGemData.formatSTA(batch.Sampai)) + "</strong><small>" + batch.segmentCount + " segmen × 200 m</small></td>" +
+                    "<td><strong>Jalur " + escapeHTML(batch.Jalur) + "</strong><small>" + escapeHTML(batch.Lajur) + "</small></td>" +
+                    "<td><strong>" + escapeHTML(batch.Keterangan) + "</strong></td>" +
+                    "<td>" + doc + "</td>" +
+                    "<td>" + actions + "</td>" +
+                "</tr>";
+            }).join("");
+
+            return '<div class="admin-table-wrap"><table class="admin-table">' +
+                "<thead><tr><th>Tanggal</th><th>Rentang asli</th><th>Jalur/lajur</th><th>Keterangan</th><th>Dokumentasi</th><th>Tindakan</th></tr></thead>" +
+                "<tbody>" + rows + "</tbody></table></div>";
+        }
+
+        function renderAllRecords() {
+            const batches = SurGemData.getBatches();
+            document.getElementById("admin-summary").innerHTML = summaryHTML(batches);
+            document.getElementById("records-container").innerHTML = tableHTML(batches, true);
+            document.getElementById("readonly-summary").innerHTML = summaryHTML(batches);
+            document.getElementById("readonly-records").innerHTML = tableHTML(batches, false);
+        }
+
+        function resetEditor() {
+            editingBatchId = null;
+            editingDocumentation = { name: "", dataUrl: "" };
+            pendingDocumentation = { name: "", dataUrl: "" };
+            repairForm.reset();
+            document.getElementById("tanggal").value = new Date().toISOString().slice(0, 10);
+            document.getElementById("form-title").textContent = "Tambah histori perbaikan";
+            document.getElementById("save-button").textContent = "Simpan Data";
+            document.getElementById("cancel-edit").hidden = true;
+            documentationPreview.removeAttribute("src");
+            documentationPreview.classList.remove("is-visible");
+            clearMessage(document.getElementById("form-message"));
+        }
+
+        function editBatch(batchId) {
+            const batch = SurGemData.getBatches().find(function (item) {
+                return item.batchId === batchId;
+            });
+            if (!batch) return;
+
+            editingBatchId = batchId;
+            editingDocumentation = {
+                name: batch.Dokumentasi_Nama || "",
+                dataUrl: batch.Dokumentasi_DataURL || ""
+            };
+            pendingDocumentation = { ...editingDocumentation };
+
+            document.getElementById("tanggal").value = batch.Tanggal_Pelaksanaan || "";
+            document.getElementById("petugas").value = batch.Petugas || "";
+            document.getElementById("sta-dari").value = SurGemData.formatSTA(batch.Dari);
+            document.getElementById("sta-sampai").value = SurGemData.formatSTA(batch.Sampai);
+            document.getElementById("jalur").value = batch.Jalur || "";
+            document.getElementById("lajur").value = batch.Lajur || "";
+            document.getElementById("keterangan").value = batch.Keterangan || "";
+            document.getElementById("dokumentasi-url").value = batch.Dokumentasi_URL || "";
+            document.getElementById("form-title").textContent = "Ubah histori perbaikan";
+            document.getElementById("save-button").textContent = "Simpan Perubahan";
+            document.getElementById("cancel-edit").hidden = false;
+
+            if (batch.Dokumentasi_DataURL) {
+                documentationPreview.src = batch.Dokumentasi_DataURL;
+                documentationPreview.classList.add("is-visible");
+            } else {
+                documentationPreview.removeAttribute("src");
+                documentationPreview.classList.remove("is-visible");
+            }
+
+            window.scrollTo({ top: managementGrid.offsetTop - 30, behavior: "smooth" });
+        }
+
+        authForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const message = document.getElementById("auth-message");
+            const submit = document.getElementById("auth-submit");
+            clearMessage(message);
+            setButtonBusy(submit, true, "Memeriksa…");
+
+            try {
+                const valid = await SurGemData.loginAdmin(
+                    document.getElementById("admin-password").value
+                );
+                if (!valid) throw new Error("Kata sandi salah.");
+                await SurGemData.loadRecords({ notify: false });
+                authForm.reset();
+                updateAuthUI();
+                resetEditor();
+            } catch (error) {
+                showMessage(message, error.message, "error");
+            } finally {
+                setButtonBusy(submit, false);
+            }
+        });
+
+        documentationInput.addEventListener("change", function () {
+            const file = documentationInput.files && documentationInput.files[0];
+            const message = document.getElementById("form-message");
+            if (!file) {
+                pendingDocumentation = { ...editingDocumentation };
+                return;
+            }
+            if (file.size > SurGemData.MAX_DOCUMENTATION_BYTES) {
+                documentationInput.value = "";
+                showMessage(message, "Ukuran foto melebihi 1 MB.", "error");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function () {
+                pendingDocumentation = {
+                    name: file.name,
+                    dataUrl: String(reader.result || "")
+                };
+                documentationPreview.src = pendingDocumentation.dataUrl;
+                documentationPreview.classList.add("is-visible");
+                clearMessage(message);
+            };
+            reader.onerror = function () {
+                showMessage(message, "Foto dokumentasi tidak dapat dibaca.", "error");
+            };
+            reader.readAsDataURL(file);
+        });
+
+        repairForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const message = document.getElementById("form-message");
+            const saveButton = document.getElementById("save-button");
+            clearMessage(message);
+
+            if (!SurGemData.isAdminLoggedIn()) {
+                showMessage(message, "Sesi admin sudah berakhir. Silakan masuk kembali.", "error");
+                updateAuthUI();
+                return;
+            }
+
+            const payload = {
+                tanggal: document.getElementById("tanggal").value,
+                petugas: document.getElementById("petugas").value,
+                staDari: document.getElementById("sta-dari").value,
+                staSampai: document.getElementById("sta-sampai").value,
+                jalur: document.getElementById("jalur").value,
+                lajur: document.getElementById("lajur").value,
+                keterangan: document.getElementById("keterangan").value,
+                dokumentasiUrl: document.getElementById("dokumentasi-url").value,
+                dokumentasiNama: pendingDocumentation.name,
+                dokumentasiDataUrl: pendingDocumentation.dataUrl
+            };
+
+            setButtonBusy(saveButton, true, "Menyimpan…");
+            try {
+                const wasEditing = Boolean(editingBatchId);
+                const rows = wasEditing
+                    ? await SurGemData.updateBatch(editingBatchId, payload)
+                    : await SurGemData.addBatch(payload);
+                resetEditor();
+                renderAllRecords();
+                showMessage(
+                    document.getElementById("form-message"),
+                    "Data berhasil " + (wasEditing ? "diperbarui" : "ditambahkan") +
+                    " menjadi " + rows.length + " histori segmen 200 meter. Peta dan statistik telah diberi sinyal pembaruan.",
+                    "success"
+                );
+            } catch (error) {
+                showMessage(message, error.message, "error");
+                if (!SurGemData.isAdminLoggedIn()) updateAuthUI();
+            } finally {
+                setButtonBusy(saveButton, false);
+            }
+        });
+
+        document.getElementById("records-container").addEventListener("click", async function (event) {
+            const button = event.target.closest("button[data-action]");
+            if (!button || !SurGemData.isAdminLoggedIn()) return;
+            const batchId = button.dataset.batchId;
+
+            if (button.dataset.action === "edit") {
+                editBatch(batchId);
+                return;
+            }
+
+            if (button.dataset.action === "delete") {
+                const batch = SurGemData.getBatches().find(function (item) {
+                    return item.batchId === batchId;
+                });
+                const label = batch
+                    ? SurGemData.formatSTA(batch.Dari) + " – " + SurGemData.formatSTA(batch.Sampai)
+                    : "data ini";
+                if (!confirm("Hapus seluruh histori hasil input " + label + "?")) return;
+
+                setButtonBusy(button, true, "Menghapus…");
+                try {
+                    await SurGemData.deleteBatch(batchId);
+                    if (editingBatchId === batchId) resetEditor();
+                    renderAllRecords();
+                } catch (error) {
+                    alert(error.message);
+                    if (!SurGemData.isAdminLoggedIn()) updateAuthUI();
+                } finally {
+                    setButtonBusy(button, false);
+                }
+            }
+        });
+
+        document.getElementById("cancel-edit").addEventListener("click", resetEditor);
+        document.getElementById("reset-button").addEventListener("click", function () {
+            setTimeout(resetEditor, 0);
+        });
+        document.getElementById("logout-button").addEventListener("click", function () {
+            SurGemData.logoutAdmin();
+            resetEditor();
+            updateAuthUI();
+        });
+
+        window.addEventListener("storage", function (event) {
+            if (event.key === THEME_KEY) {
+                applyTheme(event.newValue === "dark" ? "dark" : "light");
+            }
+        });
+        window.addEventListener("surgem:user-data-changed", renderAllRecords);
+
+        async function initializeAdmin() {
+            document.getElementById("tahun-footer").textContent = new Date().getFullYear();
+            applyTheme(localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light");
+
+            try {
+                await SurGemData.loadRecords({ notify: false });
+            } catch (error) {
+                showMessage(
+                    document.getElementById("auth-message"),
+                    error.message,
+                    "error"
+                );
+            }
+
+            updateAuthUI();
+            if (SurGemData.isAdminLoggedIn()) resetEditor();
+            SurGemData.startAutoSync();
+        }
+
+        initializeAdmin();
+    </script>
+</body>
+</html>

@@ -5,11 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SurGem Maintain — Statistik</title>
 
-    <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="peta.css">
     <link rel="stylesheet" href="stat.css">
 
+    <style>
+        .other-stat-cards {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 12px;
+        }
 
+        .other-stat-card {
+            min-width: 0;
+            padding: 15px 14px;
+            background: #ffffff;
+            border: 1px solid #dfe5ec;
+            border-top: 4px solid #7c3aed;
+            border-radius: 11px;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.07);
+        }
+
+        .other-stat-card strong {
+            display: block;
+            color: #162f61;
+            font-size: clamp(22px, 2.2vw, 31px);
+            line-height: 1;
+            font-weight: 850;
+        }
+
+        .other-stat-card span {
+            margin-top: 8px;
+            display: block;
+            color: #5f6c7e;
+            font-size: 11px;
+            line-height: 1.35;
+            font-weight: 750;
+        }
+
+        .other-chart-wrapper {
+            height: 430px;
+        }
+
+        body.dark-mode .other-stat-card {
+            background: #111827;
+            border-color: #334155;
+        }
+
+        body.dark-mode .other-stat-card strong {
+            color: #f8fafc;
+        }
+
+        body.dark-mode .other-stat-card span {
+            color: #cbd5e1;
+        }
+
+        @media (max-width: 1050px) {
+            .other-stat-cards {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 680px) {
+            .other-stat-cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .other-chart-wrapper {
+                height: 470px;
+            }
+        }
+    </style>
 </head>
 <script>
     (function () {
@@ -70,7 +137,7 @@
     <div class="main-wrapper">
         <header class="jm-header">
         <div class="jm-page-width jm-header-inner">
-            <a class="jm-brand-box" href="home.html" aria-label="Beranda SFO Tol Dashboard">
+            <a class="jm-brand-box" href="index.html" aria-label="Beranda SFO Tol Dashboard">
                 <img src="logo_jasamarga.png" alt="Logo Jasa Marga" width="190">
 
                 <div class="jm-text-logo">
@@ -80,10 +147,11 @@
             </a>
 
             <nav class="jm-nav-menu" aria-label="Navigasi utama">
-                <a href="home.html" class="nav-link" aria-current="page">Home</a>
-                <a href="index.html" class="nav-link">Peta Interaktif</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="peta.html" class="nav-link">Peta Interaktif</a>
                 <a href="stat.html" class="nav-link active">Data Statistik</a>
                 <a href="tentang.html" class="nav-link">Tentang</a>
+                <a href="admin.html" class="nav-link" aria-current="page">Admin Data</a>
 
                 <button
                     class="darkmode-toggle"
@@ -91,7 +159,7 @@
                     onclick="toggleDarkMode()"
                     aria-pressed="false"
                 >
-                    🌙 Dark Mode
+                    ⏾
                 </button>
             </nav>
         </div>
@@ -100,27 +168,27 @@
         <div class="content-header">
             <div class="jm-page-width">
                 <div class="section-tag">Ringkasan Data</div>
-                <h2>Statistik Data SFO</h2>
-                <p>Rekap jumlah dan daftar segmen berdasarkan status kondisi. Untuk data SFO Jalur maupun SFO Gerbang, lengkap dengan unduhan seluruh data dalam format Excel (.xlsx).</p>
+                <h2>Statistik Pekerjaan Jalan Tol</h2>
+                <p>Rekap SFO memakai satu pekerjaan paling terbaru pada setiap segmen Jalur A/B, sedangkan pekerjaan lainnya diringkas berdasarkan jenis pekerjaan dari seluruh sheet sumber.</p>
             </div>
         </div>
 
-        <div id="stat-message" class="map-message">Memuat data SFO, gerbang tol, dan alignment Tol Surabaya–Gempol...</div>
+        <div id="stat-message" class="map-message">Memuat data SFO, pekerjaan lainnya, gerbang tol, dan alignment Tol Surabaya–Gempol...</div>
 
         <!-- ================= DIAGRAM KESELURUHAN ================= -->
         <section class="stat-section" aria-labelledby="judul-diagram-keseluruhan">
             <div class="stat-section-head">
                 <div>
                     <div class="section-tag">Visualisasi</div>
-                    <h3 id="judul-diagram-keseluruhan">Diagram Batang Keseluruhan Data SFO</h3>
+                    <h3 id="judul-diagram-keseluruhan">Diagram Status Terbaru per Segmen</h3>
                     <p class="chart-subtitle">
-                        Perbandingan jumlah SFO Jalur dan gerbang pada setiap kategori kondisi pemeliharaan.
+                        Setiap segmen Jalur dan setiap gerbang hanya dihitung satu kali berdasarkan pekerjaan paling terbaru.
                     </p>
                 </div>
             </div>
 
             <div class="stat-chart-card">
-                <div class="stat-chart-wrapper">
+                <div class="stat-chart-wrapper other-chart-wrapper">
                     <canvas
                         id="diagram-keseluruhan"
                         role="img"
@@ -135,14 +203,51 @@
             <p class="stat-note" id="note-diagram-keseluruhan"></p>
         </section>
 
+        <!-- ================= PEKERJAAN LAINNYA ================= -->
+        <section class="stat-section border-top" aria-labelledby="judul-diagram-pekerjaan-lainnya">
+            <div class="stat-section-head">
+                <div>
+                    <div class="section-tag">Pekerjaan Lainnya</div>
+                    <h3 id="judul-diagram-pekerjaan-lainnya">Diagram Jenis Pekerjaan Lainnya</h3>
+                    <p class="chart-subtitle">
+                        Expansion joint, sealant, overlay, rekonstruksi rigid pavement, dan seluruh variasi patching. Semua jenis patching digabung menjadi satu kategori “Patching”.
+                    </p>
+                </div>
+                <button
+                    class="download-btn"
+                    id="download-pekerjaan-lainnya"
+                    type="button"
+                    disabled
+                >
+                    ⭳ Unduh Rekap Pekerjaan Lainnya (.xlsx)
+                </button>
+            </div>
+
+            <div class="stat-chart-card">
+                <div class="stat-chart-wrapper other-chart-wrapper">
+                    <canvas
+                        id="diagram-pekerjaan-lainnya"
+                        role="img"
+                        aria-label="Diagram batang jumlah pekerjaan lainnya berdasarkan jenis pekerjaan"
+                    >
+                        Browser Anda tidak mendukung elemen canvas.
+                    </canvas>
+                </div>
+                <p class="chart-error" id="chart-error-lainnya" hidden></p>
+            </div>
+
+            <div class="other-stat-cards" id="cards-pekerjaan-lainnya"></div>
+            <p class="stat-note" id="note-pekerjaan-lainnya"></p>
+        </section>
+
         <!-- ================= SFO JALUR ================= -->
         <div class="stat-section border-top">
             <div class="stat-section-head">
                 <div>
                     <div class="section-tag">Rekap Perbaikan SFO</div>
-                    <h3>Jalur</h3>
+                    <h3>Jalur A/B — Terbaru per Segmen</h3>
                 </div>
-                <button class="download-btn" id="download-jalur" type="button" disabled>⭳ Unduh Excel Jalur (.xlsx)</button>
+                <button class="download-btn" id="download-jalur" type="button" disabled>⭳ Unduh Rekap Terbaru Jalur A/B (.xlsx)</button>
             </div>
             <div class="stat-cards" id="cards-jalur"></div>
             <div class="stat-lists" id="lists-jalur"></div>
@@ -156,7 +261,7 @@
                     <div class="section-tag">Rekap Perbaikan SFO</div>
                     <h3>Gerbang</h3>
                 </div>
-                <button class="download-btn" id="download-gerbang" type="button" disabled>⭳ Unduh Excel Gerbang (.xlsx)</button>
+                <button class="download-btn" id="download-gerbang" type="button" disabled>⭳ Unduh Rekap Terbaru Gerbang (.xlsx)</button>
             </div>
             <div class="stat-cards" id="cards-gerbang"></div>
             <div class="stat-lists" id="lists-gerbang"></div>
@@ -196,7 +301,7 @@
             <h4>Navigasi</h4>
 
             <div class="footer-nav-links">
-                <a href="index.html">Peta Persebaran</a>
+                <a href="peta.html">Peta Persebaran</a>
                 <a href="stat.html">Data Statistik</a>
                 <a href="tentang.html">Tentang Sistem</a>
             </div>
@@ -218,12 +323,18 @@
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7.2.0/turf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="data-perbaikan.js?v=4"></script>
 
     <script>
         "use strict";
 
-        const DATA_URL = "Rekap_SFO_deng_FeaturesToJSO.geojson";
-        const GATE_DATA_URL = "gatetol_history.geojson";
+        const DATA_URL = "Rekap_SFO_deng_FeaturesToJSO_updated.geojson";
+        const GATE_DATA_URL = "gatetol_history_updated.geojson";
+        const OTHER_DATA_URL = "Rekap_Pekerjaan_Lainnya_2023_2026.geojson";
+
+        // Jumlah baris non-kosong yang dibaca dari seluruh sheet Excel:
+        // 2023, 2024, 2025, Lokasi 25, dan Lokasi 26.
+        const OTHER_EXCEL_SOURCE_ROWS = 813;
 
         /* Hanya gerbang bernama yang berjarak maksimal 1 km dari
          * salah satu alignment Tol Surabaya–Gempol yang digunakan. */
@@ -295,7 +406,7 @@
 
         function formatSTA(value) {
             const nilai = parseSTAMeter(value);
-            if (nilai === null) return "Tanggal Tidak Ditemukan";
+            if (nilai === null) return "STA tidak tersedia";
 
             const meterBulat = Math.round(nilai);
             const km = Math.floor(meterBulat / 1000);
@@ -333,6 +444,7 @@
         // Kebijakan tanggal-hanya-tahun: sama persis dengan index.html
         const ASUMSI_TANGGAL_PER_TAHUN = {
             "2023": { year: 2023, month: 6, day: 30 },
+            "2025": { year: 2025, month: 6, day: 30 },
             "2026": { year: 2026, month: 1, day: 1 }
         };
 
@@ -396,15 +508,119 @@
             return { key: "safe", months: hasil.months, parsed: hasil.parsed };
         }
 
+        function normalisasiKunciSegmen(value) {
+            return String(value ?? "")
+                .trim()
+                .toUpperCase()
+                .replace(/\s+/g, " ");
+        }
+
+        function kunciLajur(value) {
+            const raw = normalisasiKunciSegmen(value)
+                .replace(/^LAJUR\s*/, "")
+                .replace(/^LANE\s*/, "")
+                .replace(/^L\s*/, "");
+            const number = Number(raw);
+
+            if (Number.isInteger(number) && number >= 1 && number <= 3) {
+                return "L" + number;
+            }
+
+            return raw || "TANPA_LAJUR";
+        }
+
+        function kunciSegmenJalur(properties) {
+            const props = properties || {};
+            const jalur = normalisasiKunciSegmen(props.Jalur);
+            const rawRoute = String(props.rute ?? "").trim();
+            const route = rawRoute || (
+                jalur === "A" ? "surgem_A" :
+                jalur === "B" ? "surgem_B" :
+                jalur || "RUTE_TIDAK_DIKETAHUI"
+            );
+            const dari = parseSTAMeter(props.Dari);
+            const sampai = parseSTAMeter(props.Sampai);
+
+            if (dari === null || sampai === null) {
+                const fallbackId =
+                    props.OBJECTID ??
+                    props.__feature_id ??
+                    props.__source_index;
+                return "record|" + String(fallbackId);
+            }
+
+            return [
+                route,
+                kunciLajur(props.Lajur),
+                Math.min(dari, sampai),
+                Math.max(dari, sampai)
+            ].join("|");
+        }
+
+        function timestampPekerjaan(properties) {
+            const parsed = parseTanggalPelaksanaan(
+                properties?.Tanggal_Pelaksanaan
+            );
+            return parsed.valid
+                ? parsed.date.getTime()
+                : Number.NEGATIVE_INFINITY;
+        }
+
+        function bandingkanPekerjaanTerbaru(a, b) {
+            const dateDifference =
+                timestampPekerjaan(b) - timestampPekerjaan(a);
+
+            if (dateDifference !== 0) return dateDifference;
+
+            const objectA = Number(a.OBJECTID ?? a.__source_index ?? 0);
+            const objectB = Number(b.OBJECTID ?? b.__source_index ?? 0);
+            return objectB - objectA;
+        }
+
+        function pilihPekerjaanTerbaruPerSegmen(items) {
+            const grouped = new Map();
+
+            items.forEach(function (properties) {
+                const key = kunciSegmenJalur(properties);
+                if (!grouped.has(key)) grouped.set(key, []);
+                grouped.get(key).push(properties);
+            });
+
+            return Array.from(grouped.entries())
+                .map(function (entry) {
+                    const key = entry[0];
+                    const histories = entry[1]
+                        .slice()
+                        .sort(bandingkanPekerjaanTerbaru);
+                    return {
+                        ...histories[0],
+                        __segment_key: key,
+                        __history_count: histories.length
+                    };
+                })
+                .sort(function (a, b) {
+                    return kunciSegmenJalur(a).localeCompare(
+                        kunciSegmenJalur(b),
+                        "id"
+                    );
+                });
+        }
+
         // ---------- Alias kolom histori gerbang (sama seperti index.html) ----------
         const GATE_HISTORY_FIELD_ALIASES = {
+            Tahun: ["Tahun"],
             Tanggal_Pelaksanaan: ["Tanggal_Pelaksanaan", "Tanggal", "Tanggal Pelaksanaan"],
-            Dari: ["Dari", "KM Dari", "KM_Dari"],
-            Sampai: ["Sampai", "KM Sampai", "KM_Sampai"],
+            Dari: ["Dari", "KM Dari", "KM_Dari", "KM Dari 200m"],
+            Sampai: ["Sampai", "KM Sampai", "KM_Sampai", "KM Sampai 200m"],
+            KM_Asli_Dari: ["KM_Asli_Dari", "KM Asli Dari", "KM Dari Asli"],
+            KM_Asli_Sampai: ["KM_Asli_Sampai", "KM Asli Sampai", "KM Sampai Asli"],
             Jalur: ["Jalur"],
             Lajur: ["Lajur"],
             Gerbang: ["Gerbang"],
-            Keterangan: ["Keterangan"]
+            Keterangan: ["Keterangan", "Pekerjaan"],
+            Kategori_Pekerjaan: ["Kategori_Pekerjaan", "Kategori Pekerjaan", "Jenis_Pekerjaan", "Jenis Pekerjaan"],
+            Sumber_Sheet: ["Sumber_Sheet", "Sumber Sheet"],
+            Sumber_Baris: ["Sumber_Baris", "Sumber Baris"]
         };
 
         function findPropertyByAliases(properties, aliases) {
@@ -428,6 +644,111 @@
 
             return punyaTanggal ? record : null;
         }
+
+        function kategoriPekerjaanRecord(properties) {
+            const props = properties || {};
+            const explicit = String(
+                findPropertyByAliases(
+                    props,
+                    [
+                        "Kategori_Pekerjaan",
+                        "Kategori Pekerjaan",
+                        "Jenis_Pekerjaan",
+                        "Jenis Pekerjaan"
+                    ]
+                ) ?? ""
+            ).trim().toLowerCase();
+
+            if (/lain|other|non[\s_-]*sfo/.test(explicit)) return "other";
+            if (/sfo/.test(explicit)) return "sfo";
+
+            const description = String(
+                findPropertyByAliases(props, ["Keterangan", "Pekerjaan"]) ?? ""
+            ).toLowerCase();
+
+            if (/expansion|sealant|patching|rekonstruksi\s+rigid|rigid\s+pavement/.test(description)) {
+                return "other";
+            }
+
+            return "sfo";
+        }
+
+        function normalisasiNilaiDeduplikasi(value) {
+            return String(value ?? "")
+                .trim()
+                .toLowerCase()
+                .replace(/\s+/g, " ");
+        }
+
+        function recordPekerjaanLainnya(properties) {
+            const props = properties || {};
+            const record = {};
+
+            Object.keys(GATE_HISTORY_FIELD_ALIASES).forEach(function (field) {
+                record[field] = findPropertyByAliases(
+                    props,
+                    GATE_HISTORY_FIELD_ALIASES[field]
+                );
+            });
+
+            if (kategoriPekerjaanRecord(props) !== "other") return null;
+
+            const keterangan = String(record.Keterangan ?? "").trim();
+            if (!keterangan) return null;
+
+            return record;
+        }
+
+        function kunciPekerjaanLainnya(record) {
+            const tanggal = String(record.Tanggal_Pelaksanaan ?? "").trim();
+            const tahun = record.Tahun ?? tanggal.slice(0, 4);
+
+            return [
+                tahun,
+                record.Dari,
+                record.Sampai,
+                record.Jalur,
+                record.Lajur,
+                record.Keterangan,
+                record.KM_Asli_Dari,
+                record.KM_Asli_Sampai
+            ].map(normalisasiNilaiDeduplikasi).join("|");
+        }
+
+        function gabungkanPekerjaanLainnyaUnik(records) {
+            const unique = new Map();
+
+            records.forEach(function (record) {
+                if (!record) return;
+                const key = kunciPekerjaanLainnya(record);
+                if (!unique.has(key)) unique.set(key, record);
+            });
+
+            return Array.from(unique.values());
+        }
+
+        function kategoriDiagramPekerjaanLainnya(keterangan) {
+            const text = String(keterangan ?? "")
+                .trim()
+                .toLowerCase();
+
+            // Seluruh tipe/variasi patching sengaja disatukan.
+            if (/patch|tambal/.test(text)) return "patching";
+            if (/expansion\s*joint|exp\.?\s*joint/.test(text)) return "expansion-joint";
+            if (/sealant/.test(text)) return "sealant";
+            if (/rekonstruksi.*rigid|rigid.*pavement/.test(text)) return "rekonstruksi-rigid";
+            if (/overlay/.test(text)) return "overlay";
+            return "lainnya";
+        }
+
+        const OTHER_WORK_CONFIG = [
+            { key: "expansion-joint", label: "Expansion Joint" },
+            { key: "patching", label: "Patching" },
+            { key: "sealant", label: "Sealant" },
+            { key: "overlay", label: "Overlay" },
+            { key: "rekonstruksi-rigid", label: "Rekonstruksi Rigid Pavement" },
+            { key: "lainnya", label: "Lainnya" }
+        ];
 
         function coordinateLooksGeographic(coordinate) {
             return Array.isArray(coordinate) &&
@@ -686,7 +1007,11 @@
         // ---------------- Ambil & olah data ----------------
 
         let jalurFeatures = [];
-        let gerbangList = []; // { name, history: [...], distanceKm }
+        let jalurSegmenTerbaru = [];
+        let gerbangList = []; // { name, history: [...], otherHistory: [...], distanceKm }
+        let pekerjaanLainnyaJalur = [];
+        let pekerjaanLainnyaGerbang = [];
+        let pekerjaanLainnyaUnik = [];
 
         let gateFilterStats = {
             sourceRows: 0,
@@ -705,12 +1030,80 @@
                 throw new Error("Struktur file SFO Jalur bukan GeoJSON FeatureCollection.");
             }
 
-            jalurFeatures = geojson.features.map(function (feature) {
-                return feature.properties || {};
-            });
+            const baseFeatures = geojson.features
+                .map(function (feature, index) {
+                    return {
+                        ...(feature.properties || {}),
+                        __feature_id: feature.id ?? null,
+                        __source_index: index,
+                        __data_origin: "base"
+                    };
+                });
+
+            let userFeatures = [];
+            if (window.SurGemData) {
+                try {
+                    await SurGemData.loadRecords({ notify: false });
+                    userFeatures = SurGemData.getRecords().map(function (record, index) {
+                        return {
+                            ...record,
+                            __feature_id: record.id || null,
+                            __source_index: baseFeatures.length + index,
+                            __data_origin: "user"
+                        };
+                    });
+                    SurGemData.startAutoSync();
+                } catch (error) {
+                    console.warn("Data input admin belum dapat dimuat ke statistik.", error);
+                }
+            }
+
+            jalurFeatures = baseFeatures
+                .concat(userFeatures)
+                .filter(function (properties) {
+                    const route = String(properties.rute ?? "").trim();
+                    const jalur = normalisasiKunciSegmen(properties.Jalur);
+                    const lane = kunciLajur(properties.Lajur);
+                    const mainline =
+                        route === "surgem_A" ||
+                        route === "surgem_B" ||
+                        jalur === "A" ||
+                        jalur === "B";
+
+                    return mainline && ["L1", "L2", "L3"].includes(lane);
+                });
+        }
+
+        async function ambilPekerjaanLainnya() {
+            const response = await fetch(encodeURI(OTHER_DATA_URL));
+
+            if (!response.ok) {
+                throw new Error(
+                    "HTTP " + response.status +
+                    " saat membaca " + OTHER_DATA_URL
+                );
+            }
+
+            const geojson = await response.json();
+
+            if (
+                geojson.type !== "FeatureCollection" ||
+                !Array.isArray(geojson.features)
+            ) {
+                throw new Error(
+                    "Struktur file pekerjaan lainnya bukan GeoJSON FeatureCollection."
+                );
+            }
+
+            pekerjaanLainnyaJalur = geojson.features
+                .map(function (feature) {
+                    return recordPekerjaanLainnya(feature.properties || {});
+                })
+                .filter(Boolean);
         }
 
         async function ambilGerbang() {
+            pekerjaanLainnyaGerbang = [];
             const response = await fetch(GATE_DATA_URL);
 
             if (!response.ok) {
@@ -793,6 +1186,7 @@
                     merged.set(key, {
                         name: candidate.name,
                         history: [],
+                        otherHistory: [],
                         distanceKm: candidate.distanceKm
                     });
                 }
@@ -805,9 +1199,16 @@
                 );
 
                 if (candidate.historyRecord) {
-                    gate.history.push(
+                    const category = kategoriPekerjaanRecord(
                         candidate.historyRecord
                     );
+
+                    if (category === "other") {
+                        gate.otherHistory.push(candidate.historyRecord);
+                        pekerjaanLainnyaGerbang.push(candidate.historyRecord);
+                    } else {
+                        gate.history.push(candidate.historyRecord);
+                    }
                 }
             });
 
@@ -887,7 +1288,8 @@
                             "<b>" + escapeHTML(formatRentangSTA(props.Dari, props.Sampai)) + "</b><br>" +
                             '<span class="item-meta">' +
                             escapeHTML(infoRute(props)) + " · Lajur " + escapeHTML(nilaiAtauFallback(props.Lajur, "-")) +
-                            "<br>" + escapeHTML(status.parsed.display) +
+                            "<br>Pekerjaan terbaru: " + escapeHTML(status.parsed.display) +
+                            " · " + escapeHTML(props.__history_count || 1) + " riwayat" +
                             "</span>" +
                             "</div>"
                         );
@@ -991,8 +1393,8 @@
             };
         }
 
-        function tampilkanKesalahanDiagram(pesan) {
-            const errorEl = document.getElementById("chart-error");
+        function tampilkanKesalahanDiagram(pesan, elementId) {
+            const errorEl = document.getElementById(elementId || "chart-error");
             if (!errorEl) return;
             errorEl.hidden = false;
             errorEl.textContent = pesan;
@@ -1037,14 +1439,14 @@
                     labels: labelStatus,
                     datasets: [
                         {
-                            label: "SFO Jalur (baris/segmen)",
+                            label: "SFO Jalur (segmen terbaru)",
                             data: jumlahJalur,
                             backgroundColor: "rgba(0, 45, 98, 0.85)",
                             borderColor: "#002d62",
                             borderWidth: 1,
                             borderRadius: 6,
                             borderSkipped: false,
-                            maxBarThickness: 56
+                            maxBarThickness: 32
                         },
                         {
                             label: "SFO Gerbang",
@@ -1054,22 +1456,21 @@
                             borderWidth: 1,
                             borderRadius: 6,
                             borderSkipped: false,
-                            maxBarThickness: 56
+                            maxBarThickness: 32
                         }
                     ]
                 },
-                plugins: [pluginNilaiBatang],
+                plugins: [pluginNilaiBatangHorizontal],
                 options: {
+                    indexAxis: "y",
                     responsive: true,
                     maintainAspectRatio: false,
-                    animation: {
-                        duration: 650
-                    },
+                    animation: { duration: 650 },
                     layout: {
                         padding: {
-                            top: 28,
-                            right: 10,
-                            bottom: 4,
+                            top: 8,
+                            right: 54,
+                            bottom: 5,
                             left: 4
                         }
                     },
@@ -1103,39 +1504,16 @@
                                 label: function (context) {
                                     const namaDataset = context.dataset.label || "";
                                     const nilai = Number(context.raw || 0);
-                                    return namaDataset + ": " + nilai.toLocaleString("id-ID");
+                                    return namaDataset + ": " +
+                                        nilai.toLocaleString("id-ID");
                                 }
                             }
                         }
                     },
                     scales: {
                         x: {
-                            grid: {
-                                display: false
-                            },
-                            ticks: {
-                                color: tema.warnaTeks,
-                                autoSkip: false,
-                                maxRotation: 0,
-                                minRotation: 0,
-                                font: {
-                                    size: 11,
-                                    weight: "600"
-                                }
-                            },
-                            title: {
-                                display: true,
-                                text: "Kategori kondisi",
-                                color: tema.warnaJudul,
-                                font: {
-                                    size: 12,
-                                    weight: "700"
-                                }
-                            }
-                        },
-                        y: {
                             beginAtZero: true,
-                            grace: "15%",
+                            grace: "14%",
                             grid: {
                                 color: tema.warnaGrid
                             },
@@ -1148,7 +1526,29 @@
                             },
                             title: {
                                 display: true,
-                                text: "Jumlah data",
+                                text: "Jumlah segmen / gerbang",
+                                color: tema.warnaJudul,
+                                font: {
+                                    size: 12,
+                                    weight: "700"
+                                }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: tema.warnaTeks,
+                                autoSkip: false,
+                                font: {
+                                    size: 11,
+                                    weight: "650"
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: "Kategori kondisi",
                                 color: tema.warnaJudul,
                                 font: {
                                     size: 12,
@@ -1169,119 +1569,544 @@
 
             if (note) {
                 note.textContent =
-                    "Diagram membandingkan " +
+                    "Diagram batang horizontal membandingkan " +
                     totalJalur.toLocaleString("id-ID") +
-                    " baris/segmen SFO Jalur dan " +
+                    " segmen terbaru SFO Jalur dan " +
                     totalGerbang.toLocaleString("id-ID") +
                     " gerbang.";
             }
         }
 
-        window.perbaruiTemaDiagramStatistik = function () {
-            if (!diagramBatangKeseluruhan) return;
+        let diagramPekerjaanLainnya = null;
+
+        const pluginNilaiBatangHorizontal = {
+            id: "pluginNilaiBatangHorizontal",
+            afterDatasetsDraw: function (chart) {
+                const ctx = chart.ctx;
+                const darkModeAktif = document.body.classList.contains("dark-mode");
+
+                ctx.save();
+                ctx.fillStyle = darkModeAktif ? "#e2e8f0" : "#334155";
+                ctx.font = "700 11px Arial, sans-serif";
+                ctx.textAlign = "left";
+                ctx.textBaseline = "middle";
+
+                chart.data.datasets.forEach(function (dataset, datasetIndex) {
+                    const meta = chart.getDatasetMeta(datasetIndex);
+                    if (meta.hidden) return;
+
+                    meta.data.forEach(function (bar, dataIndex) {
+                        const value = Number(dataset.data[dataIndex] ?? 0);
+                        if (!Number.isFinite(value)) return;
+
+                        const x = Math.min(
+                            bar.x + 8,
+                            chart.chartArea.right - 34
+                        );
+
+                        ctx.fillText(
+                            value.toLocaleString("id-ID"),
+                            x,
+                            bar.y
+                        );
+                    });
+                });
+
+                ctx.restore();
+            }
+        };
+
+        function ringkasPekerjaanLainnya(records) {
+            const counts = new Map(
+                OTHER_WORK_CONFIG.map(function (item) {
+                    return [item.key, 0];
+                })
+            );
+
+            records.forEach(function (record) {
+                const key = kategoriDiagramPekerjaanLainnya(
+                    record.Keterangan
+                );
+                counts.set(key, (counts.get(key) || 0) + 1);
+            });
+
+            return OTHER_WORK_CONFIG
+                .map(function (item) {
+                    return {
+                        key: item.key,
+                        label: item.label,
+                        count: counts.get(item.key) || 0
+                    };
+                })
+                .filter(function (item) {
+                    return item.count > 0;
+                });
+        }
+
+        function renderDiagramPekerjaanLainnya(records) {
+            const canvas = document.getElementById(
+                "diagram-pekerjaan-lainnya"
+            );
+            const cards = document.getElementById(
+                "cards-pekerjaan-lainnya"
+            );
+            const note = document.getElementById(
+                "note-pekerjaan-lainnya"
+            );
+
+            if (!canvas) return;
+
+            if (typeof Chart === "undefined") {
+                tampilkanKesalahanDiagram(
+                    "Diagram pekerjaan lainnya tidak dapat dibuat karena library Chart.js gagal dimuat.",
+                    "chart-error-lainnya"
+                );
+                return;
+            }
+
+            const summary = ringkasPekerjaanLainnya(records);
+            const tema = temaDiagramSaatIni();
+
+            if (diagramPekerjaanLainnya) {
+                diagramPekerjaanLainnya.destroy();
+            }
+
+            diagramPekerjaanLainnya = new Chart(canvas, {
+                type: "bar",
+                data: {
+                    labels: summary.map(function (item) {
+                        return item.label;
+                    }),
+                    datasets: [
+                        {
+                            label: "Jumlah pekerjaan unik",
+                            data: summary.map(function (item) {
+                                return item.count;
+                            }),
+                            backgroundColor: "rgba(124, 58, 237, 0.84)",
+                            borderColor: "#6d28d9",
+                            borderWidth: 1,
+                            borderRadius: 6,
+                            borderSkipped: false,
+                            maxBarThickness: 42
+                        }
+                    ]
+                },
+                plugins: [pluginNilaiBatangHorizontal],
+                options: {
+                    indexAxis: "y",
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 650 },
+                    layout: {
+                        padding: {
+                            top: 8,
+                            right: 48,
+                            bottom: 5,
+                            left: 4
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: tema.tooltipBg,
+                            titleColor: tema.tooltipText,
+                            bodyColor: tema.tooltipText,
+                            callbacks: {
+                                label: function (context) {
+                                    return (
+                                        "Jumlah: " +
+                                        Number(context.raw || 0)
+                                            .toLocaleString("id-ID")
+                                    );
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grace: "12%",
+                            grid: { color: tema.warnaGrid },
+                            ticks: {
+                                color: tema.warnaTeks,
+                                precision: 0
+                            },
+                            title: {
+                                display: true,
+                                text: "Jumlah pekerjaan unik",
+                                color: tema.warnaJudul,
+                                font: { size: 12, weight: "700" }
+                            }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: {
+                                color: tema.warnaTeks,
+                                autoSkip: false,
+                                font: { size: 11, weight: "650" }
+                            }
+                        }
+                    }
+                }
+            });
+
+            if (cards) {
+                cards.innerHTML = summary.map(function (item) {
+                    return (
+                        '<div class="other-stat-card">' +
+                        "<strong>" +
+                        item.count.toLocaleString("id-ID") +
+                        "</strong>" +
+                        "<span>" +
+                        escapeHTML(item.label) +
+                        "</span>" +
+                        "</div>"
+                    );
+                }).join("");
+            }
+
+            const sourceSheets = Array.from(
+                new Set(
+                    records
+                        .map(function (record) {
+                            return String(record.Sumber_Sheet ?? "").trim();
+                        })
+                        .filter(Boolean)
+                )
+            );
+
+            if (note) {
+                note.textContent =
+                    OTHER_EXCEL_SOURCE_ROWS.toLocaleString("id-ID") +
+                    " baris dari seluruh sheet Excel diringkas menjadi " +
+                    records.length.toLocaleString("id-ID") +
+                    " pekerjaan unik setelah duplikat persis antarsheet digabung. " +
+                    "Sheet terakses: " +
+                    sourceSheets.join(", ") +
+                    ". Seluruh variasi patching dihitung dalam satu kategori Patching.";
+            }
+        }
+
+        function perbaruiTemaSatuDiagram(chart) {
+            if (!chart) return;
 
             const tema = temaDiagramSaatIni();
-            const options = diagramBatangKeseluruhan.options;
+            const options = chart.options;
 
-            options.plugins.legend.labels.color = tema.warnaTeks;
-            options.plugins.tooltip.backgroundColor = tema.tooltipBg;
-            options.plugins.tooltip.titleColor = tema.tooltipText;
-            options.plugins.tooltip.bodyColor = tema.tooltipText;
-            options.scales.x.ticks.color = tema.warnaTeks;
-            options.scales.x.title.color = tema.warnaJudul;
-            options.scales.y.ticks.color = tema.warnaTeks;
-            options.scales.y.title.color = tema.warnaJudul;
-            options.scales.y.grid.color = tema.warnaGrid;
+            if (options.plugins?.legend?.labels) {
+                options.plugins.legend.labels.color = tema.warnaTeks;
+            }
 
-            diagramBatangKeseluruhan.update("none");
+            if (options.plugins?.tooltip) {
+                options.plugins.tooltip.backgroundColor = tema.tooltipBg;
+                options.plugins.tooltip.titleColor = tema.tooltipText;
+                options.plugins.tooltip.bodyColor = tema.tooltipText;
+            }
+
+            ["x", "y"].forEach(function (axisName) {
+                const axis = options.scales?.[axisName];
+                if (!axis) return;
+                if (axis.ticks) axis.ticks.color = tema.warnaTeks;
+                if (axis.title) axis.title.color = tema.warnaJudul;
+                if (axis.grid && axis.grid.display !== false) {
+                    axis.grid.color = tema.warnaGrid;
+                }
+            });
+
+            chart.update("none");
+        }
+
+        window.perbaruiTemaDiagramStatistik = function () {
+            perbaruiTemaSatuDiagram(diagramBatangKeseluruhan);
+            perbaruiTemaSatuDiagram(diagramPekerjaanLainnya);
         };
 
         // ---------------- Unduh Excel ----------------
 
-        function unduhExcelJalur() {
-            const rows = jalurFeatures.map(function (props, index) {
-                const status = statusDariTanggal(props.Tanggal_Pelaksanaan);
+        function labelKategoriPekerjaanLainnya(keterangan) {
+            const key = kategoriDiagramPekerjaanLainnya(keterangan);
+            const config = OTHER_WORK_CONFIG.find(function (item) {
+                return item.key === key;
+            });
+            return config ? config.label : "Lainnya";
+        }
+
+        function unduhExcelPekerjaanLainnya() {
+            if (typeof XLSX === "undefined") {
+                alert(
+                    "File Excel tidak dapat dibuat karena library SheetJS gagal dimuat. " +
+                    "Periksa koneksi internet lalu muat ulang halaman."
+                );
+                return;
+            }
+
+            const summary = ringkasPekerjaanLainnya(
+                pekerjaanLainnyaUnik
+            );
+
+            const summaryRows = summary.map(function (item, index) {
                 return {
                     No: index + 1,
-                    Rentang_STA: formatRentangSTA(props.Dari, props.Sampai),
-                    Rute: nilaiAtauFallback(props.rute, "-"),
-                    Jalur: nilaiAtauFallback(props.Jalur, "-"),
-                    Lajur: nilaiAtauFallback(props.Lajur, "-"),
-                    Tanggal_Pelaksanaan_Raw: nilaiAtauFallback(props.Tanggal_Pelaksanaan, ""),
-                    Tanggal_Ditampilkan: status.parsed.display,
-                    Umur_Bulan: status.months === null ? "" : status.months,
-                    Status: STATUS_CONFIG[status.key].label,
-                    Keterangan: nilaiAtauFallback(props.Keterangan, "")
+                    Jenis_Pekerjaan: item.label,
+                    Jumlah_Pekerjaan_Unik: item.count
+                };
+            });
+
+            summaryRows.push({
+                No: "",
+                Jenis_Pekerjaan: "TOTAL",
+                Jumlah_Pekerjaan_Unik: summary.reduce(
+                    function (total, item) {
+                        return total + item.count;
+                    },
+                    0
+                )
+            });
+
+            const detailRows = pekerjaanLainnyaUnik
+                .slice()
+                .sort(function (a, b) {
+                    const categoryA = labelKategoriPekerjaanLainnya(
+                        a.Keterangan
+                    );
+                    const categoryB = labelKategoriPekerjaanLainnya(
+                        b.Keterangan
+                    );
+                    const categoryDifference = categoryA.localeCompare(
+                        categoryB,
+                        "id"
+                    );
+
+                    if (categoryDifference !== 0) {
+                        return categoryDifference;
+                    }
+
+                    const dateA = parseTanggalPelaksanaan(
+                        a.Tanggal_Pelaksanaan
+                    );
+                    const dateB = parseTanggalPelaksanaan(
+                        b.Tanggal_Pelaksanaan
+                    );
+                    const timestampA = dateA.valid
+                        ? dateA.date.getTime()
+                        : Number.NEGATIVE_INFINITY;
+                    const timestampB = dateB.valid
+                        ? dateB.date.getTime()
+                        : Number.NEGATIVE_INFINITY;
+
+                    return timestampB - timestampA;
+                })
+                .map(function (record, index) {
+                    const asliDari = parseSTAMeter(
+                        record.KM_Asli_Dari
+                    );
+                    const asliSampai = parseSTAMeter(
+                        record.KM_Asli_Sampai
+                    );
+                    const panjangMeter =
+                        asliDari !== null && asliSampai !== null
+                            ? Math.abs(asliSampai - asliDari)
+                            : "";
+                    const parsedDate = parseTanggalPelaksanaan(
+                        record.Tanggal_Pelaksanaan
+                    );
+
+                    return {
+                        No: index + 1,
+                        Kategori_Digabung:
+                            labelKategoriPekerjaanLainnya(
+                                record.Keterangan
+                            ),
+                        Keterangan_Asli: nilaiAtauFallback(
+                            record.Keterangan,
+                            ""
+                        ),
+                        Tahun: nilaiAtauFallback(record.Tahun, ""),
+                        Tanggal_Pelaksanaan_Raw: nilaiAtauFallback(
+                            record.Tanggal_Pelaksanaan,
+                            ""
+                        ),
+                        Tanggal_Ditampilkan: parsedDate.display,
+                        Rentang_STA_Segmen: formatRentangSTA(
+                            record.Dari,
+                            record.Sampai
+                        ),
+                        KM_Dari_Segmen_Raw:
+                            record.Dari ?? "",
+                        KM_Sampai_Segmen_Raw:
+                            record.Sampai ?? "",
+                        KM_Asli_Dari_Raw:
+                            record.KM_Asli_Dari ?? "",
+                        KM_Asli_Sampai_Raw:
+                            record.KM_Asli_Sampai ?? "",
+                        KM_Asli_Dari_Format:
+                            asliDari === null
+                                ? ""
+                                : formatSTA(asliDari),
+                        KM_Asli_Sampai_Format:
+                            asliSampai === null
+                                ? ""
+                                : formatSTA(asliSampai),
+                        Panjang_Pekerjaan_Meter: panjangMeter,
+                        Jalur: nilaiAtauFallback(record.Jalur, ""),
+                        Lajur: nilaiAtauFallback(record.Lajur, ""),
+                        Gerbang_atau_Lokasi: nilaiAtauFallback(
+                            record.Gerbang,
+                            ""
+                        ),
+                        Sumber_Sheet: nilaiAtauFallback(
+                            record.Sumber_Sheet,
+                            ""
+                        ),
+                        Sumber_Baris: record.Sumber_Baris ?? ""
+                    };
+                });
+
+            const summarySheet = XLSX.utils.json_to_sheet(
+                summaryRows
+            );
+            summarySheet["!cols"] = [
+                { wch: 6 },
+                { wch: 34 },
+                { wch: 24 }
+            ];
+            summarySheet["!autofilter"] = {
+                ref: "A1:C" + (summaryRows.length + 1)
+            };
+
+            const detailSheet = XLSX.utils.json_to_sheet(
+                detailRows
+            );
+            detailSheet["!cols"] = [
+                { wch: 6 }, { wch: 30 }, { wch: 44 }, { wch: 9 },
+                { wch: 22 }, { wch: 28 }, { wch: 24 }, { wch: 20 },
+                { wch: 22 }, { wch: 18 }, { wch: 20 }, { wch: 22 },
+                { wch: 24 }, { wch: 24 }, { wch: 14 }, { wch: 14 },
+                { wch: 28 }, { wch: 18 }, { wch: 14 }
+            ];
+            detailSheet["!autofilter"] = {
+                ref: "A1:S" + (detailRows.length + 1)
+            };
+
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(
+                workbook,
+                summarySheet,
+                "Ringkasan Jenis"
+            );
+            XLSX.utils.book_append_sheet(
+                workbook,
+                detailSheet,
+                "Detail Pekerjaan"
+            );
+
+            XLSX.writeFile(
+                workbook,
+                "Rekap_Pekerjaan_Lainnya.xlsx"
+            );
+        }
+
+        function unduhExcelJalur() {
+            function rowsTerbaru(items) {
+                return pilihPekerjaanTerbaruPerSegmen(items).map(function (props, index) {
+                    const status = statusDariTanggal(props.Tanggal_Pelaksanaan);
+                    return {
+                        No: index + 1,
+                        Kunci_Segmen: props.__segment_key,
+                        Rentang_STA: formatRentangSTA(props.Dari, props.Sampai),
+                        Rute: nilaiAtauFallback(props.rute, "-"),
+                        Jalur: nilaiAtauFallback(props.Jalur, "-"),
+                        Lajur: nilaiAtauFallback(props.Lajur, "-"),
+                        Jumlah_Riwayat: props.__history_count || 1,
+                        Tanggal_Pelaksanaan_Raw: nilaiAtauFallback(props.Tanggal_Pelaksanaan, ""),
+                        Tanggal_Ditampilkan: status.parsed.display,
+                        Umur_Bulan: status.months === null ? "" : status.months,
+                        Status: STATUS_CONFIG[status.key].label,
+                        Keterangan: nilaiAtauFallback(props.Keterangan, ""),
+                        Sumber_Data: nilaiAtauFallback(props.Sumber_Data, props.__data_origin === "user" ? "Input Admin Terpusat" : "Data Awal")
+                    };
+                });
+            }
+
+            const combinedRows = rowsTerbaru(jalurFeatures);
+            const baseRows = rowsTerbaru(jalurFeatures.filter(function (props) {
+                return props.__data_origin !== "user";
+            }));
+            const userRows = jalurFeatures
+                .filter(function (props) { return props.__data_origin === "user"; })
+                .sort(function (a, b) {
+                    return String(b.Tanggal_Pelaksanaan || "").localeCompare(String(a.Tanggal_Pelaksanaan || ""));
+                })
+                .map(function (props, index) {
+                    const status = statusDariTanggal(props.Tanggal_Pelaksanaan);
+                    return {
+                        No: index + 1,
+                        ID_Input: nilaiAtauFallback(props.batchId, ""),
+                        Rentang_STA_Segmen: formatRentangSTA(props.Dari, props.Sampai),
+                        Rentang_STA_Asli: formatRentangSTA(props.KM_Asli_Dari, props.KM_Asli_Sampai),
+                        Jalur: nilaiAtauFallback(props.Jalur, "-"),
+                        Lajur: nilaiAtauFallback(props.Lajur, "-"),
+                        Tanggal_Pelaksanaan: nilaiAtauFallback(props.Tanggal_Pelaksanaan, ""),
+                        Status: STATUS_CONFIG[status.key].label,
+                        Keterangan: nilaiAtauFallback(props.Keterangan, ""),
+                        Petugas: nilaiAtauFallback(props.Petugas, ""),
+                        Dokumentasi: nilaiAtauFallback(props.Dokumentasi_URL || props.Dokumentasi_Nama, "")
+                    };
+                });
+
+            function appendSheet(workbook, rows, name) {
+                const sheet = XLSX.utils.json_to_sheet(rows.length ? rows : [{ Keterangan: "Belum ada data" }]);
+                sheet["!cols"] = [
+                    { wch: 6 }, { wch: 38 }, { wch: 22 }, { wch: 22 },
+                    { wch: 12 }, { wch: 10 }, { wch: 16 }, { wch: 28 },
+                    { wch: 38 }, { wch: 24 }, { wch: 28 }, { wch: 24 }
+                ];
+                XLSX.utils.book_append_sheet(workbook, sheet, name);
+            }
+
+            const wb = XLSX.utils.book_new();
+            appendSheet(wb, combinedRows, "Snapshot Gabungan");
+            appendSheet(wb, baseRows, "Data Awal Terbaru");
+            appendSheet(wb, userRows, "Input Pengguna");
+            XLSX.writeFile(wb, "SFO_Jalur_Gabungan_dan_Input_Admin.xlsx");
+        }
+
+        function unduhExcelGerbang() {
+            const rows = gerbangList.map(function (gate, index) {
+                const latest = statusGerbang(gate);
+                const record = latest.record || {};
+
+                return {
+                    No: index + 1,
+                    Nama_Gerbang: gate.name,
+                    Jumlah_Riwayat: gate.history.length,
+                    Rentang_STA: latest.record
+                        ? formatRentangSTA(record.Dari, record.Sampai)
+                        : "",
+                    Jalur: nilaiAtauFallback(record.Jalur, "-"),
+                    Lajur: nilaiAtauFallback(record.Lajur, "-"),
+                    Tanggal_Pelaksanaan_Raw: nilaiAtauFallback(
+                        record.Tanggal_Pelaksanaan,
+                        ""
+                    ),
+                    Tanggal_Ditampilkan: latest.parsed.display,
+                    Umur_Bulan: latest.months === null ? "" : latest.months,
+                    Status: STATUS_CONFIG[latest.key].label,
+                    Keterangan: nilaiAtauFallback(record.Keterangan, "")
                 };
             });
 
             const ws = XLSX.utils.json_to_sheet(rows);
             ws["!cols"] = [
-                { wch: 5 }, { wch: 18 }, { wch: 10 }, { wch: 8 }, { wch: 10 },
-                { wch: 16 }, { wch: 30 }, { wch: 10 }, { wch: 26 }, { wch: 34 }
+                { wch: 5 }, { wch: 26 }, { wch: 14 }, { wch: 18 },
+                { wch: 8 }, { wch: 10 }, { wch: 18 }, { wch: 30 },
+                { wch: 10 }, { wch: 26 }, { wch: 34 }
             ];
 
             const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "SFO Jalur");
-            XLSX.writeFile(wb, "SFO_Jalur_Surabaya_Gempol.xlsx");
-        }
-
-        function unduhExcelGerbang() {
-            const rows = [];
-            let no = 1;
-
-            gerbangList.forEach(function (gate) {
-                if (!gate.history.length) {
-                    rows.push({
-                        No: no++,
-                        Nama_Gerbang: gate.name,
-                        Rentang_STA: "",
-                        Jalur: "",
-                        Lajur: "",
-                        Tanggal_Pelaksanaan_Raw: "",
-                        Tanggal_Ditampilkan: "Belum ada data SFO tercatat",
-                        Umur_Bulan: "",
-                        Status: STATUS_CONFIG.unknown.label,
-                        Keterangan: ""
-                    });
-                    return;
-                }
-
-                gate.history
-                    .slice()
-                    .sort(function (a, b) {
-                        const umurA = hitungSelisihBulan(a.Tanggal_Pelaksanaan).months;
-                        const umurB = hitungSelisihBulan(b.Tanggal_Pelaksanaan).months;
-                        const nilaiA = umurA === null ? Infinity : umurA;
-                        const nilaiB = umurB === null ? Infinity : umurB;
-                        return nilaiA - nilaiB;
-                    })
-                    .forEach(function (record) {
-                        const status = statusDariTanggal(record.Tanggal_Pelaksanaan);
-                        rows.push({
-                            No: no++,
-                            Nama_Gerbang: gate.name,
-                            Rentang_STA: formatRentangSTA(record.Dari, record.Sampai),
-                            Jalur: nilaiAtauFallback(record.Jalur, "-"),
-                            Lajur: nilaiAtauFallback(record.Lajur, "-"),
-                            Tanggal_Pelaksanaan_Raw: nilaiAtauFallback(record.Tanggal_Pelaksanaan, ""),
-                            Tanggal_Ditampilkan: status.parsed.display,
-                            Umur_Bulan: status.months === null ? "" : status.months,
-                            Status: STATUS_CONFIG[status.key].label,
-                            Keterangan: nilaiAtauFallback(record.Keterangan, "")
-                        });
-                    });
-            });
-
-            const ws = XLSX.utils.json_to_sheet(rows);
-            ws["!cols"] = [
-                { wch: 5 }, { wch: 26 }, { wch: 18 }, { wch: 8 }, { wch: 10 },
-                { wch: 16 }, { wch: 30 }, { wch: 10 }, { wch: 26 }, { wch: 34 }
-            ];
-
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "SFO Gerbang");
-            XLSX.writeFile(wb, "SFO_Gerbang_Surabaya_Gempol.xlsx");
+            XLSX.utils.book_append_sheet(wb, ws, "Gerbang Terbaru");
+            XLSX.writeFile(wb, "SFO_Gerbang_Terbaru.xlsx");
         }
 
         // ---------------- Inisialisasi ----------------
@@ -1292,13 +2117,24 @@
             try {
                 await Promise.all([
                     ambilJalur(),
+                    ambilPekerjaanLainnya(),
                     loadExternalAlignments()
                 ]);
 
                 await ambilGerbang();
 
+                pekerjaanLainnyaUnik =
+                    gabungkanPekerjaanLainnyaUnik([
+                        ...pekerjaanLainnyaJalur,
+                        ...pekerjaanLainnyaGerbang
+                    ]);
+
+                jalurSegmenTerbaru = pilihPekerjaanTerbaruPerSegmen(
+                    jalurFeatures
+                );
+
                 const groupsJalur = kelompokkan(
-                    jalurFeatures,
+                    jalurSegmenTerbaru,
                     function (properties) {
                         return statusDariTanggal(properties.Tanggal_Pelaksanaan);
                     }
@@ -1312,6 +2148,7 @@
                 renderListsGerbang(groupsGerbang);
 
                 renderDiagramBatangKeseluruhan(groupsJalur, groupsGerbang);
+                renderDiagramPekerjaanLainnya(pekerjaanLainnyaUnik);
 
                 const totalHistoriGerbang = gerbangList.reduce(
                     function (total, gate) {
@@ -1320,8 +2157,29 @@
                     0
                 );
 
+                document.getElementById("note-jalur").textContent =
+                    jalurFeatures.length.toLocaleString("id-ID") +
+                    " catatan histori Jalur A/B (L1–L3) diringkas menjadi " +
+                    jalurSegmenTerbaru.length.toLocaleString("id-ID") +
+                    " kombinasi jalur + lajur + rentang STA. Setiap kombinasi " +
+                    "hanya memakai satu pekerjaan SFO yang paling terbaru.";
+
+                document.getElementById("note-gerbang").textContent =
+                    totalHistoriGerbang + " catatan histori pada " +
+                    gerbangList.length + " gerbang. Setiap gerbang dihitung " +
+                    "satu kali berdasarkan pekerjaan paling terbaru.";
+
+                document.getElementById("note-diagram-keseluruhan").textContent =
+                    "Diagram SFO merupakan snapshot terbaru per segmen Jalur A/B dan " +
+                    "per gerbang, bukan jumlah seluruh baris histori.";
+
+                document.getElementById("download-pekerjaan-lainnya").disabled = false;
                 document.getElementById("download-jalur").disabled = false;
                 document.getElementById("download-gerbang").disabled = false;
+                document.getElementById("download-pekerjaan-lainnya").addEventListener(
+                    "click",
+                    unduhExcelPekerjaanLainnya
+                );
                 document.getElementById("download-jalur").addEventListener("click", unduhExcelJalur);
                 document.getElementById("download-gerbang").addEventListener("click", unduhExcelGerbang);
 
@@ -1332,12 +2190,16 @@
                 message.textContent =
                     "Data gagal dimuat: " + error.message +
                     ". Jalankan melalui Live Server dan pastikan file " +
-                    DATA_URL + ", " + GATE_DATA_URL + ", " +
+                    DATA_URL + ", " + GATE_DATA_URL + ", " + OTHER_DATA_URL + ", " +
                     ALIGNMENT_FILES.surgem_A + ", dan " +
                     ALIGNMENT_FILES.surgem_B +
                     " berada di folder yang sama dengan halaman ini.";
             }
         }
+
+        window.addEventListener("surgem:user-data-changed", function () {
+            window.location.reload();
+        });
 
         init();
     </script>
