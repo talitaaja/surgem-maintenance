@@ -2443,3 +2443,13 @@ body,
         margin: 0 0 0 4px;
     }
 }
+.hero-text p,
+.section-head .lead,
+.process-heading .lead,
+.feature-card p,
+.step-card p,
+.jm-profile-content p {
+    text-align: justify;
+    text-align-last: left;
+    hyphens: auto;
+}

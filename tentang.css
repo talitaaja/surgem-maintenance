@@ -1969,3 +1969,17 @@ body.dark-mode .maintenance-terms-section .maintenance-accordion-icon::after {
         font-size: 11px !important;
     }
 }
+/* =========================================================
+   PERATAAN TEKS JUSTIFY UNTUK SEMUA PARAGRAF
+========================================================= */
+.about-intro p,
+.about-block > p,
+.about-list li,
+.maintenance-terms-section .section-lead,
+.development-flow-section .section-lead,
+.maintenance-terms-section .maintenance-accordion-content li,
+.development-flow-section .development-card-grid p {
+    text-align: justify;
+    text-align-last: left;
+    hyphens: auto;
+}
