@@ -169,7 +169,36 @@
             return [row.id, row.diubah_pada, row.tanggal_pelaksanaan];
         }));
     }
+    function normalizeKeywordText(text) {
+        return String(text ?? "")
+            .toLowerCase()
+            .normalize("NFKD")
+            .replace(/[^a-z0-9\s]/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+    }
 
+    const SFO_KEYWORDS = [
+        "scraping filling", "scrapping filling", "sfo",
+        "scraping", "scrapping", "filling", "overlay"
+    ];
+
+    const OTHER_KEYWORDS = [
+        "patching type 1", "patching type 2", "patching beton",
+        "patching", "sealant", "rekonstruksi"
+    ];
+
+    function keywordCategoryFromKeterangan(keterangan) {
+        const text = normalizeKeywordText(keterangan);
+        if (!text) return "SFO";
+        if (OTHER_KEYWORDS.some(function (k) { return text.includes(normalizeKeywordText(k)); })) {
+            return "Lainnya";
+        }
+        if (SFO_KEYWORDS.some(function (k) { return text.includes(normalizeKeywordText(k)); })) {
+            return "SFO";
+        }
+        return "SFO";
+    }
     function expandDatabaseRow(row) {
         const start = Number(row.sta_dari_m);
         const end = Number(row.sta_sampai_m);
@@ -196,7 +225,7 @@
                 Tahun: Number(String(row.tanggal_pelaksanaan || "").slice(0, 4)) || null,
                 Keterangan: row.keterangan || "",
                 Petugas: row.petugas || "",
-                Kategori_Pekerjaan: "SFO",
+                Kategori_Pekerjaan: keywordCategoryFromKeterangan(row.keterangan),
                 Sumber_Data: "Input Admin Supabase",
                 Dokumentasi_URL: index === 0 ? (row.dokumentasi_url || "") : "",
                 Dokumentasi_Nama: index === 0 ? (row.dokumentasi_nama || "") : "",

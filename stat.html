@@ -797,16 +797,57 @@
             return punyaTanggal ? record : null;
         }
 
+        function normalizeKeywordText(text) {
+            return String(text ?? "")
+                .toLowerCase()
+                .normalize("NFKD")
+                .replace(/[^a-z0-9\s]/g, " ")
+                .replace(/\s+/g, " ")
+                .trim();
+        }
+
+        const SFO_KEYWORDS = [
+            "scraping filling",
+            "scrapping filling",
+            "sfo",
+            "scraping",
+            "scrapping",
+            "filling",
+            "overlay"
+        ];
+
+        const OTHER_KEYWORDS = [
+            "patching type 1",
+            "patching type 2",
+            "patching beton",
+            "patching",
+            "sealant",
+            "rekonstruksi"
+        ];
+
+        function keywordListMatches(normalizedText, keywordList) {
+            return keywordList.some(function (keyword) {
+                return normalizedText.includes(normalizeKeywordText(keyword));
+            });
+        }
+
+        function workCategoryFromKeterangan(keterangan) {
+            const normalized = normalizeKeywordText(keterangan);
+            if (!normalized) return null;
+            if (keywordListMatches(normalized, OTHER_KEYWORDS)) return "other";
+            if (keywordListMatches(normalized, SFO_KEYWORDS)) return "sfo";
+            return null;
+        }
+
         function kategoriPekerjaanRecord(properties) {
             const props = properties || {};
             const explicit = String(findPropertyByAliases(props,
                 ["Kategori_Pekerjaan", "Kategori Pekerjaan", "Jenis_Pekerjaan", "Jenis Pekerjaan"]) ?? "").trim().toLowerCase();
             if (/lain|other|non[\s_-]*sfo/.test(explicit)) return "other";
             if (/sfo/.test(explicit)) return "sfo";
-            const description = String(findPropertyByAliases(props, ["Keterangan", "Pekerjaan"]) ?? "").toLowerCase();
-            if (/expansion|sealant|patching|rekonstruksi\s+rigid|rigid\s+pavement/.test(description)) {
-                return "other";
-            }
+            const description = findPropertyByAliases(props, ["Keterangan", "Pekerjaan"]);
+            const keywordCategory = workCategoryFromKeterangan(description);
+            if (keywordCategory) return keywordCategory;
             return "sfo";
         }
 
@@ -852,12 +893,11 @@
         }
 
         function kategoriDiagramPekerjaanLainnya(keterangan) {
-            const text = String(keterangan ?? "").trim().toLowerCase();
-            // Seluruh tipe/variasi patching sengaja disatukan.
+            const text = normalizeKeywordText(keterangan);
             if (/patch|tambal/.test(text)) return "patching";
-            if (/expansion\s*joint|exp\.?\s*joint/.test(text)) return "expansion-joint";
+            if (/expansion\s*joint|exp\s*joint/.test(text)) return "expansion-joint";
             if (/sealant/.test(text)) return "sealant";
-            if (/rekonstruksi.*rigid|rigid.*pavement/.test(text)) return "rekonstruksi-rigid";
+            if (/rekonstruksi/.test(text)) return "rekonstruksi-rigid";
             if (/overlay/.test(text)) return "overlay";
             return "lainnya";
         }
@@ -1099,9 +1139,11 @@
             if (geojson.type !== "FeatureCollection" || !Array.isArray(geojson.features)) {
                 throw new Error("Struktur file pekerjaan lainnya bukan GeoJSON FeatureCollection.");
             }
-            pekerjaanLainnyaJalur = geojson.features.map(function(feature) {
-                return recordPekerjaanLainnya(feature.properties || {});
-            }).filter(Boolean);
+            pekerjaanLainnyaJalur = pekerjaanLainnyaJalur.concat(
+                geojson.features.map(function(feature) {
+                    return recordPekerjaanLainnya(feature.properties || {});
+                }).filter(Boolean)
+            );
         }
         async function ambilGerbang() {
             pekerjaanLainnyaGerbang = [];
