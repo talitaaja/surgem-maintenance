@@ -215,9 +215,9 @@ a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
-    background: var(--jm-blue-dark);
-    border: 1px solid var(--jm-blue-dark);
+    color: #ffffff !important;
+    background: var(--jm-blue-dark) !important;
+    border: 1px solid var(--jm-blue-dark) !important;
     border-radius: 70px;
     font-size: 20px;
     font-weight: 700;
@@ -252,14 +252,12 @@ a {
     pointer-events: none;
     opacity: 0.72;
     background:
-        repeating-radial-gradient(
-            ellipse at 35% 50%,
+        repeating-radial-gradient(ellipse at 35% 50%,
             transparent 0,
             transparent 16px,
             rgba(56, 90, 146, 0.12) 17px,
             transparent 18px,
-            transparent 31px
-        );
+            transparent 31px);
     transform: rotate(-18deg);
 }
 
@@ -387,11 +385,9 @@ a {
     z-index: 300;
     pointer-events: none;
     background:
-        linear-gradient(
-            180deg,
+        linear-gradient(180deg,
             rgba(6, 25, 57, 0.02) 35%,
-            rgba(6, 25, 57, 0.72) 100%
-        );
+            rgba(6, 25, 57, 0.72) 100%);
 }
 
 .hero-preview-copy {
@@ -409,7 +405,7 @@ a {
     pointer-events: none;
 }
 
-.hero-preview-copy > div:first-child {
+.hero-preview-copy>div:first-child {
     display: grid;
     gap: 3px;
 }
@@ -621,7 +617,7 @@ a {
     line-height: 1.7;
 }
 
-.feature-card > a {
+.feature-card>a {
     width: 38px;
     height: 38px;
     display: inline-flex;
@@ -640,7 +636,7 @@ a {
         transform 0.2s ease;
 }
 
-.feature-card:hover > a {
+.feature-card:hover>a {
     color: #ffffff;
     background: var(--jm-orange);
     border-color: var(--jm-orange);
@@ -744,7 +740,7 @@ a {
     align-items: center;
 }
 
-.jm-profile-logo {
+.jm-profile-logo-img {
     min-height: 290px;
     padding: 48px;
     display: flex;
@@ -757,7 +753,7 @@ a {
     border-radius: 0;
 }
 
-.jm-profile-logo img {
+.jm-profile-logo-img {
     width: min(100%, 290px);
     max-width: none;
     height: auto;
@@ -769,7 +765,7 @@ a {
     margin-bottom: 23px;
 }
 
-.jm-profile-content p + p {
+.jm-profile-content p+p {
     margin-top: 10px;
 }
 
@@ -856,9 +852,15 @@ body.dark-mode .jm-nav-menu .nav-link.active {
 }
 
 body.dark-mode .darkmode-toggle {
-    color: #102a57;
-    background: #f6c20e;
-    border-color: #f6c20e;
+    color: #ffffff !important;
+    background: var(--jm-orange) !important;
+    border-color: var(--jm-orange) !important;
+}
+
+body.dark-mode .darkmode-toggle:hover {
+    background: var(--jm-blue-deep);
+    border-color: var(--jm-blue-deep);
+    transform: translateY(-1px);
 }
 
 body.dark-mode .hero-text p,
@@ -916,7 +918,7 @@ body.dark-mode .feature-card .ic svg {
     stroke: #f6c20e;
 }
 
-body.dark-mode .feature-card > a {
+body.dark-mode .feature-card>a {
     color: #f8fafc;
     border-color: #475569;
 }
@@ -930,9 +932,11 @@ body.dark-mode .step-card {
     border-color: #334155;
 }
 
-body.dark-mode .jm-profile-logo {
-    background:
-        linear-gradient(145deg, #ffffff 0%, #eef2f7 100%);
+body.dark-mode .jm-profile-logo-img {
+    background-color: #0d2f6b;
+    border: 0;
+    border-left: 5px solid var(--jm-orange);
+    border-radius: 0;
 }
 
 body,
@@ -1123,7 +1127,7 @@ body,
         gap: 10px;
     }
 
-    .feature-card > a {
+    .feature-card>a {
         display: none;
     }
 
@@ -1136,7 +1140,7 @@ body,
         gap: 16px;
     }
 
-    .jm-profile-logo {
+    .jm-profile-logo-img {
         min-height: 210px;
         padding: 34px;
     }
@@ -1219,6 +1223,7 @@ body,
         margin: 0 0 0 4px;
     }
 }
+
 /* ==========================================================
    HOME 
 ========================================================== */
@@ -1473,14 +1478,12 @@ a {
     pointer-events: none;
     opacity: 0.72;
     background:
-        repeating-radial-gradient(
-            ellipse at 35% 50%,
+        repeating-radial-gradient(ellipse at 35% 50%,
             transparent 0,
             transparent 16px,
             rgba(56, 90, 146, 0.12) 17px,
             transparent 18px,
-            transparent 31px
-        );
+            transparent 31px);
     transform: rotate(-18deg);
 }
 
@@ -1608,11 +1611,9 @@ a {
     z-index: 300;
     pointer-events: none;
     background:
-        linear-gradient(
-            180deg,
+        linear-gradient(180deg,
             rgba(6, 25, 57, 0.02) 35%,
-            rgba(6, 25, 57, 0.72) 100%
-        );
+            rgba(6, 25, 57, 0.72) 100%);
 }
 
 .hero-preview-copy {
@@ -1630,7 +1631,7 @@ a {
     pointer-events: none;
 }
 
-.hero-preview-copy > div:first-child {
+.hero-preview-copy>div:first-child {
     display: grid;
     gap: 3px;
 }
@@ -1842,7 +1843,7 @@ a {
     line-height: 1.7;
 }
 
-.feature-card > a {
+.feature-card>a {
     width: 38px;
     height: 38px;
     display: inline-flex;
@@ -1861,7 +1862,7 @@ a {
         transform 0.2s ease;
 }
 
-.feature-card:hover > a {
+.feature-card:hover>a {
     color: #ffffff;
     background: var(--jm-orange);
     border-color: var(--jm-orange);
@@ -1965,7 +1966,7 @@ a {
     align-items: center;
 }
 
-.jm-profile-logo {
+.jm-profile-logo-img {
     min-height: 290px;
     padding: 48px;
     display: flex;
@@ -1978,7 +1979,7 @@ a {
     border-radius: 0;
 }
 
-.jm-profile-logo img {
+.jm-profile-logo-img {
     width: min(100%, 290px);
     max-width: none;
     height: auto;
@@ -1990,7 +1991,7 @@ a {
     margin-bottom: 23px;
 }
 
-.jm-profile-content p + p {
+.jm-profile-content p+p {
     margin-top: 10px;
 }
 
@@ -2137,7 +2138,7 @@ body.dark-mode .feature-card .ic svg {
     stroke: #f6c20e;
 }
 
-body.dark-mode .feature-card > a {
+body.dark-mode .feature-card>a {
     color: #f8fafc;
     border-color: #475569;
 }
@@ -2151,9 +2152,11 @@ body.dark-mode .step-card {
     border-color: #334155;
 }
 
-body.dark-mode .jm-profile-logo {
-    background:
-        linear-gradient(145deg, #ffffff 0%, #eef2f7 100%);
+body.dark-mode .jm-profile-logo-img {
+    background-color: #0d2f6b;
+    border: 0;
+    border-left: 5px solid var(--jm-orange);
+    border-radius: 0;
 }
 
 body,
@@ -2217,7 +2220,6 @@ body,
         position: static;
     }
 }
-
 @media (max-width: 760px) {
     .jm-page-width {
         width: min(calc(100% - 32px), var(--jm-page-width));
@@ -2344,7 +2346,7 @@ body,
         gap: 10px;
     }
 
-    .feature-card > a {
+    .feature-card>a {
         display: none;
     }
 
@@ -2357,7 +2359,7 @@ body,
         gap: 16px;
     }
 
-    .jm-profile-logo {
+    .jm-profile-logo-img {
         min-height: 210px;
         padding: 34px;
     }
@@ -2398,7 +2400,7 @@ body,
    HEADER SERAGAM — HOME
 ========================================================== */
 
-@media (min-width: 1121px) {
+@media (min-width: 761px) {
     .jm-utility-bar {
         box-sizing: border-box;
         height: 40px;
@@ -2413,6 +2415,7 @@ body,
 
     .jm-header {
         box-sizing: border-box;
+        align-items: flex-end;
         height: 78px;
         min-height: 78px;
         padding: 0;

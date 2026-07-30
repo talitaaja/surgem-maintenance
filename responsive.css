@@ -139,9 +139,6 @@ th {
         min-width: 40px;
         min-height: 39px;
         padding: 7px 10px;
-        position: sticky;
-        right: 0;
-        z-index: 2;
     }
 
     /* ---------- Kontainer umum ---------- */
@@ -250,15 +247,30 @@ th {
 
     /* ---------- Header ---------- */
     .jm-header-inner {
-        padding: 9px var(--mobile-side) 8px;
-        gap: 8px;
-    }
+    padding: 8px 16px 7px !important;
+    min-height: auto !important;
+}
 
-    .jm-brand-box img {
-        width: 132px !important;
-        max-width: 56vw;
-    }
+.darkmode-toggle {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    margin-top: 0 !important;
+    padding: 0;
+    align-self: center !important;
+}
 
+.mobile-menu-toggle {
+    width: 34px;
+    height: 34px;
+    align-self: center !important;
+}
+
+.jm-brand-box img {
+    width: 130px !important;
+    max-width: 40vw;
+}
     .jm-text-logo {
         display: none !important;
     }
@@ -1197,82 +1209,173 @@ th {
     }
 }
 /* ==========================================================
-   LOGIN DI HEADER SMARTPHONE
+   HEADER MOBILE — VERSI BERSIH (SATU SUMBER KEBENARAN)
 ========================================================== */
 
-/* Tidak ditampilkan pada desktop */
-.mobile-header-login {
+.mobile-header-login { display: none; }
+
+/* ---------- Hamburger button ---------- */
+.mobile-menu-toggle {
     display: none;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    flex: 0 0 auto;
 }
 
-/* Smartphone dan tablet */
-@media (max-width: 900px) {
+.mobile-menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--jm-blue);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
 
-    /*
-     * Utility bar lama disembunyikan pada smartphone.
-     * Login dipindahkan ke dalam header agar selalu terlihat.
-     */
-    .jm-utility-bar {
-        display: none !important;
-    }
+body.dark-mode .mobile-menu-toggle span { background: #edf2f7; }
+
+.mobile-menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.mobile-menu-toggle.open span:nth-child(2) { opacity: 0; }
+.mobile-menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- Sidebar ---------- */
+.mobile-sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    background: rgba(10, 20, 40, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease;
+}
+.mobile-sidebar-overlay.open { opacity: 1; visibility: visible; }
+
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100001;
+    width: min(78vw, 300px);
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    box-shadow: 6px 0 24px rgba(15, 23, 42, 0.18);
+    transform: translateX(-100%);
+    transition: transform 0.28s ease;
+}
+.mobile-sidebar.open { transform: translateX(0); }
+body.dark-mode .mobile-sidebar { background: #0f172a; }
+
+.mobile-sidebar-head {
+    min-height: 60px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-bottom: 1px solid var(--jm-border);
+}
+.mobile-sidebar-close {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--jm-ink);
+    background: transparent;
+    border: 0;
+    font-size: 18px;
+    cursor: pointer;
+}
+body.dark-mode .mobile-sidebar-close { color: #edf2f7; }
+
+.mobile-sidebar-nav { padding: 12px 0; display: flex; flex-direction: column; }
+.mobile-sidebar-nav a {
+    padding: 14px 20px;
+    color: #55585e;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    border-left: 3px solid transparent;
+}
+.mobile-sidebar-nav a.active,
+.mobile-sidebar-nav a:hover {
+    color: var(--jm-orange);
+    background: #fff5eb;
+    border-left-color: var(--jm-orange);
+}
+body.dark-mode .mobile-sidebar-nav a { color: #cbd5e1; }
+body.dark-mode .mobile-sidebar-nav a.active,
+body.dark-mode .mobile-sidebar-nav a:hover {
+    color: #ff9a42;
+    background: #1a2333;
+}
+body.mobile-sidebar-open { overflow: hidden; }
+
+/* ---------- Satu breakpoint tunggal untuk semua ukuran ≤1120px ---------- */
+@media (max-width: 1120px) {
+    .jm-utility-bar { display: none !important; }
 
     .jm-header-inner {
-        grid-template-columns: minmax(0, 1fr) auto !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+        padding: 8px 14px !important;
+        min-height: auto !important;
+        height: auto !important;
     }
 
-    .mobile-header-login {
-        min-width: auto;
-        min-height: 40px;
-        padding: 8px 4px;
-
+    .mobile-menu-toggle {
         display: inline-flex !important;
-        align-items: center;
-        justify-content: center;
-        justify-self: end;
-        align-self: center;
-
-        color: #173f88;
-        background: transparent;
-
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-
-        font-size: 13px;
-        line-height: 1;
-        font-weight: 800;
-        white-space: nowrap;
-
-        text-decoration: none;
-
-        transition:
-            color 160ms ease,
-            opacity 160ms ease;
+        order: 1;
     }
 
-    .mobile-header-login:hover,
-    .mobile-header-login:focus-visible {
-        color: #e97816;
-        background: transparent;
-        text-decoration: underline;
-        text-underline-offset: 4px;
-        outline: none;
+    .jm-brand-box {
+        order: 2;
+        flex: 1 1 auto;
+        width: auto !important;
+        justify-content: flex-start !important;
+        margin: 0 !important;
+        gap: 10px;
     }
 
-    /*
-     * Navigasi tetap menggunakan satu baris penuh
-     * di bawah logo dan Login.
-     */
-    .jm-nav-menu {
-        grid-column: 1 / -1 !important;
+    .jm-brand-box img {
+        width: 130px !important;
+        max-width: 40vw;
+        height: auto;
     }
 
-    body.dark-mode .mobile-header-login {
-        color: #f6c20e;
-    }
+    .jm-text-logo { display: none !important; }
 
-    body.dark-mode .mobile-header-login:hover,
-    body.dark-mode .mobile-header-login:focus-visible {
-        color: #ffffff;
+    .jm-nav-menu { display: none !important; }
+
+    .darkmode-toggle {
+        order: 3;
+        position: static !important;
+        flex: 0 0 auto;
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        min-height: 36px !important;
+        margin: 0 !important;
+        align-self: center !important;
     }
+}
+
+@media (min-width: 1121px) {
+    .jm-header-inner { flex-direction: row; }
+    .jm-nav-menu { display: flex; }
+    .mobile-menu-toggle { display: none !important; }
+    .mobile-sidebar,
+    .mobile-sidebar-overlay { display: none !important; }
 }

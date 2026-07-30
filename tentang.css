@@ -39,9 +39,7 @@
     min-height: 20px;
     margin: 0;
     padding:
-        74px
-        max(32px, calc((100vw - var(--about-width)) / 2))
-        64px;
+        74px max(32px, calc((100vw - var(--about-width)) / 2)) 64px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -62,14 +60,12 @@
     height: 590px;
     opacity: .58;
     background:
-        repeating-radial-gradient(
-            ellipse at center,
+        repeating-radial-gradient(ellipse at center,
             transparent 0,
             transparent 17px,
             rgba(23, 63, 136, .11) 18px,
             transparent 19px,
-            transparent 33px
-        );
+            transparent 33px);
     transform: rotate(14deg);
 }
 
@@ -81,11 +77,9 @@
     width: min(460px, 48vw);
     height: 5px;
     background:
-        linear-gradient(
-            90deg,
+        linear-gradient(90deg,
             var(--about-orange) 0 28%,
-            var(--about-blue) 28% 100%
-        );
+            var(--about-blue) 28% 100%);
 }
 
 .about-kicker {
@@ -146,7 +140,7 @@
 }
 
 .about-intro p,
-.about-block > p {
+.about-block>p {
     margin: 0;
     color: var(--about-text);
     font-size: 15px;
@@ -154,7 +148,7 @@
     text-align: left;
 }
 
-.about-intro p + p {
+.about-intro p+p {
     margin-top: 0;
 }
 
@@ -192,6 +186,7 @@
     letter-spacing: .1em;
     text-transform: uppercase;
 }
+
 /* ===== TUJUAN ===== */
 
 .about-list {
@@ -251,7 +246,7 @@
 
 /* ===== ALUR PENGEMBANGAN ===== */
 
-.about-content > .about-block:nth-of-type(3) {
+.about-content>.about-block:nth-of-type(3) {
     width: calc(100% + 80px);
     margin-left: -40px;
     padding: 64px 40px;
@@ -260,7 +255,7 @@
     border-left: 5px solid var(--about-blue);
 }
 
-.about-content > .about-block:nth-of-type(3)::after {
+.about-content>.about-block:nth-of-type(3)::after {
     content: "ArcGIS Pro  →  GeoJSON  →  Leaflet.js  →  WebGIS";
     margin-top: 32px;
     padding-top: 24px;
@@ -323,7 +318,7 @@
 .about-page .dev-card {
     position: relative;
     min-height: 142px;
-    padding: 30px 28px 25px 88px;
+    padding: 30px 28px 25px 50px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -462,14 +457,12 @@ body.dark-mode .about-title-section {
 body.dark-mode .about-title-section::after {
     opacity: .42;
     background:
-        repeating-radial-gradient(
-            ellipse at center,
+        repeating-radial-gradient(ellipse at center,
             transparent 0,
             transparent 17px,
             rgba(246, 194, 14, .12) 18px,
             transparent 19px,
-            transparent 33px
-        );
+            transparent 33px);
 }
 
 body.dark-mode .about-title-section::before {
@@ -501,12 +494,12 @@ body.dark-mode .about-list li::before {
     color: #f6c20e;
 }
 
-body.dark-mode .about-content > .about-block:nth-of-type(3) {
+body.dark-mode .about-content>.about-block:nth-of-type(3) {
     background: linear-gradient(120deg, #111b2c 0%, #142033 100%);
     border-left-color: #f6c20e;
 }
 
-body.dark-mode .about-content > .about-block:nth-of-type(3)::after {
+body.dark-mode .about-content>.about-block:nth-of-type(3)::after {
     color: #f6c20e;
     border-top-color: var(--about-border);
 }
@@ -608,7 +601,7 @@ body.dark-mode .back-to-top {
         padding: 54px 0;
     }
 
-    .about-content > .about-block:nth-of-type(3) {
+    .about-content>.about-block:nth-of-type(3) {
         width: calc(100% + 32px);
         margin-left: -16px;
         padding: 48px 16px;
@@ -649,6 +642,7 @@ body.dark-mode .back-to-top {
         padding-left: 78px;
     }
 }
+
 /* Dark Mode — ukuran ringkas */
 body.about-body .jm-nav-menu .darkmode-toggle {
     box-sizing: border-box !important;
@@ -692,6 +686,7 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
     color: #002d62;
     background-color: #f6c20e;
 }
+
 /* =========================================================
    TENTANG.CSS 
 ========================================================= */
@@ -733,9 +728,7 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
     min-height: 20px;
     margin: 0;
     padding:
-        74px
-        max(32px, calc((100vw - var(--about-width)) / 2))
-        64px;
+        74px max(32px, calc((100vw - var(--about-width)) / 2)) 64px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -756,14 +749,12 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
     height: 590px;
     opacity: .58;
     background:
-        repeating-radial-gradient(
-            ellipse at center,
+        repeating-radial-gradient(ellipse at center,
             transparent 0,
             transparent 17px,
             rgba(23, 63, 136, .11) 18px,
             transparent 19px,
-            transparent 33px
-        );
+            transparent 33px);
     transform: rotate(14deg);
 }
 
@@ -775,11 +766,9 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
     width: min(460px, 48vw);
     height: 5px;
     background:
-        linear-gradient(
-            90deg,
+        linear-gradient(90deg,
             var(--about-orange) 0 28%,
-            var(--about-blue) 28% 100%
-        );
+            var(--about-blue) 28% 100%);
 }
 
 .about-kicker {
@@ -840,7 +829,7 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
 }
 
 .about-intro p,
-.about-block > p {
+.about-block>p {
     margin: 0;
     color: var(--about-text);
     font-size: 15px;
@@ -848,7 +837,7 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
     text-align: left;
 }
 
-.about-intro p + p {
+.about-intro p+p {
     margin-top: 0;
 }
 
@@ -946,7 +935,7 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
 
 /* ===== ALUR PENGEMBANGAN ===== */
 
-.about-content > .about-block:nth-of-type(3) {
+.about-content>.about-block:nth-of-type(3) {
     width: calc(100% + 80px);
     margin-left: -40px;
     padding: 64px 40px;
@@ -955,7 +944,7 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
     border-left: 5px solid var(--about-blue);
 }
 
-.about-content > .about-block:nth-of-type(3)::after {
+.about-content>.about-block:nth-of-type(3)::after {
     content: "ArcGIS Pro  →  GeoJSON  →  Leaflet.js  →  WebGIS";
     margin-top: 32px;
     padding-top: 24px;
@@ -1157,14 +1146,12 @@ body.dark-mode .about-title-section {
 body.dark-mode .about-title-section::after {
     opacity: .42;
     background:
-        repeating-radial-gradient(
-            ellipse at center,
+        repeating-radial-gradient(ellipse at center,
             transparent 0,
             transparent 17px,
             rgba(246, 194, 14, .12) 18px,
             transparent 19px,
-            transparent 33px
-        );
+            transparent 33px);
 }
 
 body.dark-mode .about-title-section::before {
@@ -1196,12 +1183,12 @@ body.dark-mode .about-list li::before {
     color: #f6c20e;
 }
 
-body.dark-mode .about-content > .about-block:nth-of-type(3) {
+body.dark-mode .about-content>.about-block:nth-of-type(3) {
     background: linear-gradient(120deg, #111b2c 0%, #142033 100%);
     border-left-color: #f6c20e;
 }
 
-body.dark-mode .about-content > .about-block:nth-of-type(3)::after {
+body.dark-mode .about-content>.about-block:nth-of-type(3)::after {
     color: #f6c20e;
     border-top-color: var(--about-border);
 }
@@ -1303,7 +1290,7 @@ body.dark-mode .back-to-top {
         padding: 54px 0;
     }
 
-    .about-content > .about-block:nth-of-type(3) {
+    .about-content>.about-block:nth-of-type(3) {
         width: calc(100% + 32px);
         margin-left: -16px;
         padding: 48px 16px;
@@ -1344,6 +1331,7 @@ body.dark-mode .back-to-top {
         padding-left: 78px;
     }
 }
+
 /* Dark Mode — ukuran ringkas */
 body.about-body .jm-nav-menu .darkmode-toggle {
     box-sizing: border-box !important;
@@ -1492,7 +1480,7 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
     list-style: none !important;
 }
 
-.development-flow-section .development-card-grid > li {
+.development-flow-section .development-card-grid>li {
     counter-increment: development-step;
     position: relative;
     min-width: 0;
@@ -1507,7 +1495,7 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
     box-shadow: 0 5px 16px rgba(15, 23, 42, 0.06) !important;
 }
 
-.development-flow-section .development-card-grid > li::before {
+.development-flow-section .development-card-grid>li::before {
     content: counter(development-step, decimal-leading-zero) !important;
     position: absolute;
     top: 14px;
@@ -1525,7 +1513,7 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
     letter-spacing: 0.02em;
 }
 
-.development-flow-section .development-card-grid > li::after {
+.development-flow-section .development-card-grid>li::after {
     content: none !important;
     display: none !important;
 }
@@ -1569,7 +1557,7 @@ body.about-body .jm-nav-menu .darkmode-toggle:hover {
    DARK MODE
 ========================================================== */
 body.dark-mode .maintenance-terms-section .maintenance-definition-card,
-body.dark-mode .development-flow-section .development-card-grid > li {
+body.dark-mode .development-flow-section .development-card-grid>li {
     border-color: #334155 !important;
     background: #0f172a !important;
     box-shadow: none !important;
@@ -1579,11 +1567,11 @@ body.dark-mode .maintenance-terms-section .maintenance-definition-card {
     border-left-color: var(--jm-yellow, #f6c20e) !important;
 }
 
-body.dark-mode .development-flow-section .development-card-grid > li {
+body.dark-mode .development-flow-section .development-card-grid>li {
     border-top-color: var(--jm-yellow, #f6c20e) !important;
 }
 
-body.dark-mode .development-flow-section .development-card-grid > li::before {
+body.dark-mode .development-flow-section .development-card-grid>li::before {
     color: #0f172a;
     background: var(--jm-yellow, #f6c20e);
 }
@@ -1613,6 +1601,7 @@ body.dark-mode .development-flow-section .development-pipeline {
 }
 
 @media (max-width: 760px) {
+
     .maintenance-terms-section .maintenance-definition-grid,
     .development-flow-section .development-card-grid {
         grid-template-columns: minmax(0, 1fr) !important;
@@ -1624,7 +1613,7 @@ body.dark-mode .development-flow-section .development-pipeline {
         padding: 16px !important;
     }
 
-    .development-flow-section .development-card-grid > li {
+    .development-flow-section .development-card-grid>li {
         padding: 50px 16px 17px !important;
     }
 
@@ -1687,7 +1676,7 @@ body.dark-mode .development-flow-section .development-pipeline {
     box-shadow: var(--about-shadow);
 }
 
-.maintenance-terms-section .maintenance-accordion-item > summary {
+.maintenance-terms-section .maintenance-accordion-item>summary {
     box-sizing: border-box;
     width: 100%;
     min-height: 64px;
@@ -1704,11 +1693,11 @@ body.dark-mode .development-flow-section .development-pipeline {
     user-select: none;
 }
 
-.maintenance-terms-section .maintenance-accordion-item > summary::-webkit-details-marker {
+.maintenance-terms-section .maintenance-accordion-item>summary::-webkit-details-marker {
     display: none;
 }
 
-.maintenance-terms-section .maintenance-accordion-item > summary::marker {
+.maintenance-terms-section .maintenance-accordion-item>summary::marker {
     content: "";
 }
 
@@ -1751,7 +1740,7 @@ body.dark-mode .development-flow-section .development-pipeline {
     box-shadow: var(--about-shadow);
 }
 
-.maintenance-terms-section .maintenance-accordion-item[open] > summary {
+.maintenance-terms-section .maintenance-accordion-item[open]>summary {
     background: var(--about-soft);
     border-bottom: 1px solid var(--about-border);
 }
@@ -1804,7 +1793,7 @@ body.dark-mode .maintenance-terms-section {
 }
 
 body.dark-mode .maintenance-terms-section .maintenance-accordion-item,
-body.dark-mode .maintenance-terms-section .maintenance-accordion-item > summary,
+body.dark-mode .maintenance-terms-section .maintenance-accordion-item>summary,
 body.dark-mode .maintenance-terms-section .maintenance-accordion-content {
     color: var(--about-text);
     background: var(--about-surface);
@@ -1815,7 +1804,7 @@ body.dark-mode .maintenance-terms-section .maintenance-accordion-item {
     border-left-color: #f6c20e;
 }
 
-body.dark-mode .maintenance-terms-section .maintenance-accordion-item[open] > summary {
+body.dark-mode .maintenance-terms-section .maintenance-accordion-item[open]>summary {
     background: var(--about-soft);
 }
 
@@ -1841,7 +1830,7 @@ body.dark-mode .maintenance-terms-section .maintenance-accordion-icon::after {
         padding: 54px 0 !important;
     }
 
-    .maintenance-terms-section .maintenance-accordion-item > summary {
+    .maintenance-terms-section .maintenance-accordion-item>summary {
         min-height: 58px;
         padding: 16px 17px;
     }
@@ -1861,7 +1850,7 @@ body.dark-mode .maintenance-terms-section .maintenance-accordion-icon::after {
     padding-bottom: 46px !important;
 }
 
-.about-content > .about-block {
+.about-content>.about-block {
     padding-top: 50px !important;
     padding-bottom: 50px !important;
 }
@@ -1891,7 +1880,7 @@ body.dark-mode .maintenance-terms-section .maintenance-accordion-icon::after {
         padding-bottom: 38px !important;
     }
 
-    .about-content > .about-block,
+    .about-content>.about-block,
     .maintenance-terms-section,
     .development-flow-section {
         padding-top: 40px !important;
