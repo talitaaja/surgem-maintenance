@@ -44,7 +44,18 @@
         if (e.key === "Escape") closeSidebar();
     });
 
-    window.addEventListener("resize", syncHeaderOffset, { passive: true });
-
+    function handleResize() {
     syncHeaderOffset();
+
+    // Sidebar hanya digunakan sampai lebar 1120px.
+    // Jika layar berubah ke mode desktop ketika sidebar masih terbuka,
+    // tutup sidebar agar body tidak tetap terkunci.
+    if (window.innerWidth > 1120) {
+        closeSidebar();
+    }
+}
+
+window.addEventListener("resize", handleResize, { passive: true });
+
+syncHeaderOffset();
 })();

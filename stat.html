@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="stat.css">
     <link rel="stylesheet" href="login-button.css">
     <link rel="stylesheet" href="responsive.css">
-    <script defer src="mobile.js"></script>
+    <script src="mobile.js?v=2"></script>
     <style>
         .other-chart-wrapper {
             height: 430px;
@@ -277,20 +277,18 @@
                 if (sunIcon) sunIcon.style.display = darkModeActive ? "inline-block" : "none";
                 button.setAttribute("aria-pressed", darkModeActive ? "true" : "false");
             }
-            updateMiniMapTheme(darkModeActive ? "dark" : "light");
-            updateProfileLogo(darkModeActive);
         }
         window.toggleDarkMode = function() {
             const darkModeSedangAktif = document.body.classList.contains("dark-mode");
             const temaBaru = darkModeSedangAktif ? "light" : "dark";
             localStorage.setItem(THEME_KEY, temaBaru);
-            terapkanTema(temaBaru);
+            applyTheme(temaBaru);
         };
 
         function muatTemaTersimpan() {
             const temaTersimpan = localStorage.getItem(THEME_KEY);
             const temaAwal = temaTersimpan === "dark" ? "dark" : "light";
-            terapkanTema(temaAwal);
+            applyTheme(temaAwal);
         }
         if (document.readyState === "loading") {
             document.addEventListener("DOMContentLoaded", muatTemaTersimpan, {
@@ -301,7 +299,7 @@
         }
         window.addEventListener("storage", function(event) {
             if (event.key !== THEME_KEY) return;
-            terapkanTema(event.newValue === "dark" ? "dark" : "light");
+            applyTheme(event.newValue === "dark" ? "dark" : "light");
         });
     })();
 </script>
@@ -469,7 +467,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js?v=5"></script>
-    <script src="data-perbaikan.js?v=5"></script>
+    <script src="data-perbaikan.js?v=8"></script>
     <script>
         "use strict";
         const DATA_URL = "Rekap_SFO_deng_FeaturesToJSO_updated.geojson";
@@ -808,6 +806,7 @@
         const SFO_KEYWORDS = [
             "scraping filling",
             "scrapping filling",
+            "scraping filing",
             "sfo",
             "scraping",
             "scrapping",
@@ -816,12 +815,33 @@
         ];
 
         const OTHER_KEYWORDS = [
+            // Patching
             "patching type 1",
             "patching type 2",
             "patching beton",
             "patching",
+
+            // Sambungan
+            "expansion joint",
+            "joint sealant",
             "sealant",
-            "rekonstruksi"
+            "siar muai",
+
+            // Rigid pavement
+            "rigid pavement",
+            "perkerasan kaku",
+            "rekonstruksi rigid",
+            "rekonstruksi",
+            "dowel bar",
+            "dowel",
+            "tie bar",
+
+            // Perbaikan beton lainnya
+            "grouting",
+            "slab",
+            "diamond grinding",
+            "partial depth",
+            "full depth"
         ];
 
         function keywordListMatches(normalizedText, keywordList) {
@@ -838,17 +858,49 @@
             return null;
         }
 
-        function kategoriPekerjaanRecord(properties) {
-            const props = properties || {};
-            const explicit = String(findPropertyByAliases(props,
-                ["Kategori_Pekerjaan", "Kategori Pekerjaan", "Jenis_Pekerjaan", "Jenis Pekerjaan"]) ?? "").trim().toLowerCase();
-            if (/lain|other|non[\s_-]*sfo/.test(explicit)) return "other";
-            if (/sfo/.test(explicit)) return "sfo";
-            const description = findPropertyByAliases(props, ["Keterangan", "Pekerjaan"]);
-            const keywordCategory = workCategoryFromKeterangan(description);
-            if (keywordCategory) return keywordCategory;
+       function kategoriPekerjaanRecord(properties) {
+        const props = properties || {};
+
+        const explicit = String(
+            findPropertyByAliases(
+                props,
+                [
+                    "Kategori_Pekerjaan",
+                    "Kategori Pekerjaan",
+                    "Jenis_Pekerjaan",
+                    "Jenis Pekerjaan"
+                ]
+            ) ?? ""
+        )
+            .trim()
+            .toLowerCase();
+
+        // Kategori eksplisit non-SFO
+        if (/lain|other|non[\s_-]*sfo/.test(explicit)) {
+            return "other";
+        }
+
+        // Kategori eksplisit SFO
+        if (/sfo|scrap|filling|overlay/.test(explicit)) {
             return "sfo";
         }
+
+        const description = findPropertyByAliases(
+            props,
+            ["Keterangan", "Pekerjaan"]
+        );
+
+        const keywordCategory =
+            workCategoryFromKeterangan(description);
+
+        if (keywordCategory) {
+            return keywordCategory;
+        }
+
+        // Pekerjaan yang tidak dikenali tidak boleh
+        // otomatis dianggap SFO.
+        return "other";
+    }
 
         function normalisasiNilaiDeduplikasi(value) {
             return String(value ?? "").trim().toLowerCase().replace(/\s+/g, " ");

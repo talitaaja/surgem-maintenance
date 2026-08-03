@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="login-button.css">
     <link rel="stylesheet" href="responsive.css">  
-    <script defer src="mobile.js"></script>
+    <script src="mobile.js?v=2"></script>
 </head>
 
 <body class="admin-page">
@@ -121,7 +121,6 @@
             type="button"
             aria-label="Tampilkan kata sandi"
             aria-pressed="false"
-            onclick="toggleAdminPassword()"
         >
             <img
                 id="password-toggle-icon"
@@ -161,11 +160,13 @@
                             </div>
                             <div class="admin-field">
                                 <label for="sta-dari">STA/KM dari <span>*</span></label>
-                                <input id="sta-dari" name="staDari" type="text" inputmode="decimal" placeholder="Contoh: 15+200" required>
+                                <input id="sta-dari" name="staDari" type="text" inputmode="text" pattern="[0-9]+\+[0-9]{1,3}|[0-9]+" placeholder="Contoh: 15+200" title="Gunakan format 15+200 atau meter penuh seperti 15200. Jangan gunakan titik atau koma." aria-describedby="sta-dari-help" spellcheck="false" required>
+                                <div class="admin-help" id="sta-dari-help">Format: <strong>15+200</strong> atau meter penuh <strong>15200</strong>. Hindari titik/koma agar STA tidak ambigu.</div>
                             </div>
                             <div class="admin-field">
                                 <label for="sta-sampai">STA/KM sampai <span>*</span></label>
-                                <input id="sta-sampai" name="staSampai" type="text" inputmode="decimal" placeholder="Contoh: 15+480" required>
+                                <input id="sta-sampai" name="staSampai" type="text" inputmode="text" pattern="[0-9]+\+[0-9]{1,3}|[0-9]+" placeholder="Contoh: 15+480" title="Gunakan format 15+480 atau meter penuh seperti 15480. Jangan gunakan titik atau koma." aria-describedby="sta-sampai-help" spellcheck="false" required>
+                                <div class="admin-help" id="sta-sampai-help">Format: <strong>15+480</strong> atau meter penuh <strong>15480</strong>. Hindari titik/koma agar STA tidak ambigu.</div>
                             </div>
                             <div class="admin-field">
                                 <label for="jalur">Jalur <span>*</span></label>
@@ -268,7 +269,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js?v=5"></script>
-    <script src="data-perbaikan.js?v=5"></script>
+    <script src="data-perbaikan.js?v=8"></script>
     <script>
         "use strict";
 
@@ -283,6 +284,40 @@
         let editingBatchId = null;
         let editingDocumentation = { name: "", dataUrl: "" };
         let pendingDocumentation = { name: "", dataUrl: "" };
+        const staInputs = [
+            document.getElementById("sta-dari"),
+            document.getElementById("sta-sampai")
+        ];
+
+        function normalizeSTAField(input) {
+            if (!input) return;
+            const raw = String(input.value || "").trim();
+            if (!raw) {
+                input.setCustomValidity("");
+                return;
+            }
+
+            const meter = SurGemData.parseSTA(raw);
+            if (meter === null) {
+                input.setCustomValidity(
+                    "Gunakan format STA seperti 15+200 atau meter penuh seperti 15200. Jangan gunakan titik atau koma."
+                );
+                return;
+            }
+
+            input.setCustomValidity("");
+            input.value = SurGemData.formatSTA(meter);
+        }
+
+        staInputs.forEach(function (input) {
+            if (!input) return;
+            input.addEventListener("input", function () {
+                input.setCustomValidity("");
+            });
+            input.addEventListener("blur", function () {
+                normalizeSTAField(input);
+            });
+        });
 
         function applyTheme(theme) {
             const dark = theme === "dark";
@@ -432,17 +467,37 @@
             document.getElementById("readonly-records").innerHTML = tableHTML(batches, false);
         }
 
+        function getLocalDateValue() {
+    const today = new Date();
+
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
         function resetEditor() {
             editingBatchId = null;
             editingDocumentation = { name: "", dataUrl: "" };
             pendingDocumentation = { name: "", dataUrl: "" };
+
             repairForm.reset();
-            document.getElementById("tanggal").value = new Date().toISOString().slice(0, 10);
-            document.getElementById("form-title").textContent = "Tambah histori perbaikan";
-            document.getElementById("save-button").textContent = "Simpan Data";
+
+            document.getElementById("tanggal").value =
+                getLocalDateValue();
+
+            document.getElementById("form-title").textContent =
+                "Tambah histori perbaikan";
+
+            document.getElementById("save-button").textContent =
+                "Simpan Data";
+
             document.getElementById("cancel-edit").hidden = true;
+
             documentationPreview.removeAttribute("src");
             documentationPreview.classList.remove("is-visible");
+
             clearMessage(document.getElementById("form-message"));
         }
 
@@ -471,8 +526,13 @@
             document.getElementById("save-button").textContent = "Simpan Perubahan";
             document.getElementById("cancel-edit").hidden = false;
 
-            if (batch.Dokumentasi_DataURL) {
-                documentationPreview.src = batch.Dokumentasi_DataURL;
+           const existingPreviewUrl = safeDocumentationHref(
+                batch.Dokumentasi_DataURL ||
+                batch.Dokumentasi_URL
+            );
+
+            if (existingPreviewUrl) {
+                documentationPreview.src = existingPreviewUrl;
                 documentationPreview.classList.add("is-visible");
             } else {
                 documentationPreview.removeAttribute("src");
@@ -680,6 +740,7 @@
                 if (passwordTersembunyi) {
                     passwordInput.type = "text";
                     togglePasswordIcon.src = "hide.png";
+                    togglePasswordIcon.alt = "Sembunyikan kata sandi";
 
                     togglePasswordButton.setAttribute(
                         "aria-label",
@@ -693,6 +754,7 @@
                 } else {
                     passwordInput.type = "password";
                     togglePasswordIcon.src = "show.png";
+                    togglePasswordIcon.alt = "Tampilkan kata sandi";
 
                     togglePasswordButton.setAttribute(
                         "aria-label",
@@ -979,6 +1041,20 @@
     }
 })();
 </script>
+
+    <div class="mobile-sidebar-overlay" onclick="closeMobileSidebar()" aria-hidden="true"></div>
+    <aside class="mobile-sidebar" aria-hidden="true" aria-label="Navigasi mobile">
+        <div class="mobile-sidebar-head">
+            <button class="mobile-sidebar-close" onclick="closeMobileSidebar()" aria-label="Tutup menu" type="button">✕</button>
+        </div>
+        <nav class="mobile-sidebar-nav" aria-label="Navigasi utama mobile">
+            <a href="index.html">Home</a>
+            <a href="peta.html">Peta Interaktif</a>
+            <a href="stat.html">Data Statistik</a>
+            <a href="tentang.html">Tentang</a>
+            <a href="admin.html" class="active" aria-current="page">Login</a>
+        </nav>
+    </aside>
 
 </body>
 </html>

@@ -1,11 +1,10 @@
 {
-  "name": "surgem-shared-admin",
-  "version": "4.0.0",
+  "name": "surgem-maintenance",
+  "version": "1.0.0",
   "private": true,
-  "description": "SurGem Admin terpusat dengan perbaikan HTTP 405 dan sinkronisasi lintas perangkat",
+  "description": "WebGIS pemeliharaan Jalan Tol Surabaya-Gempol",
   "scripts": {
-    "start": "node server.js",
-    "check": "node --check server.js"
+    "serve": "npx serve ."
   },
   "engines": {
     "node": ">=18"

@@ -7,8 +7,10 @@
     <title>SurGem Maintain — Tentang</title>
     <link href="peta.css" rel="stylesheet" />
     <link href="index.css" rel="stylesheet" />
-    <link rel="stylesheet" href="responsive.css">
-    <script defer src="mobile.js"></script>
+    <link href="login-button.css" rel="stylesheet" />
+    <link href="responsive.css" rel="stylesheet"/>
+    <link href="tentang.css" rel="stylesheet" />
+    <script src="mobile.js?v=2"></script>
     <style>
         .dev-team-grid {
             display: flex;
@@ -52,9 +54,7 @@
             color: #94a3b8;
         }
     </style>
-    <link href="login-button.css" rel="stylesheet" />
-    <link href="responsive.css" rel="stylesheet" />
-    <link href="tentang.css" rel="stylesheet" />
+    
 </head>
 
 <body>
@@ -132,7 +132,7 @@
             </section>
             <section class="about-block maintenance-terms-section">
                 <h2>Istilah Pemeliharaan</h2>
-                <p class="section-lead">Istilah berikut digunakan pada data dan visualisasi pekerjaan pemeliharaan di dalam sistem:</p>
+                <p class="section-lead">Istilah berikut digunakan pada data dan visualisasi pekerjaan pemeliharaan SurGem Maintenance. Penjelasan disusun untuk membantu pengguna memahami fungsi pekerjaan, tahapan umum, serta kondisi kerusakan yang berkaitan dengan masing-masing istilah.</p>
                 <div class="maintenance-accordion">
                     <details class="maintenance-accordion-item" name="maintenance-term">
                         <summary>
@@ -141,12 +141,17 @@
                         </summary>
                         <div class="maintenance-accordion-content">
                             <ul>
-                                <li><strong>Kepanjangan:</strong> <em>Scraping, Filling, dan Overlay</em>.</li>
-                                <li><strong>Proses:</strong> Lapisan perkerasan yang rusak dikupas, bagian yang diperlukan diisi, kemudian permukaan dilapisi kembali.</li>
-                                <li><strong>Tujuan:</strong> Memulihkan kondisi permukaan, kerataan, dan kenyamanan berkendara pada segmen jalan.</li>
+                                <li><strong>Kepanjangan:</strong> Dalam dataset SurGem Maintenance, SFO merupakan singkatan dari <em>Scraping, Filling, dan Overlay</em>, yaitu rangkaian penanganan perkerasan beraspal untuk memulihkan kondisi permukaan pada suatu segmen jalan.</li>
+                                <li><strong>Scraping:</strong> Lapisan perkerasan yang telah mengalami kerusakan, deformasi, atau penurunan mutu dikupas sampai kedalaman yang direncanakan. Tahap ini bertujuan membuang material yang tidak lagi layak, mengoreksi profil permukaan, dan menyiapkan bidang kerja yang baik untuk lapisan berikutnya.</li>
+                                <li><strong>Filling:</strong> Bagian yang telah dikupas atau memiliki kekurangan elevasi diisi dengan material perkerasan yang sesuai. Material kemudian dipadatkan agar elevasi, kemiringan melintang, dan bentuk penampang jalan kembali sesuai kebutuhan.</li>
+                                <li><strong>Overlay:</strong> Lapisan beraspal baru dihampar di atas permukaan yang telah disiapkan. Overlay dapat berfungsi untuk memperbaiki kerataan dan kualitas permukaan, serta dapat memberikan peningkatan struktural apabila ketebalannya dirancang untuk tujuan rehabilitasi struktural.</li>
+                                <li><strong>Kondisi yang Umumnya Ditangani:</strong> Ketidakrataan, alur atau deformasi, permukaan yang menua, kerusakan berulang pada area yang cukup panjang, serta kondisi yang sudah tidak efektif bila hanya ditangani dengan tambalan lokal.</li>
+                                <li><strong>Hal Penting dalam Pelaksanaan:</strong> Kedalaman pengupasan, kebersihan dan kekeringan permukaan, ikatan antarlapis, elevasi akhir, kepadatan campuran, sambungan pelaksanaan, dan pengaturan lalu lintas perlu dikendalikan agar lapisan baru bekerja dengan baik.</li>
+                                <li><strong>Tujuan:</strong> Memulihkan kerataan, kenyamanan dan keselamatan berkendara, menjaga profil serta drainase permukaan, mengurangi berkembangnya kerusakan, dan memperpanjang umur layanan perkerasan.</li>
                             </ul>
                         </div>
                     </details>
+
                     <details class="maintenance-accordion-item" name="maintenance-term">
                         <summary>
                             <span class="maintenance-accordion-title">Expansion Joint</span>
@@ -154,12 +159,16 @@
                         </summary>
                         <div class="maintenance-accordion-content">
                             <ul>
-                                <li><strong>Pengertian:</strong> Sambungan fleksibel yang umumnya terdapat pada struktur jembatan.</li>
-                                <li><strong>Fungsi:</strong> Mengakomodasi pemuaian, penyusutan, getaran, dan pergerakan struktur akibat suhu maupun beban kendaraan.</li>
-                                <li><strong>Pemeliharaan:</strong> Menjaga sambungan tetap aman, nyaman dilalui, dan tidak mempercepat kerusakan di sekitarnya.</li>
+                                <li><strong>Pengertian:</strong> <em>Expansion joint</em> atau siar muai adalah komponen sambungan yang dipasang pada lantai jembatan atau pertemuan bagian struktur untuk menyediakan celah sehingga pergerakan relatif antarbagian struktur dapat terjadi tanpa menimbulkan kerusakan.</li>
+                                <li><strong>Fungsi:</strong> Mengakomodasi pemuaian dan penyusutan akibat perubahan temperatur, susut dan rangkak beton, lendutan struktur, serta pergerakan lain yang telah diperhitungkan dalam desain sambungan.</li>
+                                <li><strong>Jenis:</strong> Secara umum siar muai dapat dikelompokkan menjadi sambungan terbuka dan tertutup. Pemilihan sistem dapat berbeda sesuai besarnya pergerakan, konfigurasi jembatan, kondisi lalu lintas, dan kebutuhan kedap air; contohnya sistem dengan <em>rubber seal</em> maupun <em>asphaltic plug joint</em>.</li>
+                                <li><strong>Kerusakan yang Perlu Dipantau:</strong> Penumpukan pasir atau sampah pada celah, seal yang robek atau terlepas, kebocoran, kerusakan beton di tepi sambungan (<em>spalling</em>), komponen yang longgar, korosi, perbedaan elevasi, serta timbulnya hentakan atau suara berlebih saat kendaraan melintas.</li>
+                                <li><strong>Pemeliharaan:</strong> Meliputi pembersihan sambungan secara berkala, pemeriksaan kondisi seal dan celah gerak, perbaikan beton di sekitar sambungan, penggantian material penutup atau komponen yang rusak, dan penggantian unit sambungan bila fungsi geraknya tidak lagi memenuhi kebutuhan.</li>
+                                <li><strong>Mengapa Penting:</strong> Sambungan yang tidak bekerja baik dapat menurunkan kenyamanan berkendara, mempercepat kerusakan di sekitar sambungan, dan memungkinkan air serta kotoran mencapai bagian struktur di bawah lantai jembatan.</li>
                             </ul>
                         </div>
                     </details>
+
                     <details class="maintenance-accordion-item" name="maintenance-term">
                         <summary>
                             <span class="maintenance-accordion-title">Sealant</span>
@@ -167,12 +176,17 @@
                         </summary>
                         <div class="maintenance-accordion-content">
                             <ul>
-                                <li><strong>Pengertian:</strong> Material pengisi dan penutup untuk celah atau retakan pada permukaan maupun sambungan.</li>
-                                <li><strong>Fungsi:</strong> Mengurangi masuknya air, kotoran, dan material lain ke dalam celah.</li>
-                                <li><strong>Tujuan:</strong> Mencegah retakan berkembang dan memperlambat kerusakan lanjutan.</li>
+                                <li><strong>Pengertian:</strong> Sealant adalah material penutup yang ditempatkan pada sambungan atau retak untuk membatasi masuknya air, debu, pasir, dan material asing ke dalam celah perkerasan atau struktur.</li>
+                                <li><strong>Fungsi Utama:</strong> Menjaga sambungan tetap tertutup tetapi tetap mampu mengikuti pergerakan yang direncanakan. Pada perkerasan beton, perlindungan ini membantu mengurangi masuknya air ke lapisan pendukung dan mencegah material tak termampatkan mengisi celah sambungan.</li>
+                                <li><strong>Sifat yang Dibutuhkan:</strong> Kelekatan yang baik pada dinding sambungan, kemampuan deformasi atau elastisitas yang sesuai, ketahanan terhadap perubahan temperatur dan cuaca, tidak mudah mengalir, robek, mengeras berlebihan, atau terlepas selama pelayanan.</li>
+                                <li><strong>Jenis Material:</strong> Sistem sealant dapat berupa bahan yang diaplikasikan panas seperti campuran bitumen termodifikasi maupun bahan aplikasi dingin seperti sealant elastomerik/silikon, tergantung spesifikasi dan kebutuhan sambungan.</li>
+                                <li><strong>Tahapan Aplikasi:</strong> Sealant lama atau material lepas dibuang, celah dibentuk bila diperlukan, lalu dibersihkan dan dikeringkan. Setelah bidang siap, material pendukung seperti <em>backer rod</em> dapat dipasang sesuai desain sebelum sealant baru diaplikasikan dengan dimensi yang terkontrol.</li>
+                                <li><strong>Kerusakan yang Dipantau:</strong> Kehilangan daya lekat pada sisi sambungan, retak atau robek pada tubuh sealant, material terangkat, mengalir keluar, mengeras, atau hilang sehingga celah kembali terbuka.</li>
+                                <li><strong>Catatan:</strong> Sealant berfungsi sebagai perlindungan sambungan atau retak dan bukan sebagai perbaikan struktural. Bila retak atau kerusakan berasal dari kegagalan struktur, penyebab utamanya tetap memerlukan metode perbaikan lain.</li>
                             </ul>
                         </div>
                     </details>
+
                     <details class="maintenance-accordion-item" name="maintenance-term">
                         <summary>
                             <span class="maintenance-accordion-title">Patching</span>
@@ -180,13 +194,38 @@
                         </summary>
                         <div class="maintenance-accordion-content">
                             <ul>
-                                <li><strong>Pengertian:</strong> Perbaikan setempat pada bagian jalan yang mengalami kerusakan lokal.</li>
-                                <li><strong>Proses:</strong> Area yang rusak dibongkar atau dibersihkan, kemudian diisi dan dipadatkan menggunakan material baru.</li>
-                                <li><strong>Penggunaan:</strong> Sesuai untuk lubang atau kerusakan terbatas yang belum memerlukan penanganan pada seluruh segmen.</li>
+                                <li><strong>Pengertian:</strong> <em>Patching</em> atau penambalan adalah perbaikan setempat dengan membuang bagian perkerasan yang rusak pada area terbatas dan menggantinya menggunakan material baru sehingga fungsi bagian tersebut dapat dipulihkan.</li>
+                                <li><strong>Penggunaan:</strong> Umumnya digunakan untuk lubang, pelepasan material, amblas atau kerusakan lokal, kerusakan di sekitar sambungan, dan area terbatas yang belum membutuhkan rehabilitasi sepanjang segmen.</li>
+                                <li><strong>Pada Perkerasan Beraspal:</strong> Area rusak dibatasi, material yang tidak stabil dibuang, lapisan dasar diperbaiki bila diperlukan, lalu campuran tambalan ditempatkan dan dipadatkan. Terdapat pula bahan tambalan siap pakai yang dirancang agar area dapat dibuka kembali untuk lalu lintas dalam waktu singkat sesuai spesifikasinya.</li>
+                                <li><strong>Pada Perkerasan Beton:</strong> Kedalaman perbaikan mengikuti tingkat kerusakan. <em>Partial-depth repair</em> digunakan ketika kerusakan hanya berada pada bagian atas pelat, misalnya spalling dangkal, sedangkan <em>full-depth repair</em> mengganti seluruh ketebalan pelat pada area yang mengalami kerusakan struktural atau kerusakan berat.</li>
+                                <li><strong>Proses Umum:</strong> Menentukan batas perbaikan, membongkar material yang rusak sampai mencapai bagian yang masih sehat, membersihkan dan menyiapkan area, memperbaiki fondasi bila diperlukan, memasang material baru, kemudian melakukan pemadatan atau finishing serta curing sesuai jenis material.</li>
+                                <li><strong>Faktor Kualitas:</strong> Batas tambalan, kondisi bidang kontak, ikatan dengan material lama, kepadatan, elevasi permukaan, drainase, mutu material, dan penanganan penyebab kerusakan sangat memengaruhi umur tambalan.</li>
+                                <li><strong>Batasan:</strong> Patching efektif untuk kerusakan lokal. Bila kerusakan telah menyebar luas atau sumber masalah berasal dari lapisan fondasi, drainase, maupun kegagalan struktural, tambalan permukaan saja dapat cepat rusak kembali sehingga diperlukan penanganan yang lebih menyeluruh.</li>
+                                <li><strong>Tujuan:</strong> Mengembalikan fungsi lokal perkerasan, menghilangkan bahaya bagi pengguna jalan, mencegah kerusakan berkembang, dan mempertahankan tingkat pelayanan jalan.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details class="maintenance-accordion-item" name="maintenance-term">
+                        <summary>
+                            <span class="maintenance-accordion-title">Rigid Pavement</span>
+                            <span class="maintenance-accordion-icon" aria-hidden="true"></span>
+                        </summary>
+                        <div class="maintenance-accordion-content">
+                            <ul>
+                                <li><strong>Pengertian:</strong> Perkerasan kaku (<em>rigid pavement</em>) adalah struktur perkerasan yang menggunakan pelat beton semen sebagai lapisan utama pemikul beban. Kekakuan pelat membuat beban kendaraan dapat disebarkan ke lapisan fondasi dan tanah dasar pada area yang relatif luas.</li>
+                                <li><strong>Komponen:</strong> Umumnya terdiri dari pelat beton, lapisan fondasi atau <em>subbase</em>, dan tanah dasar (<em>subgrade</em>). Pada sistem bersambung, <em>dowel bar</em> dapat digunakan pada sambungan melintang untuk membantu transfer beban, sedangkan <em>tie bar</em> menjaga keterikatan pada sambungan memanjang.</li>
+                                <li><strong>Jenis Umum:</strong> Bentuk yang dikenal antara lain <em>Jointed Plain Concrete Pavement</em> (JPCP), <em>Jointed Reinforced Concrete Pavement</em> (JRCP), dan <em>Continuously Reinforced Concrete Pavement</em> (CRCP), dengan konfigurasi sambungan serta tulangan yang berbeda.</li>
+                                <li><strong>Karakteristik:</strong> Pelat beton memiliki kekakuan tinggi sehingga deformasi struktural relatif kecil, tetapi kinerja perkerasan sangat dipengaruhi oleh kondisi sambungan, transfer beban, dukungan lapisan di bawah pelat, drainase, serta perubahan temperatur dan kelembapan.</li>
+                                <li><strong>Kerusakan yang Dipantau:</strong> Retak melintang atau memanjang, <em>corner break</em>, spalling, perbedaan elevasi antarpelat (<em>faulting</em>), pumping, kehilangan dukungan di bawah pelat, kerusakan seal sambungan, permukaan aus, serta ketidakrataan.</li>
+                                <li><strong>Metode Pemeliharaan:</strong> Dapat berupa penutupan ulang sambungan atau retak, perbaikan sebagian ketebalan, penggantian penuh bagian pelat, stabilisasi rongga di bawah pelat dengan grouting, restorasi transfer beban, serta penggerindaan permukaan (<em>diamond grinding</em>) bila struktur pelat masih memadai.</li>
+                                <li><strong>Pemilihan Penanganan:</strong> Metode tidak hanya ditentukan oleh tampilan kerusakan di permukaan, tetapi juga kedalaman kerusakan, luas area, kondisi sambungan, dukungan lapisan bawah, dan penyebab utama kerusakan.</li>
+                                <li><strong>Tujuan:</strong> Mempertahankan integritas pelat dan kemampuan transfer beban, membatasi masuknya air melalui sambungan atau retak, menjaga kerataan dan kenyamanan berkendara, serta memperpanjang umur layanan perkerasan.</li>
                             </ul>
                         </div>
                     </details>
                 </div>
+                <p class="section-lead"><small>Referensi teknis: Manual Desain Perkerasan Jalan 2024 dan pedoman terkait preservasi jalan/jembatan Direktorat Jenderal Bina Marga, serta panduan perbaikan perkerasan beton FHWA. Istilah SFO mengikuti terminologi operasional yang digunakan pada dataset SurGem Maintenance.</small></p>
             </section>
             <section class="about-block development-flow-section">
                 <h2>Alur Pengembangan Sistem</h2>
@@ -296,7 +335,9 @@
         </div>
     </footer>
     <button aria-label="Kembali ke atas" class="back-to-top" id="back-to-top" type="button"> ↑ </button>
-    <script src="data-perbaikan.js?v=4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js?v=5"></script>
+    <script src="data-perbaikan.js?v=8"></script>
     <script>
         (function() {
             "use strict";
@@ -315,14 +356,12 @@
                     if (sunIcon) sunIcon.style.display = darkModeActive ? "inline-block" : "none";
                     button.setAttribute("aria-pressed", darkModeActive ? "true" : "false");
                 }
-                updateMiniMapTheme(darkModeActive ? "dark" : "light");
-                updateProfileLogo(darkModeActive);
             }
             window.toggleDarkMode = function() {
                 const darkModeSedangAktif = document.body.classList.contains("dark-mode");
                 const temaBaru = darkModeSedangAktif ? "light" : "dark";
                 localStorage.setItem(THEME_KEY, temaBaru);
-                terapkanTema(temaBaru);
+                applyTheme(temaBaru);
             };
 
             function ambilFeatures(data) {
@@ -482,7 +521,7 @@
                         });
                     });
                 }
-                terapkanTema(localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light");
+                applyTheme(localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light");
                 window.addEventListener("surgem:user-data-changed", function() {
                     window.location.reload();
                 });
@@ -504,7 +543,7 @@
             }
             window.addEventListener("storage", function(event) {
                 if (event.key !== THEME_KEY) return;
-                terapkanTema(event.newValue === "dark" ? "dark" : "light");
+                applyTheme(event.newValue === "dark" ? "dark" : "light");
             });
         })();
     </script>

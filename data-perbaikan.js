@@ -63,24 +63,54 @@
     })();
 
     function parseSTA(value) {
-        if (value === null || value === undefined) return null;
-        if (typeof value === "number") {
-            return Number.isFinite(value) && value >= 0 ? value : null;
-        }
+    if (value === null || value === undefined) return null;
 
-        const text = String(value).trim().replace(/\s+/g, "");
-        if (!text) return null;
-
-        const staMatch = text.match(/^(\d+)\+(\d{1,3})$/);
-        if (staMatch) {
-            const km = Number(staMatch[1]);
-            const meter = Number(staMatch[2]);
-            return meter < 1000 ? km * 1000 + meter : null;
-        }
-
-        const numeric = Number(text.replace(/,/g, "."));
-        return Number.isFinite(numeric) && numeric >= 0 ? numeric : null;
+    if (typeof value === "number") {
+        return Number.isSafeInteger(value) && value >= 0
+            ? value
+            : null;
     }
+
+    const text = String(value)
+        .trim()
+        .replace(/\s+/g, "");
+
+    if (!text) return null;
+
+    // Format STA, contoh:
+    // 15+200
+    // 0+050
+    const staMatch = text.match(/^(\d+)\+(\d{1,3})$/);
+
+    if (staMatch) {
+        const km = Number(staMatch[1]);
+        const meter = Number(staMatch[2]);
+
+        if (
+            !Number.isFinite(km) ||
+            !Number.isFinite(meter) ||
+            meter >= 1000
+        ) {
+            return null;
+        }
+
+        return km * 1000 + meter;
+    }
+
+    // Format meter penuh, contoh:
+    // 15200
+    // 50
+    if (/^\d+$/.test(text)) {
+        const meter = Number(text);
+
+        return Number.isSafeInteger(meter) && meter >= 0
+            ? meter
+            : null;
+    }
+
+    // Format seperti 15.2 atau 15,200 ditolak
+    return null;
+}
 
     function formatSTA(value) {
         const meter = parseSTA(value);
@@ -94,7 +124,31 @@
         const match = String(value || "").toUpperCase().match(/[123]/);
         return match ? "L" + match[0] : null;
     }
+    function isValidDateInput(value) {
+        const text = String(value || "").trim();
 
+        const match = text.match(
+            /^(\d{4})-(\d{2})-(\d{2})$/
+        );
+
+        if (!match) {
+            return false;
+        }
+
+        const year = Number(match[1]);
+        const month = Number(match[2]);
+        const day = Number(match[3]);
+
+        const date = new Date(
+            Date.UTC(year, month - 1, day)
+        );
+
+        return (
+            date.getUTCFullYear() === year &&
+            date.getUTCMonth() === month - 1 &&
+            date.getUTCDate() === day
+        );
+    }
     function normalizePayload(payload) {
         const startRaw = parseSTA(payload && payload.staDari);
         const endRaw = parseSTA(payload && payload.staSampai);
@@ -113,9 +167,10 @@
         if (!lajur) {
             throw new Error("Lajur wajib dipilih: L1, L2, atau L3.");
         }
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(tanggal) ||
-                Number.isNaN(new Date(tanggal + "T00:00:00Z").getTime())) {
-            throw new Error("Tanggal pelaksanaan wajib diisi dengan benar.");
+       if (!isValidDateInput(tanggal)) {
+            throw new Error(
+                "Tanggal pelaksanaan wajib diisi dengan tanggal yang valid."
+            );
         }
         if (!keterangan) {
             throw new Error("Keterangan perbaikan wajib diisi.");
@@ -127,13 +182,19 @@
             throw new Error("Foto dokumentasi melebihi batas 1 MB.");
         }
 
-        const start = Math.min(startRaw, endRaw);
-        const end = Math.max(startRaw, endRaw);
-        if (end <= start) {
-            throw new Error("STA sampai harus lebih besar daripada STA dari.");
+        if (endRaw <= startRaw) {
+            throw new Error(
+                "STA sampai harus lebih besar daripada STA dari."
+            );
         }
+
+        const start = startRaw;
+        const end = endRaw;
+
         if (end - start > 50000) {
-            throw new Error("Rentang pekerjaan maksimum 50 km per input.");
+            throw new Error(
+                "Rentang pekerjaan maksimum 50 km per input."
+            );
         }
 
         return {
@@ -179,26 +240,75 @@
     }
 
     const SFO_KEYWORDS = [
-        "scraping filling", "scrapping filling", "sfo",
-        "scraping", "scrapping", "filling", "overlay"
-    ];
+    "scraping filling",
+    "scrapping filling",
+    "sfo",
+    "scraping",
+    "scrapping",
+    "filling",
+    "overlay"
+];
 
-    const OTHER_KEYWORDS = [
-        "patching type 1", "patching type 2", "patching beton",
-        "patching", "sealant", "rekonstruksi"
-    ];
+const OTHER_KEYWORDS = [
+    // Patching
+    "patching type 1",
+    "patching type 2",
+    "patching beton",
+    "patching",
 
-    function keywordCategoryFromKeterangan(keterangan) {
-        const text = normalizeKeywordText(keterangan);
-        if (!text) return "SFO";
-        if (OTHER_KEYWORDS.some(function (k) { return text.includes(normalizeKeywordText(k)); })) {
-            return "Lainnya";
-        }
-        if (SFO_KEYWORDS.some(function (k) { return text.includes(normalizeKeywordText(k)); })) {
-            return "SFO";
-        }
+    // Sambungan dan sealant
+    "expansion joint",
+    "joint sealant",
+    "sealant",
+    "siar muai",
+
+    // Rigid pavement
+    "rigid pavement",
+    "perkerasan kaku",
+    "rekonstruksi rigid",
+    "rekonstruksi",
+    "dowel bar",
+    "dowel",
+    "tie bar",
+
+    // Perbaikan beton lainnya
+    "grouting",
+    "slab",
+    "diamond grinding",
+    "partial depth",
+    "full depth"
+];
+
+function keywordCategoryFromKeterangan(keterangan) {
+    const text = normalizeKeywordText(keterangan);
+
+    // Keterangan kosong/tidak dikenal tidak boleh otomatis menjadi SFO
+    if (!text) {
+        return "Lainnya";
+    }
+
+    // Periksa pekerjaan non-SFO terlebih dahulu
+    const isOther = OTHER_KEYWORDS.some(function (keyword) {
+        return text.includes(normalizeKeywordText(keyword));
+    });
+
+    if (isOther) {
+        return "Lainnya";
+    }
+
+    // Baru periksa pekerjaan SFO
+    const isSFO = SFO_KEYWORDS.some(function (keyword) {
+        return text.includes(normalizeKeywordText(keyword));
+    });
+
+    if (isSFO) {
         return "SFO";
     }
+
+    // Jenis pekerjaan yang belum dikenali masuk Lainnya,
+    // bukan dipaksa menjadi SFO.
+    return "Lainnya";
+}
     function expandDatabaseRow(row) {
         const start = Number(row.sta_dari_m);
         const end = Number(row.sta_sampai_m);
