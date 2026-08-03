@@ -1,724 +1,724 @@
-<!DOCTYPE html>
-<html lang="id">
+    <!DOCTYPE html>
+    <html lang="id">
 
-<head>
-    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport" />
-    <meta charset="utf-8" />
-    <title>SurGem Maintain — Tentang</title>
-    <link href="peta.css" rel="stylesheet" />
-    <link href="index.css" rel="stylesheet" />
-    <link href="login-button.css" rel="stylesheet" />
-    <link href="responsive.css" rel="stylesheet"/>
-    <link href="tentang.css" rel="stylesheet" />
-    <script src="mobile.js?v=2"></script>
-    <style>
-        .dev-team-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 18px;
-        }
+    <head>
+        <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport" />
+        <meta charset="utf-8" />
+        <title>SurGem Maintain — Tentang</title>
+        <link href="peta.css" rel="stylesheet" />
+        <link href="index.css" rel="stylesheet" />
+        <link href="login-button.css" rel="stylesheet" />
+        <link href="responsive.css" rel="stylesheet"/>
+        <link href="tentang.css" rel="stylesheet" />
+        <script src="mobile.js?v=2"></script>
+        <style>
+            .dev-team-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 18px;
+            }
 
-        .dev-card {
-            flex: 1 1 240px;
-            border: 1px solid #e2e8f0;
-            border-left: 4px solid #002d62;
-            border-radius: 8px;
-            background: #f8fafc;
-            padding: 1px 18px;
-        }
+            .dev-card {
+                flex: 1 1 240px;
+                border: 1px solid #e2e8f0;
+                border-left: 4px solid #002d62;
+                border-radius: 8px;
+                background: #f8fafc;
+                padding: 1px 18px;
+            }
 
-        .dev-card .dev-name {
-            font-weight: 700;
-            color: #1e293b;
-            font-size: 14.5px;
-            margin: 0 0 4px;
-        }
+            .dev-card .dev-name {
+                font-weight: 700;
+                color: #1e293b;
+                font-size: 14.5px;
+                margin: 0 0 4px;
+            }
 
-        .dev-card .dev-nrp {
-            color: #64748b;
-            font-size: 12.5px;
-            font-family: arial;
-        }
+            .dev-card .dev-nrp {
+                color: #64748b;
+                font-size: 12.5px;
+                font-family: arial;
+            }
 
-        body.dark-mode .dev-card {
-            background: #0f172a;
-            border-color: #334155;
-            border-left-color: #f6c20e;
-        }
+            body.dark-mode .dev-card {
+                background: #0f172a;
+                border-color: #334155;
+                border-left-color: #f6c20e;
+            }
 
-        body.dark-mode .dev-card .dev-name {
-            color: #f8fafc;
-        }
+            body.dark-mode .dev-card .dev-name {
+                color: #f8fafc;
+            }
 
-        body.dark-mode .dev-card .dev-nrp {
-            color: #94a3b8;
-        }
-    </style>
-    
-</head>
+            body.dark-mode .dev-card .dev-nrp {
+                color: #94a3b8;
+            }
+        </style>
+        
+    </head>
 
-<body>
-    <div class="jm-utility-bar">
-        <div class="jm-page-width utility-inner">
-            <a href="mailto:ro3@jmtransjawatol.co.id">Hubungi Kami</a>
-            <span aria-hidden="true" class="utility-divider"></span>
-            <a aria-label="Masuk ke halaman admin" class="utility-login-button" href="admin.html">Login</a>
+    <body>
+        <div class="jm-utility-bar">
+            <div class="jm-page-width utility-inner">
+                <a href="mailto:ro3@jmtransjawatol.co.id">Hubungi Kami</a>
+                <span aria-hidden="true" class="utility-divider"></span>
+                <a aria-label="Masuk ke halaman admin" class="utility-login-button" href="admin.html">Login</a>
+            </div>
         </div>
-    </div>
-    <header class="jm-header">
-    <div class="jm-page-width jm-header-inner">
-        <button class="mobile-menu-toggle" onclick="toggleMobileSidebar()" aria-label="Buka menu" aria-expanded="false" type="button">
-            <span></span><span></span><span></span>
-        </button>
+        <header class="jm-header">
+        <div class="jm-page-width jm-header-inner">
+            <button class="mobile-menu-toggle" onclick="toggleMobileSidebar()" aria-label="Buka menu" aria-expanded="false" type="button">
+                <span></span><span></span><span></span>
+            </button>
 
-        <a aria-label="Beranda SFO Tol Dashboard" class="jm-brand-box" href="index.html">
-            <img alt="Logo Jasa Marga" src="logo_jasamarga.png" width="190" />
-            <div class="jm-text-logo">
-                <h1>SFO Tol Dashboard</h1>
+            <a aria-label="Beranda SFO Tol Dashboard" class="jm-brand-box" href="index.html">
+                <img alt="Logo Jasa Marga" src="logo_jasamarga.png" width="190" />
+                <div class="jm-text-logo">
+                    <h1>SFO Tol Dashboard</h1>
+                    <p>Surabaya–Gempol Maintenance System</p>
+                </div>
+            </a>
+
+            <nav aria-label="Navigasi utama" class="jm-nav-menu">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="peta.html">Peta Interaktif</a>
+                <a class="nav-link" href="stat.html">Data Statistik</a>
+                <a class="nav-link active" href="tentang.html">Tentang</a>
+            </nav>
+
+            <button aria-pressed="false" class="darkmode-toggle" onclick="toggleDarkMode()" type="button">
+                <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+                </svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+        <main class="about-page">
+            <section class="about-title-section">
+                <h1>Tentang SurGem Maintenance</h1>
+                <div class="title-line"></div>
+            </section>
+            <article class="about-content">
+                <section class="about-intro">
+                    <p>
+                        <strong>SurGem Maintenance</strong> adalah sistem informasi pemantauan (monitoring) kondisi pemeliharaan jalan tol berbasis peta digital (WebGIS) yang dirancang untuk memvisualisasikan progres pemeliharaan perkerasan jalan tol secara spasial dan temporal (berbasis waktu), termasuk pemisahan L1, L2, dan L3 pada Jalur A dan Jalur B. Studi kasus platform ini difokuskan pada Ruas Jalan Tol Surabaya–Gempol (SurGem) sepanjang kurang lebih 43 kilometer, dengan cakupan pencatatan data pemeliharaan dari tahun <strong id="about-intro-period">2023 hingga 2026</strong>.
+                    </p>
+                    <p> Setiap <strong>segmen jalan</strong> diidentifikasi dan dicatat secara komprehensif, mencakup parameter rentang kilometer (STA), panjang penanganan, jenis perbaikan, serta dimensi waktu berupa bulan dan tahun penyelesaian pekerjaan. Informasi tersebut kemudian ditransformasikan ke dalam <strong>peta interaktif</strong> guna menyajikan visualisasi yang adaptif, sehingga kondisi riil dan rekam jejak (historical data) perbaikan pada setiap ruas dapat dievaluasi secara cepat, tepat, dan efisien. </p>
+                </section>
+                <section class="about-block">
+                    <h2>Tujuan</h2>
+                    <ul class="about-list">
+                        <li>
+                            <strong>Visualisasi Spasial Komprehensif:</strong> Menyajikan gambaran spasial yang menyeluruh dan interaktif terkait sebaran serta progres pemeliharaan jalan tol berdasarkan pembaruan data GeoJSON terbaru yang tersedia.
+                        </li>
+                        <li>
+                            <strong>Penelusuran Data Temporal (Histori):</strong> Mempermudah pemangku kepentingan dalam melakukan penelusuran riwayat perbaikan jalan tol berdasarkan periode waktu tertentu secara kronologis.
+                        </li>
+                        <li>
+                            <strong>Transparansi dan Aksesibilitas Data:</strong> Mendukung keterbukaan informasi dan kemudahan distribusi data melalui penyediaan fitur unduh tabel atribut bagi pengguna.
+                        </li>
+                    </ul>
+                </section>
+                <section class="about-block maintenance-terms-section">
+                    <h2>Istilah Pemeliharaan</h2>
+                    <p class="section-lead">Istilah berikut digunakan pada data dan visualisasi pekerjaan pemeliharaan SurGem Maintenance. Penjelasan disusun untuk membantu pengguna memahami fungsi pekerjaan, tahapan umum, serta kondisi kerusakan yang berkaitan dengan masing-masing istilah.</p>
+                    <div class="maintenance-accordion">
+                        <details class="maintenance-accordion-item" name="maintenance-term">
+                            <summary>
+                                <span class="maintenance-accordion-title">SFO</span>
+                                <span class="maintenance-accordion-icon" aria-hidden="true"></span>
+                            </summary>
+                            <div class="maintenance-accordion-content">
+                                <ul>
+                                    <li><strong>Kepanjangan:</strong> Dalam dataset SurGem Maintenance, SFO merupakan singkatan dari <em>Scraping, Filling, dan Overlay</em>, yaitu rangkaian penanganan perkerasan beraspal untuk memulihkan kondisi permukaan pada suatu segmen jalan.</li>
+                                    <li><strong>Scraping:</strong> Lapisan perkerasan yang telah mengalami kerusakan, deformasi, atau penurunan mutu dikupas sampai kedalaman yang direncanakan. Tahap ini bertujuan membuang material yang tidak lagi layak, mengoreksi profil permukaan, dan menyiapkan bidang kerja yang baik untuk lapisan berikutnya.</li>
+                                    <li><strong>Filling:</strong> Bagian yang telah dikupas atau memiliki kekurangan elevasi diisi dengan material perkerasan yang sesuai. Material kemudian dipadatkan agar elevasi, kemiringan melintang, dan bentuk penampang jalan kembali sesuai kebutuhan.</li>
+                                    <li><strong>Overlay:</strong> Lapisan beraspal baru dihampar di atas permukaan yang telah disiapkan. Overlay dapat berfungsi untuk memperbaiki kerataan dan kualitas permukaan, serta dapat memberikan peningkatan struktural apabila ketebalannya dirancang untuk tujuan rehabilitasi struktural.</li>
+                                    <li><strong>Kondisi yang Umumnya Ditangani:</strong> Ketidakrataan, alur atau deformasi, permukaan yang menua, kerusakan berulang pada area yang cukup panjang, serta kondisi yang sudah tidak efektif bila hanya ditangani dengan tambalan lokal.</li>
+                                    <li><strong>Hal Penting dalam Pelaksanaan:</strong> Kedalaman pengupasan, kebersihan dan kekeringan permukaan, ikatan antarlapis, elevasi akhir, kepadatan campuran, sambungan pelaksanaan, dan pengaturan lalu lintas perlu dikendalikan agar lapisan baru bekerja dengan baik.</li>
+                                    <li><strong>Tujuan:</strong> Memulihkan kerataan, kenyamanan dan keselamatan berkendara, menjaga profil serta drainase permukaan, mengurangi berkembangnya kerusakan, dan memperpanjang umur layanan perkerasan.</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="maintenance-accordion-item" name="maintenance-term">
+                            <summary>
+                                <span class="maintenance-accordion-title">Expansion Joint</span>
+                                <span class="maintenance-accordion-icon" aria-hidden="true"></span>
+                            </summary>
+                            <div class="maintenance-accordion-content">
+                                <ul>
+                                    <li><strong>Pengertian:</strong> <em>Expansion joint</em> atau siar muai adalah komponen sambungan yang dipasang pada lantai jembatan atau pertemuan bagian struktur untuk menyediakan celah sehingga pergerakan relatif antarbagian struktur dapat terjadi tanpa menimbulkan kerusakan.</li>
+                                    <li><strong>Fungsi:</strong> Mengakomodasi pemuaian dan penyusutan akibat perubahan temperatur, susut dan rangkak beton, lendutan struktur, serta pergerakan lain yang telah diperhitungkan dalam desain sambungan.</li>
+                                    <li><strong>Jenis:</strong> Secara umum siar muai dapat dikelompokkan menjadi sambungan terbuka dan tertutup. Pemilihan sistem dapat berbeda sesuai besarnya pergerakan, konfigurasi jembatan, kondisi lalu lintas, dan kebutuhan kedap air; contohnya sistem dengan <em>rubber seal</em> maupun <em>asphaltic plug joint</em>.</li>
+                                    <li><strong>Kerusakan yang Perlu Dipantau:</strong> Penumpukan pasir atau sampah pada celah, seal yang robek atau terlepas, kebocoran, kerusakan beton di tepi sambungan (<em>spalling</em>), komponen yang longgar, korosi, perbedaan elevasi, serta timbulnya hentakan atau suara berlebih saat kendaraan melintas.</li>
+                                    <li><strong>Pemeliharaan:</strong> Meliputi pembersihan sambungan secara berkala, pemeriksaan kondisi seal dan celah gerak, perbaikan beton di sekitar sambungan, penggantian material penutup atau komponen yang rusak, dan penggantian unit sambungan bila fungsi geraknya tidak lagi memenuhi kebutuhan.</li>
+                                    <li><strong>Mengapa Penting:</strong> Sambungan yang tidak bekerja baik dapat menurunkan kenyamanan berkendara, mempercepat kerusakan di sekitar sambungan, dan memungkinkan air serta kotoran mencapai bagian struktur di bawah lantai jembatan.</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="maintenance-accordion-item" name="maintenance-term">
+                            <summary>
+                                <span class="maintenance-accordion-title">Sealant</span>
+                                <span class="maintenance-accordion-icon" aria-hidden="true"></span>
+                            </summary>
+                            <div class="maintenance-accordion-content">
+                                <ul>
+                                    <li><strong>Pengertian:</strong> Sealant adalah material penutup yang ditempatkan pada sambungan atau retak untuk membatasi masuknya air, debu, pasir, dan material asing ke dalam celah perkerasan atau struktur.</li>
+                                    <li><strong>Fungsi Utama:</strong> Menjaga sambungan tetap tertutup tetapi tetap mampu mengikuti pergerakan yang direncanakan. Pada perkerasan beton, perlindungan ini membantu mengurangi masuknya air ke lapisan pendukung dan mencegah material tak termampatkan mengisi celah sambungan.</li>
+                                    <li><strong>Sifat yang Dibutuhkan:</strong> Kelekatan yang baik pada dinding sambungan, kemampuan deformasi atau elastisitas yang sesuai, ketahanan terhadap perubahan temperatur dan cuaca, tidak mudah mengalir, robek, mengeras berlebihan, atau terlepas selama pelayanan.</li>
+                                    <li><strong>Jenis Material:</strong> Sistem sealant dapat berupa bahan yang diaplikasikan panas seperti campuran bitumen termodifikasi maupun bahan aplikasi dingin seperti sealant elastomerik/silikon, tergantung spesifikasi dan kebutuhan sambungan.</li>
+                                    <li><strong>Tahapan Aplikasi:</strong> Sealant lama atau material lepas dibuang, celah dibentuk bila diperlukan, lalu dibersihkan dan dikeringkan. Setelah bidang siap, material pendukung seperti <em>backer rod</em> dapat dipasang sesuai desain sebelum sealant baru diaplikasikan dengan dimensi yang terkontrol.</li>
+                                    <li><strong>Kerusakan yang Dipantau:</strong> Kehilangan daya lekat pada sisi sambungan, retak atau robek pada tubuh sealant, material terangkat, mengalir keluar, mengeras, atau hilang sehingga celah kembali terbuka.</li>
+                                    <li><strong>Catatan:</strong> Sealant berfungsi sebagai perlindungan sambungan atau retak dan bukan sebagai perbaikan struktural. Bila retak atau kerusakan berasal dari kegagalan struktur, penyebab utamanya tetap memerlukan metode perbaikan lain.</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="maintenance-accordion-item" name="maintenance-term">
+                            <summary>
+                                <span class="maintenance-accordion-title">Patching</span>
+                                <span class="maintenance-accordion-icon" aria-hidden="true"></span>
+                            </summary>
+                            <div class="maintenance-accordion-content">
+                                <ul>
+                                    <li><strong>Pengertian:</strong> <em>Patching</em> atau penambalan adalah perbaikan setempat dengan membuang bagian perkerasan yang rusak pada area terbatas dan menggantinya menggunakan material baru sehingga fungsi bagian tersebut dapat dipulihkan.</li>
+                                    <li><strong>Penggunaan:</strong> Umumnya digunakan untuk lubang, pelepasan material, amblas atau kerusakan lokal, kerusakan di sekitar sambungan, dan area terbatas yang belum membutuhkan rehabilitasi sepanjang segmen.</li>
+                                    <li><strong>Pada Perkerasan Beraspal:</strong> Area rusak dibatasi, material yang tidak stabil dibuang, lapisan dasar diperbaiki bila diperlukan, lalu campuran tambalan ditempatkan dan dipadatkan. Terdapat pula bahan tambalan siap pakai yang dirancang agar area dapat dibuka kembali untuk lalu lintas dalam waktu singkat sesuai spesifikasinya.</li>
+                                    <li><strong>Pada Perkerasan Beton:</strong> Kedalaman perbaikan mengikuti tingkat kerusakan. <em>Partial-depth repair</em> digunakan ketika kerusakan hanya berada pada bagian atas pelat, misalnya spalling dangkal, sedangkan <em>full-depth repair</em> mengganti seluruh ketebalan pelat pada area yang mengalami kerusakan struktural atau kerusakan berat.</li>
+                                    <li><strong>Proses Umum:</strong> Menentukan batas perbaikan, membongkar material yang rusak sampai mencapai bagian yang masih sehat, membersihkan dan menyiapkan area, memperbaiki fondasi bila diperlukan, memasang material baru, kemudian melakukan pemadatan atau finishing serta curing sesuai jenis material.</li>
+                                    <li><strong>Faktor Kualitas:</strong> Batas tambalan, kondisi bidang kontak, ikatan dengan material lama, kepadatan, elevasi permukaan, drainase, mutu material, dan penanganan penyebab kerusakan sangat memengaruhi umur tambalan.</li>
+                                    <li><strong>Batasan:</strong> Patching efektif untuk kerusakan lokal. Bila kerusakan telah menyebar luas atau sumber masalah berasal dari lapisan fondasi, drainase, maupun kegagalan struktural, tambalan permukaan saja dapat cepat rusak kembali sehingga diperlukan penanganan yang lebih menyeluruh.</li>
+                                    <li><strong>Tujuan:</strong> Mengembalikan fungsi lokal perkerasan, menghilangkan bahaya bagi pengguna jalan, mencegah kerusakan berkembang, dan mempertahankan tingkat pelayanan jalan.</li>
+                                </ul>
+                            </div>
+                        </details>
+
+                        <details class="maintenance-accordion-item" name="maintenance-term">
+                            <summary>
+                                <span class="maintenance-accordion-title">Rigid Pavement</span>
+                                <span class="maintenance-accordion-icon" aria-hidden="true"></span>
+                            </summary>
+                            <div class="maintenance-accordion-content">
+                                <ul>
+                                    <li><strong>Pengertian:</strong> Perkerasan kaku (<em>rigid pavement</em>) adalah struktur perkerasan yang menggunakan pelat beton semen sebagai lapisan utama pemikul beban. Kekakuan pelat membuat beban kendaraan dapat disebarkan ke lapisan fondasi dan tanah dasar pada area yang relatif luas.</li>
+                                    <li><strong>Komponen:</strong> Umumnya terdiri dari pelat beton, lapisan fondasi atau <em>subbase</em>, dan tanah dasar (<em>subgrade</em>). Pada sistem bersambung, <em>dowel bar</em> dapat digunakan pada sambungan melintang untuk membantu transfer beban, sedangkan <em>tie bar</em> menjaga keterikatan pada sambungan memanjang.</li>
+                                    <li><strong>Jenis Umum:</strong> Bentuk yang dikenal antara lain <em>Jointed Plain Concrete Pavement</em> (JPCP), <em>Jointed Reinforced Concrete Pavement</em> (JRCP), dan <em>Continuously Reinforced Concrete Pavement</em> (CRCP), dengan konfigurasi sambungan serta tulangan yang berbeda.</li>
+                                    <li><strong>Karakteristik:</strong> Pelat beton memiliki kekakuan tinggi sehingga deformasi struktural relatif kecil, tetapi kinerja perkerasan sangat dipengaruhi oleh kondisi sambungan, transfer beban, dukungan lapisan di bawah pelat, drainase, serta perubahan temperatur dan kelembapan.</li>
+                                    <li><strong>Kerusakan yang Dipantau:</strong> Retak melintang atau memanjang, <em>corner break</em>, spalling, perbedaan elevasi antarpelat (<em>faulting</em>), pumping, kehilangan dukungan di bawah pelat, kerusakan seal sambungan, permukaan aus, serta ketidakrataan.</li>
+                                    <li><strong>Metode Pemeliharaan:</strong> Dapat berupa penutupan ulang sambungan atau retak, perbaikan sebagian ketebalan, penggantian penuh bagian pelat, stabilisasi rongga di bawah pelat dengan grouting, restorasi transfer beban, serta penggerindaan permukaan (<em>diamond grinding</em>) bila struktur pelat masih memadai.</li>
+                                    <li><strong>Pemilihan Penanganan:</strong> Metode tidak hanya ditentukan oleh tampilan kerusakan di permukaan, tetapi juga kedalaman kerusakan, luas area, kondisi sambungan, dukungan lapisan bawah, dan penyebab utama kerusakan.</li>
+                                    <li><strong>Tujuan:</strong> Mempertahankan integritas pelat dan kemampuan transfer beban, membatasi masuknya air melalui sambungan atau retak, menjaga kerataan dan kenyamanan berkendara, serta memperpanjang umur layanan perkerasan.</li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                    <p class="section-lead"><small>Referensi teknis: Manual Desain Perkerasan Jalan 2024 dan pedoman terkait preservasi jalan/jembatan Direktorat Jenderal Bina Marga, serta panduan perbaikan perkerasan beton FHWA. Istilah SFO mengikuti terminologi operasional yang digunakan pada dataset SurGem Maintenance.</small></p>
+                </section>
+                <section class="about-block development-flow-section">
+                    <h2>Alur Pengembangan Sistem</h2>
+                    <p class="section-lead">Sistem ini dikembangkan melalui integrasi data spasial dan tabular dengan metodologi pengolahan sebagai berikut:</p>
+                    <ol class="development-card-grid">
+                        <li>
+                            <h3>Akuisisi Data</h3>
+                            <p>Mengumpulkan data spasial dalam format <em>GeoJSON</em> yang memuat lokasi gerbang dan jalur tol, beserta data atribut ringkasan pemeliharaan <em>Scraping, Filling, dan Overlay</em> (SFO) resmi yang bersumber dari <strong>PT Jasa Marga (Persero) Tbk.</strong></p>
+                        </li>
+                        <li>
+                            <h3>Pengolahan dan Integrasi Data</h3>
+                            <p>Melakukan kompilasi, pemeriksaan, penyelarasan (<em>data cleaning</em>), dan penggabungan (<em>join/relate</em>) antara data spasial dan data atribut SFO. Alignment Jalur A dan Jalur B digunakan sebagai garis referensi, sedangkan visualisasi L1, L2, dan L3 dibentuk dengan offset antarlajur sebesar <strong>3,6 meter</strong>.</p>
+                        </li>
+                        <li>
+                            <h3>Ekspor Data Spasial</h3>
+                            <p>Mengekspor hasil pemrosesan dari <strong>ArcGIS Pro</strong> ke format <strong>GeoJSON</strong> agar geometri dan data atribut dapat dibaca oleh aplikasi berbasis web.</p>
+                        </li>
+                        <li>
+                            <h3>Penyimpanan Input Data</h3>
+                            <p>Data baru dari halaman admin disimpan pada <strong>Supabase</strong> sebagai basis data terpusat. Data tersebut dibaca kembali oleh aplikasi dan digabungkan dengan data utama GeoJSON untuk memperbarui peta, statistik, dan riwayat pekerjaan.</p>
+                        </li>
+                        <li>
+                            <h3>Implementasi dan Visualisasi WebGIS</h3>
+                            <p>Mengintegrasikan GeoJSON dan data Supabase ke dalam aplikasi. <strong>Leaflet.js</strong> digunakan untuk pemetaan, <strong>Turf.js</strong> untuk membentuk offset L1–L3, serta HTML, CSS, dan JavaScript untuk menghasilkan antarmuka yang interaktif dan responsif.</p>
+                        </li>
+                    </ol>
+                    <div aria-label="Alur teknologi ArcGIS Pro ke WebGIS" class="development-pipeline">
+                        <span>ArcGIS Pro</span><b aria-hidden="true">→</b><span>GeoJSON</span><b aria-hidden="true">→</b><span>Leaflet.js</span><b aria-hidden="true">→</b><span>Supabase</span><b aria-hidden="true">→</b><span>GitHub</span><b aria-hidden="true">→</b><span>WebGIS</span>
+                    </div>
+                </section>
+                <section class="about-block">
+                    <h2>Detail Proyek</h2>
+                    <div class="project-details">
+                        <div class="detail-row">
+                            <span>Ruas Studi Kasus</span>
+                            <strong>Tol Surabaya – Gempol (SurGem)</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Panjang Total</span>
+                            <strong>±43,0 km</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Total Catatan SFO Jalur</span>
+                            <strong id="about-record-count">Memuat data…</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Input Admin Terpusat</span>
+                            <strong id="about-admin-count">Memuat data…</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Penyimpanan Input Admin</span>
+                            <strong>Supabase</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Rentang Pencatatan Data</span>
+                            <strong id="about-data-period">Memuat data…</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Data Spasial</span>
+                            <strong>GeoJSON (Digitasi Mandiri &amp; Overpass Turbo / OSM)</strong>
+                        </div>
+                        <div class="detail-row">
+                            <span>Status Data</span>
+                            <strong id="about-data-status">Memuat data…</strong>
+                        </div>
+                </section>
+                <section class="about-block">
+                    <h2>Tim Pengembang</h2>
+                    <div class="dev-team-grid">
+                        <div class="dev-card">
+                            <p class="dev-name">Talita Adzra Junita Arief</p>
+                            <p class="dev-nrp">NRP 5016241044</p>
+                        </div>
+                        <div class="dev-card">
+                            <p class="dev-name">Baihakhi Rahadyan Choina</p>
+                            <p class="dev-nrp">NRP 5016241082</p>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </main>
+        <!-- FOOTER -->
+        <footer class="jm-footer compact-footer">
+            <div class="footer-main">
+                <div class="footer-company">
+                    <h4>SurGem Maintenance</h4>
+                    <p> Sistem monitoring pemeliharaan Jalan Tol Surabaya–Gempol berbasis WebGIS. </p>
+                    <a href="https://share.google/F935m6V7ZR2KtCyAa"> Plaza Tol Kota Satelit, Jl. Mayjen Sungkono, Putat Gede, Sukomanunggal, Surabaya, Jawa Timur 60189 </a>
+                </div>
+                <div class="footer-contact">
+                    <h4>Kontak</h4>
+                    <a href="mailto:ro3@jmtransjawatol.co.id"> ✉ ro3@jmtransjawatol.co.id </a>
+                    <a href="tel:133"> ☎ Call Center 133 </a>
+                </div>
+                <div class="footer-navigation">
+                    <h4>Navigasi</h4>
+                    <div class="footer-nav-links">
+                        <a href="peta.html">Peta Persebaran</a>
+                        <a href="stat.html">Data Statistik</a>
+                        <a href="tentang.html">Tentang Sistem</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p> © <span id="tahun-footer"></span> JASA MARGA · Operating and Monitoring </p>
                 <p>Surabaya–Gempol Maintenance System</p>
             </div>
-        </a>
+        </footer>
+        <button aria-label="Kembali ke atas" class="back-to-top" id="back-to-top" type="button"> ↑ </button>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="supabase-config.js?v=5"></script>
+        <script src="data-perbaikan.js?v=14"></script>
+        <script>
+            (function() {
+                "use strict";
+                const THEME_KEY = "theme";
+                const DATA_URL = "Rekap_SFO_deng_FeaturesToJSO_updated.geojson";
+                const GATE_DATA_URL = "gatetol_history_updated.geojson";
 
-        <nav aria-label="Navigasi utama" class="jm-nav-menu">
-            <a class="nav-link" href="index.html">Home</a>
-            <a class="nav-link" href="peta.html">Peta Interaktif</a>
-            <a class="nav-link" href="stat.html">Data Statistik</a>
-            <a class="nav-link active" href="tentang.html">Tentang</a>
-        </nav>
-
-        <button aria-pressed="false" class="darkmode-toggle" onclick="toggleDarkMode()" type="button">
-            <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
-            </svg>
-            <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-        </button>
-    </div>
-</header>
-    <main class="about-page">
-        <section class="about-title-section">
-            <h1>Tentang SurGem Maintenance</h1>
-            <div class="title-line"></div>
-        </section>
-        <article class="about-content">
-            <section class="about-intro">
-                <p>
-                    <strong>SurGem Maintenance</strong> adalah sistem informasi pemantauan (monitoring) kondisi pemeliharaan jalan tol berbasis peta digital (WebGIS) yang dirancang untuk memvisualisasikan progres pemeliharaan perkerasan jalan tol secara spasial dan temporal (berbasis waktu), termasuk pemisahan L1, L2, dan L3 pada Jalur A dan Jalur B. Studi kasus platform ini difokuskan pada Ruas Jalan Tol Surabaya–Gempol (SurGem) sepanjang kurang lebih 43 kilometer, dengan cakupan pencatatan data pemeliharaan dari tahun <strong id="about-intro-period">2023 hingga 2026</strong>.
-                </p>
-                <p> Setiap <strong>segmen jalan</strong> diidentifikasi dan dicatat secara komprehensif, mencakup parameter rentang kilometer (STA), panjang penanganan, jenis perbaikan, serta dimensi waktu berupa bulan dan tahun penyelesaian pekerjaan. Informasi tersebut kemudian ditransformasikan ke dalam <strong>peta interaktif</strong> guna menyajikan visualisasi yang adaptif, sehingga kondisi riil dan rekam jejak (historical data) perbaikan pada setiap ruas dapat dievaluasi secara cepat, tepat, dan efisien. </p>
-            </section>
-            <section class="about-block">
-                <h2>Tujuan</h2>
-                <ul class="about-list">
-                    <li>
-                        <strong>Visualisasi Spasial Komprehensif:</strong> Menyajikan gambaran spasial yang menyeluruh dan interaktif terkait sebaran serta progres pemeliharaan jalan tol berdasarkan pembaruan data GeoJSON terbaru yang tersedia.
-                    </li>
-                    <li>
-                        <strong>Penelusuran Data Temporal (Histori):</strong> Mempermudah pemangku kepentingan dalam melakukan penelusuran riwayat perbaikan jalan tol berdasarkan periode waktu tertentu secara kronologis.
-                    </li>
-                    <li>
-                        <strong>Transparansi dan Aksesibilitas Data:</strong> Mendukung keterbukaan informasi dan kemudahan distribusi data melalui penyediaan fitur unduh tabel atribut bagi pengguna.
-                    </li>
-                </ul>
-            </section>
-            <section class="about-block maintenance-terms-section">
-                <h2>Istilah Pemeliharaan</h2>
-                <p class="section-lead">Istilah berikut digunakan pada data dan visualisasi pekerjaan pemeliharaan SurGem Maintenance. Penjelasan disusun untuk membantu pengguna memahami fungsi pekerjaan, tahapan umum, serta kondisi kerusakan yang berkaitan dengan masing-masing istilah.</p>
-                <div class="maintenance-accordion">
-                    <details class="maintenance-accordion-item" name="maintenance-term">
-                        <summary>
-                            <span class="maintenance-accordion-title">SFO</span>
-                            <span class="maintenance-accordion-icon" aria-hidden="true"></span>
-                        </summary>
-                        <div class="maintenance-accordion-content">
-                            <ul>
-                                <li><strong>Kepanjangan:</strong> Dalam dataset SurGem Maintenance, SFO merupakan singkatan dari <em>Scraping, Filling, dan Overlay</em>, yaitu rangkaian penanganan perkerasan beraspal untuk memulihkan kondisi permukaan pada suatu segmen jalan.</li>
-                                <li><strong>Scraping:</strong> Lapisan perkerasan yang telah mengalami kerusakan, deformasi, atau penurunan mutu dikupas sampai kedalaman yang direncanakan. Tahap ini bertujuan membuang material yang tidak lagi layak, mengoreksi profil permukaan, dan menyiapkan bidang kerja yang baik untuk lapisan berikutnya.</li>
-                                <li><strong>Filling:</strong> Bagian yang telah dikupas atau memiliki kekurangan elevasi diisi dengan material perkerasan yang sesuai. Material kemudian dipadatkan agar elevasi, kemiringan melintang, dan bentuk penampang jalan kembali sesuai kebutuhan.</li>
-                                <li><strong>Overlay:</strong> Lapisan beraspal baru dihampar di atas permukaan yang telah disiapkan. Overlay dapat berfungsi untuk memperbaiki kerataan dan kualitas permukaan, serta dapat memberikan peningkatan struktural apabila ketebalannya dirancang untuk tujuan rehabilitasi struktural.</li>
-                                <li><strong>Kondisi yang Umumnya Ditangani:</strong> Ketidakrataan, alur atau deformasi, permukaan yang menua, kerusakan berulang pada area yang cukup panjang, serta kondisi yang sudah tidak efektif bila hanya ditangani dengan tambalan lokal.</li>
-                                <li><strong>Hal Penting dalam Pelaksanaan:</strong> Kedalaman pengupasan, kebersihan dan kekeringan permukaan, ikatan antarlapis, elevasi akhir, kepadatan campuran, sambungan pelaksanaan, dan pengaturan lalu lintas perlu dikendalikan agar lapisan baru bekerja dengan baik.</li>
-                                <li><strong>Tujuan:</strong> Memulihkan kerataan, kenyamanan dan keselamatan berkendara, menjaga profil serta drainase permukaan, mengurangi berkembangnya kerusakan, dan memperpanjang umur layanan perkerasan.</li>
-                            </ul>
-                        </div>
-                    </details>
-
-                    <details class="maintenance-accordion-item" name="maintenance-term">
-                        <summary>
-                            <span class="maintenance-accordion-title">Expansion Joint</span>
-                            <span class="maintenance-accordion-icon" aria-hidden="true"></span>
-                        </summary>
-                        <div class="maintenance-accordion-content">
-                            <ul>
-                                <li><strong>Pengertian:</strong> <em>Expansion joint</em> atau siar muai adalah komponen sambungan yang dipasang pada lantai jembatan atau pertemuan bagian struktur untuk menyediakan celah sehingga pergerakan relatif antarbagian struktur dapat terjadi tanpa menimbulkan kerusakan.</li>
-                                <li><strong>Fungsi:</strong> Mengakomodasi pemuaian dan penyusutan akibat perubahan temperatur, susut dan rangkak beton, lendutan struktur, serta pergerakan lain yang telah diperhitungkan dalam desain sambungan.</li>
-                                <li><strong>Jenis:</strong> Secara umum siar muai dapat dikelompokkan menjadi sambungan terbuka dan tertutup. Pemilihan sistem dapat berbeda sesuai besarnya pergerakan, konfigurasi jembatan, kondisi lalu lintas, dan kebutuhan kedap air; contohnya sistem dengan <em>rubber seal</em> maupun <em>asphaltic plug joint</em>.</li>
-                                <li><strong>Kerusakan yang Perlu Dipantau:</strong> Penumpukan pasir atau sampah pada celah, seal yang robek atau terlepas, kebocoran, kerusakan beton di tepi sambungan (<em>spalling</em>), komponen yang longgar, korosi, perbedaan elevasi, serta timbulnya hentakan atau suara berlebih saat kendaraan melintas.</li>
-                                <li><strong>Pemeliharaan:</strong> Meliputi pembersihan sambungan secara berkala, pemeriksaan kondisi seal dan celah gerak, perbaikan beton di sekitar sambungan, penggantian material penutup atau komponen yang rusak, dan penggantian unit sambungan bila fungsi geraknya tidak lagi memenuhi kebutuhan.</li>
-                                <li><strong>Mengapa Penting:</strong> Sambungan yang tidak bekerja baik dapat menurunkan kenyamanan berkendara, mempercepat kerusakan di sekitar sambungan, dan memungkinkan air serta kotoran mencapai bagian struktur di bawah lantai jembatan.</li>
-                            </ul>
-                        </div>
-                    </details>
-
-                    <details class="maintenance-accordion-item" name="maintenance-term">
-                        <summary>
-                            <span class="maintenance-accordion-title">Sealant</span>
-                            <span class="maintenance-accordion-icon" aria-hidden="true"></span>
-                        </summary>
-                        <div class="maintenance-accordion-content">
-                            <ul>
-                                <li><strong>Pengertian:</strong> Sealant adalah material penutup yang ditempatkan pada sambungan atau retak untuk membatasi masuknya air, debu, pasir, dan material asing ke dalam celah perkerasan atau struktur.</li>
-                                <li><strong>Fungsi Utama:</strong> Menjaga sambungan tetap tertutup tetapi tetap mampu mengikuti pergerakan yang direncanakan. Pada perkerasan beton, perlindungan ini membantu mengurangi masuknya air ke lapisan pendukung dan mencegah material tak termampatkan mengisi celah sambungan.</li>
-                                <li><strong>Sifat yang Dibutuhkan:</strong> Kelekatan yang baik pada dinding sambungan, kemampuan deformasi atau elastisitas yang sesuai, ketahanan terhadap perubahan temperatur dan cuaca, tidak mudah mengalir, robek, mengeras berlebihan, atau terlepas selama pelayanan.</li>
-                                <li><strong>Jenis Material:</strong> Sistem sealant dapat berupa bahan yang diaplikasikan panas seperti campuran bitumen termodifikasi maupun bahan aplikasi dingin seperti sealant elastomerik/silikon, tergantung spesifikasi dan kebutuhan sambungan.</li>
-                                <li><strong>Tahapan Aplikasi:</strong> Sealant lama atau material lepas dibuang, celah dibentuk bila diperlukan, lalu dibersihkan dan dikeringkan. Setelah bidang siap, material pendukung seperti <em>backer rod</em> dapat dipasang sesuai desain sebelum sealant baru diaplikasikan dengan dimensi yang terkontrol.</li>
-                                <li><strong>Kerusakan yang Dipantau:</strong> Kehilangan daya lekat pada sisi sambungan, retak atau robek pada tubuh sealant, material terangkat, mengalir keluar, mengeras, atau hilang sehingga celah kembali terbuka.</li>
-                                <li><strong>Catatan:</strong> Sealant berfungsi sebagai perlindungan sambungan atau retak dan bukan sebagai perbaikan struktural. Bila retak atau kerusakan berasal dari kegagalan struktur, penyebab utamanya tetap memerlukan metode perbaikan lain.</li>
-                            </ul>
-                        </div>
-                    </details>
-
-                    <details class="maintenance-accordion-item" name="maintenance-term">
-                        <summary>
-                            <span class="maintenance-accordion-title">Patching</span>
-                            <span class="maintenance-accordion-icon" aria-hidden="true"></span>
-                        </summary>
-                        <div class="maintenance-accordion-content">
-                            <ul>
-                                <li><strong>Pengertian:</strong> <em>Patching</em> atau penambalan adalah perbaikan setempat dengan membuang bagian perkerasan yang rusak pada area terbatas dan menggantinya menggunakan material baru sehingga fungsi bagian tersebut dapat dipulihkan.</li>
-                                <li><strong>Penggunaan:</strong> Umumnya digunakan untuk lubang, pelepasan material, amblas atau kerusakan lokal, kerusakan di sekitar sambungan, dan area terbatas yang belum membutuhkan rehabilitasi sepanjang segmen.</li>
-                                <li><strong>Pada Perkerasan Beraspal:</strong> Area rusak dibatasi, material yang tidak stabil dibuang, lapisan dasar diperbaiki bila diperlukan, lalu campuran tambalan ditempatkan dan dipadatkan. Terdapat pula bahan tambalan siap pakai yang dirancang agar area dapat dibuka kembali untuk lalu lintas dalam waktu singkat sesuai spesifikasinya.</li>
-                                <li><strong>Pada Perkerasan Beton:</strong> Kedalaman perbaikan mengikuti tingkat kerusakan. <em>Partial-depth repair</em> digunakan ketika kerusakan hanya berada pada bagian atas pelat, misalnya spalling dangkal, sedangkan <em>full-depth repair</em> mengganti seluruh ketebalan pelat pada area yang mengalami kerusakan struktural atau kerusakan berat.</li>
-                                <li><strong>Proses Umum:</strong> Menentukan batas perbaikan, membongkar material yang rusak sampai mencapai bagian yang masih sehat, membersihkan dan menyiapkan area, memperbaiki fondasi bila diperlukan, memasang material baru, kemudian melakukan pemadatan atau finishing serta curing sesuai jenis material.</li>
-                                <li><strong>Faktor Kualitas:</strong> Batas tambalan, kondisi bidang kontak, ikatan dengan material lama, kepadatan, elevasi permukaan, drainase, mutu material, dan penanganan penyebab kerusakan sangat memengaruhi umur tambalan.</li>
-                                <li><strong>Batasan:</strong> Patching efektif untuk kerusakan lokal. Bila kerusakan telah menyebar luas atau sumber masalah berasal dari lapisan fondasi, drainase, maupun kegagalan struktural, tambalan permukaan saja dapat cepat rusak kembali sehingga diperlukan penanganan yang lebih menyeluruh.</li>
-                                <li><strong>Tujuan:</strong> Mengembalikan fungsi lokal perkerasan, menghilangkan bahaya bagi pengguna jalan, mencegah kerusakan berkembang, dan mempertahankan tingkat pelayanan jalan.</li>
-                            </ul>
-                        </div>
-                    </details>
-
-                    <details class="maintenance-accordion-item" name="maintenance-term">
-                        <summary>
-                            <span class="maintenance-accordion-title">Rigid Pavement</span>
-                            <span class="maintenance-accordion-icon" aria-hidden="true"></span>
-                        </summary>
-                        <div class="maintenance-accordion-content">
-                            <ul>
-                                <li><strong>Pengertian:</strong> Perkerasan kaku (<em>rigid pavement</em>) adalah struktur perkerasan yang menggunakan pelat beton semen sebagai lapisan utama pemikul beban. Kekakuan pelat membuat beban kendaraan dapat disebarkan ke lapisan fondasi dan tanah dasar pada area yang relatif luas.</li>
-                                <li><strong>Komponen:</strong> Umumnya terdiri dari pelat beton, lapisan fondasi atau <em>subbase</em>, dan tanah dasar (<em>subgrade</em>). Pada sistem bersambung, <em>dowel bar</em> dapat digunakan pada sambungan melintang untuk membantu transfer beban, sedangkan <em>tie bar</em> menjaga keterikatan pada sambungan memanjang.</li>
-                                <li><strong>Jenis Umum:</strong> Bentuk yang dikenal antara lain <em>Jointed Plain Concrete Pavement</em> (JPCP), <em>Jointed Reinforced Concrete Pavement</em> (JRCP), dan <em>Continuously Reinforced Concrete Pavement</em> (CRCP), dengan konfigurasi sambungan serta tulangan yang berbeda.</li>
-                                <li><strong>Karakteristik:</strong> Pelat beton memiliki kekakuan tinggi sehingga deformasi struktural relatif kecil, tetapi kinerja perkerasan sangat dipengaruhi oleh kondisi sambungan, transfer beban, dukungan lapisan di bawah pelat, drainase, serta perubahan temperatur dan kelembapan.</li>
-                                <li><strong>Kerusakan yang Dipantau:</strong> Retak melintang atau memanjang, <em>corner break</em>, spalling, perbedaan elevasi antarpelat (<em>faulting</em>), pumping, kehilangan dukungan di bawah pelat, kerusakan seal sambungan, permukaan aus, serta ketidakrataan.</li>
-                                <li><strong>Metode Pemeliharaan:</strong> Dapat berupa penutupan ulang sambungan atau retak, perbaikan sebagian ketebalan, penggantian penuh bagian pelat, stabilisasi rongga di bawah pelat dengan grouting, restorasi transfer beban, serta penggerindaan permukaan (<em>diamond grinding</em>) bila struktur pelat masih memadai.</li>
-                                <li><strong>Pemilihan Penanganan:</strong> Metode tidak hanya ditentukan oleh tampilan kerusakan di permukaan, tetapi juga kedalaman kerusakan, luas area, kondisi sambungan, dukungan lapisan bawah, dan penyebab utama kerusakan.</li>
-                                <li><strong>Tujuan:</strong> Mempertahankan integritas pelat dan kemampuan transfer beban, membatasi masuknya air melalui sambungan atau retak, menjaga kerataan dan kenyamanan berkendara, serta memperpanjang umur layanan perkerasan.</li>
-                            </ul>
-                        </div>
-                    </details>
-                </div>
-                <p class="section-lead"><small>Referensi teknis: Manual Desain Perkerasan Jalan 2024 dan pedoman terkait preservasi jalan/jembatan Direktorat Jenderal Bina Marga, serta panduan perbaikan perkerasan beton FHWA. Istilah SFO mengikuti terminologi operasional yang digunakan pada dataset SurGem Maintenance.</small></p>
-            </section>
-            <section class="about-block development-flow-section">
-                <h2>Alur Pengembangan Sistem</h2>
-                <p class="section-lead">Sistem ini dikembangkan melalui integrasi data spasial dan tabular dengan metodologi pengolahan sebagai berikut:</p>
-                <ol class="development-card-grid">
-                    <li>
-                        <h3>Akuisisi Data</h3>
-                        <p>Mengumpulkan data spasial dalam format <em>GeoJSON</em> yang memuat lokasi gerbang dan jalur tol, beserta data atribut ringkasan pemeliharaan <em>Scraping, Filling, dan Overlay</em> (SFO) resmi yang bersumber dari <strong>PT Jasa Marga (Persero) Tbk.</strong></p>
-                    </li>
-                    <li>
-                        <h3>Pengolahan dan Integrasi Data</h3>
-                        <p>Melakukan kompilasi, pemeriksaan, penyelarasan (<em>data cleaning</em>), dan penggabungan (<em>join/relate</em>) antara data spasial dan data atribut SFO. Alignment Jalur A dan Jalur B digunakan sebagai garis referensi, sedangkan visualisasi L1, L2, dan L3 dibentuk dengan offset antarlajur sebesar <strong>3,6 meter</strong>.</p>
-                    </li>
-                    <li>
-                        <h3>Ekspor Data Spasial</h3>
-                        <p>Mengekspor hasil pemrosesan dari <strong>ArcGIS Pro</strong> ke format <strong>GeoJSON</strong> agar geometri dan data atribut dapat dibaca oleh aplikasi berbasis web.</p>
-                    </li>
-                    <li>
-                        <h3>Penyimpanan Input Data</h3>
-                        <p>Data baru dari halaman admin disimpan pada <strong>Supabase</strong> sebagai basis data terpusat. Data tersebut dibaca kembali oleh aplikasi dan digabungkan dengan data utama GeoJSON untuk memperbarui peta, statistik, dan riwayat pekerjaan.</p>
-                    </li>
-                    <li>
-                        <h3>Implementasi dan Visualisasi WebGIS</h3>
-                        <p>Mengintegrasikan GeoJSON dan data Supabase ke dalam aplikasi. <strong>Leaflet.js</strong> digunakan untuk pemetaan, <strong>Turf.js</strong> untuk membentuk offset L1–L3, serta HTML, CSS, dan JavaScript untuk menghasilkan antarmuka yang interaktif dan responsif.</p>
-                    </li>
-                </ol>
-                <div aria-label="Alur teknologi ArcGIS Pro ke WebGIS" class="development-pipeline">
-                    <span>ArcGIS Pro</span><b aria-hidden="true">→</b><span>GeoJSON</span><b aria-hidden="true">→</b><span>Leaflet.js</span><b aria-hidden="true">→</b><span>Supabase</span><b aria-hidden="true">→</b><span>GitHub</span><b aria-hidden="true">→</b><span>WebGIS</span>
-                </div>
-            </section>
-            <section class="about-block">
-                <h2>Detail Proyek</h2>
-                <div class="project-details">
-                    <div class="detail-row">
-                        <span>Ruas Studi Kasus</span>
-                        <strong>Tol Surabaya – Gempol (SurGem)</strong>
-                    </div>
-                    <div class="detail-row">
-                        <span>Panjang Total</span>
-                        <strong>±43,0 km</strong>
-                    </div>
-                    <div class="detail-row">
-                        <span>Total Catatan SFO Jalur</span>
-                        <strong id="about-record-count">Memuat data…</strong>
-                    </div>
-                    <div class="detail-row">
-                        <span>Input Admin Terpusat</span>
-                        <strong id="about-admin-count">Memuat data…</strong>
-                    </div>
-                    <div class="detail-row">
-                        <span>Penyimpanan Input Admin</span>
-                        <strong>Supabase</strong>
-                    </div>
-                    <div class="detail-row">
-                        <span>Rentang Pencatatan Data</span>
-                        <strong id="about-data-period">Memuat data…</strong>
-                    </div>
-                    <div class="detail-row">
-                        <span>Data Spasial</span>
-                        <strong>GeoJSON (Digitasi Mandiri &amp; Overpass Turbo / OSM)</strong>
-                    </div>
-                    <div class="detail-row">
-                        <span>Status Data</span>
-                        <strong id="about-data-status">Memuat data…</strong>
-                    </div>
-            </section>
-            <section class="about-block">
-                <h2>Tim Pengembang</h2>
-                <div class="dev-team-grid">
-                    <div class="dev-card">
-                        <p class="dev-name">Talita Adzra Junita Arief</p>
-                        <p class="dev-nrp">NRP 5016241044</p>
-                    </div>
-                    <div class="dev-card">
-                        <p class="dev-name">Baihakhi Rahadyan Choina</p>
-                        <p class="dev-nrp">NRP 5016241082</p>
-                    </div>
-                </div>
-            </section>
-        </article>
-    </main>
-    <!-- FOOTER -->
-    <footer class="jm-footer compact-footer">
-        <div class="footer-main">
-            <div class="footer-company">
-                <h4>SurGem Maintenance</h4>
-                <p> Sistem monitoring pemeliharaan Jalan Tol Surabaya–Gempol berbasis WebGIS. </p>
-                <a href="https://share.google/F935m6V7ZR2KtCyAa"> Plaza Tol Kota Satelit, Jl. Mayjen Sungkono, Putat Gede, Sukomanunggal, Surabaya, Jawa Timur 60189 </a>
-            </div>
-            <div class="footer-contact">
-                <h4>Kontak</h4>
-                <a href="mailto:ro3@jmtransjawatol.co.id"> ✉ ro3@jmtransjawatol.co.id </a>
-                <a href="tel:133"> ☎ Call Center 133 </a>
-            </div>
-            <div class="footer-navigation">
-                <h4>Navigasi</h4>
-                <div class="footer-nav-links">
-                    <a href="peta.html">Peta Persebaran</a>
-                    <a href="stat.html">Data Statistik</a>
-                    <a href="tentang.html">Tentang Sistem</a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p> © <span id="tahun-footer"></span> JASA MARGA · Operating and Monitoring </p>
-            <p>Surabaya–Gempol Maintenance System</p>
-        </div>
-    </footer>
-    <button aria-label="Kembali ke atas" class="back-to-top" id="back-to-top" type="button"> ↑ </button>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-config.js?v=5"></script>
-    <script src="data-perbaikan.js?v=8"></script>
-    <script>
-        (function() {
-            "use strict";
-            const THEME_KEY = "theme";
-            const DATA_URL = "Rekap_SFO_deng_FeaturesToJSO_updated.geojson";
-            const GATE_DATA_URL = "gatetol_history_updated.geojson";
-
-            function applyTheme(theme) {
-                const darkModeActive = theme === "dark";
-                const button = document.querySelector(".darkmode-toggle");
-                document.body.classList.toggle("dark-mode", darkModeActive);
-                if (button) {
-                    const moonIcon = button.querySelector(".icon-moon");
-                    const sunIcon = button.querySelector(".icon-sun");
-                    if (moonIcon) moonIcon.style.display = darkModeActive ? "none" : "inline-block";
-                    if (sunIcon) sunIcon.style.display = darkModeActive ? "inline-block" : "none";
-                    button.setAttribute("aria-pressed", darkModeActive ? "true" : "false");
-                }
-            }
-            window.toggleDarkMode = function() {
-                const darkModeSedangAktif = document.body.classList.contains("dark-mode");
-                const temaBaru = darkModeSedangAktif ? "light" : "dark";
-                localStorage.setItem(THEME_KEY, temaBaru);
-                applyTheme(temaBaru);
-            };
-
-            function ambilFeatures(data) {
-                if (data && data.type === "FeatureCollection" && Array.isArray(data.features)) {
-                    return data.features;
-                }
-                if (data && data.type === "Feature") return [data];
-                return [];
-            }
-            async function muatJSON(url) {
-                const response = await fetch(encodeURI(url));
-                if (!response.ok) {
-                    throw new Error("HTTP " + response.status + " saat membaca " + url);
-                }
-                return response.json();
-            }
-
-            function normalisasiNamaKolom(value) {
-                return String(value || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
-            }
-
-            function tahunDariNilai(value) {
-                if (value === null || value === undefined || value === "") return null;
-                if (typeof value === "number" && Number.isFinite(value)) {
-                    if (value >= 1900 && value <= 2100) return Math.trunc(value);
-                    if (value > 20000 && value < 80000) {
-                        const date = new Date(Date.UTC(1899, 11, 30) + value * 86400000);
-                        const year = date.getUTCFullYear();
-                        return year >= 1900 && year <= 2100 ? year : null;
+                function applyTheme(theme) {
+                    const darkModeActive = theme === "dark";
+                    const button = document.querySelector(".darkmode-toggle");
+                    document.body.classList.toggle("dark-mode", darkModeActive);
+                    if (button) {
+                        const moonIcon = button.querySelector(".icon-moon");
+                        const sunIcon = button.querySelector(".icon-sun");
+                        if (moonIcon) moonIcon.style.display = darkModeActive ? "none" : "inline-block";
+                        if (sunIcon) sunIcon.style.display = darkModeActive ? "inline-block" : "none";
+                        button.setAttribute("aria-pressed", darkModeActive ? "true" : "false");
                     }
                 }
-                const match = String(value).match(/(?:^|\D)((?:19|20)\d{2})(?:\D|$)/);
-                return match ? Number(match[1]) : null;
-            }
+                window.toggleDarkMode = function() {
+                    const darkModeSedangAktif = document.body.classList.contains("dark-mode");
+                    const temaBaru = darkModeSedangAktif ? "light" : "dark";
+                    localStorage.setItem(THEME_KEY, temaBaru);
+                    applyTheme(temaBaru);
+                };
 
-            function kumpulkanTahun(value, hasil, namaKolom) {
-                if (Array.isArray(value)) {
-                    value.forEach(function(item) {
-                        kumpulkanTahun(item, hasil, namaKolom);
-                    });
-                    return;
+                function ambilFeatures(data) {
+                    if (data && data.type === "FeatureCollection" && Array.isArray(data.features)) {
+                        return data.features;
+                    }
+                    if (data && data.type === "Feature") return [data];
+                    return [];
                 }
-                if (value && typeof value === "object") {
-                    Object.entries(value).forEach(function(entry) {
-                        kumpulkanTahun(entry[1], hasil, entry[0]);
-                    });
-                    return;
+                async function muatJSON(url) {
+                    const response = await fetch(encodeURI(url));
+                    if (!response.ok) {
+                        throw new Error("HTTP " + response.status + " saat membaca " + url);
+                    }
+                    return response.json();
                 }
-                const kolom = normalisasiNamaKolom(namaKolom);
-                if (!["tanggal", "tanggal_pelaksanaan", "tgl", "tgl_pelaksanaan", "date", "work_date"].includes(kolom)) return;
-                const year = tahunDariNilai(value);
-                if (year !== null) hasil.add(year);
-            }
 
-            function nilaiProperti(props, aliases) {
-                const entries = Object.entries(props || {});
-                for (const alias of aliases) {
-                    const normalizedAlias = normalisasiNamaKolom(alias);
-                    const match = entries.find(function(entry) {
-                        return normalisasiNamaKolom(entry[0]) === normalizedAlias;
-                    });
-                    if (match) return match[1];
+                function normalisasiNamaKolom(value) {
+                    return String(value || "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
                 }
-                return "";
-            }
 
-            function hitungSegmenUnik(features) {
-                const keys = new Set();
-                features.forEach(function(feature, index) {
-                    const props = feature && feature.properties ? feature.properties : {};
-                    const route = nilaiProperti(props, ["rute", "route"]);
-                    const jalur = nilaiProperti(props, ["Jalur"]);
-                    const lajur = nilaiProperti(props, ["Lajur", "lane"]);
-                    const dari = nilaiProperti(props, ["Dari", "KM Dari", "KM_Dari"]);
-                    const sampai = nilaiProperti(props, ["Sampai", "KM Sampai", "KM_Sampai"]);
-                    const gerbang = nilaiProperti(props, ["Gerbang", "Nama Gerbang", "name"]);
-                    const key = [route, jalur, lajur, dari, sampai, gerbang].map(function(value) {
-                        return String(value ?? "").trim().toUpperCase();
-                    }).join("|");
-                    keys.add(key === "|||||" ? "FEATURE-" + index : key);
-                });
-                return keys.size;
-            }
+                function tahunDariNilai(value) {
+                    if (value === null || value === undefined || value === "") return null;
+                    if (typeof value === "number" && Number.isFinite(value)) {
+                        if (value >= 1900 && value <= 2100) return Math.trunc(value);
+                        if (value > 20000 && value < 80000) {
+                            const date = new Date(Date.UTC(1899, 11, 30) + value * 86400000);
+                            const year = date.getUTCFullYear();
+                            return year >= 1900 && year <= 2100 ? year : null;
+                        }
+                    }
+                    const match = String(value).match(/(?:^|\D)((?:19|20)\d{2})(?:\D|$)/);
+                    return match ? Number(match[1]) : null;
+                }
 
-            function setText(id, value) {
-                const element = document.getElementById(id);
-                if (element) element.textContent = value;
-            }
-            async function muatDetailData() {
-                const hasil = await Promise.allSettled([
-                    muatJSON(DATA_URL),
-                    muatJSON(GATE_DATA_URL)
-                ]);
-                const dataJalur = hasil[0].status === "fulfilled" ? hasil[0].value : null;
-                const dataGerbang = hasil[1].status === "fulfilled" ? hasil[1].value : null;
-                const featuresJalur = ambilFeatures(dataJalur);
-                const tahun = new Set();
-                let userRecords = [];
-                let userBatches = [];
-                if (window.SurGemData) {
-                    try {
-                        userRecords = await SurGemData.loadRecords({
-                            notify: false
+                function kumpulkanTahun(value, hasil, namaKolom) {
+                    if (Array.isArray(value)) {
+                        value.forEach(function(item) {
+                            kumpulkanTahun(item, hasil, namaKolom);
                         });
-                        userBatches = SurGemData.getBatches();
-                        SurGemData.startAutoSync();
-                    } catch (error) {
-                        console.warn("Data input admin belum dapat dibaca pada halaman Tentang.", error);
+                        return;
                     }
+                    if (value && typeof value === "object") {
+                        Object.entries(value).forEach(function(entry) {
+                            kumpulkanTahun(entry[1], hasil, entry[0]);
+                        });
+                        return;
+                    }
+                    const kolom = normalisasiNamaKolom(namaKolom);
+                    if (!["tanggal", "tanggal_pelaksanaan", "tgl", "tgl_pelaksanaan", "date", "work_date"].includes(kolom)) return;
+                    const year = tahunDariNilai(value);
+                    if (year !== null) hasil.add(year);
                 }
-                if (dataJalur) kumpulkanTahun(dataJalur, tahun, "");
-                if (dataGerbang) kumpulkanTahun(dataGerbang, tahun, "");
-                userRecords.forEach(function(record) {
-                    kumpulkanTahun(record.Tanggal_Pelaksanaan, tahun, "Tanggal_Pelaksanaan");
-                });
-                const combinedFeatures = featuresJalur.concat(userRecords.map(function(record) {
-                    return {
-                        type: "Feature",
-                        properties: record,
-                        geometry: null
-                    };
-                }));
-                setText("about-segment-count", combinedFeatures.length ? hitungSegmenUnik(combinedFeatures).toLocaleString("id-ID") + " segmen unik per lajur" : "Data belum tersedia");
-                setText("about-record-count",
-                    (featuresJalur.length + userRecords.length).toLocaleString("id-ID") + " catatan");
-                setText("about-admin-count", userBatches.length.toLocaleString("id-ID") + " input / " + userRecords.length.toLocaleString("id-ID") + " histori segmen");
-                const years = Array.from(tahun).sort(function(a, b) {
-                    return a - b;
-                });
-                if (years.length) {
-                    const awal = years[0];
-                    const akhir = years[years.length - 1];
-                    setText("about-data-period", "Periode temporal: " + (awal === akhir ? awal : awal + " – " + akhir));
-                    setText("about-data-status", "Terbaru (" + akhir + ")");
-                    setText("about-intro-period", awal === akhir ? String(awal) : awal + " hingga " + akhir);
+
+                function nilaiProperti(props, aliases) {
+                    const entries = Object.entries(props || {});
+                    for (const alias of aliases) {
+                        const normalizedAlias = normalisasiNamaKolom(alias);
+                        const match = entries.find(function(entry) {
+                            return normalisasiNamaKolom(entry[0]) === normalizedAlias;
+                        });
+                        if (match) return match[1];
+                    }
+                    return "";
+                }
+
+                function hitungSegmenUnik(features) {
+                    const keys = new Set();
+                    features.forEach(function(feature, index) {
+                        const props = feature && feature.properties ? feature.properties : {};
+                        const route = nilaiProperti(props, ["rute", "route"]);
+                        const jalur = nilaiProperti(props, ["Jalur"]);
+                        const lajur = nilaiProperti(props, ["Lajur", "lane"]);
+                        const dari = nilaiProperti(props, ["Dari", "KM Dari", "KM_Dari"]);
+                        const sampai = nilaiProperti(props, ["Sampai", "KM Sampai", "KM_Sampai"]);
+                        const gerbang = nilaiProperti(props, ["Gerbang", "Nama Gerbang", "name"]);
+                        const key = [route, jalur, lajur, dari, sampai, gerbang].map(function(value) {
+                            return String(value ?? "").trim().toUpperCase();
+                        }).join("|");
+                        keys.add(key === "|||||" ? "FEATURE-" + index : key);
+                    });
+                    return keys.size;
+                }
+
+                function setText(id, value) {
+                    const element = document.getElementById(id);
+                    if (element) element.textContent = value;
+                }
+                async function muatDetailData() {
+                    const hasil = await Promise.allSettled([
+                        muatJSON(DATA_URL),
+                        muatJSON(GATE_DATA_URL)
+                    ]);
+                    const dataJalur = hasil[0].status === "fulfilled" ? hasil[0].value : null;
+                    const dataGerbang = hasil[1].status === "fulfilled" ? hasil[1].value : null;
+                    const featuresJalur = ambilFeatures(dataJalur);
+                    const tahun = new Set();
+                    let userRecords = [];
+                    let userBatches = [];
+                    if (window.SurGemData) {
+                        try {
+                            userRecords = await SurGemData.loadRecords({
+                                notify: false
+                            });
+                            userBatches = SurGemData.getBatches();
+                            SurGemData.startAutoSync();
+                        } catch (error) {
+                            console.warn("Data input admin belum dapat dibaca pada halaman Tentang.", error);
+                        }
+                    }
+                    if (dataJalur) kumpulkanTahun(dataJalur, tahun, "");
+                    if (dataGerbang) kumpulkanTahun(dataGerbang, tahun, "");
+                    userRecords.forEach(function(record) {
+                        kumpulkanTahun(record.Tanggal_Pelaksanaan, tahun, "Tanggal_Pelaksanaan");
+                    });
+                    const combinedFeatures = featuresJalur.concat(userRecords.map(function(record) {
+                        return {
+                            type: "Feature",
+                            properties: record,
+                            geometry: null
+                        };
+                    }));
+                    setText("about-segment-count", combinedFeatures.length ? hitungSegmenUnik(combinedFeatures).toLocaleString("id-ID") + " segmen unik per lajur" : "Data belum tersedia");
+                    setText("about-record-count",
+                        (featuresJalur.length + userRecords.length).toLocaleString("id-ID") + " catatan");
+                    setText("about-admin-count", userBatches.length.toLocaleString("id-ID") + " input / " + userRecords.length.toLocaleString("id-ID") + " histori segmen");
+                    const years = Array.from(tahun).sort(function(a, b) {
+                        return a - b;
+                    });
+                    if (years.length) {
+                        const awal = years[0];
+                        const akhir = years[years.length - 1];
+                        setText("about-data-period", "Periode temporal: " + (awal === akhir ? awal : awal + " – " + akhir));
+                        setText("about-data-status", "Terbaru (" + akhir + ")");
+                        setText("about-intro-period", awal === akhir ? String(awal) : awal + " hingga " + akhir);
+                    } else {
+                        setText("about-data-period", "Periode temporal belum tersedia");
+                        setText("about-data-status", "Status data belum tersedia");
+                    }
+                    hasil.forEach(function(item) {
+                        if (item.status === "rejected") console.warn("Detail Tentang tidak lengkap:", item.reason);
+                    });
+                }
+
+                function initializePage() {
+                    const footer = document.getElementById("tahun-footer");
+                    if (footer) footer.textContent = new Date().getFullYear();
+                    const tombolKembaliAtas = document.getElementById("back-to-top");
+                    if (tombolKembaliAtas) {
+                        window.addEventListener("scroll", function() {
+                            tombolKembaliAtas.classList.toggle("show", window.scrollY > 350);
+                        });
+                        tombolKembaliAtas.addEventListener("click", function() {
+                            window.scrollTo({
+                                top: 0,
+                                behavior: "smooth"
+                            });
+                        });
+                    }
+                    applyTheme(localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light");
+                    window.addEventListener("surgem:user-data-changed", function() {
+                        window.location.reload();
+                    });
+                    muatDetailData().catch(function(error) {
+                        console.warn("Gagal memuat detail data:", error);
+                        setText("about-segment-count", "Data belum tersedia");
+                        setText("about-record-count", "Data belum tersedia");
+                        setText("about-admin-count", "Data belum tersedia");
+                        setText("about-data-period", "Periode temporal belum tersedia");
+                        setText("about-data-status", "Status data belum tersedia");
+                    });
+                }
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", initializePage, {
+                        once: true
+                    });
                 } else {
-                    setText("about-data-period", "Periode temporal belum tersedia");
-                    setText("about-data-status", "Status data belum tersedia");
+                    initializePage();
                 }
-                hasil.forEach(function(item) {
-                    if (item.status === "rejected") console.warn("Detail Tentang tidak lengkap:", item.reason);
+                window.addEventListener("storage", function(event) {
+                    if (event.key !== THEME_KEY) return;
+                    applyTheme(event.newValue === "dark" ? "dark" : "light");
                 });
-            }
+            })();
+        </script>
+        <script>
+            (function() {
+                "use strict";
 
-            function initializePage() {
-                const footer = document.getElementById("tahun-footer");
-                if (footer) footer.textContent = new Date().getFullYear();
-                const tombolKembaliAtas = document.getElementById("back-to-top");
-                if (tombolKembaliAtas) {
-                    window.addEventListener("scroll", function() {
-                        tombolKembaliAtas.classList.toggle("show", window.scrollY > 350);
-                    });
-                    tombolKembaliAtas.addEventListener("click", function() {
-                        window.scrollTo({
-                            top: 0,
-                            behavior: "smooth"
-                        });
-                    });
-                }
-                applyTheme(localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light");
-                window.addEventListener("surgem:user-data-changed", function() {
-                    window.location.reload();
-                });
-                muatDetailData().catch(function(error) {
-                    console.warn("Gagal memuat detail data:", error);
-                    setText("about-segment-count", "Data belum tersedia");
-                    setText("about-record-count", "Data belum tersedia");
-                    setText("about-admin-count", "Data belum tersedia");
-                    setText("about-data-period", "Periode temporal belum tersedia");
-                    setText("about-data-status", "Status data belum tersedia");
-                });
-            }
-            if (document.readyState === "loading") {
-                document.addEventListener("DOMContentLoaded", initializePage, {
-                    once: true
-                });
-            } else {
-                initializePage();
-            }
-            window.addEventListener("storage", function(event) {
-                if (event.key !== THEME_KEY) return;
-                applyTheme(event.newValue === "dark" ? "dark" : "light");
-            });
-        })();
-    </script>
-    <script>
-        (function() {
-            "use strict";
-
-            function aktifkanHeaderOtomatis() {
-                const header = document.querySelector(".jm-header");
-                const utilityBar = document.querySelector(".jm-utility-bar");
-                if (!header) {
-                    console.error("Header .jm-header tidak ditemukan.");
-                    return;
-                }
-                /* Mencegah script terpasang dua kali */
-                if (header.dataset.scrollHeaderAktif === "true") {
-                    return;
-                }
-                header.dataset.scrollHeaderAktif = "true";
-                /*
-                 * Spacer mempertahankan ruang asli header.
-                 * Jadi isi halaman tidak meloncat ketika header dibuat fixed.
-                 */
-                const spacer = document.createElement("div");
-                spacer.className = "jm-header-spacer";
-                spacer.setAttribute("aria-hidden", "true");
-                header.parentNode.insertBefore(spacer, header);
-                /* Atur langsung agar tidak dikalahkan CSS lain */
-                header.style.setProperty("position", "fixed", "important");
-                header.style.setProperty("left", "0", "important");
-                header.style.setProperty("right", "0", "important");
-                header.style.setProperty("width", "100%", "important");
-                header.style.setProperty("z-index", "99999", "important");
-                header.style.setProperty("transition", "transform 260ms ease, box-shadow 220ms ease", "important");
-                header.style.setProperty("will-change", "transform", "important");
-                let posisiSebelumnya = Math.max(window.scrollY || 0, 0);
-                let arahSekarang = 0;
-                let jarakTerkumpul = 0;
-                let sedangMenungguFrame = false;
-                let headerTersembunyi = false;
-                const BATAS_ATAS = 10;
-                const MULAI_SEMBUNYI = 100;
-                const JARAK_TURUN = 16;
-                const JARAK_NAIK = 7;
-
-                function perbaruiUkuranSpacer() {
-                    const tinggiHeader = header.getBoundingClientRect().height;
-                    spacer.style.height = Math.ceil(tinggiHeader) + "px";
-                }
-                /*
-                 * Saat masih dekat bagian paling atas, header berada di bawah
-                 * utility bar. Setelah utility bar terlewati, header berada di top 0.
-                 */
-                function perbaruiPosisiAtas() {
-                    let posisiAtas = 0;
-                    if (utilityBar) {
-                        const batasBawahUtility = utilityBar.getBoundingClientRect().bottom;
-                        posisiAtas = Math.max(0, Math.round(batasBawahUtility));
-                    }
-                    header.style.setProperty("top", posisiAtas + "px", "important");
-                }
-
-                function tampilkanHeader() {
-                    headerTersembunyi = false;
-                    header.style.setProperty("transform", "translate3d(0, 0, 0)", "important");
-                    header.style.setProperty("pointer-events", "auto", "important");
-                }
-
-                function sembunyikanHeader() {
-                    if (header.matches(":focus-within")) {
+                function aktifkanHeaderOtomatis() {
+                    const header = document.querySelector(".jm-header");
+                    const utilityBar = document.querySelector(".jm-utility-bar");
+                    if (!header) {
+                        console.error("Header .jm-header tidak ditemukan.");
                         return;
                     }
-                    headerTersembunyi = true;
-                    header.style.setProperty("transform", "translate3d(0, -120%, 0)", "important");
-                    header.style.setProperty("pointer-events", "none", "important");
-                }
-
-                function prosesScroll() {
-                    const posisiSekarang = Math.max(window.scrollY || 0, 0);
-                    const selisih = posisiSekarang - posisiSebelumnya;
-                    perbaruiPosisiAtas();
-                    /*
-                     * Selalu tampil ketika kembali ke bagian teratas.
-                     */
-                    if (posisiSekarang <= BATAS_ATAS) {
-                        tampilkanHeader();
-                        arahSekarang = 0;
-                        jarakTerkumpul = 0;
-                        posisiSebelumnya = posisiSekarang;
-                        sedangMenungguFrame = false;
+                    /* Mencegah script terpasang dua kali */
+                    if (header.dataset.scrollHeaderAktif === "true") {
                         return;
                     }
+                    header.dataset.scrollHeaderAktif = "true";
                     /*
-                     * Abaikan pergerakan sangat kecil akibat getaran layar sentuh.
-                     */
-                    if (Math.abs(selisih) >= 0.5) {
-                        const arahBaru = selisih > 0 ? 1 : -1;
-                        if (arahBaru !== arahSekarang) {
-                            arahSekarang = arahBaru;
+                    * Spacer mempertahankan ruang asli header.
+                    * Jadi isi halaman tidak meloncat ketika header dibuat fixed.
+                    */
+                    const spacer = document.createElement("div");
+                    spacer.className = "jm-header-spacer";
+                    spacer.setAttribute("aria-hidden", "true");
+                    header.parentNode.insertBefore(spacer, header);
+                    /* Atur langsung agar tidak dikalahkan CSS lain */
+                    header.style.setProperty("position", "fixed", "important");
+                    header.style.setProperty("left", "0", "important");
+                    header.style.setProperty("right", "0", "important");
+                    header.style.setProperty("width", "100%", "important");
+                    header.style.setProperty("z-index", "99999", "important");
+                    header.style.setProperty("transition", "transform 260ms ease, box-shadow 220ms ease", "important");
+                    header.style.setProperty("will-change", "transform", "important");
+                    let posisiSebelumnya = Math.max(window.scrollY || 0, 0);
+                    let arahSekarang = 0;
+                    let jarakTerkumpul = 0;
+                    let sedangMenungguFrame = false;
+                    let headerTersembunyi = false;
+                    const BATAS_ATAS = 10;
+                    const MULAI_SEMBUNYI = 100;
+                    const JARAK_TURUN = 16;
+                    const JARAK_NAIK = 7;
+
+                    function perbaruiUkuranSpacer() {
+                        const tinggiHeader = header.getBoundingClientRect().height;
+                        spacer.style.height = Math.ceil(tinggiHeader) + "px";
+                    }
+                    /*
+                    * Saat masih dekat bagian paling atas, header berada di bawah
+                    * utility bar. Setelah utility bar terlewati, header berada di top 0.
+                    */
+                    function perbaruiPosisiAtas() {
+                        let posisiAtas = 0;
+                        if (utilityBar) {
+                            const batasBawahUtility = utilityBar.getBoundingClientRect().bottom;
+                            posisiAtas = Math.max(0, Math.round(batasBawahUtility));
+                        }
+                        header.style.setProperty("top", posisiAtas + "px", "important");
+                    }
+
+                    function tampilkanHeader() {
+                        headerTersembunyi = false;
+                        header.style.setProperty("transform", "translate3d(0, 0, 0)", "important");
+                        header.style.setProperty("pointer-events", "auto", "important");
+                    }
+
+                    function sembunyikanHeader() {
+                        if (header.matches(":focus-within")) {
+                            return;
+                        }
+                        headerTersembunyi = true;
+                        header.style.setProperty("transform", "translate3d(0, -120%, 0)", "important");
+                        header.style.setProperty("pointer-events", "none", "important");
+                    }
+
+                    function prosesScroll() {
+                        const posisiSekarang = Math.max(window.scrollY || 0, 0);
+                        const selisih = posisiSekarang - posisiSebelumnya;
+                        perbaruiPosisiAtas();
+                        /*
+                        * Selalu tampil ketika kembali ke bagian teratas.
+                        */
+                        if (posisiSekarang <= BATAS_ATAS) {
+                            tampilkanHeader();
+                            arahSekarang = 0;
+                            jarakTerkumpul = 0;
+                            posisiSebelumnya = posisiSekarang;
+                            sedangMenungguFrame = false;
+                            return;
+                        }
+                        /*
+                        * Abaikan pergerakan sangat kecil akibat getaran layar sentuh.
+                        */
+                        if (Math.abs(selisih) >= 0.5) {
+                            const arahBaru = selisih > 0 ? 1 : -1;
+                            if (arahBaru !== arahSekarang) {
+                                arahSekarang = arahBaru;
+                                jarakTerkumpul = 0;
+                            }
+                            jarakTerkumpul += Math.abs(selisih);
+                        }
+                        /*
+                        * Scroll ke bawah.
+                        */
+                        if (arahSekarang === 1 && posisiSekarang > MULAI_SEMBUNYI && jarakTerkumpul >= JARAK_TURUN) {
+                            sembunyikanHeader();
                             jarakTerkumpul = 0;
                         }
-                        jarakTerkumpul += Math.abs(selisih);
+                        /*
+                        * Scroll ke atas.
+                        */
+                        if (arahSekarang === -1 && jarakTerkumpul >= JARAK_NAIK) {
+                            tampilkanHeader();
+                            jarakTerkumpul = 0;
+                        }
+                        posisiSebelumnya = posisiSekarang;
+                        sedangMenungguFrame = false;
                     }
-                    /*
-                     * Scroll ke bawah.
-                     */
-                    if (arahSekarang === 1 && posisiSekarang > MULAI_SEMBUNYI && jarakTerkumpul >= JARAK_TURUN) {
-                        sembunyikanHeader();
-                        jarakTerkumpul = 0;
-                    }
-                    /*
-                     * Scroll ke atas.
-                     */
-                    if (arahSekarang === -1 && jarakTerkumpul >= JARAK_NAIK) {
-                        tampilkanHeader();
-                        jarakTerkumpul = 0;
-                    }
-                    posisiSebelumnya = posisiSekarang;
-                    sedangMenungguFrame = false;
-                }
 
-                function saatScroll() {
-                    if (sedangMenungguFrame) {
-                        return;
+                    function saatScroll() {
+                        if (sedangMenungguFrame) {
+                            return;
+                        }
+                        sedangMenungguFrame = true;
+                        window.requestAnimationFrame(prosesScroll);
                     }
-                    sedangMenungguFrame = true;
-                    window.requestAnimationFrame(prosesScroll);
-                }
-                window.addEventListener("scroll", saatScroll, {
-                    passive: true
-                });
-                window.addEventListener("resize", function() {
-                    perbaruiUkuranSpacer();
-                    perbaruiPosisiAtas();
-                    posisiSebelumnya = Math.max(window.scrollY || 0, 0);
-                    if (!headerTersembunyi) {
+                    window.addEventListener("scroll", saatScroll, {
+                        passive: true
+                    });
+                    window.addEventListener("resize", function() {
+                        perbaruiUkuranSpacer();
+                        perbaruiPosisiAtas();
+                        posisiSebelumnya = Math.max(window.scrollY || 0, 0);
+                        if (!headerTersembunyi) {
+                            tampilkanHeader();
+                        }
+                    }, {
+                        passive: true
+                    });
+                    header.addEventListener("focusin", tampilkanHeader);
+                    window.addEventListener("pageshow", function() {
+                        posisiSebelumnya = Math.max(window.scrollY || 0, 0);
+                        perbaruiUkuranSpacer();
+                        perbaruiPosisiAtas();
                         tampilkanHeader();
-                    }
-                }, {
-                    passive: true
-                });
-                header.addEventListener("focusin", tampilkanHeader);
-                window.addEventListener("pageshow", function() {
-                    posisiSebelumnya = Math.max(window.scrollY || 0, 0);
+                    });
                     perbaruiUkuranSpacer();
                     perbaruiPosisiAtas();
                     tampilkanHeader();
-                });
-                perbaruiUkuranSpacer();
-                perbaruiPosisiAtas();
-                tampilkanHeader();
-                console.info("Header scroll SurGem aktif.");
-            }
-            if (document.readyState === "loading") {
-                document.addEventListener("DOMContentLoaded", aktifkanHeaderOtomatis, {
-                    once: true
-                });
-            } else {
-                aktifkanHeaderOtomatis();
-            }
-        })();
-    </script>
-    <div class="mobile-sidebar-overlay" onclick="closeMobileSidebar()"></div>
-<aside class="mobile-sidebar" aria-hidden="true">
-    <div class="mobile-sidebar-head">
-        <button class="mobile-sidebar-close" onclick="closeMobileSidebar()" aria-label="Tutup menu">✕</button>
-    </div>
-    <nav class="mobile-sidebar-nav">
-        <a href="index.html">Home</a>
-        <a href="peta.html">Peta Interaktif</a>
-        <a href="stat.html">Data Statistik</a>
-        <a href="tentang.html" class="active">Tentang</a>
-        <a href="admin.html">Login</a>
-    </nav>
-</aside>
-</body>
+                    console.info("Header scroll SurGem aktif.");
+                }
+                if (document.readyState === "loading") {
+                    document.addEventListener("DOMContentLoaded", aktifkanHeaderOtomatis, {
+                        once: true
+                    });
+                } else {
+                    aktifkanHeaderOtomatis();
+                }
+            })();
+        </script>
+        <div class="mobile-sidebar-overlay" onclick="closeMobileSidebar()"></div>
+    <aside class="mobile-sidebar" aria-hidden="true">
+        <div class="mobile-sidebar-head">
+            <button class="mobile-sidebar-close" onclick="closeMobileSidebar()" aria-label="Tutup menu">✕</button>
+        </div>
+        <nav class="mobile-sidebar-nav">
+            <a href="index.html">Home</a>
+            <a href="peta.html">Peta Interaktif</a>
+            <a href="stat.html">Data Statistik</a>
+            <a href="tentang.html" class="active">Tentang</a>
+            <a href="admin.html">Login</a>
+        </nav>
+    </aside>
+    </body>
 
-</html>
+    </html>

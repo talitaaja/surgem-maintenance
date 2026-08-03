@@ -14,6 +14,21 @@
     let pollingTimer = null;
     let adminSessionActive = false;
 
+    /*
+    * Mencegah listener visibility dan request sinkronisasi
+    * berjalan lebih dari satu kali secara bersamaan.
+    */
+    let visibilityListenerAttached = false;
+    let autoSyncRequestRunning = false;
+    let autoSyncEnabled = false;
+
+    /*
+    * Digunakan untuk mencegah respons loadRecords yang lebih lama
+    * menimpa hasil request terbaru yang sudah diterapkan.
+    */
+    let loadRequestCounter = 0;
+    let lastAppliedLoadRequest = 0;
+
     function configurationError() {
         if (!CONFIG.url || !CONFIG.publishableKey || !CONFIG.adminEmail) {
             return "Konfigurasi Supabase belum lengkap. Pastikan file supabase-config.js ikut diunggah.";
@@ -42,26 +57,50 @@
         }
         return client;
     }
+            function setAdminSessionState(loggedIn) {
+        const nextState = Boolean(loggedIn);
+        const previousState = adminSessionActive;
+
+        adminSessionActive = nextState;
+
+        if (previousState !== nextState) {
+            global.dispatchEvent(
+                new CustomEvent(
+                    "surgem:admin-session-changed",
+                    {
+                        detail: {
+                            loggedIn: nextState
+                        }
+                    }
+                )
+            );
+        }
+    }
 
     const authReady = (async function () {
         try {
             const supabaseClient = getClient();
-            const result = await supabaseClient.auth.getSession();
-            adminSessionActive = Boolean(result.data && result.data.session);
-            supabaseClient.auth.onAuthStateChange(function (_event, session) {
-                const previous = adminSessionActive;
-                adminSessionActive = Boolean(session);
-                if (previous !== adminSessionActive) {
-                    global.dispatchEvent(new CustomEvent("surgem:admin-session-changed", {
-                        detail: { loggedIn: adminSessionActive }
-                    }));
+            const result =
+                await supabaseClient.auth.getSession();
+
+            setAdminSessionState(
+                Boolean(
+                    result.data &&
+                    result.data.session
+                )
+            );
+
+            supabaseClient.auth.onAuthStateChange(
+                function (_event, session) {
+                    setAdminSessionState(
+                        Boolean(session)
+                    );
                 }
-            });
+            );
         } catch (error) {
-            adminSessionActive = false;
+            setAdminSessionState(false);
         }
     })();
-
     function parseSTA(value) {
     if (value === null || value === undefined) return null;
 
@@ -226,10 +265,40 @@
     }
 
     function rowVersion(rows) {
-        return JSON.stringify((rows || []).map(function (row) {
-            return [row.id, row.diubah_pada, row.tanggal_pelaksanaan];
-        }));
-    }
+    const normalizedRows = Array.isArray(rows)
+        ? rows
+        : [];
+
+    const versionRows = normalizedRows.map(function (row) {
+        return [
+            String(row.id || ""),
+            String(row.tanggal_pelaksanaan || ""),
+            Number(row.sta_dari_m) || 0,
+            Number(row.sta_sampai_m) || 0,
+            String(row.jalur || ""),
+            String(row.lajur || ""),
+            String(row.keterangan || ""),
+            String(row.petugas || ""),
+            String(row.dokumentasi_url || ""),
+            String(row.dokumentasi_nama || ""),
+            String(row.dokumentasi_path || ""),
+            String(row.diubah_pada || "")
+        ];
+    });
+
+    /*
+     * Supabase tidak selalu menjamin urutan yang sama
+     * ketika beberapa baris mempunyai nilai pengurutan
+     * yang identik.
+     *
+     * Urutkan berdasarkan ID agar versi data tetap stabil.
+     */
+    versionRows.sort(function (a, b) {
+        return a[0].localeCompare(b[0]);
+    });
+
+    return JSON.stringify(versionRows);
+}
     function normalizeKeywordText(text) {
         return String(text ?? "")
             .toLowerCase()
@@ -370,17 +439,51 @@ function keywordCategoryFromKeterangan(keterangan) {
         return getRecords();
     }
 
-    async function loadRecords(options) {
+        async function loadRecords(options) {
         await authReady;
+
+        /*
+        * Setiap pemanggilan memperoleh nomor urut.
+        */
+        const requestId = ++loadRequestCounter;
         const supabaseClient = getClient();
+
         const result = await supabaseClient
             .from(CONFIG.tableName || "sfo_perbaikan")
             .select("*")
-            .order("tanggal_pelaksanaan", { ascending: false })
-            .order("sta_dari_m", { ascending: true });
+            .order("tanggal_pelaksanaan", {
+                ascending: false
+            })
+            .order("sta_dari_m", {
+                ascending: true
+            });
 
-        if (result.error) throw friendlyError(result.error, "Data perbaikan tidak dapat dimuat.");
-        return setRows(result.data, { notify: !options || options.notify !== false });
+        if (result.error) {
+            throw friendlyError(
+                result.error,
+                "Data perbaikan tidak dapat dimuat."
+            );
+        }
+
+        /*
+        * Abaikan respons ini apabila request yang lebih baru
+        * sudah berhasil diterapkan ke cache.
+        *
+        * Contoh:
+        * request 10 dimulai
+        * request 11 dimulai
+        * request 11 selesai lebih dulu dan diterapkan
+        * request 10 selesai belakangan lalu diabaikan
+        */
+        if (requestId < lastAppliedLoadRequest) {
+            return getRecords();
+        }
+
+        lastAppliedLoadRequest = requestId;
+
+        return setRows(result.data, {
+            notify: !options || options.notify !== false
+        });
     }
 
     function getRecords() {
@@ -456,17 +559,58 @@ function keywordCategoryFromKeterangan(keterangan) {
             if (/invalid login credentials/i.test(String(result.error.message || ""))) return false;
             throw friendlyError(result.error, "Login admin gagal.");
         }
-        adminSessionActive = Boolean(result.data && result.data.session);
+        setAdminSessionState(
+            Boolean(
+                result.data &&
+                result.data.session
+            )
+        );
+
         return adminSessionActive;
     }
 
     function logoutAdmin() {
-        adminSessionActive = false;
-        try {
-            getClient().auth.signOut({ scope: "local" }).catch(function () {});
-        } catch (error) {}
-    }
+    try {
+        return getClient()
+            .auth
+            .signOut({
+                scope: "local"
+            })
+            .then(function (result) {
+                if (result && result.error) {
+                    throw friendlyError(
+                        result.error,
+                        "Logout admin gagal."
+                    );
+                }
 
+                /*
+                 * onAuthStateChange biasanya sudah
+                 * memperbarui status. Pemanggilan ini
+                 * menjadi pengaman dan tidak akan
+                 * mengirim event dua kali.
+                 */
+                setAdminSessionState(false);
+
+                return true;
+            })
+            .catch(function (error) {
+                console.warn(
+                    "[SurGem] Logout admin gagal.",
+                    error
+                );
+
+                return false;
+            });
+    } catch (error) {
+        console.warn(
+            "[SurGem] Logout admin gagal.",
+            error
+        );
+
+        return Promise.resolve(false);
+    }
+}
     function isAdminLoggedIn() {
         return adminSessionActive;
     }
@@ -654,46 +798,209 @@ function keywordCategoryFromKeterangan(keterangan) {
         }
         await loadRecords({ notify: true });
         return segmentCount;
-    }
+        }
 
-    function startAutoSync() {
-        if (realtimeChannel || pollingTimer) return;
+       async function runAutoSyncCycle() {
+        /*
+        * Jangan melakukan sinkronisasi ketika auto-sync
+        * sudah dihentikan.
+        */
+        if (!autoSyncEnabled || autoSyncRequestRunning) {
+            return;
+        }
+
+        autoSyncRequestRunning = true;
+
         try {
-            const supabaseClient = getClient();
-            realtimeChannel = supabaseClient
-                .channel("surgem-sfo-perbaikan")
-                .on(
-                    "postgres_changes",
-                    {
-                        event: "*",
-                        schema: "public",
-                        table: CONFIG.tableName || "sfo_perbaikan"
-                    },
-                    function () {
-                        loadRecords({ notify: true }).catch(function (error) {
-                            console.warn("Sinkronisasi Supabase gagal.", error);
-                        });
-                    }
-                )
-                .subscribe();
+            await loadRecords({
+                notify: true
+            });
         } catch (error) {
-            realtimeChannel = null;
+            console.warn(
+                "[SurGem] Sinkronisasi data gagal.",
+                error
+            );
+        } finally {
+            autoSyncRequestRunning = false;
         }
-
-        pollingTimer = global.setInterval(function () {
-            loadRecords({ notify: true }).catch(function () {});
-        }, AUTO_SYNC_INTERVAL_MS);
     }
 
-    function stopAutoSync() {
-        if (realtimeChannel) {
-            try { getClient().removeChannel(realtimeChannel); } catch (error) {}
-            realtimeChannel = null;
-        }
-        if (pollingTimer) {
+    function stopPolling() {
+        if (pollingTimer !== null) {
             global.clearInterval(pollingTimer);
             pollingTimer = null;
         }
+    }
+
+    function startPolling() {
+    /*
+     * Polling tidak boleh berjalan jika auto-sync
+     * belum aktif atau sudah dihentikan.
+     */
+    if (
+        !autoSyncEnabled ||
+        pollingTimer !== null ||
+        document.hidden
+    ) {
+        return;
+    }
+
+    pollingTimer = global.setInterval(
+        runAutoSyncCycle,
+        AUTO_SYNC_INTERVAL_MS
+    );
+}
+
+    function startRealtimeSync() {
+    /*
+     * Realtime tidak boleh dibuat jika auto-sync
+     * sedang dinonaktifkan atau channel sudah tersedia.
+     */
+    if (!autoSyncEnabled || realtimeChannel) {
+        return;
+    }
+
+    try {
+        const supabaseClient = getClient();
+
+        /*
+         * Simpan channel ke variabel lokal agar callback
+         * dapat memastikan bahwa status yang diterima
+         * berasal dari channel yang sedang aktif.
+         */
+        const channel = supabaseClient
+            .channel("surgem-sfo-perbaikan")
+            .on(
+                "postgres_changes",
+                {
+                    event: "*",
+                    schema: "public",
+                    table:
+                        CONFIG.tableName ||
+                        "sfo_perbaikan"
+                },
+                function () {
+                    runAutoSyncCycle();
+                }
+            );
+
+        realtimeChannel = channel;
+
+        channel.subscribe(function (status, error) {
+            if (status === "SUBSCRIBED") {
+                /*
+                 * Setelah koneksi atau reconnect berhasil,
+                 * ambil data terbaru untuk memastikan cache
+                 * tidak tertinggal.
+                 */
+                runAutoSyncCycle();
+                return;
+            }
+
+            if (
+                status === "CHANNEL_ERROR" ||
+                status === "TIMED_OUT"
+            ) {
+                /*
+                 * Polling tetap berjalan sebagai cadangan.
+                 * Log seluruh object error agar informasi
+                 * penyebabnya tidak hilang.
+                 */
+                console.warn(
+                    "[SurGem] Status Realtime:",
+                    status,
+                    error
+                );
+
+                return;
+            }
+
+            if (status === "CLOSED") {
+                /*
+                 * Hapus referensi hanya jika channel yang
+                 * ditutup memang channel aktif saat ini.
+                 */
+                if (realtimeChannel === channel) {
+                    realtimeChannel = null;
+                }
+            }
+        });
+    } catch (error) {
+        realtimeChannel = null;
+
+        console.warn(
+            "[SurGem] Realtime Supabase gagal diaktifkan.",
+            error
+        );
+    }
+}
+
+    function attachVisibilityListener() {
+        /*
+        * Listener hanya boleh dipasang satu kali.
+        */
+        if (visibilityListenerAttached) {
+            return;
+        }
+
+        document.addEventListener(
+        "visibilitychange",
+        function () {
+            /*
+            * Listener tetap terpasang, tetapi tidak melakukan
+            * apa pun jika auto-sync sudah dihentikan.
+            */
+            if (!autoSyncEnabled) {
+                return;
+            }
+
+            if (document.hidden) {
+                stopPolling();
+                return;
+            }
+
+            startRealtimeSync();
+            runAutoSyncCycle();
+            startPolling();
+        }
+    );
+
+        visibilityListenerAttached = true;
+    }
+
+        function startAutoSync() {
+        /*
+        * Aktifkan status terlebih dahulu agar fungsi realtime
+        * dan polling diizinkan berjalan.
+        */
+        autoSyncEnabled = true;
+
+        attachVisibilityListener();
+        startRealtimeSync();
+        startPolling();
+    }
+
+        function stopAutoSync() {
+        /*
+        * Nonaktifkan status terlebih dahulu agar listener
+        * visibility tidak menghidupkan sinkronisasi kembali.
+        */
+        autoSyncEnabled = false;
+
+        if (realtimeChannel) {
+            try {
+                getClient().removeChannel(realtimeChannel);
+            } catch (error) {
+                console.warn(
+                    "[SurGem] Realtime gagal dihentikan.",
+                    error
+                );
+            }
+
+            realtimeChannel = null;
+        }
+
+        stopPolling();
     }
 
     global.SurGemData = Object.freeze({

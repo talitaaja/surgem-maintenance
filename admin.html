@@ -269,7 +269,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js?v=5"></script>
-    <script src="data-perbaikan.js?v=8"></script>
+    <script src="data-perbaikan.js?v=14"></script>
     <script>
         "use strict";
 
@@ -490,8 +490,12 @@
             document.getElementById("form-title").textContent =
                 "Tambah histori perbaikan";
 
-            document.getElementById("save-button").textContent =
-                "Simpan Data";
+            const saveButton =
+                document.getElementById("save-button");
+
+            delete saveButton.dataset.originalText;
+            saveButton.disabled = false;
+            saveButton.textContent = "Simpan Data";
 
             document.getElementById("cancel-edit").hidden = true;
 
@@ -678,18 +682,76 @@
         document.getElementById("reset-button").addEventListener("click", function () {
             setTimeout(resetEditor, 0);
         });
-        document.getElementById("logout-button").addEventListener("click", function () {
-            SurGemData.logoutAdmin();
+        document
+    .getElementById("logout-button")
+    .addEventListener("click", async function (event) {
+        const logoutButton = event.currentTarget;
+        const authMessage =
+            document.getElementById("auth-message");
+
+        clearMessage(authMessage);
+        setButtonBusy(logoutButton, true, "Keluar…");
+
+        try {
+            const logoutBerhasil =
+                await SurGemData.logoutAdmin();
+
+            if (!logoutBerhasil) {
+                showMessage(
+                    authMessage,
+                    "Logout gagal. Periksa koneksi internet lalu coba kembali.",
+                    "error"
+                );
+
+                return;
+            }
+
             resetEditor();
             updateAuthUI();
-        });
+        } catch (error) {
+            showMessage(
+                authMessage,
+                error.message || "Logout admin gagal.",
+                "error"
+            );
+        } finally {
+            setButtonBusy(logoutButton, false);
+        }
+    });
 
-        window.addEventListener("storage", function (event) {
-            if (event.key === THEME_KEY) {
-                applyTheme(event.newValue === "dark" ? "dark" : "light");
+       window.addEventListener("storage", function (event) {
+    if (event.key === THEME_KEY) {
+        applyTheme(
+            event.newValue === "dark"
+                ? "dark"
+                : "light"
+        );
+    }
+});
+
+        window.addEventListener(
+            "surgem:admin-session-changed",
+            function (event) {
+                const loggedIn = Boolean(
+                    event.detail &&
+                    event.detail.loggedIn
+                );
+
+                // Jika sesi berakhir, bersihkan form edit
+                // supaya data yang sedang diedit tidak tertinggal.
+                if (!loggedIn) {
+                    resetEditor();
+                }
+
+                // Sinkronkan tampilan Login / Admin Mode.
+                updateAuthUI();
             }
-        });
-        window.addEventListener("surgem:user-data-changed", renderAllRecords);
+        );
+
+        window.addEventListener(
+            "surgem:user-data-changed",
+            renderAllRecords
+        );
 
         async function initializeAdmin() {
             document.getElementById("tahun-footer").textContent = new Date().getFullYear();
