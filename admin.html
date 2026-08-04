@@ -13,6 +13,350 @@
     <link rel="stylesheet" href="login-button.css">
     <link rel="stylesheet" href="responsive.css">  
     <script src="mobile.js?v=2"></script>
+    <style>
+        body.sfo-warning-open {
+            overflow: hidden;
+        }
+
+        .sfo-warning-modal[hidden] {
+            display: none;
+        }
+
+        .sfo-warning-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+        }
+
+        .sfo-warning-backdrop {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background: rgba(15, 23, 42, 0.66);
+            backdrop-filter: blur(3px);
+            cursor: default;
+        }
+
+        .sfo-warning-dialog {
+            position: relative;
+            width: min(100%, 520px);
+            max-height: min(88vh, 680px);
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            background: #ffffff;
+            color: #172033;
+            box-shadow: 0 24px 70px rgba(15, 23, 42, 0.28);
+            padding: 28px;
+        }
+
+        .sfo-warning-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            display: grid;
+            place-items: center;
+            width: 36px;
+            height: 36px;
+            border: 0;
+            border-radius: 50%;
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .sfo-warning-icon {
+            display: grid;
+            place-items: center;
+            width: 52px;
+            height: 52px;
+            margin-bottom: 18px;
+            border-radius: 50%;
+            background: #fff4d6;
+            color: #a16207;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .sfo-warning-dialog h3 {
+            margin: 0 44px 10px 0;
+            font-size: clamp(1.35rem, 3vw, 1.7rem);
+        }
+
+        .sfo-warning-dialog p {
+            margin: 0;
+            color: #475569;
+            line-height: 1.65;
+        }
+
+        .sfo-warning-location {
+            display: block;
+            margin-top: 12px;
+            color: #172033;
+        }
+
+        .sfo-warning-count {
+            margin-top: 10px !important;
+            font-size: 0.92rem;
+        }
+
+        .sfo-warning-detail {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 18px;
+            color: #0759a5;
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .sfo-warning-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 26px;
+        }
+
+        .sfo-warning-actions .admin-btn {
+            min-width: 104px;
+        }
+
+        .admin-date-copy {
+            min-width: 0;
+            text-align: left;
+        }
+
+        .admin-table-wrap {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        .admin-table {
+            width: 100%;
+            min-width: 0 !important;
+            table-layout: fixed;
+        }
+
+        .admin-table th,
+        .admin-table td {
+            box-sizing: border-box;
+            padding: 13px 8px;
+            vertical-align: middle;
+            white-space: normal;
+            overflow-wrap: anywhere;
+        }
+
+        .admin-table th {
+            text-align: left;
+        }
+
+        .admin-table td {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .admin-table th:nth-child(1),
+        .admin-table td:nth-child(1) {
+            width: 23%;
+        }
+
+        .admin-table th:nth-child(2),
+        .admin-table td:nth-child(2) {
+            width: 18%;
+        }
+
+        .admin-table th:nth-child(3),
+        .admin-table td:nth-child(3) {
+            width: 13%;
+        }
+
+        .admin-table th:nth-child(4),
+        .admin-table td:nth-child(4) {
+            width: 17%;
+        }
+
+        .admin-table th:nth-child(5),
+        .admin-table td:nth-child(5) {
+            width: 13%;
+        }
+
+        .admin-table th:nth-child(6),
+        .admin-table td:nth-child(6) {
+            width: 16%;
+        }
+
+        .admin-table.has-map-shortcut th:nth-child(1),
+        .admin-table.has-map-shortcut td:nth-child(1) {
+            width: 5%;
+        }
+
+        .admin-table.has-map-shortcut th:nth-child(2),
+        .admin-table.has-map-shortcut td:nth-child(2) {
+            width: 18%;
+        }
+
+        .admin-table.has-map-shortcut th:nth-child(3),
+        .admin-table.has-map-shortcut td:nth-child(3) {
+            width: 18%;
+        }
+
+        .admin-table.has-map-shortcut th:nth-child(4),
+        .admin-table.has-map-shortcut td:nth-child(4) {
+            width: 13%;
+        }
+
+        .admin-table.has-map-shortcut th:nth-child(5),
+        .admin-table.has-map-shortcut td:nth-child(5) {
+            width: 17%;
+        }
+
+        .admin-table.has-map-shortcut th:nth-child(6),
+        .admin-table.has-map-shortcut td:nth-child(6) {
+            width: 12%;
+        }
+
+        .admin-table.has-map-shortcut th:nth-child(7),
+        .admin-table.has-map-shortcut td:nth-child(7) {
+            width: 17%;
+        }
+
+        .admin-table .admin-map-head,
+        .admin-table .admin-map-cell {
+            padding-right: 4px;
+            padding-left: 4px;
+            text-align: center;
+        }
+
+        .admin-table .admin-date-header,
+        .admin-table .admin-date-column {
+            text-align: left;
+        }
+
+        .admin-table td small {
+            display: block;
+            margin-top: 5px;
+        }
+
+        .admin-table .admin-row-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .admin-table .admin-row-actions button {
+            min-width: 0;
+            padding: 9px 10px;
+        }
+
+        .admin-table .admin-map-shortcut,
+        .admin-table .admin-map-shortcut:hover,
+        .admin-table .admin-map-shortcut:focus,
+        .admin-table .admin-map-shortcut:active {
+            display: inline-grid;
+            flex: 0 0 auto;
+            place-items: center;
+            width: 25px;
+            height: 25px;
+            margin: 0;
+            padding: 0;
+            border: 1px solid #d4dde7;
+            border-radius: 50%;
+            background: #ffffff !important;
+            box-shadow: none;
+            color: #0759a5;
+            font-size: 0.95rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
+        }
+
+        .admin-table .admin-map-shortcut:hover {
+            border-color: #9fb7cf;
+            background: #f8fbff !important;
+            color: #003d73;
+            transform: translateY(-1px);
+        }
+
+        .admin-table .admin-map-shortcut:active {
+            transform: translateY(0);
+        }
+
+        .admin-table .admin-map-shortcut:focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: 2px;
+        }
+
+        .admin-message.warning {
+            border-color: #f5c451;
+            background: #fff8e6;
+            color: #7c5200;
+        }
+
+        body.dark-mode .sfo-warning-dialog {
+            border-color: #334155;
+            background: #172033;
+            color: #f8fafc;
+        }
+
+        body.dark-mode .sfo-warning-dialog p {
+            color: #cbd5e1;
+        }
+
+        body.dark-mode .sfo-warning-location {
+            color: #f8fafc;
+        }
+
+        body.dark-mode .sfo-warning-close {
+            background: #263449;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .sfo-warning-detail {
+            color: #7dc4ff;
+        }
+
+        body.dark-mode .admin-table .admin-map-shortcut,
+        body.dark-mode .admin-table .admin-map-shortcut:hover {
+            border-color: #526174;
+            background: #172033 !important;
+            color: #7dc4ff;
+        }
+
+        body.dark-mode .admin-message.warning {
+            border-color: #8a671a;
+            background: #382e17;
+            color: #ffe6a3;
+        }
+
+        @media (max-width: 560px) {
+            .sfo-warning-modal {
+                align-items: end;
+                padding: 12px;
+            }
+
+            .sfo-warning-dialog {
+                width: 100%;
+                padding: 24px 20px 20px;
+                border-radius: 18px 18px 12px 12px;
+            }
+
+            .sfo-warning-actions {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body class="admin-page">
@@ -240,6 +584,64 @@
         </section>
     </main>
 
+    <div
+        id="sfo-warning-modal"
+        class="sfo-warning-modal"
+        role="presentation"
+        hidden
+    >
+        <button
+            class="sfo-warning-backdrop"
+            type="button"
+            data-sfo-warning-choice="no"
+            tabindex="-1"
+            aria-label="Batalkan penyimpanan"
+        ></button>
+        <section
+            class="sfo-warning-dialog"
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="sfo-warning-title"
+            aria-describedby="sfo-warning-description"
+        >
+            <button
+                class="sfo-warning-close"
+                type="button"
+                data-sfo-warning-choice="no"
+                aria-label="Tutup peringatan"
+            >×</button>
+            <div class="sfo-warning-icon" aria-hidden="true">!</div>
+            <h3 id="sfo-warning-title">Apakah anda yakin?</h3>
+            <p id="sfo-warning-description">
+                Terdapat data SFO yang sudah dilakukan pada
+                <strong id="sfo-warning-age"></strong>.
+                <strong id="sfo-warning-location" class="sfo-warning-location"></strong>
+            </p>
+            <p id="sfo-warning-count" class="sfo-warning-count" hidden></p>
+            <a
+                id="sfo-warning-detail"
+                class="sfo-warning-detail"
+                href="peta.html"
+                target="_blank"
+                rel="noopener"
+            >Klik untuk lihat selengkapnya <span aria-hidden="true">→</span></a>
+            <div class="sfo-warning-actions">
+                <button
+                    id="sfo-warning-no"
+                    class="admin-btn secondary"
+                    type="button"
+                    data-sfo-warning-choice="no"
+                >Tidak</button>
+                <button
+                    id="sfo-warning-yes"
+                    class="admin-btn primary"
+                    type="button"
+                    data-sfo-warning-choice="yes"
+                >Ya, tetap simpan</button>
+            </div>
+        </section>
+    </div>
+
     <footer class="jm-footer compact-footer">
         <div class="footer-main">
             <div class="footer-company">
@@ -281,9 +683,20 @@
         const authForm = document.getElementById("auth-form");
         const documentationInput = document.getElementById("dokumentasi-file");
         const documentationPreview = document.getElementById("doc-preview");
+        const SFO_HISTORY_URL = "Rekap_SFO_deng_FeaturesToJSO_updated.geojson";
+        const RECENT_SFO_MONTH_LIMIT = 6;
+        const sfoWarningModal = document.getElementById("sfo-warning-modal");
+        const sfoWarningAge = document.getElementById("sfo-warning-age");
+        const sfoWarningLocation = document.getElementById("sfo-warning-location");
+        const sfoWarningCount = document.getElementById("sfo-warning-count");
+        const sfoWarningDetail = document.getElementById("sfo-warning-detail");
         let editingBatchId = null;
         let editingDocumentation = { name: "", dataUrl: "" };
         let pendingDocumentation = { name: "", dataUrl: "" };
+        let baseSfoHistoryRecords = [];
+        let baseSfoHistoryPromise = null;
+        let sfoWarningResolver = null;
+        let sfoWarningReturnFocus = null;
         const staInputs = [
             document.getElementById("sta-dari"),
             document.getElementById("sta-sampai")
@@ -389,6 +802,367 @@
                 }).format(date);
         }
 
+        function parseExactDate(value) {
+            const match = String(value || "").trim().match(/^(\d{4})-(\d{2})-(\d{2})$/);
+            if (!match) return null;
+
+            const year = Number(match[1]);
+            const month = Number(match[2]);
+            const day = Number(match[3]);
+            const date = new Date(Date.UTC(year, month - 1, day));
+            const valid = date.getUTCFullYear() === year &&
+                date.getUTCMonth() === month - 1 &&
+                date.getUTCDate() === day;
+
+            return valid ? date : null;
+        }
+
+        function fullMonthsBetween(earlierDate, laterDate) {
+            let months = (laterDate.getUTCFullYear() - earlierDate.getUTCFullYear()) * 12 +
+                (laterDate.getUTCMonth() - earlierDate.getUTCMonth());
+            if (laterDate.getUTCDate() < earlierDate.getUTCDate()) {
+                months -= 1;
+            }
+            return months;
+        }
+
+        function normalizeJalurValue(value) {
+            const text = String(value || "").trim().toUpperCase();
+            if (text === "A" || text === "SURGEM_A") return "A";
+            if (text === "B" || text === "SURGEM_B") return "B";
+            return null;
+        }
+
+        function normalizeLajurValue(value) {
+            const match = String(value || "").trim().toUpperCase().match(/[123]/);
+            return match ? "L" + match[0] : null;
+        }
+
+        function recordValue(record, aliases) {
+            const source = record || {};
+            for (const alias of aliases) {
+                if (source[alias] !== null && source[alias] !== undefined && String(source[alias]).trim() !== "") {
+                    return source[alias];
+                }
+            }
+            return null;
+        }
+
+        async function loadBaseSfoHistory() {
+            if (baseSfoHistoryPromise) return baseSfoHistoryPromise;
+
+            baseSfoHistoryPromise = fetch(encodeURI(SFO_HISTORY_URL))
+                .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error("HTTP " + response.status);
+                    }
+                    return response.json();
+                })
+                .then(function (geojson) {
+                    if (geojson.type !== "FeatureCollection" || !Array.isArray(geojson.features)) {
+                        throw new Error("Struktur GeoJSON tidak valid.");
+                    }
+                    baseSfoHistoryRecords = geojson.features.map(function (feature) {
+                        return {
+                            ...(feature.properties || {}),
+                            __sfo_history_source: "rekap"
+                        };
+                    });
+                    return baseSfoHistoryRecords;
+                })
+                .catch(function (error) {
+                    baseSfoHistoryPromise = null;
+                    throw new Error(
+                        "Pemeriksaan riwayat 6 bulan belum dapat dilakukan karena data rekap SFO gagal dimuat. " +
+                        "Periksa file " + SFO_HISTORY_URL + " lalu coba lagi."
+                    );
+                });
+
+            return baseSfoHistoryPromise;
+        }
+
+        function mapDetailUrl(conflict) {
+            const params = new URLSearchParams({
+                focus: "sfo",
+                jalur: conflict.jalur,
+                lajur: conflict.lajur,
+                dari: String(conflict.start),
+                sampai: String(conflict.end),
+                tanggal: conflict.dateRaw
+            });
+            return "peta.html?" + params.toString();
+        }
+
+        function batchStartMapUrl(batch) {
+            const batchId = batch && batch.batchId !== null && batch.batchId !== undefined
+                ? String(batch.batchId)
+                : "";
+            const batchStart = SurGemData.parseSTA(batch && batch.Dari);
+            const segmentRecords = SurGemData.getRecords()
+                .filter(function (record) {
+                    const recordBatchId = recordValue(record, ["batchId", "Batch_ID", "batch_id"]);
+                    return batchId && recordBatchId !== null && String(recordBatchId) === batchId;
+                })
+                .map(function (record) {
+                    const start = SurGemData.parseSTA(
+                        recordValue(record, ["Dari", "dari", "KM_Dari", "KM Dari"])
+                    );
+                    const end = SurGemData.parseSTA(
+                        recordValue(record, ["Sampai", "sampai", "KM_Sampai", "KM Sampai"])
+                    );
+                    if (start === null || end === null || start === end) return null;
+                    return {
+                        record: record,
+                        start: Math.min(start, end),
+                        end: Math.max(start, end)
+                    };
+                })
+                .filter(Boolean)
+                .sort(function (a, b) {
+                    return a.start - b.start || a.end - b.end;
+                });
+
+            let firstSegment = segmentRecords.find(function (segment) {
+                return batchStart !== null &&
+                    segment.start <= batchStart &&
+                    batchStart < segment.end;
+            }) || segmentRecords[0] || null;
+
+            if (!firstSegment && batchStart !== null) {
+                const segmentStart = Math.floor(batchStart / 200) * 200;
+                firstSegment = {
+                    record: batch,
+                    start: segmentStart,
+                    end: segmentStart + 200
+                };
+            }
+
+            const sourceRecord = firstSegment ? firstSegment.record : batch;
+            const jalur = normalizeJalurValue(
+                recordValue(batch, ["Jalur", "jalur"]) ||
+                recordValue(sourceRecord, ["Jalur", "jalur", "rute", "Rute"])
+            );
+            const lajur = normalizeLajurValue(
+                recordValue(batch, ["Lajur", "lajur"]) ||
+                recordValue(sourceRecord, ["Lajur", "lajur", "Lane", "lane"])
+            );
+            const dateRaw = String(
+                recordValue(batch, ["Tanggal_Pelaksanaan", "tanggal_pelaksanaan", "Tanggal", "tanggal"]) ||
+                recordValue(sourceRecord, ["Tanggal_Pelaksanaan", "tanggal_pelaksanaan", "Tanggal", "tanggal"]) ||
+                ""
+            ).trim();
+
+            if (!firstSegment || !jalur || !lajur) return "peta.html";
+            return mapDetailUrl({
+                jalur: jalur,
+                lajur: lajur,
+                start: firstSegment.start,
+                end: firstSegment.end,
+                dateRaw: dateRaw
+            });
+        }
+
+        function conflictAgeLabel(months) {
+            return months === 0
+                ? "kurang dari 1 bulan yang lalu"
+                : months + " bulan yang lalu";
+        }
+
+        async function findRecentSfoConflicts(payload) {
+            const inputStart = SurGemData.parseSTA(payload.staDari);
+            const inputEnd = SurGemData.parseSTA(payload.staSampai);
+            const inputDate = parseExactDate(payload.tanggal);
+            const inputJalur = normalizeJalurValue(payload.jalur);
+            const inputLajur = normalizeLajurValue(payload.lajur);
+
+            if (
+                inputStart === null ||
+                inputEnd === null ||
+                inputEnd <= inputStart ||
+                !inputDate ||
+                !inputJalur ||
+                !inputLajur
+            ) {
+                return [];
+            }
+
+            const baseRecords = await loadBaseSfoHistory();
+            await SurGemData.loadRecords({ notify: false });
+            const adminRecords = SurGemData.getRecords();
+            const ignoredBatchId = editingBatchId ? String(editingBatchId) : null;
+            const seen = new Set();
+            const conflicts = [];
+
+            baseRecords.concat(adminRecords).forEach(function (record) {
+                const recordBatchId = recordValue(record, ["batchId", "Batch_ID", "batch_id"]);
+                if (ignoredBatchId && recordBatchId !== null && String(recordBatchId) === ignoredBatchId) {
+                    return;
+                }
+
+                const jalur = normalizeJalurValue(
+                    recordValue(record, ["Jalur", "jalur"])
+                ) || normalizeJalurValue(recordValue(record, ["rute", "Rute"]));
+                const lajur = normalizeLajurValue(
+                    recordValue(record, ["Lajur", "lajur", "Lane", "lane"])
+                );
+                if (jalur !== inputJalur || lajur !== inputLajur) return;
+
+                const start = SurGemData.parseSTA(
+                    recordValue(record, ["Dari", "dari", "KM_Dari", "KM Dari"])
+                );
+                const end = SurGemData.parseSTA(
+                    recordValue(record, ["Sampai", "sampai", "KM_Sampai", "KM Sampai"])
+                );
+                if (start === null || end === null || end <= start) return;
+
+                const originalStartValue = SurGemData.parseSTA(
+                    recordValue(record, [
+                        "KM_Asli_Dari",
+                        "KM Asli Dari",
+                        "KM_Dari_Asli",
+                        "KM Dari Asli",
+                        "km_asli_dari"
+                    ])
+                );
+                const originalEndValue = SurGemData.parseSTA(
+                    recordValue(record, [
+                        "KM_Asli_Sampai",
+                        "KM Asli Sampai",
+                        "KM_Sampai_Asli",
+                        "KM Sampai Asli",
+                        "km_asli_sampai"
+                    ])
+                );
+                const hasOriginalRange = originalStartValue !== null &&
+                    originalEndValue !== null &&
+                    originalStartValue !== originalEndValue;
+                const originalStart = hasOriginalRange
+                    ? Math.min(originalStartValue, originalEndValue)
+                    : Math.min(start, end);
+                const originalEnd = hasOriginalRange
+                    ? Math.max(originalStartValue, originalEndValue)
+                    : Math.max(start, end);
+
+                /*
+                 * Peringatan ditentukan oleh irisan rentang KM asli. Batas
+                 * segmen 200 m hanya dipakai untuk memilih popup yang sesuai.
+                 */
+                if (Math.max(inputStart, originalStart) >= Math.min(inputEnd, originalEnd)) return;
+                if (Math.max(inputStart, start) >= Math.min(inputEnd, end)) return;
+
+                const dateRaw = String(
+                    recordValue(record, ["Tanggal_Pelaksanaan", "tanggal_pelaksanaan", "Tanggal", "tanggal"]) || ""
+                ).trim();
+                const historyDate = parseExactDate(dateRaw);
+                if (!historyDate || historyDate.getTime() > inputDate.getTime()) return;
+
+                const months = fullMonthsBetween(historyDate, inputDate);
+                if (months < 0 || months >= RECENT_SFO_MONTH_LIMIT) return;
+
+                const historyIdentity = recordBatchId !== null
+                    ? "batch:" + String(recordBatchId)
+                    : "range:" + originalStart + "-" + originalEnd;
+                const key = [jalur, lajur, historyIdentity, dateRaw].join("|");
+                if (seen.has(key)) return;
+                seen.add(key);
+                conflicts.push({
+                    jalur: jalur,
+                    lajur: lajur,
+                    start: Math.min(start, end),
+                    end: Math.max(start, end),
+                    originalStart: originalStart,
+                    originalEnd: originalEnd,
+                    dateRaw: dateRaw,
+                    date: historyDate,
+                    months: months
+                });
+            });
+
+            return conflicts.sort(function (a, b) {
+                return b.date.getTime() - a.date.getTime() || a.start - b.start;
+            });
+        }
+
+        function closeSfoWarning(confirmed) {
+            if (sfoWarningModal.hidden) return;
+
+            sfoWarningModal.hidden = true;
+            document.body.classList.remove("sfo-warning-open");
+            const resolver = sfoWarningResolver;
+            const returnFocus = sfoWarningReturnFocus;
+            sfoWarningResolver = null;
+            sfoWarningReturnFocus = null;
+
+            if (returnFocus && typeof returnFocus.focus === "function") {
+                window.setTimeout(function () {
+                    returnFocus.focus();
+                }, 0);
+            }
+            if (resolver) resolver(Boolean(confirmed));
+        }
+
+        function showSfoWarning(conflicts) {
+            const latest = conflicts[0];
+            const historyCount = conflicts.length;
+
+            sfoWarningAge.textContent = conflictAgeLabel(latest.months);
+            sfoWarningLocation.textContent =
+                "KM " + SurGemData.formatSTA(latest.originalStart) + " – " +
+                SurGemData.formatSTA(latest.originalEnd) + " · Jalur " + latest.jalur +
+                " · " + latest.lajur + " · " + formatDate(latest.dateRaw);
+            sfoWarningDetail.href = mapDetailUrl(latest);
+            sfoWarningCount.hidden = historyCount <= 1;
+            sfoWarningCount.textContent = historyCount > 1
+                ? "Ditemukan " + historyCount +
+                    " riwayat SFO yang beririsan dan dilakukan kurang dari 6 bulan. " +
+                    "Tautan membuka lokasi riwayat paling baru."
+                : "";
+
+            sfoWarningReturnFocus = document.activeElement;
+            sfoWarningModal.hidden = false;
+            document.body.classList.add("sfo-warning-open");
+            window.setTimeout(function () {
+                document.getElementById("sfo-warning-no").focus();
+            }, 0);
+
+            return new Promise(function (resolve) {
+                sfoWarningResolver = resolve;
+            });
+        }
+
+        sfoWarningModal.addEventListener("click", function (event) {
+            const choice = event.target.closest("[data-sfo-warning-choice]");
+            if (!choice) return;
+            closeSfoWarning(choice.dataset.sfoWarningChoice === "yes");
+        });
+
+        document.addEventListener("keydown", function (event) {
+            if (sfoWarningModal.hidden) return;
+
+            if (event.key === "Escape") {
+                event.preventDefault();
+                closeSfoWarning(false);
+                return;
+            }
+
+            if (event.key !== "Tab") return;
+            const focusable = Array.from(
+                sfoWarningModal.querySelectorAll("a[href], button:not([disabled])")
+            ).filter(function (element) {
+                return element.tabIndex >= 0;
+            });
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        });
+
         function updateAuthUI() {
             const loggedIn = SurGemData.isAdminLoggedIn();
             const status = document.getElementById("admin-status");
@@ -437,6 +1211,12 @@
                 const doc = docLink
                     ? '<a href="' + escapeHTML(docLink) + '" target="_blank" rel="noopener">Lihat</a>'
                     : "-";
+                const mapShortcut = editable
+                    ? '<button type="button" class="admin-map-shortcut" data-action="map" data-batch-id="' + escapeHTML(batch.batchId) + '" title="Buka segmen awal perbaikan di peta" aria-label="Buka segmen awal perbaikan di peta">↗</button>'
+                    : "";
+                const mapCell = editable
+                    ? '<td class="admin-map-cell">' + mapShortcut + "</td>"
+                    : "";
                 const actions = editable
                     ? '<div class="admin-row-actions">' +
                         '<button type="button" data-action="edit" data-batch-id="' + escapeHTML(batch.batchId) + '">Edit</button>' +
@@ -445,7 +1225,8 @@
                     : "-";
 
                 return "<tr>" +
-                    "<td><strong>" + escapeHTML(formatDate(batch.Tanggal_Pelaksanaan)) + "</strong><small>" + escapeHTML(batch.Petugas || "Tanpa nama petugas") + "</small></td>" +
+                    mapCell +
+                    '<td class="admin-date-column"><div class="admin-date-copy"><strong>' + escapeHTML(formatDate(batch.Tanggal_Pelaksanaan)) + "</strong><small>" + escapeHTML(batch.Petugas || "Tanpa nama petugas") + "</small></div></td>" +
                     "<td><strong>" + escapeHTML(SurGemData.formatSTA(batch.Dari)) + " – " + escapeHTML(SurGemData.formatSTA(batch.Sampai)) + "</strong><small>" + batch.segmentCount + " segmen × 200 m</small></td>" +
                     "<td><strong>Jalur " + escapeHTML(batch.Jalur) + "</strong><small>" + escapeHTML(batch.Lajur) + "</small></td>" +
                     "<td><strong>" + escapeHTML(batch.Keterangan) + "</strong></td>" +
@@ -454,8 +1235,11 @@
                 "</tr>";
             }).join("");
 
-            return '<div class="admin-table-wrap"><table class="admin-table">' +
-                "<thead><tr><th>Tanggal</th><th>Rentang asli</th><th>Jalur/lajur</th><th>Keterangan</th><th>Dokumentasi</th><th>Tindakan</th></tr></thead>" +
+            const mapHeader = editable
+                ? '<th class="admin-map-head" aria-label="Shortcut peta"></th>'
+                : "";
+            return '<div class="admin-table-wrap"><table class="admin-table' + (editable ? " has-map-shortcut" : "") + '">' +
+                '<thead><tr>' + mapHeader + '<th class="admin-date-header">Tanggal</th><th>Rentang asli</th><th>Jalur/lajur</th><th>Keterangan</th><th>Dokumentasi</th><th>Tindakan</th></tr></thead>' +
                 "<tbody>" + rows + "</tbody></table></div>";
         }
 
@@ -623,8 +1407,23 @@
                 dokumentasiDataUrl: pendingDocumentation.dataUrl
             };
 
-            setButtonBusy(saveButton, true, "Menyimpan…");
+            setButtonBusy(saveButton, true, "Memeriksa riwayat…");
             try {
+                const recentConflicts = await findRecentSfoConflicts(payload);
+                if (recentConflicts.length) {
+                    saveButton.textContent = "Menunggu konfirmasi…";
+                    const confirmed = await showSfoWarning(recentConflicts);
+                    if (!confirmed) {
+                        showMessage(
+                            message,
+                            "Penyimpanan dibatalkan. Data pada form tetap tersedia.",
+                            "warning"
+                        );
+                        return;
+                    }
+                }
+
+                saveButton.textContent = "Menyimpan…";
                 const wasEditing = Boolean(editingBatchId);
                 const rows = wasEditing
                     ? await SurGemData.updateBatch(editingBatchId, payload)
@@ -649,6 +1448,15 @@
             const button = event.target.closest("button[data-action]");
             if (!button || !SurGemData.isAdminLoggedIn()) return;
             const batchId = button.dataset.batchId;
+
+            if (button.dataset.action === "map") {
+                const batch = SurGemData.getBatches().find(function (item) {
+                    return item.batchId === batchId;
+                });
+                if (!batch) return;
+                window.open(batchStartMapUrl(batch), "_blank", "noopener");
+                return;
+            }
 
             if (button.dataset.action === "edit") {
                 editBatch(batchId);
@@ -756,6 +1564,10 @@
         async function initializeAdmin() {
             document.getElementById("tahun-footer").textContent = new Date().getFullYear();
             applyTheme(localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light");
+
+            loadBaseSfoHistory().catch(function (error) {
+                console.warn("[SurGem] Riwayat dasar SFO belum dapat dipramuat.", error);
+            });
 
             try {
                 await SurGemData.loadRecords({ notify: false });

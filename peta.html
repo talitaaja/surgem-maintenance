@@ -85,6 +85,31 @@
             white-space: nowrap;
         }
 
+        .segment-history-date-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            min-width: 0;
+            flex-wrap: wrap;
+        }
+
+        .segment-history-lane-note {
+            display: inline-block;
+            max-width: 132px;
+            overflow: hidden;
+            padding: 2px 6px;
+            border: 1px solid #c9d9f2;
+            border-radius: 999px;
+            color: #173f88;
+            background: #eef5ff;
+            font-size: 8.5px;
+            font-weight: 800;
+            line-height: 1.3;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
         body.dark-mode .segment-history-tab {
             color: #cbd5e1;
             background: #0f172a;
@@ -111,6 +136,12 @@
             color: #f6c20e;
         }
 
+        body.dark-mode .segment-history-lane-note {
+            color: #bfdbfe;
+            background: #172554;
+            border-color: #31528a;
+        }
+
         .data-select:disabled {
             color: #94a3b8;
             background: #f1f5f9;
@@ -118,14 +149,83 @@
         }
 
         .gate-marker-shell.other-only .gate-marker-dot {
-            background: #7c3aed !important;
-            border-color: #ede9fe !important;
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
+            background:
+                var(--other-work-marker, #64748b)
+                !important;
+
+            border-color: #ffffff !important;
+
+            box-shadow:
+                0 0 0 3px rgba(15, 23, 42, 0.2);
+        }
+
+body.dark-mode
+.gate-marker-shell.other-only
+.gate-marker-dot {
+    border-color: #e2e8f0 !important;
+}
+
+        .status-legend .other-work-legend-title {
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid #dbe3ee;
+        }
+
+        body.dark-mode .status-legend .other-work-legend-title {
+            border-top-color: #334155;
         }
 
         body.dark-mode .data-select:disabled {
             color: #64748b;
             background: #0f172a;
+        }
+
+        .segment-table-head > span:last-child {
+            white-space: nowrap;
+            overflow-wrap: normal;
+            word-break: keep-all;
+        }
+
+
+        /* Dua panel analisis di bawah peta. */
+        .analysis-container.analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            align-items: start;
+        }
+
+        .analysis-grid .analysis-card {
+            min-width: 0;
+            height: 100%;
+        }
+
+        .analysis-grid .rank-name {
+            font-size: 14px;
+        }
+
+        .analysis-grid .rank-meta {
+            overflow-wrap: anywhere;
+        }
+
+        .analysis-grid .rank-badge {
+            max-width: 132px;
+            text-align: center;
+            line-height: 1.25;
+        }
+
+        .analysis-card-other {
+            border-top-color: #2563eb;
+        }
+
+        .rank-number-other {
+            background: #2563eb !important;
+        }
+
+        @media (max-width: 1050px) {
+            .analysis-container.analysis-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
     
@@ -281,7 +381,14 @@
                                 <div class="status-legend-item"><span class="status-swatch status-swatch-no-history" style="background:#64748b"></span> Belum ada histori</div>
                                 <div class="status-legend-item"><span class="status-swatch" style="background:#374151"></span> Tanggal tidak ditemukan</div>
                                 <div class="status-legend-item"><span class="status-swatch" style="background:#d1d5db"></span> Di luar status terpilih</div>
-                                <div class="status-legend-item"><span class="status-swatch" style="background:#7c3aed"></span> Pekerjaan lainnya</div>
+                                <div class="section-label other-work-legend-title">
+                                    Warna Pekerjaan Lainnya
+                                </div>
+                                <div class="status-legend-item"><span class="status-swatch" style="background:#2563eb"></span> Expansion Joint</div>
+                                <div class="status-legend-item"><span class="status-swatch" style="background:#f97316"></span> Patching</div>
+                                <div class="status-legend-item"><span class="status-swatch" style="background:#8b5cf6"></span> Sealant</div>
+                                <div class="status-legend-item"><span class="status-swatch" style="background:#dc2626"></span> Rekonstruksi Rigid Pavement</div>
+                                <div class="status-legend-item"><span class="status-swatch" style="background:#64748b"></span> Lainnya</div>
                             </div>
                         </div>
                         <aside aria-labelledby="map-tab-segments segment-panel-title" class="segment-panel map-panel-view" hidden="" id="map-panel-segments" role="tabpanel">
@@ -294,7 +401,7 @@
                             </div>
                             <div class="segment-search-wrap">
                                 <span aria-hidden="true">⌕</span>
-                                <input aria-label="Cari segmen berdasarkan STA" autocomplete="off" id="segment-search" placeholder="Cari STA, contoh 00+200" type="search" />
+                                <input aria-label="Cari segmen berdasarkan STA dan jenis pekerjaan" autocomplete="off" id="segment-search" placeholder="Contoh: 10 sealant atau 10+200 patching" type="search" />
                             </div>
                             <div aria-hidden="true" class="segment-table-head">
                                 <span>STA / Jalur</span>
@@ -309,12 +416,18 @@
                 </div>
             </div>
         </div>
-        <div class="analysis-container">
-            <div class="analysis-card">
-                <h3 id="analysis-title">Analisis Segmen Paling Memerlukan Perbaikan</h3>
-                <p id="analysis-description">Hanya memakai pekerjaan paling terbaru dari setiap segmen unik.</p>
-                <div class="rank-list" id="lokasi-kritis-list"></div>
-            </div>
+        <div class="analysis-container analysis-grid">
+            <section class="analysis-card" aria-labelledby="oldest-segment-title">
+                <h3 id="oldest-segment-title">Analisis Segmen Paling Tidak Terbaru</h3>
+                <p>Segmen diurutkan dari jumlah lajur tanpa histori SFO terbanyak, kemudian histori SFO yang paling lama.</p>
+                <div class="rank-list" id="segmen-tidak-terbaru-list"></div>
+            </section>
+
+            <section class="analysis-card analysis-card-other" aria-labelledby="most-other-work-title">
+                <h3 id="most-other-work-title">Segmen dengan Pekerjaan Lainnya Terbanyak</h3>
+                <p>Mengurutkan segmen berdasarkan jumlah riwayat pekerjaan non-SFO pada setiap rentang STA dan lajur.</p>
+                <div class="rank-list" id="pekerjaan-lainnya-terbanyak-list"></div>
+            </section>
         </div>
     </main>
     <footer class="jm-footer compact-footer">
@@ -361,6 +474,17 @@
             surgem_A: "tol_surgem_A.geojson",
             surgem_B: "tol_surgem_B.geojson"
         };
+        const ALIGNMENT_EXTENSION_FILE = "tol_gempan.geojson";
+        const ALIGNMENT_EXTENSION_CACHE_KEY = "20260804-4";
+        const ALIGNMENT_EXTENSION_RANGE = {
+            surgem_A: { start: 771200, end: 772600 },
+            surgem_B: { start: 771600, end: 772600 }
+        };
+        /*
+         * Fallback tertanam agar alignment tetap tersedia saat browser/server
+         * masih menyimpan versi lama tol_gempan.geojson atau gagal membacanya.
+         */
+        const ALIGNMENT_EXTENSION_FALLBACK_GEOJSON = {"type":"FeatureCollection","name":"tol_gempan_772600","features":[{"type":"Feature","properties":{"rute":"surgem_A","Jalur":"A","sta_awal":771200,"sta_akhir":772600,"panjang_ekstensi_m":1400.0,"sumber":"Overpass Turbo - Jalan Tol Gempol–Pandaan","catatan":"Ekstensi alignment Surabaya–Gempol dari STA 771+200 hingga STA 772+600"},"geometry":{"type":"LineString","coordinates":[[112.707578,-7.5566678],[112.7099937,-7.5563905],[112.710207,-7.5563716],[112.7104352,-7.5563593],[112.7106682,-7.5563574],[112.7108975,-7.5563623],[112.7110949,-7.5563729],[112.7113731,-7.5563979],[112.7117233,-7.5564409],[112.7120031,-7.5564925],[112.7122918,-7.5565617],[112.7125908,-7.556647],[112.7128785,-7.5567445],[112.7131695,-7.5568595],[112.713456,-7.5569857],[112.7137912,-7.5571557],[112.714067,-7.557313],[112.7143428,-7.5574879],[112.7145564,-7.5576438],[112.7148022,-7.5578287],[112.7150524,-7.5580433],[112.7152778,-7.5582622],[112.7155341,-7.5585437],[112.7157087,-7.5587551],[112.7158677,-7.558967],[112.7159991,-7.559153],[112.7160963,-7.5592984],[112.7161986,-7.5594669],[112.7163092,-7.5596626],[112.7163862,-7.5598094],[112.7165393,-7.5601248],[112.7166235,-7.5603153],[112.7167216,-7.5605524],[112.7167981,-7.560763],[112.7168877,-7.5610493],[112.7169539,-7.5612871],[112.7170162,-7.5615839],[112.7170561,-7.5618074],[112.7170887,-7.5620671],[112.71709611895822,-7.562230397813589]]}},{"type":"Feature","properties":{"rute":"surgem_B","Jalur":"B","sta_awal":771600,"sta_akhir":772600,"panjang_ekstensi_m":1000.0,"sumber":"Overpass Turbo - Jalan Tol Gempol–Pandaan","catatan":"Ekstensi alignment Surabaya–Gempol dari STA 771+600 hingga STA 772+600"},"geometry":{"type":"LineString","coordinates":[[112.7067778,-7.5569276],[112.7100082,-7.5565646],[112.7103252,-7.5565411],[112.7106002,-7.5565308],[112.7108982,-7.5565322],[112.7110461,-7.5565384],[112.7112604,-7.5565539],[112.7115063,-7.5565821],[112.7117266,-7.5566161],[112.7120254,-7.5566735],[112.7122785,-7.5567352],[112.7124905,-7.5567944],[112.7126738,-7.5568536],[112.7129066,-7.556938],[112.7131082,-7.5570252],[112.7134547,-7.5571863],[112.7136902,-7.5573063],[112.7138766,-7.5574081],[112.7140388,-7.5575042],[112.7142354,-7.5576276],[112.7144332,-7.5577672],[112.7146397,-7.5579229],[112.7148969,-7.5581332],[112.7150148,-7.5582402],[112.7151384,-7.5583681],[112.71526788662001,-7.5585067914187976]]}}]};
         /*
          * Urutan visual lajur harus tetap:
          * kiri -> kanan = B-L3, B-L2, B-L1, A-L1, A-L2, A-L3.
@@ -395,7 +519,41 @@
          */
         const NO_HISTORY_COLOR = "#64748b";
         const INACTIVE_STATUS_COLOR = "#d1d5db";
-        const OTHER_WORK_COLOR = "#7c3aed";
+        const OTHER_WORK_COLOR = "#64748b";
+
+        const OTHER_WORK_CONFIG = [
+            {
+                key: "expansion-joint",
+                label: "Expansion Joint",
+                color: "#2563eb"
+            },
+            {
+                key: "patching",
+                label: "Patching",
+                color: "#f97316"
+            },
+            {
+                key: "sealant",
+                label: "Sealant",
+                color: "#8b5cf6"
+            },
+            {
+                key: "rekonstruksi-rigid",
+                label: "Rekonstruksi Rigid Pavement",
+                color: "#dc2626"
+            },
+            {
+                key: "lainnya",
+                label: "Lainnya",
+                color: "#64748b"
+            }
+        ];
+
+        const OTHER_WORK_CONFIG_BY_KEY = Object.fromEntries(
+            OTHER_WORK_CONFIG.map(function (config) {
+                return [config.key, config];
+            })
+        );
         /*KALIBRASI SEMENTARA jika alignment eksternal dipakai.
          * Semua nilai Dari/Sampai tetap dibaca sebagai chainage meter biasa:
          * 15200 = 15+200 dan 745200 = 745+200.*/
@@ -404,14 +562,14 @@
                 localMin: 0,
                 localMax: 16600,
                 highMin: 744400,
-                highMax: 771200,
+                highMax: 772600,
                 highOffset: 16600
             },
             surgem_B: {
                 localMin: 0,
                 localMax: 16600,
                 highMin: 744200,
-                highMax: 771600,
+                highMax: 772600,
                 highOffset: 16600
             }
         };
@@ -505,14 +663,18 @@
         }
 
         /*
-        * Urutan penting: frasa lebih spesifik dicek lebih dulu
-        * supaya "scraping filling" tetap kena walau di dalamnya
-        * juga mengandung kata "scraping" dan "filling" terpisah.
-        */
+         * Overlay merupakan pekerjaan SFO. Urutan pemeriksaan penting:
+         * SFO diperiksa lebih dahulu agar teks yang mengandung "overlay"
+         * tidak pernah masuk ke kategori pekerjaan lainnya.
+         */
         const SFO_KEYWORDS = [
             "scraping filling",
             "scrapping filling",
             "scraping filing",
+            "scraping dan filling",
+            "scrapping dan filling",
+            "scraping & filling",
+            "scrapping & filling",
             "sfo",
             "scraping",
             "scrapping",
@@ -521,16 +683,41 @@
         ];
 
         const OTHER_KEYWORDS = [
+            // Expansion joint
+            "expansion joint",
+            "exp joint",
+            "siar muai",
+
+            // Patching
             "patching type 1",
             "patching type 2",
             "patching beton",
             "patching",
+            "patch",
+            "tambal",
+
+            // Sealant
+            "joint sealant",
             "sealant",
-            "rekonstruksi"
+
+            // Rekonstruksi rigid pavement
+            "rekonstruksi rigid pavement",
+            "rekonstruksi rigid",
+            "rigid pavement",
+            "perkerasan kaku",
+            "rekonstruksi",
+            "dowel bar",
+            "dowel",
+            "tie bar",
+            "grouting",
+            "slab",
+            "diamond grinding",
+            "partial depth",
+            "full depth"
         ];
 
         function keywordListMatches(normalizedText, keywordList) {
-            return keywordList.some(function (keyword) {
+            return keywordList.some(function(keyword) {
                 return normalizedText.includes(normalizeKeywordText(keyword));
             });
         }
@@ -538,33 +725,242 @@
         function workCategoryFromKeterangan(keterangan) {
             const normalized = normalizeKeywordText(keterangan);
             if (!normalized) return null;
-            /* Cek kata kunci "Lainnya" lebih dulu supaya tidak
-            tertukar kalau ada kombinasi kata di satu keterangan. */
-            if (keywordListMatches(normalized, OTHER_KEYWORDS)) return "other";
-            if (keywordListMatches(normalized, SFO_KEYWORDS)) return "sfo";
+
+            if (keywordListMatches(normalized, SFO_KEYWORDS)) {
+                return "sfo";
+            }
+
+            if (keywordListMatches(normalized, OTHER_KEYWORDS)) {
+                return "other";
+            }
+
             return null;
         }
 
         function workCategoryFromProperties(properties) {
             const props = properties || {};
-            const explicitCategory = findPropertyByAliases(props, WORK_CATEGORY_FIELD_ALIASES);
-            const explicitText = String(explicitCategory ?? "").trim().toLowerCase();
-            if (explicitText) {
-                if (/lain|other|non[\s_-]*sfo/.test(explicitText)) {
-                    return "other";
-                }
-                if (/sfo|scrap|filling|overlay/.test(explicitText)) {
-                    return "sfo";
-                }
-            }
             const description = findPropertyByAliases(props, ["Keterangan", "Pekerjaan"]);
+            const descriptionText = normalizeKeywordText(description);
+
+            /* Overlay selalu SFO, termasuk pada data lama yang kategorinya
+             * masih tercatat sebagai pekerjaan lainnya. */
+            if (descriptionText.includes("overlay")) {
+                return "sfo";
+            }
+
+            const forcedCategory = normalizeKeywordText(props.__work_category);
+            if (/sfo|scrap|filling|overlay/.test(forcedCategory)) {
+                return "sfo";
+            }
+            if (/lain|other|non sfo/.test(forcedCategory)) {
+                return "other";
+            }
+
+            const explicitCategory = findPropertyByAliases(props, WORK_CATEGORY_FIELD_ALIASES);
+            const explicitText = normalizeKeywordText(explicitCategory);
+            if (/sfo|scrap|filling|overlay/.test(explicitText)) {
+                return "sfo";
+            }
+            if (/lain|other|non sfo/.test(explicitText)) {
+                return "other";
+            }
+
             const keywordCategory = workCategoryFromKeterangan(description);
-            if (keywordCategory) return keywordCategory;
+            if (keywordCategory) {
+                return keywordCategory;
+            }
+
+            /* Fallback berdasarkan asal data. Rekap utama adalah sumber SFO,
+             * sedangkan file pekerjaan lainnya dan input tanpa kategori
+             * diperlakukan sebagai pekerjaan lainnya. */
+            const dataSource = String(props.__data_source || "");
+            if (dataSource === "sfo-base") {
+                return "sfo";
+            }
+            if (dataSource === "other-history" || dataSource === "user") {
+                return "other";
+            }
+
             return "other";
         }
 
         function workCategoryFeature(feature) {
             return workCategoryFromProperties(feature?.properties || {});
+        }
+
+        function propertiesPekerjaan(value) {
+            if (value && value.properties) {
+                return value.properties;
+            }
+
+            return value || {};
+        }
+
+        function keteranganPekerjaan(value) {
+            return String(
+                findPropertyByAliases(
+                    propertiesPekerjaan(value),
+                    ["Keterangan", "Pekerjaan"]
+                ) ?? ""
+            ).trim();
+        }
+
+        function kategoriWarnaPekerjaanLainnya(value) {
+            const text = normalizeKeywordText(keteranganPekerjaan(value));
+            const categories = [];
+
+            if (/expansion joint|exp joint|siar muai/.test(text)) {
+                categories.push("expansion-joint");
+            }
+
+            if (/patching|patch|tambal/.test(text)) {
+                categories.push("patching");
+            }
+
+            if (/joint sealant|sealant/.test(text)) {
+                categories.push("sealant");
+            }
+
+            if (/rekonstruksi|rigid pavement|perkerasan kaku|dowel|tie bar|grouting|slab|diamond grinding|partial depth|full depth/.test(text)) {
+                categories.push("rekonstruksi-rigid");
+            }
+
+            return categories.length ? categories : ["lainnya"];
+        }
+
+        function konfigurasiPekerjaanLainnya(histories) {
+            const ditemukan = new Set();
+
+            (histories || []).forEach(function(history) {
+                kategoriWarnaPekerjaanLainnya(history).forEach(function(categoryKey) {
+                    ditemukan.add(categoryKey);
+                });
+            });
+
+            const configs = OTHER_WORK_CONFIG.filter(function(config) {
+                return ditemukan.has(config.key);
+            });
+
+            return configs.length ? configs : [OTHER_WORK_CONFIG_BY_KEY.lainnya];
+        }
+
+        /* Gradient digunakan untuk indikator daftar segmen dan marker gerbang.
+         * Jumlah warnanya mengikuti seluruh kategori unik pada lokasi tersebut. */
+        function gradientPekerjaanLainnya(configs) {
+            const daftar = configs && configs.length
+                ? configs
+                : [OTHER_WORK_CONFIG_BY_KEY.lainnya];
+
+            if (daftar.length === 1) {
+                return daftar[0].color;
+            }
+
+            const lebar = 100 / daftar.length;
+            const stops = [];
+
+            daftar.forEach(function(config, index) {
+                const mulai = index * lebar;
+                const selesai = (index + 1) * lebar;
+                stops.push(config.color + " " + mulai.toFixed(2) + "%");
+                stops.push(config.color + " " + selesai.toFixed(2) + "%");
+            });
+
+            return "linear-gradient(90deg, " + stops.join(", ") + ")";
+        }
+
+        /* Seluruh strip ditempatkan di dalam lebar satu lajur. */
+        function offsetStripMeter(index, total) {
+            if (total <= 1) {
+                return 0;
+            }
+
+            const totalSpan = Math.min(2.8, 0.95 * (total - 1));
+            const step = totalSpan / (total - 1);
+            return -totalSpan / 2 + index * step;
+        }
+
+        function offsetGeometryPekerjaanLainnya(geometry, offsetMeter) {
+            if (
+                !geometry ||
+                Math.abs(offsetMeter) < 0.001 ||
+                typeof turf === "undefined" ||
+                typeof turf.lineOffset !== "function"
+            ) {
+                return geometry;
+            }
+
+            try {
+                if (geometry.type === "LineString") {
+                    return turf.lineOffset(
+                        turf.lineString(geometry.coordinates),
+                        offsetMeter,
+                        { units: "meters" }
+                    ).geometry;
+                }
+
+                if (geometry.type === "MultiLineString") {
+                    return {
+                        type: "MultiLineString",
+                        coordinates: geometry.coordinates.map(function(coordinates) {
+                            return turf.lineOffset(
+                                turf.lineString(coordinates),
+                                offsetMeter,
+                                { units: "meters" }
+                            ).geometry.coordinates;
+                        })
+                    };
+                }
+            } catch (error) {
+                console.warn("Strip pekerjaan lainnya gagal dibuat.", error);
+            }
+
+            return geometry;
+        }
+
+        function featureVisualPekerjaanLainnya(group) {
+            const featureDasar = group.representativeFeature;
+            if (!featureDasar) {
+                return [];
+            }
+
+            const configs = konfigurasiPekerjaanLainnya(group.otherHistories);
+            const geometryType = featureDasar.geometry?.type || "";
+
+            if (geometryType !== "LineString" && geometryType !== "MultiLineString") {
+                const config = configs[0];
+                return [{
+                    ...featureDasar,
+                    properties: {
+                        ...(featureDasar.properties || {}),
+                        __other_work_key: config.key,
+                        __other_work_label: config.label,
+                        __other_work_color: config.color,
+                        __other_work_count: configs.length,
+                        __other_work_index: 0
+                    }
+                }];
+            }
+
+            /* Satu kategori menghasilkan satu garis. Dua, tiga, atau lebih
+             * kategori menghasilkan jumlah strip yang sama. */
+            return configs.map(function(config, index) {
+                return {
+                    ...featureDasar,
+                    id: String(featureDasar.id ?? group.key) + "|other|" + config.key,
+                    properties: {
+                        ...(featureDasar.properties || {}),
+                        __other_work_key: config.key,
+                        __other_work_label: config.label,
+                        __other_work_color: config.color,
+                        __other_work_count: configs.length,
+                        __other_work_index: index
+                    },
+                    geometry: offsetGeometryPekerjaanLainnya(
+                        featureDasar.geometry,
+                        offsetStripMeter(index, configs.length)
+                    )
+                };
+            });
         }
 
         function extractHistoryRecord(properties) {
@@ -600,6 +996,8 @@
         let gateLayer = null;
         let gateMarkers = [];
         let gateReferences = [];
+        let baseRouteAlignments = {};
+        let alignmentExtensions = {};
         let externalAlignments = {};
         // Indeks interaksi antara daftar STA dan layer Leaflet.
         let segmentLayerIndex = new Map();
@@ -607,6 +1005,8 @@
         let currentSegmentGroupMap = new Map();
         let activeSegmentKey = null;
         let activeSegmentTimer = null;
+        let pendingSfoFocus = null;
+        let sfoFocusProcessed = false;
         let datasetStats = {
             total: 0,
             originalGeometry: 0,
@@ -753,16 +1153,99 @@
             return teks ? teks : fallback;
         }
 
-        function normalizeLaneNumber(value) {
-            if (value === null || value === undefined) return null;
-            if (typeof value === "number") {
-                return [1, 2, 3].includes(value) ? value : null;
+        function parseLaneDescriptor(value) {
+            if (value === null || value === undefined) {
+                return {
+                    number: null,
+                    detail: "",
+                    raw: "",
+                    source: "missing"
+                };
             }
-            const text = String(value).trim().toUpperCase().replace(/\s+/g, " ");
-            if (!text) return null;
-            const compact = text.replace(/[\s_-]+/g, "");
-            const match = compact.match(/^(?:L|LAJUR|LANE)?([123])$/);
-            return match ? Number(match[1]) : null;
+
+            if (typeof value === "number") {
+                return {
+                    number: [1, 2, 3].includes(value) ? value : null,
+                    detail: "",
+                    raw: String(value),
+                    source: "number"
+                };
+            }
+
+            const raw = String(value).trim().replace(/\s+/g, " ");
+            if (!raw) {
+                return {
+                    number: null,
+                    detail: "",
+                    raw: "",
+                    source: "missing"
+                };
+            }
+
+            const numericOnly = raw.match(/^([123])$/);
+            if (numericOnly) {
+                return {
+                    number: Number(numericOnly[1]),
+                    detail: "",
+                    raw: raw,
+                    source: "number"
+                };
+            }
+
+            /*
+             * Kolom Lajur pada rekap lama sering berisi lokasi setelah kode
+             * lajur, misalnya "L1 OFR Gempol 4". Ambil kode L1/L2/L3 sebagai
+             * kunci grup dan simpan teks sesudahnya sebagai keterangan.
+             */
+            const explicitLane = raw.match(
+                /\b(?:LAJUR|LANE|L)\s*[-_]?\s*([123])\b/i
+            );
+            if (explicitLane) {
+                const detail = raw
+                    .slice(explicitLane.index + explicitLane[0].length)
+                    .replace(/^[\s:;,./|()\-–—]+/, "")
+                    .trim();
+                return {
+                    number: Number(explicitLane[1]),
+                    detail: detail,
+                    raw: raw,
+                    source: "explicit"
+                };
+            }
+
+            /*
+             * Catatan I/C (interchange) tanpa kode lajur pada data lama
+             * merupakan pekerjaan L1. Teks lengkap tetap dipertahankan agar
+             * dapat ditampilkan di samping tanggal pada popup.
+             */
+            const normalized = normalizeKeywordText(raw);
+            const interchange =
+                /\binterchange\b/.test(normalized) ||
+                /\bic\b/.test(normalized) ||
+                /(?:^|\s)i\s+c(?:\s|$)/.test(normalized);
+            if (interchange) {
+                return {
+                    number: 1,
+                    detail: raw,
+                    raw: raw,
+                    source: "interchange"
+                };
+            }
+
+            return {
+                number: null,
+                detail: "",
+                raw: raw,
+                source: "unknown"
+            };
+        }
+
+        function normalizeLaneNumber(value) {
+            return parseLaneDescriptor(value).number;
+        }
+
+        function laneDetailLabel(value) {
+            return parseLaneDescriptor(value).detail;
         }
 
         function laneLabel(value) {
@@ -774,6 +1257,55 @@
             const laneNumber = normalizeLaneNumber(value);
             if (laneNumber) return "L" + laneNumber;
             return String(value ?? "-").trim().toUpperCase() || "-";
+        }
+
+        function gateHintFromProperties(properties) {
+            const props = properties || {};
+            const laneDescriptor = parseLaneDescriptor(props.Lajur);
+
+            /* Kode lajur eksplisit selalu diprioritaskan sebagai segmen.
+             * Jadi "L1 OFR Gempol" tetap masuk grup L1. Keterangan I/C tanpa
+             * kode lajur baru dianggap L1 setelah dipastikan bukan gate. */
+            if (
+                laneDescriptor.number &&
+                laneDescriptor.source !== "interchange"
+            ) {
+                return null;
+            }
+
+            const rawValues = [
+                findPropertyByAliases(
+                    props,
+                    GATE_HISTORY_FIELD_ALIASES.Gerbang
+                ),
+                props.Lajur,
+                findPropertyByAliases(
+                    props,
+                    GATE_HISTORY_FIELD_ALIASES.Lokasi_Asli
+                )
+            ].filter(function(value) {
+                return value !== null &&
+                    value !== undefined &&
+                    String(value).trim() !== "";
+            });
+            const raw = rawValues.join(" ").trim();
+            const normalized = normalizeKeywordText(raw);
+
+            if (/(?:^|\s)(?:dupak|dpk)(?:\s|$)/.test(normalized)) {
+                return {
+                    key: "dupak",
+                    label: "Dupak",
+                    raw: raw
+                };
+            }
+            if (/(?:^|\s)gempol(?:\s|$)/.test(normalized)) {
+                return {
+                    key: "gempol",
+                    label: "Gempol",
+                    raw: raw
+                };
+            }
+            return null;
         }
 
         function laneOffsetMeters(properties) {
@@ -1011,10 +1543,16 @@
             const zoom = typeof map !== "undefined" ? map.getZoom() : 11;
             const laneWeight = zoom >= 18 ? 5 : zoom >= 16 ? 4 : 3;
             if (selectedWork === "other") {
+                const props = feature.properties || {};
+                const jumlahWarna = Math.max(1, Number(props.__other_work_count) || 1);
+                const stripWeight = jumlahWarna > 1
+                    ? (zoom >= 18 ? 3 : 2)
+                    : laneWeight;
+
                 return {
-                    color: OTHER_WORK_COLOR,
-                    weight: laneWeight,
-                    opacity: 0.9,
+                    color: props.__other_work_color || OTHER_WORK_COLOR,
+                    weight: stripWeight,
+                    opacity: 0.96,
                     dashArray: null,
                     lineCap: "round",
                     lineJoin: "round"
@@ -1126,22 +1664,322 @@
             try {
                 const response = await fetch(url);
                 if (!response.ok) {
+                    console.warn("Alignment " + route + " tidak dapat dibaca: HTTP " + response.status);
                     return null;
                 }
                 return extractFirstLineFeature(await response.json());
             } catch (error) {
+                console.warn("Gagal memuat alignment " + route + ".", error);
                 return null;
             }
         }
+
+        function extractRouteAlignmentFeatures(geojson) {
+            const result = {
+                surgem_A: null,
+                surgem_B: null
+            };
+
+            if (!geojson || geojson.type !== "FeatureCollection" || !Array.isArray(geojson.features)) {
+                return result;
+            }
+
+            geojson.features.forEach(function(feature) {
+                const route = String(
+                    feature?.properties?.rute ??
+                    feature?.properties?.route ??
+                    ""
+                ).trim();
+
+                if (!Object.prototype.hasOwnProperty.call(result, route)) {
+                    return;
+                }
+
+                const geometry = transformGeometryToWGS84(feature.geometry);
+                if (!geometry) {
+                    return;
+                }
+
+                if (geometry.type === "MultiLineString") {
+                    const longest = geometry.coordinates
+                        .map(function(coordinates) {
+                            return turf.lineString(coordinates);
+                        })
+                        .sort(function(a, b) {
+                            return turf.length(b, { units: "kilometers" }) -
+                                turf.length(a, { units: "kilometers" });
+                        })[0];
+
+                    result[route] = longest || null;
+                    return;
+                }
+
+                result[route] = turf.lineString(
+                    geometry.coordinates,
+                    feature.properties || {}
+                );
+            });
+
+            return result;
+        }
+
+        async function loadAlignmentExtensions() {
+            const fallback = extractRouteAlignmentFeatures(
+                ALIGNMENT_EXTENSION_FALLBACK_GEOJSON
+            );
+
+            try {
+                const separator = ALIGNMENT_EXTENSION_FILE.includes("?")
+                    ? "&"
+                    : "?";
+
+                const url = ALIGNMENT_EXTENSION_FILE +
+                    separator +
+                    "v=" + encodeURIComponent(ALIGNMENT_EXTENSION_CACHE_KEY);
+
+                const response = await fetch(encodeURI(url), {
+                    cache: "no-store"
+                });
+
+                if (!response.ok) {
+                    console.warn(
+                        "Ekstensi alignment tidak dapat dibaca: HTTP " +
+                        response.status + " · memakai fallback tertanam."
+                    );
+                    return fallback;
+                }
+
+                const parsed = await response.json();
+                const loaded = extractRouteAlignmentFeatures(parsed);
+
+                return {
+                    surgem_A: loaded.surgem_A || fallback.surgem_A,
+                    surgem_B: loaded.surgem_B || fallback.surgem_B
+                };
+            } catch (error) {
+                console.warn(
+                    "Gagal memuat tol_gempan.geojson; memakai fallback tertanam.",
+                    error
+                );
+                return fallback;
+            }
+        }
+
+        function distanceAntarKoordinatKm(coordinateA, coordinateB) {
+            try {
+                return turf.distance(
+                    turf.point(coordinateA),
+                    turf.point(coordinateB),
+                    { units: "kilometers" }
+                );
+            } catch (error) {
+                return Infinity;
+            }
+        }
+
+        function lineCoordinatesFromFeature(feature) {
+            if (!feature || !feature.geometry) {
+                return null;
+            }
+
+            if (feature.geometry.type === "LineString") {
+                return feature.geometry.coordinates.map(function(coordinate) {
+                    return coordinate.slice();
+                });
+            }
+
+            if (feature.geometry.type === "MultiLineString") {
+                const longest = feature.geometry.coordinates
+                    .filter(function(coordinates) {
+                        return Array.isArray(coordinates) && coordinates.length >= 2;
+                    })
+                    .sort(function(a, b) {
+                        return turf.length(turf.lineString(b), { units: "kilometers" }) -
+                            turf.length(turf.lineString(a), { units: "kilometers" });
+                    })[0];
+
+                return longest
+                    ? longest.map(function(coordinate) {
+                        return coordinate.slice();
+                    })
+                    : null;
+            }
+
+            return null;
+        }
+
+        function sambungkanAlignmentDenganEkstensi(baseAlignment, extensionAlignment, route) {
+            if (!baseAlignment || !extensionAlignment) {
+                return baseAlignment || extensionAlignment || null;
+            }
+
+            let baseCoordinates = lineCoordinatesFromFeature(baseAlignment);
+            let extensionCoordinates = lineCoordinatesFromFeature(extensionAlignment);
+
+            if (
+                !baseCoordinates ||
+                !extensionCoordinates ||
+                baseCoordinates.length < 2 ||
+                extensionCoordinates.length < 2
+            ) {
+                return baseAlignment;
+            }
+
+            const extensionStart = extensionCoordinates[0];
+            const extensionEnd = extensionCoordinates[extensionCoordinates.length - 1];
+
+            const baseStartToExtension = Math.min(
+                distanceAntarKoordinatKm(baseCoordinates[0], extensionStart),
+                distanceAntarKoordinatKm(baseCoordinates[0], extensionEnd)
+            );
+            const baseEndToExtension = Math.min(
+                distanceAntarKoordinatKm(
+                    baseCoordinates[baseCoordinates.length - 1],
+                    extensionStart
+                ),
+                distanceAntarKoordinatKm(
+                    baseCoordinates[baseCoordinates.length - 1],
+                    extensionEnd
+                )
+            );
+
+            if (baseStartToExtension < baseEndToExtension) {
+                baseCoordinates.reverse();
+            }
+
+            const baseEnd = baseCoordinates[baseCoordinates.length - 1];
+            const distanceToExtensionStart = distanceAntarKoordinatKm(
+                baseEnd,
+                extensionCoordinates[0]
+            );
+            const distanceToExtensionEnd = distanceAntarKoordinatKm(
+                baseEnd,
+                extensionCoordinates[extensionCoordinates.length - 1]
+            );
+
+            if (distanceToExtensionEnd < distanceToExtensionStart) {
+                extensionCoordinates.reverse();
+            }
+
+            let extensionLine = turf.lineString(extensionCoordinates);
+            const extensionLengthKm = turf.length(extensionLine, {
+                units: "kilometers"
+            });
+
+            /*
+             * Potong bagian ekstensi yang bertumpuk dengan alignment lama.
+             * Ini menghindari ruas kembali ke STA sebelumnya sebelum meneruskan
+             * dari 771+600 menuju 772+600.
+             */
+            try {
+                const snapped = turf.nearestPointOnLine(
+                    extensionLine,
+                    turf.point(baseEnd),
+                    { units: "kilometers" }
+                );
+                const snapDistanceKm = turf.distance(
+                    turf.point(baseEnd),
+                    snapped,
+                    { units: "kilometers" }
+                );
+                const snapLocationKm = Number(snapped.properties?.location);
+
+                if (
+                    Number.isFinite(snapDistanceKm) &&
+                    Number.isFinite(snapLocationKm) &&
+                    snapDistanceKm <= 0.5 &&
+                    snapLocationKm > 0.001 &&
+                    snapLocationKm < extensionLengthKm
+                ) {
+                    extensionLine = turf.lineSliceAlong(
+                        extensionLine,
+                        snapLocationKm,
+                        extensionLengthKm,
+                        { units: "kilometers" }
+                    );
+                    extensionCoordinates = extensionLine.geometry.coordinates;
+                }
+            } catch (error) {
+                console.warn("Overlap ekstensi tidak dapat dipotong.", error);
+            }
+
+            const connectionDistance = distanceAntarKoordinatKm(
+                baseCoordinates[baseCoordinates.length - 1],
+                extensionCoordinates[0]
+            );
+
+            if (!Number.isFinite(connectionDistance) || connectionDistance > 2) {
+                console.warn(
+                    "Ekstensi " + route + " tidak dapat digabung langsung (jarak " +
+                    connectionDistance.toFixed(3) +
+                    " km). Ekstensi tetap akan digambar sebagai bagian terpisah."
+                );
+                return baseAlignment;
+            }
+
+            const combinedCoordinates = baseCoordinates.slice();
+
+            if (connectionDistance > 0.002) {
+                combinedCoordinates.push(extensionCoordinates[0]);
+            }
+
+            combinedCoordinates.push.apply(
+                combinedCoordinates,
+                extensionCoordinates.slice(1)
+            );
+
+            return turf.lineString(combinedCoordinates, {
+                ...(baseAlignment.properties || {}),
+                rute: route,
+                __alignment_extended_to: 772600,
+                __alignment_extension_file: ALIGNMENT_EXTENSION_FILE,
+                __alignment_connection_gap_m: Math.round(connectionDistance * 1000)
+            });
+        }
+
         async function loadExternalAlignments() {
             const results = await Promise.all([
                 loadOptionalAlignment("surgem_A"),
-                loadOptionalAlignment("surgem_B")
+                loadOptionalAlignment("surgem_B"),
+                loadAlignmentExtensions()
             ]);
-            externalAlignments = {
+
+            baseRouteAlignments = {
                 surgem_A: results[0],
                 surgem_B: results[1]
             };
+
+            alignmentExtensions = results[2] || {
+                surgem_A: null,
+                surgem_B: null
+            };
+
+            externalAlignments = {
+                surgem_A: sambungkanAlignmentDenganEkstensi(
+                    baseRouteAlignments.surgem_A,
+                    alignmentExtensions.surgem_A,
+                    "surgem_A"
+                ),
+                surgem_B: sambungkanAlignmentDenganEkstensi(
+                    baseRouteAlignments.surgem_B,
+                    alignmentExtensions.surgem_B,
+                    "surgem_B"
+                )
+            };
+
+            ["surgem_A", "surgem_B"].forEach(function(route) {
+                const extension = alignmentExtensions[route];
+                if (!extension) {
+                    console.warn("Ekstensi alignment tidak ditemukan untuk " + route);
+                    return;
+                }
+                console.info(
+                    "[Alignment] " + route +
+                    " memiliki ekstensi sampai 772+600 sepanjang " +
+                    turf.length(extension, { units: "kilometers" }).toFixed(3) +
+                    " km."
+                );
+            });
         }
 
         function staToLogicalDistance(sta, route) {
@@ -1166,6 +2004,50 @@
         function generateGeometryFromAlignment(feature) {
             const props = feature.properties || {};
             const route = props.rute;
+            const startSta = parseSTAMeter(props.Dari);
+            const endSta = parseSTAMeter(props.Sampai);
+            const extensionRange = ALIGNMENT_EXTENSION_RANGE[route];
+            const extension = alignmentExtensions[route];
+
+            /*
+             * STA ekstensi dipotong langsung dari tol_gempan.
+             * Dengan demikian geometry baru tidak bergantung pada keberhasilan
+             * penggabungan fisik dengan file alignment lama.
+             */
+            if (
+                extension &&
+                extensionRange &&
+                Number.isFinite(startSta) &&
+                Number.isFinite(endSta) &&
+                Math.min(startSta, endSta) >= extensionRange.start &&
+                Math.max(startSta, endSta) <= extensionRange.end &&
+                startSta !== endSta
+            ) {
+                const extensionLengthKm = turf.length(extension, {
+                    units: "kilometers"
+                });
+                const rangeMeters = extensionRange.end - extensionRange.start;
+                const fromKm = (
+                    (Math.min(startSta, endSta) - extensionRange.start) /
+                    rangeMeters
+                ) * extensionLengthKm;
+                const toKm = (
+                    (Math.max(startSta, endSta) - extensionRange.start) /
+                    rangeMeters
+                ) * extensionLengthKm;
+
+                try {
+                    return turf.lineSliceAlong(
+                        extension,
+                        fromKm,
+                        Math.min(toKm, extensionLengthKm),
+                        { units: "kilometers" }
+                    ).geometry;
+                } catch (error) {
+                    console.warn("Gagal membentuk geometry dari tol_gempan.", error);
+                }
+            }
+
             const alignment = externalAlignments[route];
             if (!alignment) return null;
             const startLogicalMeters = staToLogicalDistance(props.Dari, route);
@@ -1463,6 +2345,12 @@
                 const workDescriptions = allHistories.map(function(item) {
                     return item.properties?.Keterangan || "";
                 });
+                const laneDetails = allHistories.map(function(item) {
+                    const itemProps = item.properties || {};
+                    return itemProps.__lane_detail ||
+                        laneDetailLabel(itemProps.Lajur) ||
+                        "";
+                });
                 return {
                     key: group.key,
                     route: direction.route,
@@ -1489,7 +2377,8 @@
                         direction.label,
                         laneLabel(latestProps.Lajur), "lajur " + laneLabel(latestProps.Lajur),
                         STATUS_PANEL_LABELS[status.key],
-                        workDescriptions.join(" ")
+                        workDescriptions.join(" "),
+                        laneDetails.join(" ")
                     ].join(" ").toLowerCase()
                 };
             }).sort(function(a, b) {
@@ -1539,6 +2428,25 @@
             return filterGroupsBySelectedWork(buildSegmentGroups(routeLaneFiltered));
         }
 
+        /*
+         * Panel analisis selalu membaca SFO dan pekerjaan lainnya sekaligus.
+         * Filter rute dan lajur tetap diterapkan, sedangkan filter jenis
+         * pekerjaan dan status hanya memengaruhi layer peta serta sidebar.
+         */
+        function getAnalysisSegmentGroups() {
+            const routeFilter = document.getElementById("filter-rute").value;
+            const laneFilter = document.getElementById("filter-lajur").value;
+
+            const routeLaneFiltered = allFeatures.filter(function(feature) {
+                return (
+                    matchesRouteFilter(feature, routeFilter) &&
+                    matchesLaneFilter(feature, laneFilter)
+                );
+            });
+
+            return buildSegmentGroups(routeLaneFiltered);
+        }
+
         function filterGroupsBySelectedStatus(groups) {
             const statusFilter = getSelectedStatusFilter();
             const workFilter = getSelectedWorkFilter();
@@ -1554,15 +2462,117 @@
             return filterGroupsBySelectedStatus(getRouteLaneSegmentGroups());
         }
 
+        /*
+         * Pencarian daftar segmen mendukung gabungan STA dan kata kunci.
+         * Contoh:
+         * - "10 sealant"       -> Sealant yang bersinggungan dengan KM 10+000–11+000
+         * - "10+200 patching" -> Patching pada segmen yang memuat STA 10+200
+         * - "sealant jalur a" -> Semua Sealant pada Jalur A
+         */
+        function parseTokenPencarianSTA(token) {
+            const cleaned = String(token || "")
+                .trim()
+                .toLowerCase()
+                .replace(/^sta[:_-]?/, "")
+                .replace(/^km[:_-]?/, "");
+
+            const staMatch = cleaned.match(/^(\d+)\+(\d{1,3})$/);
+            if (staMatch) {
+                const km = Number(staMatch[1]);
+                const meter = Number(staMatch[2]);
+                if (Number.isSafeInteger(km) && Number.isSafeInteger(meter) && meter < 1000) {
+                    return {
+                        type: "point",
+                        value: km * 1000 + meter
+                    };
+                }
+            }
+
+            if (/^\d+$/.test(cleaned)) {
+                const km = Number(cleaned);
+                if (Number.isSafeInteger(km) && km >= 0) {
+                    return {
+                        type: "kilometer",
+                        start: km * 1000,
+                        end: (km + 1) * 1000
+                    };
+                }
+            }
+
+            return null;
+        }
+
+        function segmenCocokDenganSTA(group, searchSTA) {
+            const start = Number(group.start);
+            const end = Number(group.end);
+
+            if (!Number.isFinite(start) || !Number.isFinite(end)) {
+                return false;
+            }
+
+            const segmentStart = Math.min(start, end);
+            const segmentEnd = Math.max(start, end);
+
+            if (searchSTA.type === "point") {
+                return searchSTA.value >= segmentStart && searchSTA.value <= segmentEnd;
+            }
+
+            if (searchSTA.type === "kilometer") {
+                /*
+                 * Gunakan irisan rentang. Segmen 10+800–11+000 tetap masuk
+                 * ke pencarian KM 10, sedangkan 11+000–11+200 tidak.
+                 */
+                return segmentStart < searchSTA.end && segmentEnd > searchSTA.start;
+            }
+
+            return false;
+        }
+
+        function grupCocokDenganPencarian(group, rawQuery) {
+            const tokens = String(rawQuery || "")
+                .trim()
+                .toLowerCase()
+                .split(/\s+/)
+                .filter(Boolean);
+
+            if (!tokens.length) {
+                return true;
+            }
+
+            const normalizedSearchText = normalizeKeywordText(group.searchText || "");
+
+            /*
+             * Semua token wajib cocok, tetapi urutannya bebas.
+             * Karena itu "10 sealant" dan "sealant 10" memberi hasil sama.
+             */
+            return tokens.every(function(token, index) {
+                /* Angka setelah kata "lajur" diperlakukan sebagai nomor lajur. */
+                const previousToken = tokens[index - 1] || "";
+                const isLaneNumber = /^\d+$/.test(token) && /^(lajur|lane)$/.test(previousToken);
+
+                if (!isLaneNumber) {
+                    const searchSTA = parseTokenPencarianSTA(token);
+                    if (searchSTA) {
+                        return segmenCocokDenganSTA(group, searchSTA);
+                    }
+                }
+
+                const normalizedToken = normalizeKeywordText(token);
+                return normalizedToken ? normalizedSearchText.includes(normalizedToken) : true;
+            });
+        }
+
         function renderSegmentPanel(groups) {
             currentSegmentGroups = groups;
             const list = document.getElementById("segment-list");
             const count = document.getElementById("segment-panel-count");
             const searchInput = document.getElementById("segment-search");
-            const query = String(searchInput?.value || "").trim().toLowerCase();
-            const visibleGroups = query ? groups.filter(function(group) {
-                return group.searchText.includes(query);
-            }) : groups;
+            const query = String(searchInput?.value || "").trim();
+            const visibleGroups = query
+                ? groups.filter(function(group) {
+                    return grupCocokDenganPencarian(group, query);
+                })
+                : groups;
             count.textContent = query ? visibleGroups.length + "/" + groups.length : String(groups.length);
             if (!visibleGroups.length) {
                 list.innerHTML = '<div class="segment-list-empty">' + "Tidak ada segmen yang cocok dengan filter atau pencarian." + "</div>";
@@ -1573,13 +2583,28 @@
                 const routeBadge = group.route === "surgem_A" ? "A" : group.route === "surgem_B" ? "B" : "R";
                 const workFilter = getSelectedWorkFilter();
                 const showingOther = workFilter === "other";
-                const statusColor = showingOther ? OTHER_WORK_COLOR : STATUS_CONFIG[group.status.key].color;
-                const statusLabel = showingOther ? "Pekerjaan lainnya" : STATUS_PANEL_LABELS[group.status.key];
+                const otherConfigs = showingOther
+                    ? konfigurasiPekerjaanLainnya(
+                        group.otherHistories
+                    )
+                    : [];
+
+                const statusVisual = showingOther
+                    ? gradientPekerjaanLainnya(otherConfigs)
+                    : STATUS_CONFIG[group.status.key].color;
+
+                const statusLabel = showingOther
+                    ? otherConfigs.map(function (config) {
+                        return config.label;
+                    }).join(" + ")
+                    : STATUS_PANEL_LABELS[group.status.key];
                 const historyCount = showingOther ? group.otherHistories.length : workFilter === "sfo" ? group.sfoHistories.length : group.totalHistoryCount;
                 const disabled = group.hasGeometry ? "" : " disabled";
                 const disabledClass = group.hasGeometry ? "" : " no-geometry";
                 const activeClass = group.key === activeSegmentKey ? " active" : "";
-                const title = group.hasGeometry ? "Klik untuk menuju segmen dan membuka popup" : "Geometry segmen belum tersedia";
+                const title = group.hasGeometry
+                    ? "Klik untuk menuju segmen dan membuka popup"
+                    : "Data pekerjaan tersedia, tetapi garis segmen belum dapat dibentuk dari alignment";
                 return `
                         <button
                             type="button"
@@ -1591,7 +2616,11 @@
                             <span class="segment-sta-cell">
                                 <span
                                     class="segment-status-dot"
-                                    style="--segment-color:${statusColor}"
+                                    style="${
+                                        showingOther
+                                            ? "background:" + statusVisual
+                                            : "--segment-color:" + statusVisual
+                                    }"
                                     aria-hidden="true"
                                 ></span>
                                 <span class="segment-sta-copy">
@@ -1624,12 +2653,21 @@
             const group = currentSegmentGroupMap.get(segmentKey);
             const layer = segmentLayerIndex.get(segmentKey);
             if (!group || !layer || !group.hasGeometry) {
-                return;
+                return false;
             }
             activeSegmentKey = segmentKey;
+            let activeRow = null;
             document.querySelectorAll(".segment-row").forEach(function(row) {
-                row.classList.toggle("active", row.dataset.segmentKey === segmentKey);
+                const isActive = row.dataset.segmentKey === segmentKey;
+                row.classList.toggle("active", isActive);
+                if (isActive) activeRow = row;
             });
+            if (activeRow) {
+                activeRow.scrollIntoView({
+                    block: "nearest",
+                    behavior: "smooth"
+                });
+            }
             if (typeof layer.getBounds === "function") {
                 const bounds = layer.getBounds();
                 if (bounds && bounds.isValid()) {
@@ -1656,6 +2694,77 @@
                     displayedLayer.resetStyle(layer);
                 }
             }, 1800);
+            return true;
+        }
+
+        function readSfoFocusFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("focus") !== "sfo") return null;
+
+            const jalur = String(params.get("jalur") || "").trim().toUpperCase();
+            const lajur = normalizeLaneNumber(params.get("lajur"));
+            const start = parseSTAMeter(params.get("dari"));
+            const end = parseSTAMeter(params.get("sampai"));
+
+            if (!/^[AB]$/.test(jalur) || !lajur || start === null || end === null || end <= start) {
+                return null;
+            }
+
+            return {
+                route: jalur === "B" ? "surgem_B" : "surgem_A",
+                jalur: jalur,
+                laneNumber: lajur,
+                start: start,
+                end: end,
+                tanggal: String(params.get("tanggal") || "").trim()
+            };
+        }
+
+        function applySfoFocusFilters(target) {
+            if (!target) return;
+
+            document.getElementById("filter-rute").value = target.route;
+            document.getElementById("filter-pekerjaan").value = "sfo";
+            document.getElementById("filter-status").value = "all";
+            document.getElementById("filter-status").disabled = false;
+            document.getElementById("filter-lajur").value = String(target.laneNumber);
+            const searchInput = document.getElementById("segment-search");
+            if (searchInput) searchInput.value = "";
+            aktifkanTabPanelPeta("segments");
+        }
+
+        function findSfoFocusGroup(target) {
+            const candidates = Array.from(currentSegmentGroupMap.values()).filter(function(group) {
+                if (group.route !== target.route || group.laneNumber !== target.laneNumber) {
+                    return false;
+                }
+                if (!group.hasGeometry || !group.sfoHistories.length) return false;
+                if (!Number.isFinite(group.start) || !Number.isFinite(group.end)) return false;
+                return Math.max(group.start, target.start) < Math.min(group.end, target.end);
+            });
+
+            if (!candidates.length) return null;
+
+            const exact = candidates.find(function(group) {
+                return group.start === target.start && group.end === target.end;
+            });
+            if (exact) return exact;
+
+            return candidates.sort(function(a, b) {
+                const overlapA = Math.min(a.end, target.end) - Math.max(a.start, target.start);
+                const overlapB = Math.min(b.end, target.end) - Math.max(b.start, target.start);
+                return overlapB - overlapA || a.start - b.start;
+            })[0];
+        }
+
+        function openSfoFocusFromUrl(target) {
+            const group = findSfoFocusGroup(target);
+            if (!group) return false;
+
+            window.setTimeout(function () {
+                focusSegment(group.key);
+            }, 120);
+            return true;
         }
 
         function nilaiKMAsli(properties, sisi) {
@@ -1711,6 +2820,19 @@
                 const isSfo = category === "sfo";
                 const historyStatus = isSfo ? statusFeature(historyFeature) : null;
                 const historyConfig = isSfo ? STATUS_CONFIG[historyStatus.key] : null;
+                const laneDetail = String(
+                    historyProps.__lane_detail ||
+                    laneDetailLabel(historyProps.Lajur) ||
+                    ""
+                ).trim();
+                const laneDetailHTML = laneDetail
+                    ? `
+                        <span
+                            class="segment-history-lane-note"
+                            title="${escapeHTML(laneDetail)}"
+                        >${escapeHTML(laneDetail)}</span>
+                    `
+                    : "";
                 const badge = isSfo ? `
                             <span
                                 class="segment-history-status"
@@ -1732,13 +2854,16 @@
                 return `
                         <details class="segment-history-item"${openAttribute}>
                             <summary>
-                                <span class="segment-history-date">
-                                    ${escapeHTML(
-                                        labelTanggalRiwayat(
-                                            historyFeature,
-                                            category
-                                        )
-                                    )}
+                                <span class="segment-history-date-meta">
+                                    <span class="segment-history-date">
+                                        ${escapeHTML(
+                                            labelTanggalRiwayat(
+                                                historyFeature,
+                                                category
+                                            )
+                                        )}
+                                    </span>
+                                    ${laneDetailHTML}
                                 </span>
                                 ${badge}
                             </summary>
@@ -2009,6 +3134,197 @@
             });
             return merged;
         }
+
+        function gateAliasKey(value) {
+            const normalized = normalizeKeywordText(value);
+            if (/(?:^|\s)(?:dupak|dpk)(?:\s|$)/.test(normalized)) {
+                return "dupak";
+            }
+            if (/(?:^|\s)gempol(?:\s|$)/.test(normalized)) {
+                return "gempol";
+            }
+            return null;
+        }
+
+        function gateHistoryRecordFromFeature(feature) {
+            const props = feature?.properties || {};
+            const record = {};
+            Object.keys(GATE_HISTORY_FIELD_ALIASES).forEach(function(field) {
+                record[field] = findPropertyByAliases(
+                    props,
+                    GATE_HISTORY_FIELD_ALIASES[field]
+                );
+            });
+
+            const hasHistoryValue = [
+                record.Tanggal_Pelaksanaan,
+                record.Dari,
+                record.Sampai,
+                record.Lajur,
+                record.Keterangan
+            ].some(function(value) {
+                return value !== null &&
+                    value !== undefined &&
+                    String(value).trim() !== "";
+            });
+            if (!hasHistoryValue) return null;
+
+            record.__work_category = workCategoryFeature(feature);
+            record.__data_source = props.__data_source || "";
+            record.__lane_detail = String(
+                props.__lane_detail ||
+                laneDetailLabel(props.Lajur) ||
+                ""
+            ).trim();
+            return record;
+        }
+
+        function gateHistoryFingerprint(record) {
+            const source = record || {};
+            const sourceSheet = normalizeKeywordText(source.Sumber_Sheet);
+            const sourceRow = normalizeKeywordText(source.Sumber_Baris);
+            if (sourceRow) {
+                return ["source", sourceSheet, sourceRow].join("|");
+            }
+            return [
+                source.Tanggal_Pelaksanaan,
+                source.Dari,
+                source.Sampai,
+                source.Jalur,
+                source.Lajur,
+                source.Keterangan
+            ].map(function(value) {
+                return normalizeKeywordText(value);
+            }).join("|");
+        }
+
+        function featurePointForGateRouting(feature) {
+            if (!feature?.geometry) return null;
+            try {
+                return turf.pointOnFeature(feature);
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function chooseGateReference(feature, hint, record) {
+            const candidates = gateReferences.filter(function(gate) {
+                return gateAliasKey(gate.name) === hint.key;
+            });
+            if (!candidates.length) return null;
+
+            const fingerprint = gateHistoryFingerprint(record);
+            const existing = candidates.find(function(gate) {
+                return (gate.history || []).some(function(historyRecord) {
+                    return gateHistoryFingerprint(historyRecord) === fingerprint;
+                });
+            });
+            if (existing) {
+                return {
+                    gate: existing,
+                    duplicate: true
+                };
+            }
+
+            const rawNormalized = normalizeKeywordText(hint.raw);
+            const rawNumbers = new Set(
+                rawNormalized.match(/\b\d+\b/g) || []
+            );
+            const sourcePoint = featurePointForGateRouting(feature);
+            const ranked = candidates.map(function(gate, index) {
+                const nameNormalized = normalizeKeywordText(gate.name);
+                const nameNumbers = nameNormalized.match(/\b\d+\b/g) || [];
+                const numberMatches = nameNumbers.reduce(function(total, number) {
+                    return total + (rawNumbers.has(number) ? 1 : 0);
+                }, 0);
+                const exactName = nameNormalized && rawNormalized.includes(nameNormalized)
+                    ? 1
+                    : 0;
+                let distanceKm = Number.POSITIVE_INFINITY;
+                if (sourcePoint && gate.point) {
+                    try {
+                        distanceKm = turf.distance(
+                            sourcePoint,
+                            gate.point,
+                            { units: "kilometers" }
+                        );
+                    } catch (error) {
+                        distanceKm = Number.POSITIVE_INFINITY;
+                    }
+                }
+                return {
+                    gate: gate,
+                    index: index,
+                    score: exactName * 100 + numberMatches * 10,
+                    distanceKm: distanceKm
+                };
+            }).sort(function(a, b) {
+                if (a.score !== b.score) return b.score - a.score;
+                if (a.distanceKm !== b.distanceKm) {
+                    return a.distanceKm - b.distanceKm;
+                }
+                return a.index - b.index;
+            });
+
+            return {
+                gate: ranked[0].gate,
+                duplicate: false
+            };
+        }
+
+        function routeGateHistories(features) {
+            const segmentFeatures = [];
+            let routed = 0;
+            let attached = 0;
+            let duplicates = 0;
+            let unresolved = 0;
+
+            (features || []).forEach(function(feature) {
+                const hint = gateHintFromProperties(feature.properties || {});
+                if (!hint) {
+                    segmentFeatures.push(feature);
+                    return;
+                }
+
+                routed += 1;
+                const record = gateHistoryRecordFromFeature(feature);
+                const match = record
+                    ? chooseGateReference(feature, hint, record)
+                    : null;
+
+                if (!match) {
+                    unresolved += 1;
+                    return;
+                }
+
+                if (match.duplicate) {
+                    duplicates += 1;
+                    return;
+                }
+
+                record.Gerbang = match.gate.name;
+                if (!record.Lokasi_Asli) {
+                    record.Lokasi_Asli = hint.raw;
+                }
+                match.gate.history = match.gate.history || [];
+                match.gate.history.push(record);
+                attached += 1;
+            });
+
+            datasetStats.gateRouted = routed;
+            datasetStats.segmentTotal = segmentFeatures.length;
+            if (routed) {
+                console.info(
+                    "[Gerbang] " + routed +
+                    " baris berketerangan Gempol/Dupak dipindahkan dari daftar segmen: " +
+                    attached + " ditambahkan, " +
+                    duplicates + " sudah tersedia, " +
+                    unresolved + " belum menemukan marker gerbang."
+                );
+            }
+            return segmentFeatures;
+        }
+
         async function loadGateData() {
             const response = await fetch(encodeURI(GATE_DATA_URL));
             if (!response.ok) {
@@ -2305,12 +3621,43 @@
             }).forEach(function(gate) {
                 const coordinate = gate.point.geometry.coordinates;
                 const markerClass = workFilter === "other" ? "gate-marker-shell other-only" : "gate-marker-shell";
+                const pekerjaanLainGerbang =
+                    workFilter === "other"
+                        ? (gate.history || []).filter(
+                            function (record) {
+                                return (
+                                    workCategoryFromProperties(
+                                        record
+                                    ) === "other"
+                                );
+                            }
+                        )
+                        : [];
+
+                const konfigurasiGerbang =
+                    workFilter === "other"
+                        ? konfigurasiPekerjaanLainnya(
+                            pekerjaanLainGerbang
+                        )
+                        : [];
+
+                const markerOtherStyle =
+                    workFilter === "other"
+                        ? ' style="--other-work-marker:' +
+                            gradientPekerjaanLainnya(
+                                konfigurasiGerbang
+                            ) +
+                            '"'
+                        : "";
                 const marker = L.marker(
                     [coordinate[1], coordinate[0]], {
                         zIndexOffset: 3000,
                         icon: L.divIcon({
                             className: markerClass,
-                            html: '<span class="gate-marker-dot"></span>',
+                            html:
+                                '<span class="gate-marker-dot"' +
+                                markerOtherStyle +
+                                '></span>',
                             iconSize: [15, 15],
                             iconAnchor: [7.5, 7.5]
                         })
@@ -2330,39 +3677,66 @@
             const routeFilter = document.getElementById("filter-rute").value;
             const laneFilter = document.getElementById("filter-lajur").value;
             const baseFeatures = [];
+
             ["surgem_A", "surgem_B"].forEach(function(route) {
-                const alignment = externalAlignments[route];
-                if (!alignment || !alignment.geometry) return;
-                [1, 2, 3].forEach(function(laneNumber) {
-                    const properties = {
-                        rute: route,
-                        Jalur: route === "surgem_A" ? "A" : "B",
-                        Lajur: laneNumber,
-                        layer_type: "lane-without-history",
-                        __has_history: false
-                    };
-                    const baseFeature = {
-                        type: "Feature",
-                        properties: properties,
-                        geometry: alignment.geometry
-                    };
-                    /*
-                     * Alignment dasar wajib mengikuti filter rute dan lajur.
-                     * Inilah yang membuat Jalur B benar-benar hilang ketika
-                     * pengguna memilih Jalur A, dan sebaliknya.
-                     */
-                    if (!matchesRouteFilter(baseFeature, routeFilter) || !matchesLaneFilter(baseFeature, laneFilter)) {
-                        return;
-                    }
-                    const laneGeometry = applyLaneOffsetToGeometry(alignment.geometry, properties);
-                    if (!laneGeometry) return;
-                    baseFeatures.push({
-                        type: "Feature",
-                        properties: properties,
-                        geometry: laneGeometry
+                const combined = externalAlignments[route];
+                const extension = alignmentExtensions[route];
+                const combinedAlreadyExtended = Number(
+                    combined?.properties?.__alignment_extended_to
+                ) >= ALIGNMENT_EXTENSION_RANGE[route].end;
+
+                const alignmentParts = [];
+                if (combined && combined.geometry) {
+                    alignmentParts.push({
+                        feature: combined,
+                        name: combinedAlreadyExtended ? "combined" : "base"
+                    });
+                }
+
+                /*
+                 * Bila penggabungan gagal, tol_gempan tetap digambar sendiri.
+                 * Jadi alignment baru tidak menghilang hanya karena ada celah
+                 * kecil atau orientasi berbeda pada file alignment lama.
+                 */
+                if (extension && extension.geometry && !combinedAlreadyExtended) {
+                    alignmentParts.push({
+                        feature: extension,
+                        name: "gempan-extension"
+                    });
+                }
+
+                alignmentParts.forEach(function(part) {
+                    [1, 2, 3].forEach(function(laneNumber) {
+                        const properties = {
+                            rute: route,
+                            Jalur: route === "surgem_A" ? "A" : "B",
+                            Lajur: laneNumber,
+                            layer_type: "lane-without-history",
+                            __alignment_part: part.name,
+                            __has_history: false
+                        };
+                        const baseFeature = {
+                            type: "Feature",
+                            properties: properties,
+                            geometry: part.feature.geometry
+                        };
+                        if (!matchesRouteFilter(baseFeature, routeFilter) || !matchesLaneFilter(baseFeature, laneFilter)) {
+                            return;
+                        }
+                        const laneGeometry = applyLaneOffsetToGeometry(
+                            part.feature.geometry,
+                            properties
+                        );
+                        if (!laneGeometry) return;
+                        baseFeatures.push({
+                            type: "Feature",
+                            properties: properties,
+                            geometry: laneGeometry
+                        });
                     });
                 });
             });
+
             if (!baseFeatures.length) return;
             baseAlignmentLayer = L.geoJSON({
                 type: "FeatureCollection",
@@ -2387,9 +3761,14 @@
              */
             const mapSegmentGroups = getRouteLaneSegmentGroups();
             const filteredSegmentGroups = filterGroupsBySelectedStatus(mapSegmentGroups);
-            const representativeFeatures = mapSegmentGroups.map(function(group) {
-                return group.representativeFeature;
-            });
+            const selectedWork = getSelectedWorkFilter();
+            const representativeFeatures = selectedWork === "other"
+                ? mapSegmentGroups.flatMap(function(group) {
+                    return featureVisualPekerjaanLainnya(group);
+                })
+                : mapSegmentGroups.map(function(group) {
+                    return group.representativeFeature;
+                });
             const mapped = representativeFeatures.filter(function(feature) {
                 return Boolean(feature.geometry);
             });
@@ -2455,106 +3834,275 @@
                 map.fitBounds(displayedLayer.getBounds(), opsiFitPeta(14));
             }
             renderSegmentPanel(filteredSegmentGroups);
-            renderRanking(filteredSegmentGroups);
+            renderRanking(getAnalysisSegmentGroups());
+        }
+
+        function buildSegmentLaneRanking(
+            segmentGroups,
+            expectedLaneNumbers = [1, 2, 3]
+        ) {
+            const expectedLanes = Array.from(
+                new Set(
+                    (expectedLaneNumbers || [])
+                        .map(Number)
+                        .filter(function(laneNumber) {
+                            return [1, 2, 3].includes(laneNumber);
+                        })
+                )
+            ).sort(function(a, b) {
+                return a - b;
+            });
+            const laneScope = expectedLanes.length
+                ? expectedLanes
+                : [1, 2, 3];
+            const groupedSegments = new Map();
+
+            (segmentGroups || []).forEach(function(group) {
+                const laneNumber = Number(group.laneNumber);
+                const start = group.start;
+                const end = group.end;
+                if (
+                    !group.route ||
+                    !laneScope.includes(laneNumber) ||
+                    !Number.isFinite(start) ||
+                    !Number.isFinite(end)
+                ) {
+                    return;
+                }
+
+                const key = [
+                    group.route,
+                    Math.min(start, end),
+                    Math.max(start, end)
+                ].join("|");
+                if (!groupedSegments.has(key)) {
+                    groupedSegments.set(key, {
+                        key: key,
+                        route: group.route,
+                        routeLabel: group.routeLabel,
+                        start: Math.min(start, end),
+                        end: Math.max(start, end),
+                        logicalStart: group.logicalStart,
+                        laneGroups: new Map()
+                    });
+                }
+
+                const segment = groupedSegments.get(key);
+                segment.laneGroups.set(laneNumber, group);
+                if (group.logicalStart < segment.logicalStart) {
+                    segment.logicalStart = group.logicalStart;
+                }
+            });
+
+            const routeOrder = {
+                surgem_A: 0,
+                surgem_B: 1
+            };
+            return Array.from(groupedSegments.values()).map(function(segment) {
+                const missingLaneNumbers = laneScope.filter(function(laneNumber) {
+                    const laneGroup = segment.laneGroups.get(laneNumber);
+                    return !laneGroup || laneGroup.sfoHistories.length === 0;
+                });
+                const undatedLaneNumbers = laneScope.filter(function(laneNumber) {
+                    const laneGroup = segment.laneGroups.get(laneNumber);
+                    return Boolean(
+                        laneGroup &&
+                        laneGroup.sfoHistories.length > 0 &&
+                        laneGroup.status.key === "unknown"
+                    );
+                });
+                const recordedLaneGroups = laneScope.map(function(laneNumber) {
+                    return segment.laneGroups.get(laneNumber) || null;
+                }).filter(function(laneGroup) {
+                    return Boolean(
+                        laneGroup &&
+                        laneGroup.sfoHistories.length > 0 &&
+                        Number.isFinite(laneGroup.status.months)
+                    );
+                }).sort(function(a, b) {
+                    return Number(b.status.months) - Number(a.status.months);
+                });
+                const oldestSfoGroup = recordedLaneGroups[0] || null;
+
+                return {
+                    ...segment,
+                    expectedLaneNumbers: laneScope.slice(),
+                    missingLaneNumbers: missingLaneNumbers,
+                    missingLaneCount: missingLaneNumbers.length,
+                    undatedLaneNumbers: undatedLaneNumbers,
+                    undatedLaneCount: undatedLaneNumbers.length,
+                    oldestSfoGroup: oldestSfoGroup,
+                    oldestMonths: oldestSfoGroup
+                        ? Number(oldestSfoGroup.status.months)
+                        : null
+                };
+            }).sort(function(a, b) {
+                if (a.missingLaneCount !== b.missingLaneCount) {
+                    return b.missingLaneCount - a.missingLaneCount;
+                }
+                if (a.undatedLaneCount !== b.undatedLaneCount) {
+                    return b.undatedLaneCount - a.undatedLaneCount;
+                }
+
+                const monthsA = Number.isFinite(a.oldestMonths)
+                    ? a.oldestMonths
+                    : -1;
+                const monthsB = Number.isFinite(b.oldestMonths)
+                    ? b.oldestMonths
+                    : -1;
+                if (monthsA !== monthsB) {
+                    return monthsB - monthsA;
+                }
+
+                const routeDifference =
+                    (routeOrder[a.route] ?? 2) -
+                    (routeOrder[b.route] ?? 2);
+                if (routeDifference !== 0) {
+                    return routeDifference;
+                }
+                if (a.logicalStart !== b.logicalStart) {
+                    return a.logicalStart - b.logicalStart;
+                }
+                return a.end - b.end;
+            });
+        }
+
+        function rankingLaneScope() {
+            const selectedLane = String(
+                document.getElementById("filter-lajur")?.value || "all"
+            );
+            if (/^[123]$/.test(selectedLane)) {
+                return [Number(selectedLane)];
+            }
+            return [1, 2, 3];
         }
 
         function renderRanking(segmentGroups) {
-            const container = document.getElementById("lokasi-kritis-list");
-            const title = document.getElementById("analysis-title");
-            const description = document.getElementById("analysis-description");
-            const workFilter = getSelectedWorkFilter();
-            if (workFilter === "other") {
-                if (title) {
-                    title.textContent = "Segmen dengan Pekerjaan Lainnya Terbaru";
-                }
-                if (description) {
-                    description.textContent = "Menampilkan pekerjaan non-SFO dari seluruh sheet Excel.";
-                }
-                const otherRanking = segmentGroups.filter(function(group) {
-                    return group.otherHistories.length > 0;
-                }).sort(function(a, b) {
-                    return (featureDateTimestamp(b.otherHistories[0]) - featureDateTimestamp(a.otherHistories[0]));
-                }).slice(0, 5);
-                if (!otherRanking.length) {
-                    container.innerHTML = '<div class="empty-ranking">' + "Tidak ada pekerjaan lainnya pada filter ini." + "</div>";
-                    return;
-                }
-                container.innerHTML = otherRanking.map(function(group, index) {
-                    const props = group.representativeFeature.properties || {};
-                    const latestOther = group.otherHistories[0];
-                    const latestProps = latestOther.properties || {};
+            const oldestContainer = document.getElementById("segmen-tidak-terbaru-list");
+            const otherContainer = document.getElementById("pekerjaan-lainnya-terbanyak-list");
+
+            if (!oldestContainer || !otherContainer) {
+                return;
+            }
+
+            /* Satu peringkat mewakili satu Jalur + rentang STA. L1-L3 tidak
+             * lagi ditampilkan sebagai kartu terpisah. */
+            const oldestRanking = buildSegmentLaneRanking(
+                segmentGroups,
+                rankingLaneScope()
+            ).slice(0, 5);
+
+            if (!oldestRanking.length) {
+                oldestContainer.innerHTML =
+                    '<div class="empty-ranking">Data segmen SFO belum tersedia.</div>';
+            } else {
+                oldestContainer.innerHTML = oldestRanking.map(function(segment, index) {
                     const nomor = index + 1;
+                    const laneScopeText = segment.expectedLaneNumbers.length +
+                        " lajur";
+                    let historyText;
+                    let badgeText;
+
+                    if (segment.missingLaneCount > 0) {
+                        const missingLanes = segment.missingLaneNumbers
+                            .map(function(laneNumber) {
+                                return "L" + laneNumber;
+                            })
+                            .join(", ");
+                        historyText = "Belum ada histori SFO: " + missingLanes;
+                        badgeText = segment.missingLaneCount +
+                            " lajur tanpa SFO";
+                    } else if (segment.undatedLaneCount > 0) {
+                        const undatedLanes = segment.undatedLaneNumbers
+                            .map(function(laneNumber) {
+                                return "L" + laneNumber;
+                            })
+                            .join(", ");
+                        historyText = "Tanggal SFO tidak tercatat: " + undatedLanes;
+                        badgeText = segment.undatedLaneCount +
+                            " lajur tanpa tanggal";
+                    } else if (segment.oldestSfoGroup) {
+                        historyText = "Histori SFO tertua: " +
+                            segment.oldestSfoGroup.laneLabel + " · " +
+                            segment.oldestSfoGroup.status.parsed.display;
+                        badgeText = segment.oldestMonths + " bulan";
+                    } else {
+                        historyText = "Histori SFO belum tersedia";
+                        badgeText = "Belum ada SFO";
+                    }
+
                     return `
-                            <div class="rank-item">
-                                <div class="rank-left">
-                                    <div class="rank-number rank-${nomor}">
-                                        ${nomor}
-                                    </div>
-                                    <div>
-                                        <div class="rank-name">
-                                            ${escapeHTML(
-                                                formatRentangSTA(
-                                                    props.Dari,
-                                                    props.Sampai
-                                                )
-                                            )}
-                                        </div>
-                                        <div class="rank-meta">
-                                            ${escapeHTML(group.routeLabel)}
-                                            · ${escapeHTML(group.laneLabel)}
-                                            <br>${escapeHTML(
-                                                nilaiAtauFallback(
-                                                    latestProps.Keterangan,
-                                                    "Pekerjaan lainnya"
-                                                )
-                                            )}
-                                            · ${escapeHTML(
-                                                labelTanggalRiwayat(
-                                                    latestOther,
-                                                    "other"
-                                                )
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rank-badge">
-                                    ${group.otherHistories.length} data
-                                </div>
-                            </div>
-                        `;
-                }).join("");
-                return;
-            }
-            if (title) {
-                title.textContent = "Analisis Segmen Paling Memerlukan Perbaikan";
-            }
-            if (description) {
-                description.textContent = "Hanya memakai pekerjaan SFO paling terbaru dari setiap segmen unik.";
-            }
-            /*
-             * Ranking tidak membaca semua baris histori. buildSegmentGroups()
-             * sudah memilih satu latestFeature untuk setiap kombinasi
-             * rute + lajur + rentang STA. Hanya status latest tersebut yang
-             * boleh masuk analisis segmen perlu perbaikan.
-             */
-            const ranking = segmentGroups.filter(function(group) {
-                return (group.status.key === "critical" && group.status.months !== null);
-            }).sort(function(a, b) {
-                return b.status.months - a.status.months;
-            }).slice(0, 5);
-            if (!ranking.length) {
-                container.innerHTML = '<div class="empty-ranking">' + "Tidak ada segmen terbaru berstatus perlu perbaikan " + "pada filter ini." + "</div>";
-                return;
-            }
-            container.innerHTML = ranking.map(function(group, index) {
-                const props = group.representativeFeature.properties || {};
-                const nomor = index + 1;
-                const direction = infoArahJalur(props);
-                const route = direction.label;
-                return `
                         <div class="rank-item">
                             <div class="rank-left">
                                 <div class="rank-number rank-${nomor}">
+                                    ${nomor}
+                                </div>
+                                <div>
+                                    <div class="rank-name">
+                                        ${escapeHTML(
+                                            formatRentangSTA(
+                                                segment.start,
+                                                segment.end
+                                            )
+                                        )}
+                                    </div>
+                                    <div class="rank-meta">
+                                        ${escapeHTML(segment.routeLabel)}
+                                        · ${escapeHTML(laneScopeText)}
+                                        <br>${escapeHTML(historyText)}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rank-badge">
+                                ${escapeHTML(badgeText)}
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+            }
+
+            const otherRanking = segmentGroups.filter(function(group) {
+                return group.otherHistories.length > 0;
+            }).sort(function(a, b) {
+                const countDifference =
+                    b.otherHistories.length -
+                    a.otherHistories.length;
+
+                if (countDifference !== 0) {
+                    return countDifference;
+                }
+
+                const typeDifference =
+                    konfigurasiPekerjaanLainnya(b.otherHistories).length -
+                    konfigurasiPekerjaanLainnya(a.otherHistories).length;
+
+                if (typeDifference !== 0) {
+                    return typeDifference;
+                }
+
+                if (a.logicalStart !== b.logicalStart) {
+                    return a.logicalStart - b.logicalStart;
+                }
+
+                return (a.laneNumber || 99) - (b.laneNumber || 99);
+            }).slice(0, 5);
+
+            if (!otherRanking.length) {
+                otherContainer.innerHTML =
+                    '<div class="empty-ranking">Belum ada pekerjaan lainnya pada rute dan lajur terpilih.</div>';
+            } else {
+                otherContainer.innerHTML = otherRanking.map(function(group, index) {
+                    const props = group.representativeFeature.properties || {};
+                    const nomor = index + 1;
+                    const configs = konfigurasiPekerjaanLainnya(group.otherHistories);
+                    const workLabels = configs.map(function(config) {
+                        return config.label;
+                    }).join(", ");
+
+                    return `
+                        <div class="rank-item">
+                            <div class="rank-left">
+                                <div class="rank-number rank-number-other">
                                     ${nomor}
                                 </div>
                                 <div>
@@ -2567,31 +4115,19 @@
                                         )}
                                     </div>
                                     <div class="rank-meta">
-                                        ${escapeHTML(route)}
-                                        · Jalur ${escapeHTML(
-                                            nilaiAtauFallback(
-                                                props.Jalur,
-                                                "-"
-                                            )
-                                        )}
-                                        · Lajur ${escapeHTML(
-                                            nilaiAtauFallback(
-                                                props.Lajur,
-                                                "-"
-                                            )
-                                        )}
-                                        <br>Terbaru: ${escapeHTML(
-                                            group.status.parsed.display
-                                        )}
+                                        ${escapeHTML(group.routeLabel)}
+                                        · ${escapeHTML(group.laneLabel)}
+                                        <br>${escapeHTML(workLabels)}
                                     </div>
                                 </div>
                             </div>
                             <div class="rank-badge">
-                                ${group.status.months} bulan
+                                ${group.otherHistories.length} pekerjaan
                             </div>
                         </div>
                     `;
-            }).join("");
+                }).join("");
+            }
         }
         map.on("zoomend", function() {
             if (baseAlignmentLayer && typeof baseAlignmentLayer.setStyle === "function") {
@@ -2601,9 +4137,93 @@
                 displayedLayer.setStyle(gayaJalanTol);
             }
         });
+        function normalisasiPropertiSumber(properties) {
+            const props = {
+                ...(properties || {})
+            };
+
+            /*
+             * Rekap pekerjaan lainnya tidak selalu memakai nama kolom yang
+             * sama dengan rekap SFO. Samakan kolom penting sebelum geometry
+             * dibentuk agar data tetap dapat ditempelkan ke alignment.
+             */
+            const isiKolomJikaKosong = function(targetKey, aliases) {
+                const current = props[targetKey];
+                if (current !== null && current !== undefined && String(current).trim() !== "") {
+                    return;
+                }
+                const aliasValue = findPropertyByAliases(props, aliases);
+                if (aliasValue !== null && aliasValue !== undefined && String(aliasValue).trim() !== "") {
+                    props[targetKey] = aliasValue;
+                }
+            };
+
+            isiKolomJikaKosong("Dari", GATE_HISTORY_FIELD_ALIASES.Dari);
+            isiKolomJikaKosong("Sampai", GATE_HISTORY_FIELD_ALIASES.Sampai);
+            isiKolomJikaKosong("Jalur", GATE_HISTORY_FIELD_ALIASES.Jalur);
+            isiKolomJikaKosong("Lajur", GATE_HISTORY_FIELD_ALIASES.Lajur);
+            isiKolomJikaKosong("Keterangan", GATE_HISTORY_FIELD_ALIASES.Keterangan);
+            isiKolomJikaKosong("Tanggal_Pelaksanaan", GATE_HISTORY_FIELD_ALIASES.Tanggal_Pelaksanaan);
+
+            const routeText = String(
+                props.rute ??
+                findPropertyByAliases(props, ["Rute", "Route"]) ??
+                ""
+            ).trim();
+            const jalurText = String(props.Jalur ?? "").trim().toUpperCase();
+
+            if (routeText === "surgem_A" || routeText === "surgem_B") {
+                props.rute = routeText;
+            } else if (jalurText === "A") {
+                props.rute = "surgem_A";
+            } else if (jalurText === "B") {
+                props.rute = "surgem_B";
+            }
+
+            if ((!props.Jalur || !String(props.Jalur).trim()) && props.rute === "surgem_A") {
+                props.Jalur = "A";
+            } else if ((!props.Jalur || !String(props.Jalur).trim()) && props.rute === "surgem_B") {
+                props.Jalur = "B";
+            }
+
+            const laneDescriptor = parseLaneDescriptor(props.Lajur);
+            props.__lane_number = laneDescriptor.number;
+            props.__lane_detail = laneDescriptor.detail;
+            props.__lane_raw = laneDescriptor.raw;
+
+            return props;
+        }
+
+        function tandaiSumberFeatures(features, sourceName, forcedCategory = null) {
+            return (features || []).map(function(feature) {
+                const properties = {
+                    ...normalisasiPropertiSumber(feature.properties),
+                    __data_source: sourceName
+                };
+
+                if (forcedCategory) {
+                    properties.__work_category = forcedCategory;
+                }
+
+                return {
+                    ...feature,
+                    properties: properties
+                };
+            });
+        }
+
         async function loadData() {
             const message = document.getElementById("map-message");
             try {
+                if (!sfoFocusProcessed && pendingSfoFocus === null) {
+                    pendingSfoFocus = readSfoFocusFromUrl();
+                    if (pendingSfoFocus) {
+                        applySfoFocusFilters(pendingSfoFocus);
+                    } else {
+                        sfoFocusProcessed = true;
+                    }
+                }
+
                 /*
                  * GeoJSON rekap dimuat lebih dulu sebagai sumber utama.
                  * Alignment hanya disiapkan sesudahnya sebagai fallback.
@@ -2649,15 +4269,34 @@
                         console.warn("Data input admin belum dapat dimuat ke peta.", userError);
                     }
                 }
+                const sfoSourceFeatures = tandaiSumberFeatures(
+                    sourceGeoJSON.features,
+                    "sfo-base",
+                    "sfo"
+                );
+                const userSourceFeatures = tandaiSumberFeatures(
+                    userSourceGeoJSON.features,
+                    "user"
+                );
+                const otherHistoryFeatures = tandaiSumberFeatures(
+                    otherSourceGeoJSON.features,
+                    "other-history"
+                );
+
                 allFeatures = prepareFeatures({
                     type: "FeatureCollection",
-                    features: [...sourceGeoJSON.features, ...userSourceGeoJSON.features, ...otherSourceGeoJSON.features]
+                    features: [
+                        ...sfoSourceFeatures,
+                        ...userSourceFeatures,
+                        ...otherHistoryFeatures
+                    ]
                 });
                 // loadGateData() memuat geometry gerbang beserta histori
                 // SFO dan pekerjaan lainnya. Data ramp/interchange/nonlajur
                 // utama dari seluruh sheet Excel ditempelkan ke marker gerbang
                 // yang sesuai dan ditampilkan melalui tab popup SFO/Lainnya.
                 await loadGateData();
+                allFeatures = routeGateHistories(allFeatures);
                 assignGateInformation(allFeatures);
                 const externalCount = Number(Boolean(externalAlignments.surgem_A)) + Number(Boolean(externalAlignments.surgem_B));
                 message.textContent = "";
@@ -2666,11 +4305,29 @@
                 renderBaseAlignments();
                 renderMap();
                 renderGateLayer();
+
+                if (pendingSfoFocus && !sfoFocusProcessed) {
+                    const opened = openSfoFocusFromUrl(pendingSfoFocus);
+                    sfoFocusProcessed = true;
+                    if (!opened) {
+                        message.hidden = false;
+                        message.classList.add("error");
+                        message.textContent =
+                            "Segmen SFO dari tautan tidak ditemukan pada data atau filter peta saat ini.";
+                    }
+                }
             } catch (error) {
                 console.error(error);
                 message.hidden = false;
                 message.classList.add("error");
-                document.getElementById("lokasi-kritis-list").innerHTML = '<div class="empty-ranking">Data belum tersedia.</div>';
+                const oldestContainer = document.getElementById("segmen-tidak-terbaru-list");
+                const otherContainer = document.getElementById("pekerjaan-lainnya-terbanyak-list");
+                if (oldestContainer) {
+                    oldestContainer.innerHTML = '<div class="empty-ranking">Data belum tersedia.</div>';
+                }
+                if (otherContainer) {
+                    otherContainer.innerHTML = '<div class="empty-ranking">Data belum tersedia.</div>';
+                }
             }
         }
 

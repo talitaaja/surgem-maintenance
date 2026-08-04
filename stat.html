@@ -418,7 +418,7 @@
                             <div>
                                 <div class="section-tag">Pekerjaan Lainnya</div>
                                 <h3 id="judul-diagram-pekerjaan-lainnya">Diagram Jenis Pekerjaan Lainnya</h3>
-                                <p class="chart-subtitle"> Expansion joint, sealant, overlay, rekonstruksi rigid pavement, dan seluruh variasi patching. Semua jenis patching digabung menjadi satu kategori “Patching”. </p>
+                                <p class="chart-subtitle"> Expansion joint, sealant, rekonstruksi rigid pavement, dan seluruh variasi patching. Semua jenis patching digabung menjadi satu kategori “Patching”. </p>
                             </div>
                             <button class="download-btn" id="download-pekerjaan-lainnya" type="button" disabled> ⭳ Unduh Rekap Pekerjaan Lainnya (.xlsx) </button>
                         </div>
@@ -972,40 +972,66 @@
             return Array.from(unique.values());
         }
 
-        function kategoriDiagramPekerjaanLainnya(keterangan) {
-            const text = normalizeKeywordText(keterangan);
-            if (/patch|tambal/.test(text)) return "patching";
-            if (/expansion\s*joint|exp\s*joint/.test(text)) return "expansion-joint";
-            if (/sealant/.test(text)) return "sealant";
-            if (/rekonstruksi/.test(text)) return "rekonstruksi-rigid";
-            if (/overlay/.test(text)) return "overlay";
+        function kategoriDiagramPekerjaanLainnya(
+            keterangan
+        ) {
+            const text =
+                normalizeKeywordText(keterangan);
+
+            if (
+                /expansion joint|exp joint|siar muai/.test(text)
+            ) {
+                return "expansion-joint";
+            }
+
+            if (
+                /patching|patch|tambal/.test(text)
+            ) {
+                return "patching";
+            }
+
+            if (
+                /joint sealant|sealant/.test(text)
+            ) {
+                return "sealant";
+            }
+
+            if (
+                /rekonstruksi|rigid pavement|perkerasan kaku|dowel|tie bar|grouting|slab|diamond grinding|partial depth|full depth/.test(text)
+            ) {
+                return "rekonstruksi-rigid";
+            }
+
             return "lainnya";
         }
-        const OTHER_WORK_CONFIG = [{
-            key: "expansion-joint",
-            label: "Expansion Joint",
-            color: "#2563eb"
-        }, {
-            key: "patching",
-            label: "Patching",
-            color: "#f97316"
-        }, {
-            key: "sealant",
-            label: "Sealant",
-            color: "#8b5cf6"
-        }, {
-            key: "overlay",
-            label: "Overlay",
-            color: "#0891b2"
-        }, {
-            key: "rekonstruksi-rigid",
-            label: "Rekonstruksi Rigid Pavement",
-            color: "#dc2626"
-        }, {
-            key: "lainnya",
-            label: "Lainnya",
-            color: "#64748b"
-        }];
+
+        const OTHER_WORK_CONFIG = [
+            {
+                key: "expansion-joint",
+                label: "Expansion Joint",
+                color: "#2563eb"
+            },
+            {
+                key: "patching",
+                label: "Patching",
+                color: "#f97316"
+            },
+            {
+                key: "sealant",
+                label: "Sealant",
+                color: "#8b5cf6"
+            },
+            {
+                key: "rekonstruksi-rigid",
+                label: "Rekonstruksi Rigid Pavement",
+                color: "#dc2626"
+            },
+            {
+                key: "lainnya",
+                label: "Lainnya",
+                color: "#64748b"
+            }
+        ];
 
         function coordinateLooksGeographic(coordinate) {
             return Array.isArray(coordinate) && Number.isFinite(Number(coordinate[0])) && Number.isFinite(Number(coordinate[1])) && Math.abs(Number(coordinate[0])) <= 180 && Math.abs(Number(coordinate[1])) <= 90;
@@ -1207,13 +1233,70 @@
                     console.warn("Data input admin belum dapat dimuat ke statistik.", error);
                 }
             }
-            jalurFeatures = baseFeatures.concat(userFeatures).filter(function(properties) {
-                const route = String(properties.rute ?? "").trim();
-                const jalur = normalisasiKunciSegmen(properties.Jalur);
-                const lane = kunciLajur(properties.Lajur);
-                const mainline = route === "surgem_A" || route === "surgem_B" || jalur === "A" || jalur === "B";
-                return mainline && ["L1", "L2", "L3"].includes(lane);
-            });
+            const semuaPekerjaanJalur =
+                baseFeatures
+                    .concat(userFeatures)
+                    .filter(function (properties) {
+                        const route = String(
+                            properties.rute ?? ""
+                        ).trim();
+
+                        const jalur =
+                            normalisasiKunciSegmen(
+                                properties.Jalur
+                            );
+
+                        const lane =
+                            kunciLajur(
+                                properties.Lajur
+                            );
+
+                        const mainline =
+                            route === "surgem_A" ||
+                            route === "surgem_B" ||
+                            jalur === "A" ||
+                            jalur === "B";
+
+                        return (
+                            mainline &&
+                            ["L1", "L2", "L3"].includes(
+                                lane
+                            )
+                        );
+                    });
+
+            /*
+            * Statistik umur dan status hanya boleh
+            * menggunakan histori SFO.
+            *
+            * Overlay ikut masuk ke sini karena
+            * kategori Overlay adalah SFO.
+            */
+            jalurFeatures =
+                semuaPekerjaanJalur.filter(
+                    function (properties) {
+                        return (
+                            kategoriPekerjaanRecord(
+                                properties
+                            ) === "sfo"
+                        );
+                    }
+                );
+
+/*
+ * Input admin non-SFO dimasukkan ke
+ * statistik pekerjaan lainnya.
+ */
+pekerjaanLainnyaJalur =
+    pekerjaanLainnyaJalur.concat(
+        semuaPekerjaanJalur
+            .map(function (properties) {
+                return recordPekerjaanLainnya(
+                    properties
+                );
+            })
+            .filter(Boolean)
+    );
         }
         async function ambilPekerjaanLainnya() {
             const response = await fetch(encodeURI(OTHER_DATA_URL));

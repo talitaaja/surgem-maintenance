@@ -1,0 +1,2857 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2026-08-04T02:53:06Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/300801974",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7070746,
+            -7.6273362
+          ],
+          [
+            112.706909,
+            -7.626596
+          ],
+          [
+            112.7067931,
+            -7.6261099
+          ],
+          [
+            112.7066213,
+            -7.6254394
+          ],
+          [
+            112.7062994,
+            -7.6242032
+          ],
+          [
+            112.7061925,
+            -7.6236605
+          ],
+          [
+            112.7061439,
+            -7.6229989
+          ],
+          [
+            112.7061251,
+            -7.6226001
+          ],
+          [
+            112.7061304,
+            -7.62222
+          ],
+          [
+            112.7061583,
+            -7.6218525
+          ],
+          [
+            112.7063745,
+            -7.6207152
+          ],
+          [
+            112.7067366,
+            -7.6187958
+          ],
+          [
+            112.7069083,
+            -7.6179132
+          ],
+          [
+            112.7072087,
+            -7.616217
+          ],
+          [
+            112.707937,
+            -7.6120513
+          ],
+          [
+            112.7081638,
+            -7.6110422
+          ],
+          [
+            112.7084445,
+            -7.609973
+          ],
+          [
+            112.708813,
+            -7.6088012
+          ],
+          [
+            112.7090996,
+            -7.6080044
+          ],
+          [
+            112.7092123,
+            -7.607691
+          ],
+          [
+            112.7096307,
+            -7.6065664
+          ],
+          [
+            112.7104549,
+            -7.604316
+          ],
+          [
+            112.7106822,
+            -7.6036552
+          ],
+          [
+            112.7109129,
+            -7.6029347
+          ],
+          [
+            112.7115996,
+            -7.600289
+          ]
+        ]
+      },
+      "id": "way/300801974"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/300801989",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7166235,
+            -7.5603153
+          ],
+          [
+            112.7167216,
+            -7.5605524
+          ],
+          [
+            112.7167981,
+            -7.560763
+          ],
+          [
+            112.7168877,
+            -7.5610493
+          ],
+          [
+            112.7169539,
+            -7.5612871
+          ],
+          [
+            112.7170162,
+            -7.5615839
+          ],
+          [
+            112.7170561,
+            -7.5618074
+          ],
+          [
+            112.7170887,
+            -7.5620671
+          ],
+          [
+            112.7171071,
+            -7.5624721
+          ],
+          [
+            112.7171035,
+            -7.5628454
+          ],
+          [
+            112.7170898,
+            -7.5631256
+          ],
+          [
+            112.7170601,
+            -7.5633842
+          ],
+          [
+            112.7170057,
+            -7.5637079
+          ]
+        ]
+      },
+      "id": "way/300801989"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/365978895",
+        "bridge": "viaduct",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7100082,
+            -7.5565646
+          ],
+          [
+            112.7067778,
+            -7.5569276
+          ]
+        ]
+      },
+      "id": "way/365978895"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/365978896",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7117233,
+            -7.5564409
+          ],
+          [
+            112.7120031,
+            -7.5564925
+          ],
+          [
+            112.7122918,
+            -7.5565617
+          ],
+          [
+            112.7125908,
+            -7.556647
+          ],
+          [
+            112.7128785,
+            -7.5567445
+          ],
+          [
+            112.7131695,
+            -7.5568595
+          ],
+          [
+            112.713456,
+            -7.5569857
+          ],
+          [
+            112.7137912,
+            -7.5571557
+          ],
+          [
+            112.714067,
+            -7.557313
+          ],
+          [
+            112.7143428,
+            -7.5574879
+          ],
+          [
+            112.7145564,
+            -7.5576438
+          ],
+          [
+            112.7148022,
+            -7.5578287
+          ],
+          [
+            112.7150524,
+            -7.5580433
+          ],
+          [
+            112.7152778,
+            -7.5582622
+          ],
+          [
+            112.7155341,
+            -7.5585437
+          ],
+          [
+            112.7157087,
+            -7.5587551
+          ],
+          [
+            112.7158677,
+            -7.558967
+          ],
+          [
+            112.7159991,
+            -7.559153
+          ],
+          [
+            112.7160963,
+            -7.5592984
+          ],
+          [
+            112.7161986,
+            -7.5594669
+          ],
+          [
+            112.7163092,
+            -7.5596626
+          ]
+        ]
+      },
+      "id": "way/365978896"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/369638397",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7160889,
+            -7.5596224
+          ],
+          [
+            112.7160015,
+            -7.559475
+          ],
+          [
+            112.7159223,
+            -7.5593444
+          ],
+          [
+            112.7158065,
+            -7.5591685
+          ],
+          [
+            112.715689,
+            -7.5590067
+          ],
+          [
+            112.7155647,
+            -7.5588496
+          ],
+          [
+            112.7154319,
+            -7.5586929
+          ],
+          [
+            112.7152847,
+            -7.5585248
+          ],
+          [
+            112.7151384,
+            -7.5583681
+          ],
+          [
+            112.7150148,
+            -7.5582402
+          ],
+          [
+            112.7148969,
+            -7.5581332
+          ],
+          [
+            112.7146397,
+            -7.5579229
+          ],
+          [
+            112.7144332,
+            -7.5577672
+          ],
+          [
+            112.7142354,
+            -7.5576276
+          ],
+          [
+            112.7140388,
+            -7.5575042
+          ],
+          [
+            112.7138766,
+            -7.5574081
+          ],
+          [
+            112.7136902,
+            -7.5573063
+          ],
+          [
+            112.7134547,
+            -7.5571863
+          ],
+          [
+            112.7131082,
+            -7.5570252
+          ],
+          [
+            112.7129066,
+            -7.556938
+          ],
+          [
+            112.7126738,
+            -7.5568536
+          ],
+          [
+            112.7124905,
+            -7.5567944
+          ],
+          [
+            112.7122785,
+            -7.5567352
+          ],
+          [
+            112.7120254,
+            -7.5566735
+          ],
+          [
+            112.7117266,
+            -7.5566161
+          ]
+        ]
+      },
+      "id": "way/369638397"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326355",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7170057,
+            -7.5637079
+          ],
+          [
+            112.7169581,
+            -7.5639411
+          ],
+          [
+            112.7169251,
+            -7.5640707
+          ]
+        ]
+      },
+      "id": "way/416326355"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326357",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7167923,
+            -7.5640417
+          ],
+          [
+            112.716831,
+            -7.5638823
+          ],
+          [
+            112.7168705,
+            -7.5636923
+          ]
+        ]
+      },
+      "id": "way/416326357"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326358",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7169251,
+            -7.5640707
+          ],
+          [
+            112.716626,
+            -7.5651495
+          ]
+        ]
+      },
+      "id": "way/416326358"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326360",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.716626,
+            -7.5651495
+          ],
+          [
+            112.7165231,
+            -7.5654917
+          ]
+        ]
+      },
+      "id": "way/416326360"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326361",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.716501,
+            -7.5651671
+          ],
+          [
+            112.7167923,
+            -7.5640417
+          ]
+        ]
+      },
+      "id": "way/416326361"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326362",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7163996,
+            -7.5655096
+          ],
+          [
+            112.716501,
+            -7.5651671
+          ]
+        ]
+      },
+      "id": "way/416326362"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326370",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7142514,
+            -7.574602
+          ],
+          [
+            112.7142361,
+            -7.5747842
+          ],
+          [
+            112.7142079,
+            -7.5751744
+          ],
+          [
+            112.7141984,
+            -7.5753548
+          ]
+        ]
+      },
+      "id": "way/416326370"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326371",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7140894,
+            -7.5752378
+          ],
+          [
+            112.714102,
+            -7.5750248
+          ],
+          [
+            112.7141328,
+            -7.5746193
+          ],
+          [
+            112.7141447,
+            -7.5744488
+          ]
+        ]
+      },
+      "id": "way/416326371"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326372",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7141984,
+            -7.5753548
+          ],
+          [
+            112.7141663,
+            -7.576107
+          ],
+          [
+            112.7141596,
+            -7.5768993
+          ],
+          [
+            112.7142039,
+            -7.5777328
+          ],
+          [
+            112.7142659,
+            -7.5785759
+          ],
+          [
+            112.7145459,
+            -7.5813926
+          ],
+          [
+            112.714737,
+            -7.5833873
+          ]
+        ]
+      },
+      "id": "way/416326372"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326373",
+        "destination": "Pandaan;Taman Safari;Malang",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7117174,
+            -7.6003153
+          ],
+          [
+            112.7110129,
+            -7.6029896
+          ],
+          [
+            112.7107975,
+            -7.6037004
+          ],
+          [
+            112.7105626,
+            -7.6043695
+          ],
+          [
+            112.7097326,
+            -7.6066222
+          ],
+          [
+            112.7093169,
+            -7.6077548
+          ],
+          [
+            112.7089181,
+            -7.608875
+          ],
+          [
+            112.7085615,
+            -7.6100237
+          ],
+          [
+            112.7082757,
+            -7.6111206
+          ],
+          [
+            112.7080778,
+            -7.6120878
+          ],
+          [
+            112.7073401,
+            -7.616233
+          ],
+          [
+            112.7070504,
+            -7.6178307
+          ],
+          [
+            112.7069002,
+            -7.6186363
+          ],
+          [
+            112.706506,
+            -7.6207259
+          ],
+          [
+            112.7063879,
+            -7.6213453
+          ],
+          [
+            112.7062845,
+            -7.6219257
+          ],
+          [
+            112.7062548,
+            -7.6221714
+          ],
+          [
+            112.7062422,
+            -7.6223547
+          ],
+          [
+            112.7062619,
+            -7.6231292
+          ],
+          [
+            112.7063191,
+            -7.6236587
+          ],
+          [
+            112.7063638,
+            -7.6238975
+          ],
+          [
+            112.7064335,
+            -7.6241979
+          ],
+          [
+            112.7066803,
+            -7.6251204
+          ],
+          [
+            112.7069297,
+            -7.6261386
+          ],
+          [
+            112.7070512,
+            -7.6266222
+          ],
+          [
+            112.7072275,
+            -7.6274413
+          ]
+        ]
+      },
+      "id": "way/416326373"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326374",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.714737,
+            -7.5833873
+          ],
+          [
+            112.7147651,
+            -7.5836993
+          ]
+        ]
+      },
+      "id": "way/416326374"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326375",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7143111,
+            -7.5803101
+          ],
+          [
+            112.7141492,
+            -7.5785835
+          ],
+          [
+            112.7140926,
+            -7.5777435
+          ],
+          [
+            112.7140536,
+            -7.5769059
+          ],
+          [
+            112.7140456,
+            -7.5760711
+          ],
+          [
+            112.7140894,
+            -7.5752378
+          ]
+        ]
+      },
+      "id": "way/416326375"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/416326376",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7146363,
+            -7.583663
+          ],
+          [
+            112.7146135,
+            -7.58335
+          ]
+        ]
+      },
+      "id": "way/416326376"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/535520178",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.714397,
+            -7.5727635
+          ],
+          [
+            112.714456,
+            -7.5724431
+          ],
+          [
+            112.7145903,
+            -7.5717854
+          ],
+          [
+            112.7149967,
+            -7.5702511
+          ]
+        ]
+      },
+      "id": "way/535520178"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/535520192",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7165231,
+            -7.5654917
+          ],
+          [
+            112.7150375,
+            -7.5706004
+          ],
+          [
+            112.7147161,
+            -7.5718185
+          ],
+          [
+            112.7145687,
+            -7.572491
+          ],
+          [
+            112.7145097,
+            -7.5728247
+          ]
+        ]
+      },
+      "id": "way/535520192"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/535520210",
+        "bridge": "viaduct",
+        "destination": "Pandaan;Pasuruan;Malang",
+        "destination:symbol": "motorway",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.707578,
+            -7.5566678
+          ],
+          [
+            112.7099937,
+            -7.5563905
+          ]
+        ]
+      },
+      "id": "way/535520210"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/548490203",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7063732,
+            -7.6475282
+          ],
+          [
+            112.7063169,
+            -7.6472186
+          ]
+        ]
+      },
+      "id": "way/548490203"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/548490206",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7064282,
+            -7.6471773
+          ],
+          [
+            112.7064737,
+            -7.647414
+          ]
+        ]
+      },
+      "id": "way/548490206"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/647367678",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7168705,
+            -7.5636923
+          ],
+          [
+            112.7169089,
+            -7.5634834
+          ],
+          [
+            112.7169337,
+            -7.5633013
+          ],
+          [
+            112.7169545,
+            -7.5630773
+          ],
+          [
+            112.7169638,
+            -7.5628376
+          ],
+          [
+            112.7169602,
+            -7.5625132
+          ],
+          [
+            112.7169466,
+            -7.562245
+          ],
+          [
+            112.7169221,
+            -7.5620053
+          ],
+          [
+            112.7168721,
+            -7.5616935
+          ],
+          [
+            112.7168182,
+            -7.5614126
+          ],
+          [
+            112.7167763,
+            -7.5612321
+          ],
+          [
+            112.7167236,
+            -7.5610584
+          ],
+          [
+            112.716608,
+            -7.5607254
+          ],
+          [
+            112.7165495,
+            -7.560573
+          ],
+          [
+            112.7164772,
+            -7.5604018
+          ],
+          [
+            112.7164175,
+            -7.5602724
+          ]
+        ]
+      },
+      "id": "way/647367678"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/678579867",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7074818,
+            -7.6300666
+          ],
+          [
+            112.7074394,
+            -7.6297143
+          ]
+        ]
+      },
+      "id": "way/678579867"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/678579868",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7060315,
+            -7.644302
+          ],
+          [
+            112.7060419,
+            -7.6436417
+          ],
+          [
+            112.7060895,
+            -7.6428352
+          ],
+          [
+            112.7061278,
+            -7.6421158
+          ],
+          [
+            112.7061891,
+            -7.6415644
+          ],
+          [
+            112.7062887,
+            -7.6408982
+          ],
+          [
+            112.7064255,
+            -7.6402257
+          ],
+          [
+            112.7067554,
+            -7.6388858
+          ],
+          [
+            112.7069163,
+            -7.6381947
+          ],
+          [
+            112.7070773,
+            -7.6375194
+          ],
+          [
+            112.7072221,
+            -7.6368628
+          ],
+          [
+            112.7073421,
+            -7.6361921
+          ],
+          [
+            112.7074608,
+            -7.6353794
+          ],
+          [
+            112.7075785,
+            -7.6342777
+          ],
+          [
+            112.7076057,
+            -7.6335477
+          ],
+          [
+            112.7076298,
+            -7.6327555
+          ],
+          [
+            112.707611,
+            -7.6317985
+          ],
+          [
+            112.7075867,
+            -7.6312446
+          ],
+          [
+            112.7075386,
+            -7.6306793
+          ],
+          [
+            112.7074818,
+            -7.6300666
+          ]
+        ]
+      },
+      "id": "way/678579868"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/678579870",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7075627,
+            -7.6297041
+          ],
+          [
+            112.7076027,
+            -7.6300479
+          ]
+        ]
+      },
+      "id": "way/678579870"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/678579871",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7076027,
+            -7.6300479
+          ],
+          [
+            112.70767,
+            -7.630666
+          ],
+          [
+            112.707719,
+            -7.6312748
+          ],
+          [
+            112.7077532,
+            -7.6328007
+          ],
+          [
+            112.7077264,
+            -7.6335796
+          ],
+          [
+            112.7076942,
+            -7.6343516
+          ],
+          [
+            112.7075654,
+            -7.6355283
+          ],
+          [
+            112.7074306,
+            -7.6364633
+          ],
+          [
+            112.7073052,
+            -7.6370622
+          ],
+          [
+            112.7071819,
+            -7.6376178
+          ],
+          [
+            112.7070209,
+            -7.6383329
+          ],
+          [
+            112.7068439,
+            -7.6390427
+          ],
+          [
+            112.7065408,
+            -7.6403187
+          ],
+          [
+            112.7064121,
+            -7.6409488
+          ],
+          [
+            112.7063177,
+            -7.6415722
+          ],
+          [
+            112.7062377,
+            -7.6422088
+          ],
+          [
+            112.7061894,
+            -7.642909
+          ],
+          [
+            112.7061653,
+            -7.6436523
+          ],
+          [
+            112.7061599,
+            -7.6441122
+          ]
+        ]
+      },
+      "id": "way/678579871"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/689349026",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7108982,
+            -7.5565322
+          ],
+          [
+            112.7106002,
+            -7.5565308
+          ],
+          [
+            112.7103252,
+            -7.5565411
+          ],
+          [
+            112.7100082,
+            -7.5565646
+          ]
+        ]
+      },
+      "id": "way/689349026"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/689349027",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7117266,
+            -7.5566161
+          ],
+          [
+            112.7115063,
+            -7.5565821
+          ],
+          [
+            112.7112604,
+            -7.5565539
+          ],
+          [
+            112.7110461,
+            -7.5565384
+          ],
+          [
+            112.7108982,
+            -7.5565322
+          ]
+        ]
+      },
+      "id": "way/689349027"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/689349028",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7108975,
+            -7.5563623
+          ],
+          [
+            112.7110949,
+            -7.5563729
+          ],
+          [
+            112.7113731,
+            -7.5563979
+          ],
+          [
+            112.7117233,
+            -7.5564409
+          ]
+        ]
+      },
+      "id": "way/689349028"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/689349029",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7099937,
+            -7.5563905
+          ],
+          [
+            112.710207,
+            -7.5563716
+          ],
+          [
+            112.7104352,
+            -7.5563593
+          ],
+          [
+            112.7106682,
+            -7.5563574
+          ],
+          [
+            112.7108975,
+            -7.5563623
+          ]
+        ]
+      },
+      "id": "way/689349029"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/689349030",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7147651,
+            -7.5836993
+          ],
+          [
+            112.7147904,
+            -7.584046
+          ]
+        ]
+      },
+      "id": "way/689349030"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/689349031",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7146135,
+            -7.58335
+          ],
+          [
+            112.7143111,
+            -7.5803101
+          ]
+        ]
+      },
+      "id": "way/689349031"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/689349039",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7163092,
+            -7.5596626
+          ],
+          [
+            112.7163862,
+            -7.5598094
+          ],
+          [
+            112.7165393,
+            -7.5601248
+          ],
+          [
+            112.7166235,
+            -7.5603153
+          ]
+        ]
+      },
+      "id": "way/689349039"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/689349040",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7164175,
+            -7.5602724
+          ],
+          [
+            112.7162967,
+            -7.5600185
+          ],
+          [
+            112.7160889,
+            -7.5596224
+          ]
+        ]
+      },
+      "id": "way/689349040"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/704741907",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7066414,
+            -7.6590334
+          ],
+          [
+            112.7066373,
+            -7.6588473
+          ]
+        ]
+      },
+      "id": "way/704741907"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/704741908",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7069274,
+            -7.6616958
+          ],
+          [
+            112.7067849,
+            -7.6606151
+          ],
+          [
+            112.7066708,
+            -7.6595005
+          ],
+          [
+            112.7066414,
+            -7.6590334
+          ]
+        ]
+      },
+      "id": "way/704741908"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/704741909",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7067701,
+            -7.6590108
+          ],
+          [
+            112.7067868,
+            -7.6594861
+          ],
+          [
+            112.7068439,
+            -7.6601313
+          ],
+          [
+            112.706929,
+            -7.6608121
+          ],
+          [
+            112.7070588,
+            -7.6616689
+          ]
+        ]
+      },
+      "id": "way/704741909"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/704741910",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7067674,
+            -7.6588327
+          ],
+          [
+            112.7067701,
+            -7.6590108
+          ]
+        ]
+      },
+      "id": "way/704741910"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/704765867",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7064737,
+            -7.647414
+          ],
+          [
+            112.7068691,
+            -7.649508
+          ],
+          [
+            112.7070437,
+            -7.6507173
+          ],
+          [
+            112.707098,
+            -7.6514959
+          ],
+          [
+            112.707096,
+            -7.6516434
+          ],
+          [
+            112.7071053,
+            -7.6531645
+          ],
+          [
+            112.7067841,
+            -7.6573314
+          ],
+          [
+            112.7067763,
+            -7.6575851
+          ],
+          [
+            112.7067674,
+            -7.6588327
+          ]
+        ]
+      },
+      "id": "way/704765867"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/704765868",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7066373,
+            -7.6588473
+          ],
+          [
+            112.7066574,
+            -7.6573552
+          ],
+          [
+            112.7068015,
+            -7.6554455
+          ],
+          [
+            112.7069891,
+            -7.6532059
+          ],
+          [
+            112.706982,
+            -7.6516905
+          ],
+          [
+            112.7069834,
+            -7.6515211
+          ],
+          [
+            112.7069176,
+            -7.6507601
+          ],
+          [
+            112.7067444,
+            -7.64956
+          ],
+          [
+            112.7063732,
+            -7.6475282
+          ]
+        ]
+      },
+      "id": "way/704765868"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/704765889",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7061653,
+            -7.644394
+          ],
+          [
+            112.7061697,
+            -7.6448576
+          ],
+          [
+            112.7062055,
+            -7.645577
+          ],
+          [
+            112.7063103,
+            -7.6463239
+          ],
+          [
+            112.7063868,
+            -7.6468594
+          ],
+          [
+            112.7064282,
+            -7.6471773
+          ]
+        ]
+      },
+      "id": "way/704765889"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/704765890",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7061599,
+            -7.6441122
+          ],
+          [
+            112.7061653,
+            -7.644394
+          ]
+        ]
+      },
+      "id": "way/704765890"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/704765891",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7060446,
+            -7.6445721
+          ],
+          [
+            112.7060315,
+            -7.644302
+          ]
+        ]
+      },
+      "id": "way/704765891"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/704765892",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7063169,
+            -7.6472186
+          ],
+          [
+            112.7062723,
+            -7.6468777
+          ],
+          [
+            112.7061918,
+            -7.6463314
+          ],
+          [
+            112.7061063,
+            -7.6455929
+          ],
+          [
+            112.7060591,
+            -7.6449359
+          ],
+          [
+            112.7060446,
+            -7.6445721
+          ]
+        ]
+      },
+      "id": "way/704765892"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/716214761",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7072275,
+            -7.6274413
+          ],
+          [
+            112.707261,
+            -7.6275994
+          ]
+        ]
+      },
+      "id": "way/716214761"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/716214762",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.707261,
+            -7.6275994
+          ],
+          [
+            112.7073187,
+            -7.6279384
+          ],
+          [
+            112.7075296,
+            -7.6294602
+          ],
+          [
+            112.7075627,
+            -7.6297041
+          ]
+        ]
+      },
+      "id": "way/716214762"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/716214763",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7071001,
+            -7.6274732
+          ],
+          [
+            112.7070746,
+            -7.6273362
+          ]
+        ]
+      },
+      "id": "way/716214763"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/716214764",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7074394,
+            -7.6297143
+          ],
+          [
+            112.7073907,
+            -7.6294016
+          ],
+          [
+            112.7071899,
+            -7.6279224
+          ],
+          [
+            112.7071001,
+            -7.6274732
+          ]
+        ]
+      },
+      "id": "way/716214764"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/970170597",
+        "destination": "Gempol;Sidoarjo;Surabaya",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7131258,
+            -7.5945018
+          ],
+          [
+            112.7134207,
+            -7.5934061
+          ],
+          [
+            112.7137925,
+            -7.5919864
+          ],
+          [
+            112.7141576,
+            -7.5904851
+          ],
+          [
+            112.7143235,
+            -7.5896929
+          ],
+          [
+            112.7143963,
+            -7.589287
+          ],
+          [
+            112.7144917,
+            -7.5887165
+          ],
+          [
+            112.7145571,
+            -7.5882204
+          ],
+          [
+            112.7146634,
+            -7.5870933
+          ],
+          [
+            112.7146896,
+            -7.5865345
+          ],
+          [
+            112.7147049,
+            -7.5860961
+          ],
+          [
+            112.7147128,
+            -7.5856463
+          ],
+          [
+            112.7147113,
+            -7.5851857
+          ],
+          [
+            112.7147004,
+            -7.5847044
+          ],
+          [
+            112.7146771,
+            -7.5842323
+          ],
+          [
+            112.7146363,
+            -7.583663
+          ]
+        ]
+      },
+      "id": "way/970170597"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1001587922",
+        "destination": "Sidoarjo;Surabaya",
+        "destination:ref": "8",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7149967,
+            -7.5702511
+          ],
+          [
+            112.7163996,
+            -7.5655096
+          ]
+        ]
+      },
+      "id": "way/1001587922"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1117875153",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7143394,
+            -7.5731026
+          ],
+          [
+            112.714397,
+            -7.5727635
+          ]
+        ]
+      },
+      "id": "way/1117875153"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1117875154",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.714448,
+            -7.573171
+          ],
+          [
+            112.7142514,
+            -7.574602
+          ]
+        ]
+      },
+      "id": "way/1117875154"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1117875155",
+        "bridge": "yes",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "layer": "1",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7145097,
+            -7.5728247
+          ],
+          [
+            112.714448,
+            -7.573171
+          ]
+        ]
+      },
+      "id": "way/1117875155"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1117875156",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7141447,
+            -7.5744488
+          ],
+          [
+            112.7143394,
+            -7.5731026
+          ]
+        ]
+      },
+      "id": "way/1117875156"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1121953442",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7115996,
+            -7.600289
+          ],
+          [
+            112.7118812,
+            -7.5992043
+          ],
+          [
+            112.7123993,
+            -7.597133
+          ],
+          [
+            112.7131258,
+            -7.5945018
+          ]
+        ]
+      },
+      "id": "way/1121953442"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1121953443",
+        "destination": "Pandaan;Taman Safari;Malang",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7132387,
+            -7.5945235
+          ],
+          [
+            112.7130496,
+            -7.5952596
+          ],
+          [
+            112.7122133,
+            -7.598395
+          ],
+          [
+            112.712,
+            -7.5992426
+          ],
+          [
+            112.7117174,
+            -7.6003153
+          ]
+        ]
+      },
+      "id": "way/1121953443"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1121953444",
+        "destination": "Pandaan;Taman Safari;Malang",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7147904,
+            -7.584046
+          ],
+          [
+            112.7148254,
+            -7.584595
+          ],
+          [
+            112.7148462,
+            -7.5851534
+          ],
+          [
+            112.7148476,
+            -7.5856276
+          ],
+          [
+            112.7148372,
+            -7.5860888
+          ],
+          [
+            112.7148046,
+            -7.5868073
+          ],
+          [
+            112.7147811,
+            -7.5871886
+          ],
+          [
+            112.7147444,
+            -7.5876436
+          ],
+          [
+            112.7147085,
+            -7.5880218
+          ],
+          [
+            112.7146413,
+            -7.5885392
+          ],
+          [
+            112.7144942,
+            -7.589434
+          ],
+          [
+            112.7142729,
+            -7.590529
+          ],
+          [
+            112.71411,
+            -7.591223
+          ],
+          [
+            112.7138941,
+            -7.5920435
+          ],
+          [
+            112.7135176,
+            -7.5934379
+          ],
+          [
+            112.7132387,
+            -7.5945235
+          ]
+        ]
+      },
+      "id": "way/1121953444"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "way/1188426191",
+        "highway": "motorway",
+        "int_ref": "AH2",
+        "lanes": "2",
+        "maxspeed": "100",
+        "minspeed": "60",
+        "name": "Jalan Tol Gempol–Pandaan",
+        "oneway": "yes",
+        "operator": "PT Jasamarga Pandaan Tol",
+        "ref": "8",
+        "short_name": "Jalan Tol Gempan",
+        "toll": "yes"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            112.7077424,
+            -7.6680262
+          ],
+          [
+            112.7074354,
+            -7.6655779
+          ],
+          [
+            112.7069274,
+            -7.6616958
+          ]
+        ]
+      },
+      "id": "way/1188426191"
+    }
+  ]
+}

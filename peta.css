@@ -1791,3 +1791,14 @@ body.dark-mode .lane-offset-note span {
         grid-template-columns: 1fr;
     }
 }
+
+/* Jarak khusus antara legenda status dan legenda pekerjaan lainnya */
+.status-legend .other-work-legend-title {
+    margin-top: 17px;
+    padding-top: 13px;
+    border-top: 1px solid var(--border);
+}
+
+body.dark-mode .status-legend .other-work-legend-title {
+    border-top-color: #334155;
+}
