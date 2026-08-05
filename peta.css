@@ -1802,3 +1802,123 @@ body.dark-mode .lane-offset-note span {
 body.dark-mode .status-legend .other-work-legend-title {
     border-top-color: #334155;
 }
+
+/* ==========================================================
+   PANEL KONTROL PETA MOBILE — VERSI RINGKAS
+========================================================== */
+
+@media (max-width: 760px) {
+    body.map-body .map-stage {
+        grid-template-rows: minmax(360px, 52vh) 420px !important;
+        gap: 10px;
+    }
+
+    body.map-body .map-side-panels {
+        height: 420px !important;
+        border-top-width: 3px;
+        border-radius: 10px;
+    }
+
+    body.map-body .map-panel-tab {
+        min-height: 38px;
+        padding: 6px 5px;
+        font-size: 10.5px;
+    }
+
+    body.map-body .map-side-panels .jm-panel {
+        padding: 10px !important;
+    }
+
+    body.map-body .panel-title {
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        font-size: 14px;
+        line-height: 1.25;
+    }
+
+    body.map-body .section-label {
+        margin-bottom: 5px;
+        font-size: 8.5px;
+    }
+
+    body.map-body .basemap-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 6px;
+    }
+
+    body.map-body .basemap-item {
+        min-height: 36px !important;
+        padding: 6px 8px;
+        border-radius: 7px;
+        font-size: 10px;
+    }
+
+    body.map-body .data-control-group {
+        margin-top: 10px;
+        padding-top: 9px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    body.map-body .data-control-group > .section-label,
+    body.map-body .data-control-group > .gate-toggle {
+        grid-column: 1 / -1;
+    }
+
+    body.map-body .data-control-group > .section-label {
+        margin-bottom: 0;
+    }
+
+    body.map-body .data-select {
+        min-height: 38px !important;
+        margin-bottom: 0;
+        padding: 6px 8px;
+        border-radius: 7px;
+        font-size: 11px;
+    }
+
+    body.map-body .gate-toggle {
+        margin-top: 2px;
+        gap: 6px;
+        font-size: 10px;
+    }
+
+    body.map-body .gate-toggle input {
+        width: 15px;
+        height: 15px;
+    }
+
+    body.map-body .status-legend {
+        margin-top: 10px;
+        padding-top: 9px;
+    }
+
+    body.map-body .status-legend-item {
+        margin-top: 5px;
+        font-size: 9.5px;
+    }
+
+    body.map-body .status-legend .other-work-legend-title {
+        margin-top: 12px;
+        padding-top: 10px;
+    }
+
+    body.map-body .map-side-panels *::-webkit-scrollbar {
+        width: 5px;
+    }
+}
+
+@media (max-width: 420px) {
+    body.map-body .map-stage {
+        grid-template-rows: minmax(340px, 50vh) 400px !important;
+    }
+
+    body.map-body .map-side-panels {
+        height: 400px !important;
+    }
+
+    body.map-body .data-control-group {
+        grid-template-columns: 1fr;
+    }
+}

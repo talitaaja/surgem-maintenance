@@ -10,7 +10,57 @@
     <link href="index.css" rel="stylesheet" />
     <link href="login-button.css" rel="stylesheet" />
     <link href="responsive.css" rel="stylesheet" />
-    <script src="mobile.js?v=2"></script>
+    <style>
+        /* Tombol fitur dan perataan konten pada layar mobile. */
+        @media (max-width: 760px) {
+            .feature-card {
+                grid-template-columns: 28px minmax(0, 1fr) 34px !important;
+                gap: 10px !important;
+                padding: 20px 4px !important;
+                align-items: center !important;
+            }
+
+            .feature-index {
+                align-self: center;
+                justify-self: start;
+            }
+
+            .feature-content {
+                min-width: 0;
+                justify-items: start;
+                text-align: left;
+            }
+
+            .feature-card h3,
+            .feature-card p {
+                text-align: left;
+            }
+
+            .feature-card > a {
+                display: inline-flex !important;
+                width: 34px;
+                height: 34px;
+                align-self: center;
+                justify-self: end;
+                flex: 0 0 34px;
+            }
+        }
+
+        @media (max-width: 460px) {
+            .feature-card {
+                grid-template-columns: 25px minmax(0, 1fr) 32px !important;
+                gap: 8px !important;
+                padding-inline: 2px !important;
+            }
+
+            .feature-card > a {
+                width: 32px;
+                height: 32px;
+                flex-basis: 32px;
+            }
+        }
+    </style>
+    <script src="mobile.js?v=3" defer></script>
 </head>
 
 <body>
@@ -240,7 +290,7 @@
                     <h2>Pengembang dan operator jalan tol di Indonesia</h2>
                     <p> Jasa Marga berperan dalam pengembangan dan pengoperasian jalan tol serta penyediaan layanan yang mendukung konektivitas dan mobilitas masyarakat. </p>
                     <p> SurGem Maintenance dikembangkan sebagai media pemantauan pekerjaan pada Ruas Tol Surabaya–Gempol dalam lingkup kegiatan akademis dan pengolahan informasi geospasial. </p>
-                    <a class="jm-profile-link" href="https://www.jasamarga.com/" rel="noopener noreferrer" target="_blank"> Kunjungi Website Jasa Marga <span aria-hidden="true">↗</span>
+                    <a class="jm-profile-link" href="https://www.jmtransjawatol.co.id/id" rel="noopener noreferrer" target="_blank"> Kunjungi Website Jasa Marga <span aria-hidden="true">↗</span>
                     </a>
                 </div>
             </div>
