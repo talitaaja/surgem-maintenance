@@ -229,97 +229,145 @@ body.dark-mode
             }
 
             body.map-body .data-select {
-                height: 32px;
-                min-height: 32px !important;
-                padding: 4px 26px 4px 8px;
+                height: 30px;
+                min-height: 30px !important;
+                padding: 3px 24px 3px 7px;
                 border-radius: 6px;
-                font-size: 10px;
+                font-size: 9px !important;
+                font-weight: 600;
                 line-height: 1.2;
             }
 
+            body.map-body .data-select option {
+                font-size: 9px;
+            }
+
             body.map-body .leaflet-popup-content {
-                margin: 7px 9px;
+                margin: 4px 6px;
+            }
+
+            body.map-body .surgem-detail-popup .leaflet-popup-content.leaflet-popup-scrolled {
+                max-height: none !important;
+                overflow: visible !important;
+                border: 0;
             }
 
             body.map-body .leaflet-container a.leaflet-popup-close-button {
-                width: 26px;
-                height: 26px;
-                padding: 1px 2px 0 0;
-                font-size: 20px;
-                line-height: 25px;
+                width: 22px;
+                height: 22px;
+                padding: 0 1px 0 0;
+                font-size: 17px;
+                line-height: 22px;
             }
 
             body.map-body .segment-popup {
-                width: min(258px, calc(100vw - 78px));
+                width: clamp(135px, calc(100vw - 165px), 150px);
                 min-width: 0 !important;
-                font-size: 10.5px !important;
-                line-height: 1.4 !important;
+                font-size: 7.5px !important;
+                line-height: 1.3 !important;
             }
 
             body.map-body .segment-popup-title {
-                padding: 0 20px 6px 0;
-                font-size: 13px;
+                padding: 0 17px 4px 0;
+                font-size: 10px;
             }
 
             body.map-body .segment-popup-scroll {
-                max-height: min(240px, 38vh);
-                padding: 6px 2px 1px 0;
+                max-height: min(160px, 30vh);
+                padding: 4px 1px 9px 0;
+                overflow-y: auto !important;
+                overscroll-behavior: contain;
+                -webkit-overflow-scrolling: touch;
+                touch-action: pan-y;
             }
 
             body.map-body .segment-popup-summary {
-                gap: 4px;
+                gap: 3px;
             }
 
             body.map-body .segment-popup-summary > div {
-                grid-template-columns: 82px minmax(0, 1fr);
-                gap: 6px;
+                grid-template-columns: 52px minmax(0, 1fr);
+                gap: 4px;
             }
 
             body.map-body .segment-popup-history {
-                margin-top: 8px;
-                padding-top: 7px;
+                margin-top: 6px;
+                padding-top: 5px;
             }
 
             body.map-body .segment-popup-history-heading {
-                margin-bottom: 5px;
+                margin-bottom: 4px;
                 gap: 1px;
             }
 
             body.map-body .segment-popup-history-heading strong {
-                font-size: 11px;
-            }
-
-            body.map-body .segment-popup-history-heading span {
                 font-size: 8.5px;
             }
 
+            body.map-body .segment-popup-history-heading span {
+                display: inline;
+                font-size: 6.5px;
+            }
+
             body.map-body .segment-history-tabs {
-                margin: 5px 0 6px;
-                gap: 5px;
+                margin: 4px 0 5px;
+                gap: 4px;
             }
 
             body.map-body .segment-history-tab {
-                min-height: 30px !important;
-                padding: 4px 6px !important;
-                gap: 4px;
-                border-radius: 6px;
-                font-size: 9.5px;
+                min-height: 23px !important;
+                padding: 2px 4px !important;
+                gap: 3px;
+                border-radius: 5px;
+                font-size: 7.5px;
             }
 
             body.map-body .segment-history-tab-count {
-                min-width: 18px;
-                padding: 1px 4px;
-                font-size: 8px;
+                min-width: 14px;
+                padding: 0 3px;
+                font-size: 6.5px;
             }
 
             body.map-body .segment-history-item summary {
-                min-height: 32px;
-                padding: 6px 7px;
-                gap: 6px;
+                min-height: 25px;
+                padding: 4px 5px;
+                gap: 4px;
+                font-size: 7.5px;
             }
 
             body.map-body .segment-history-detail {
-                padding: 7px;
+                padding: 5px;
+            }
+
+            body.map-body .segment-history-facts {
+                grid-template-columns: 1fr !important;
+                gap: 4px;
+            }
+
+            body.map-body .segment-history-facts > div {
+                padding: 4px;
+            }
+
+            body.map-body .segment-history-facts > div:last-child:nth-child(odd) {
+                grid-column: auto;
+            }
+
+            body.map-body .segment-history-facts span,
+            body.map-body .segment-history-description > span {
+                font-size: 6.5px;
+            }
+
+            body.map-body .segment-history-facts strong,
+            body.map-body .segment-history-date {
+                font-size: 7.5px;
+            }
+
+            body.map-body .segment-history-status {
+                font-size: 6.5px;
+            }
+
+            body.map-body .segment-history-description {
+                margin-top: 5px;
             }
 
             body.map-body .segment-popup-scroll::-webkit-scrollbar {
@@ -329,11 +377,11 @@ body.dark-mode
 
         @media (max-width: 420px) {
             body.map-body .segment-popup {
-                width: min(240px, calc(100vw - 64px));
+                width: clamp(132px, calc(100vw - 170px), 145px);
             }
 
             body.map-body .segment-popup-summary > div {
-                grid-template-columns: 78px minmax(0, 1fr);
+                grid-template-columns: 50px minmax(0, 1fr);
             }
         }
 
@@ -3705,17 +3753,24 @@ body.dark-mode
 
         function opsiPopupResponsif(desktopMaxWidth, desktopMaxHeight) {
             const isSmartphone = window.matchMedia("(max-width: 640px)").matches;
-            const availableWidth = Math.max(230, window.innerWidth - 64);
-            const mobileWidth = Math.min(280, availableWidth);
-            const mobileHeight = Math.max(220, Math.min(330, window.innerHeight - 190));
-            return {
+            const availableWidth = Math.max(155, window.innerWidth - 150);
+            const mobileWidth = Math.min(170, availableWidth);
+            const options = {
                 className: "surgem-detail-popup",
                 minWidth: isSmartphone ? mobileWidth : 300,
                 maxWidth: isSmartphone ? mobileWidth : desktopMaxWidth,
-                maxHeight: isSmartphone ? mobileHeight : desktopMaxHeight,
                 autoPanPadding: isSmartphone ? [12, 12] : [28, 28],
                 keepInView: true
             };
+
+            if (isSmartphone) {
+                options.autoPanPaddingTopLeft = [70, 18];
+                options.autoPanPaddingBottomRight = [18, 18];
+            } else {
+                options.maxHeight = desktopMaxHeight;
+            }
+
+            return options;
         }
 
         function renderGateLayer() {
