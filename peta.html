@@ -246,6 +246,22 @@ body.dark-mode
                 margin: 4px 6px;
             }
 
+            body.map-body .leaflet-popup.surgem-detail-popup {
+                width: clamp(125px, 44vw, 170px) !important;
+                max-width: clamp(125px, 44vw, 170px) !important;
+            }
+
+            body.map-body .surgem-detail-popup .leaflet-popup-content-wrapper {
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box;
+            }
+
+            body.map-body .surgem-detail-popup .leaflet-popup-content {
+                width: calc(100% - 12px) !important;
+                box-sizing: border-box;
+            }
+
             body.map-body .surgem-detail-popup .leaflet-popup-content.leaflet-popup-scrolled {
                 max-height: none !important;
                 overflow: visible !important;
@@ -261,7 +277,7 @@ body.dark-mode
             }
 
             body.map-body .segment-popup {
-                width: clamp(135px, calc(100vw - 165px), 150px);
+                width: 100% !important;
                 min-width: 0 !important;
                 font-size: 7.5px !important;
                 line-height: 1.3 !important;
@@ -269,7 +285,7 @@ body.dark-mode
 
             body.map-body .segment-popup-title {
                 padding: 0 17px 4px 0;
-                font-size: 10px;
+                font-size: 9px !important;
             }
 
             body.map-body .segment-popup-scroll {
@@ -376,13 +392,179 @@ body.dark-mode
         }
 
         @media (max-width: 420px) {
-            body.map-body .segment-popup {
-                width: clamp(132px, calc(100vw - 170px), 145px);
-            }
-
             body.map-body .segment-popup-summary > div {
                 grid-template-columns: 50px minmax(0, 1fr);
             }
+        }
+
+        /*
+         * Mode ringkas juga mengikuti lebar peta, bukan hanya lebar viewport.
+         * Lebarnya tetap nyaman dibaca dan STA tidak pecah per karakter.
+         */
+        body.map-body.popup-ringkas-aktif .leaflet-popup.surgem-detail-popup {
+            width: clamp(253px, 74vw, 288px) !important;
+            max-width: clamp(253px, 74vw, 288px) !important;
+        }
+
+        body.map-body.popup-ringkas-aktif
+            .surgem-detail-popup .leaflet-popup-content-wrapper {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box;
+        }
+
+        body.map-body.popup-ringkas-aktif
+            .surgem-detail-popup .leaflet-popup-content {
+            width: calc(100% - 12px) !important;
+            box-sizing: border-box;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-popup {
+            width: 100% !important;
+            min-width: 0 !important;
+            font-size: 8px !important;
+            line-height: 1.4 !important;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-popup-title {
+            padding: 0 24px 7px 0;
+            font-size: 11px !important;
+            white-space: nowrap;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-popup-scroll {
+            max-height: min(
+                var(--popup-ringkas-scroll-max, 180px),
+                34vh
+            ) !important;
+            padding: 7px 2px 18px 0;
+            overflow-y: auto !important;
+            overscroll-behavior-y: contain;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+            pointer-events: auto;
+            scroll-padding-bottom: 18px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-popup-summary {
+            gap: 6px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-popup-summary > div {
+            grid-template-columns: 88px minmax(0, 1fr) !important;
+            gap: 7px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-popup-summary dd {
+            min-width: 0;
+            word-break: normal;
+            overflow-wrap: break-word;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-popup-summary dt {
+            font-size: 10px;
+        }
+
+        body.map-body.popup-ringkas-aktif
+            .segment-popup-summary > div:first-child dd {
+            white-space: nowrap;
+        }
+
+        body.map-body.popup-ringkas-aktif
+            .segment-popup-history-heading strong {
+            font-size: 13px;
+        }
+
+        body.map-body.popup-ringkas-aktif
+            .segment-popup-history-heading span {
+            display: inline;
+            font-size: 10px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-tab {
+            min-height: 28px !important;
+            padding: 4px 6px !important;
+            font-size: 8.5px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-item summary {
+            min-height: 22px !important;
+            padding: 3px 5px !important;
+            gap: 4px;
+            font-size: 8px;
+            line-height: 1.2;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-tab-count {
+            font-size: 7.5px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-status {
+            font-size: 7px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-list {
+            gap: 4px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-item {
+            border-radius: 5px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-date-meta {
+            gap: 3px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-date {
+            font-size: 10px !important;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-detail {
+            padding: 4px !important;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-facts {
+            gap: 3px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-facts > div {
+            padding: 3px;
+            gap: 1px;
+            border-radius: 4px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-facts span,
+        body.map-body.popup-ringkas-aktif
+            .segment-history-description > span {
+            font-size: 6px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-facts strong {
+            font-size: 7.5px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-description {
+            margin-top: 4px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-description p {
+            margin-top: 2px;
+            font-size: 10.5px;
+            line-height: 1.35;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-empty {
+            font-size: 8.5px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-worktype {
+            max-width: 145px;
+            font-size: 10px;
+        }
+
+        body.map-body.popup-ringkas-aktif .segment-history-lane-note {
+            padding: 1px 4px;
+            font-size: 7px;
         }
 
         @media (max-width: 1050px) {
@@ -3752,9 +3934,15 @@ body.dark-mode
         }
 
         function opsiPopupResponsif(desktopMaxWidth, desktopMaxHeight) {
-            const isSmartphone = window.matchMedia("(max-width: 640px)").matches;
-            const availableWidth = Math.max(155, window.innerWidth - 150);
-            const mobileWidth = Math.min(170, availableWidth);
+            const isSmartphone = window.matchMedia("(max-width: 760px)").matches ||
+                map.getSize().x <= 640;
+            document.body.classList.toggle("popup-ringkas-aktif", isSmartphone);
+            const mobileHorizontalSafeSpace = 56;
+            const mapWidth = map.getSize().x || window.innerWidth;
+            const mobileWidth = Math.max(
+                253,
+                Math.min(288, Math.round(mapWidth * 0.74))
+            );
             const options = {
                 className: "surgem-detail-popup",
                 minWidth: isSmartphone ? mobileWidth : 300,
@@ -3764,14 +3952,86 @@ body.dark-mode
             };
 
             if (isSmartphone) {
-                options.autoPanPaddingTopLeft = [70, 18];
-                options.autoPanPaddingBottomRight = [18, 18];
+                options.autoPanPaddingTopLeft = [mobileHorizontalSafeSpace, 14];
+                options.autoPanPaddingBottomRight = [mobileHorizontalSafeSpace, 14];
             } else {
                 options.maxHeight = desktopMaxHeight;
             }
 
             return options;
         }
+
+        function jagaRuangAmanPopupMobile(popup) {
+            const modePopupRingkas = window.matchMedia("(max-width: 760px)").matches ||
+                map.getSize().x <= 640;
+            if (!modePopupRingkas) return;
+
+            const popupElement = popup && popup.getElement();
+            const mapElement = map.getContainer();
+            if (!popupElement || !mapElement) return;
+
+            const scrollArea = popupElement.querySelector(".segment-popup-scroll");
+            const tinggiScrollMaksimum = Math.max(
+                120,
+                Math.min(180, map.getSize().y - 105)
+            );
+            popupElement.style.setProperty(
+                "--popup-ringkas-scroll-max",
+                tinggiScrollMaksimum + "px"
+            );
+
+            if (scrollArea) {
+                L.DomEvent.disableClickPropagation(scrollArea);
+                L.DomEvent.disableScrollPropagation(scrollArea);
+
+                if (scrollArea.dataset.scrollSentuhAktif !== "true") {
+                    scrollArea.dataset.scrollSentuhAktif = "true";
+                    scrollArea.addEventListener("touchmove", function(event) {
+                        event.stopPropagation();
+                    }, { passive: true });
+                }
+            }
+
+            window.setTimeout(function() {
+                window.requestAnimationFrame(function() {
+                    if (!popupElement.isConnected) return;
+
+                    const mapRect = mapElement.getBoundingClientRect();
+                    const popupRect = popupElement.getBoundingClientRect();
+                    const posisiKiriSeimbang = mapRect.left +
+                        (mapRect.width - popupRect.width) / 2;
+                    const geserHorizontal = popupRect.left - posisiKiriSeimbang;
+                    const batasAtas = mapRect.top + 8;
+                    const batasBawah = mapRect.bottom - 8;
+                    let posisiAtasAman = popupRect.top;
+
+                    if (popupRect.bottom > batasBawah) {
+                        posisiAtasAman -= popupRect.bottom - batasBawah;
+                    }
+                    if (posisiAtasAman < batasAtas) {
+                        posisiAtasAman = batasAtas;
+                    }
+
+                    const geserVertikal = popupRect.top - posisiAtasAman;
+
+                    if (
+                        Math.abs(geserHorizontal) > 0.5 ||
+                        Math.abs(geserVertikal) > 0.5
+                    ) {
+                        map.panBy([
+                            Math.round(geserHorizontal),
+                            Math.round(geserVertikal)
+                        ], {
+                            animate: false
+                        });
+                    }
+                });
+            }, 280);
+        }
+
+        map.on("popupopen", function(event) {
+            jagaRuangAmanPopupMobile(event.popup);
+        });
 
         function renderGateLayer() {
             if (gateLayer) {
